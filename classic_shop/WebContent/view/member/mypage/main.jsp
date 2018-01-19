@@ -41,7 +41,7 @@
 			<div class="orderList_titleandbtn">
 				<h2 class="orderListTitle">ORDER LIST</h2>
 				<p>
-					<a href="<c:url value='/order/list.jsp'/>">
+					<a href="<c:url value='/user/order.do?num=${loginMem.num}' />">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					</a>
 				</p>

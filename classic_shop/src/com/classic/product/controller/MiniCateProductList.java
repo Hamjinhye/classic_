@@ -29,7 +29,7 @@ import com.classic.product.dto.MiniCateDTO;
 import com.classic.product.dto.ProductDTO;
 import com.classic.util.ClassicDBConnection;
 
-@WebServlet("/product/miniCateList.do")
+@WebServlet("/product/miniCateList.do") // "/product/cate.do
 public class MiniCateProductList extends HttpServlet {
 	//!!!나중에 ctroller, dto, dao, servie... 분리 해서 만들거임! 참고할 사람은 이거 참고하지마세요
 

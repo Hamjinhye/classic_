@@ -39,7 +39,7 @@
 				</tbody>
 			</table>
  			<div class="adress_btn_group">
-				<button class="btn btn-default" type="button" onclick="location.href='<c:url value='/view/address/register.do'/>'">주소 등록</button>
+				<button class="btn btn-default" type="button" onclick="location.href='<c:url value='/user/address/register.do'/>'">주소 등록</button>
 			</div>
 		</div>
 <%-- 		<!-- RECENT ADDRESS -->
@@ -87,16 +87,18 @@
 </div>
 
 <!-- member.js로 이동함 -->
-<!-- <script>
- 	var addrDelBtn = function(num){
-		var url="/classic_shop/addrBook/delete.do?num="+num;
+<script>
+ 	var addrDelBtn = function(mem_num,addr_num){
+		var url="http://localhost:9999/classic_shop/user/address/remove.do?mem_num="+mem_num+"&addr_num="+addr_num;
+		var method="DELETE";
 		var http= new XMLHttpRequest();
 		http.onreadystatechange=function(){
 			if(this.readyState==4 && this.status==200){
-				var del = JSON.parse(this.responseText)["delete"];
+				var delete_json = JSON.parse(this.response);
 				console.log(delete_json["delete"]);
-				if(del=="1"){
+				if(delete_json["delete"]){
 					alert("삭제성공");
+					location.reload();
 				}else{
 					alert("삭제 실패");
 				}
@@ -105,4 +107,4 @@
 	}
 	http.open(method,url,true);
 	http.send();
-</script> -->
+</script>

@@ -21,7 +21,7 @@ import com.classic.product.dto.CateDTO;
 import com.classic.product.dto.MiniCateDTO;
 import com.classic.util.ClassicDBConnection;
 
-@WebServlet("/template/cate.do")
+@WebServlet("/template/cate.do") 
 public class CateListAJAX extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

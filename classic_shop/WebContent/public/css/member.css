@@ -162,25 +162,24 @@
     padding-bottom: 40px;
 }
 .recentaddr_wrap{
-	border-bottom: 1px solid #c5b4b4e6;
 	padding-bottom: 40px;
 	padding-top: 40px;
 }
 .recentaddr_wrap .table{	
 	border-top: none;
 }
-.table.address_table{
+.address_wrap .table{
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
-.table.address_table label{
+.address_wrap .table label{
 	margin-bottom: 0px;
 }
- .table>tbody>tr>td{
+ .address_wrap .table>tbody>tr>td{
 	vertical-align: middle;
 }
 
-.table>tbody>tr>th{
+.address_wrap .table>tbody>tr>th{
 	vertical-align: middle;
 }
 

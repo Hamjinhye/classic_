@@ -17,7 +17,7 @@ public class CouponDAOImp implements CouponDAO{
 	@Override
 	public List<CouponDTO> couponSelect(int mem_num) throws Exception {
 		List<CouponDTO> couponList = new ArrayList<CouponDTO>();
-		String  sql = "select * from coupon where mem_num=?";
+		String  sql = "select c.state from coupon c, coupon_log l, member m where c.mem_num=m.num and c.log_num=l.num and c.mem_num=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, mem_num);
 		ResultSet rs = pstmt.executeQuery();
