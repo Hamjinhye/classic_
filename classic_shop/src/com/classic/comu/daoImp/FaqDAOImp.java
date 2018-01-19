@@ -55,7 +55,7 @@ public class FaqDAOImp implements FaqDAO{
 			
 		
 	
-	@Override   //관리자로 이동예정
+	@Override
 	public int insert(FaqDTO faqDTO) throws Exception {
 		int insert = 0;
 		String sql = "INSERT INTO REVIEWS (num,indate,goods_num,member_num,star,content) VALUES "
@@ -69,7 +69,7 @@ public class FaqDAOImp implements FaqDAO{
 		return insert;
 	}
 
-//주석으로 빼면 에러 떠서 일단 main을 삭제 못햇는데 나중에 수정할게요 ㅠㅠ
+
 	public static void main(String[] args) {
 
 		Connection conn = null;

@@ -19,7 +19,7 @@ import com.classic.util.ClassicDBConnection;
 
 
 @WebServlet("/community/faq.do")
-public class FaqListJSON extends HttpServlet{
+public class FaqListController extends HttpServlet{
 	@Override											//git 01-17
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<FaqDTO> faqList = new FaqServiceImp().readFaq();
