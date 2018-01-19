@@ -61,7 +61,6 @@
 			</div>
 <!-- 페이징 -->
 	<jsp:include page="/common/paging.jsp"/>
-
 		<!-- My review -->
 		<div class="myReview_wrap">
 			<h2 class="myReviewTitle">MY REVIEW</h2>

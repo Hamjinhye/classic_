@@ -16,7 +16,7 @@ import com.classic.comu.serviceImp.QnaServiceImp;
 import com.classic.member.dto.MemberDTO;
 import com.classic.member.serviceImp.MemberServiceImp;
 
-@WebServlet("/mypage/myposting.do")
+@WebServlet("/user/mypage/myposting.do")
 public class MypageMyPostingController extends HttpServlet{
 	
 	@Override

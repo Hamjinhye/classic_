@@ -16,8 +16,8 @@ import com.classic.order.dao.CartDao;
 import com.classic.order.daoImp.CartDaoImp;
 import com.classic.order.dto.WishDTO;
 import com.classic.util.ClassicDBConnection;
-
-@WebServlet("/view/cart.do")
+///view/cart.do 원래 매핑주소
+@WebServlet("/user/cart.do")
 public class CartListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,6 +48,6 @@ public class CartListController extends HttpServlet {
 		resp.addCookie(priceCookie);
 		resp.addCookie(pNameCookie);
 		resp.addCookie(quentityCookie);
-		resp.sendRedirect("order/cart/cart.jsp");
+		resp.sendRedirect("order/cart/list.jsp");
 	}
 }

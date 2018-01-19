@@ -17,5 +17,6 @@ public interface QnaService {
 	public boolean removeQna(int num);
 	public int recordTotal();
 	public int memRecordTotal(int mem_num);
+	public int count(int num);
 }
 

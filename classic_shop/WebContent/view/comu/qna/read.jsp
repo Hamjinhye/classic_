@@ -21,8 +21,8 @@
 			<div class="table-responsive">
 				<table class="table table-condensed">
 					<tr>
-						<th class='col-sm-1'>SUBJECT</th>
-						<td class='col-sm-6'>
+						<th class='col-2'>SUBJECT</th>
+						<td class='col-6'>
 							<c:choose>
 								<c:when test="${qnaDTO.subject==0}">상품 문의</c:when>
 								<c:when test="${qnaDTO.subject==1}">배송 문의</c:when>
@@ -32,8 +32,8 @@
 								<c:when test="${qnaDTO.subject==5}">기타 문의</c:when>
 							</c:choose>
 						</td>
-						<th class='col-sm-1'>NAME</th>
-						<td class='col-sm-6'>${qnaDTO.name}</td>
+						<th class='col-2'>NAME</th>
+						<td class='col-6'>${qnaDTO.name}</td>
 					</tr>
 					<tr>
 						<th class='col-sm-1'>DATE</th>

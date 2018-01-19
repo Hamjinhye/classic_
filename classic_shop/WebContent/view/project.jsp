@@ -21,16 +21,16 @@
 						<td></td>
 					</tr>
 					<tr>
-						<th class="table_title"><small>PROJECT TERM</small></th>
-						<td class="table_content">2017.12.18 ~ 2018.01</td>
+						<th class="table_title"><small>PROJECT NAME</small></th>
+						<td class="table_content">의류 쇼핑몰 사이트 구축 프로젝트</td>
 						<th class="table_title"><small>LEADER</small></th>
 						<td class="table_content">김주연 | 맡은 역할</td>
 						<td class="table_content"><small style="color: #777;">E-Mail</small> juyeon1203@gmail.com</td>
 						<td><i class="fa fa-envelope"></i></td>
 					</tr>
 					<tr>
-						<th class="table_title"><small>PROJECT INTRO</small></th>
-						<td class="table_content">의류 쇼핑몰 사이트 구축 프로젝트</td>
+						<th class="table_title"><small>DEVELOP PERIOD</small></th>
+						<td class="table_content">2017.12.18 ~ 2018.01</td>
 						<th class="table_title"><small>TEAM</small></th>
 						<td class="table_content">곽은경 | 맡은 역할</td>
 						<td class="table_content"><small style="color: #777;">E-Mail</small> iamgwak89@gmail.com</td>
@@ -46,7 +46,7 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td><i class="fa fa-download"><small>  Project PPT download</small></i></td>
+						<td class="table_content"><a href="javascript:gitLink();">https://github.com/juuuu6/classic_admin</a></td>
 						<th></th>
 						<td class="table_content">함혜진 | 맡은 역할</td>
 						<td class="table_content"><small style="color: #777;">E-Mail</small> hammi0213@gmail.com</td>
@@ -54,7 +54,7 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td><i class="fa fa-link"></i><small>  Location in CLASSIC_ADMIN</small></td>
+						<td><i class="fa fa-download"><small>  Project PPT download</small></i></td>
 						<th></th>
 						<td class="table_content">김경미 | 맡은 역할</td>
 						<td class="table_content"><small style="color: #777;">E-Mail</small> gyeongmi12268@gmail.com</td>
@@ -62,7 +62,7 @@
 					</tr>
 					<tr>
 						<th></th>
-						<td></td>
+						<td><i class="fa fa-link"></i><small>  Location in CLASSIC_ADMIN SITE</small></td>
 						<th></th>
 						<td class="table_content">송유정 | 맡은 역할</td>
 						<td class="table_content"><small style="color: #777;">E-Mail</small> kkokrkeka@gmail.com</td>

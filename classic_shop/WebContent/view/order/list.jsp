@@ -7,9 +7,6 @@
 <div class="order_list_body">
 	<div id="contents">
 		<h2 id="orderlistTitle">ORDER LIST</h2>
-		<!-- <hr style="border:solid 2px black"> --><!-- 이거 지우고 border로 넣을게요 -->
-		<!-- 다혜님 id="이름" class="이름" 동일한 게 있는데 이거 수정해주세요! 그리고 태그 자체 이름으로 css 하시면 모든 jsp에 걸려요
-		무조건 id나 class로 이름 지어서 사용해주세요!  -->
 		<div id="serchContents">
 			<div class="searchDay">
 				<div class="serchBtn">
@@ -20,7 +17,6 @@
 			 		<button type="button" class="btn btn-default">6개월</button>	
 		 		</div>
 				<div class="searchCal">
-					<!-- input 창 변경함(css도) -->
 					<input type="text" name="startDate" value="" class="order_date_input">
 					<button type="button" class="btn btn-default">
 						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -42,63 +38,58 @@
 					<th>상품정보</th>
 					<th>수량</th>
 					<th>상품구매금액</th>
-					<th>처리상태(통합)</th> <!-- 이것만 남길 예정 -->
-					<th>주문상태</th> <!-- 테스트 후 삭제예정  -->
-					<th>배송상태</th> <!-- 테스트 후 삭제예정  -->
+					<th>배송상태</th>
 					<th>선택</th>
 				</tr>
 			</tbody>
-			<tbody>
+			<tbody class="list_contents">
 				<c:forEach items="${orderList}" var="list">
 					<tr>
 						<td><a href="<c:url value='/view/order/detail.jsp'/>">${list.order_num}</a></td>
-						<td>${list.g_name}</td>
+						<td>
+							<img alt="images" src=""  align="left" hspace="10">
+							<label><a href="#">${list.g_name}</a></label><br>
+							[옵션]색상:<strong>${list.g_color}</strong>, 사이즈:<strong>${list.g_size}</strong>
+						</td>
 						<td>1(임시)</td>
 						<td>${list.payment}</td>
-						<!-- 처리상태 (통합) 최종 결과물 -->
-						<td>
-							<c:if test="${list.order_state==-2 && list.deliv_state==0}">주문취소</c:if>
-							<c:if test="${list.order_state==-1 && list.deliv_state==0}">교환/반품</c:if>
-							<c:if test="${list.order_state==0 && list.deliv_state==0}">배송준비</c:if>
-							<c:if test="${list.order_state==1 && list.deliv_state==0}">배송준비</c:if>
-							<c:if test="${list.order_state==1 && list.deliv_state==1}">배송중</c:if>
-							<c:if test="${list.order_state==1 && list.deliv_state==2}">배송완료</c:if>
-							<c:if test="${list.order_state==3 && list.deliv_state==3}">수취확인</c:if>
-							<!-- 있을 수 없는 상태...테스트데이터 미쓰테이쿠 업뎃으로 바꿧는데 왜 적용 안되G-->
-							<c:if test="${list.order_state==0 && list.deliv_state==1}">오류오류ㅠ_ㅠ</c:if>
-							<c:if test="${list.order_state==0 && list.deliv_state==2}">DB업뎃했는데?</c:if>
-							<c:if test="${list.order_state==0 && list.deliv_state==3}">왜안바뀜....</c:if>
-						</td>
 						
-						<!-- 테스트 후 삭제예정 -->
-						<td><!-- 주문상태 검사 order_state상태 확인 -->
-							<c:if test="${list.order_state==-2}">${list.order_state}주문취소</c:if>
-							<c:if test="${list.order_state==-1}">${list.order_state}교환/반품</c:if>
-							<c:if test="${list.order_state==0}">${list.order_state}결제대기</c:if>
-							<c:if test="${list.order_state==1}">${list.order_state}결제완료</c:if>
-							<c:if test="${list.order_state==2}">${list.order_state}주문확인</c:if>
-							<c:if test="${list.order_state==3}">${list.order_state}주문완료</c:if>
-						</td>
-						<!-- 테스트 후 삭제예정 -->
 						<td><!-- 배송상태 검사 -->
-							<c:if test="${list.deliv_state==0}">${list.deliv_state}배송준비</c:if>
-							<c:if test="${list.deliv_state==1}">${list.deliv_state}배송중</c:if>
-							<c:if test="${list.deliv_state==2}">${list.deliv_state}배송완료</c:if>
-							<c:if test="${list.deliv_state==3}">${list.deliv_state}수취확인</c:if>
+							<c:if test="${list.deliv_state==0}"><strong>배송준비</strong></c:if>
+							<c:if test="${list.deliv_state==1}"><strong>배송중</strong><br>(송장번호:${list.deliv_num})</c:if>
+							<c:if test="${list.deliv_state==2}"><strong>배송완료</strong><br>(송장번호:${list.deliv_num})</c:if>
+							<c:if test="${list.deliv_state==3}"><strong>수취확인</strong></c:if>
 							
 						</td>
 						<!-- 배송상태에 따른 버튼 출력 0배송준비 1배송중 2배송완료 3수취확인 -->
-						<c:if test="${list.order_state==0 && list.deliv_state==0 || list.order_state==1 && list.deliv_state==0}">
-							<td><button type="button" class="btn btn-default">주문취소</button></td>
-						</c:if> <!-- 주문취소하면 버튼 사라져야 함 -->
+
+						<c:if test="${list.deliv_state==0}">
+							<td>
+							<c:choose>
+								<c:when test="${list.order_state==-2}">
+									<p style="color:red;">주문 취소건</p>
+								</c:when>
+								<c:when test="${list.order_state==-1 && list.deliv_state==2}">
+									<p style="color:red;">교환/반품건</p>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-default">주문취소</button>
+								</c:otherwise>
+							</c:choose>
+							
+							</td>
+						</c:if> <!-- 주문취소하면 버튼 사라져야 함 --> 
 						
 						<c:if test="${list.deliv_state==1}">
-							<td><button type="button" class="btn btn-default" 
-									onclick="window.open('https://www.doortodoor.co.kr/parcel/pa_004.jsp','CJ대한통운 배송조회','width=430,height=550,location=no,status=no,scrollbars=yes');">배송조회</button><br>
+							<td>
+								<button type="button" class="btn btn-default" 
+									onclick="window.open('https://www.doortodoor.co.kr/parcel/pa_004.jsp','CJ대한통운 배송조회','width=430,height=550,location=no,status=no,scrollbars=yes');">
+										배송조회
+								</button><br>
 								<button type="button" class="btn btn-default">수취확인</button>
 							</td>
 						</c:if>
-						<c:if test="${list.deliv_state==2}">
+						<c:if test="${list.order_state==1 && list.deliv_state==2}">
 							<td>
 								<button type="button" class="btn btn-default">수취확인</button><br>
 								<button type="button" class="btn btn-default">리뷰작성</button><br>

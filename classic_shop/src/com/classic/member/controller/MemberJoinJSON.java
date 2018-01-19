@@ -10,8 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.classic.member.dto.MemberDTO;
 import com.classic.member.serviceImp.MemberServiceImp;
-@WebServlet("/join.do")
+
+@WebServlet("/signup.do")
 public class MemberJoinJSON extends HttpServlet {
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/view/member/join.jsp").forward(req, resp);
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");

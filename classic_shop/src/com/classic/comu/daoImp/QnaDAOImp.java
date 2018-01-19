@@ -201,4 +201,15 @@ public class QnaDAOImp implements QnaDAO{
 		}
 		return memTotalRecord;
 	}
+
+	@Override
+	public int count(int num) throws Exception {
+		int count = 0;
+		String sql = "UPDATE qna SET count=count+1 WHERE num=?";
+		PreparedStatement pstmt = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		count = pstmt.executeUpdate();
+		return count;
+	}
 }

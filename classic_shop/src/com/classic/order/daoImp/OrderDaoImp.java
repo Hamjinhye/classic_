@@ -21,11 +21,14 @@ public class OrderDaoImp implements OrderDAO{
 	public List<PaidDTO> ListSelect(int mem_num) throws Exception {
 		List<PaidDTO> orderList = new ArrayList<PaidDTO>();
 		String sql ="select p.num, p.order_num, p.payment, p.order_state, p.mem_num, " + 
-				"g.num as g_num, g.name as g_name, d.state as deliv_state " + 
-				"from paid p, member m, product g, delivery d " + 
+				"g.num as g_num, g.name as g_name, d.state as deliv_state, d.deliv_num, "+ 
+				"g.num as product_num, s.sizu as g_size, c.name as g_color " + 
+				"from paid p, member m, product g, delivery d, sizu s, colour c " + 
 				"where p.product_num=g.num " + 
 				"and p.mem_num=m.num " + 
 				"and p.num=d.paid_num(+) " + 
+				"and p.sizu_num=s.num "+
+				"and p.colour_num=c.num "+
 				"and mem_num=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -42,10 +45,14 @@ public class OrderDaoImp implements OrderDAO{
 			order.setG_num(rs.getInt("g_num"));
 			order.setG_name(rs.getString("g_name"));
 			order.setDeliv_state(rs.getInt("deliv_state"));
+			order.setDeliv_num(rs.getString("deliv_num"));
+			order.setProduct_num(rs.getInt("product_num"));
+			order.setG_size(rs.getString("g_size"));
+			order.setG_color(rs.getString("g_color"));
 			orderList.add(order);
 		}
 		
-		System.out.println("DaoImp_orderList: "+orderList);
+		/*System.out.println("DaoImp_orderList: "+orderList);*/
 		return orderList;
 	}
 	@Override

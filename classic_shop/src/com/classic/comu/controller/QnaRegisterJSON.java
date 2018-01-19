@@ -16,12 +16,14 @@ public class QnaRegisterJSON extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		//request qna form
 		req.getRequestDispatcher("/view/comu/qnaRegister.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		//insert
 		String str_mem = req.getParameter("mem_num");
 		String str_subject = req.getParameter("subject");

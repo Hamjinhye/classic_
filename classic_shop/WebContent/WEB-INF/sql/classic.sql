@@ -240,13 +240,13 @@ create table paid(
 	sizu_num number(8) not null constraint paid_fk_sizu_num references sizu(num),
 	colour_num number(8) not null constraint paid_fk_colour_num references colour(num)
 );
-
+--deliv_num number(12) ->(16으로 변경) 0000 0000 0000 0000 송장번호 16자리
 create sequence delivery_seq start with 1 increment by 1;
 create table delivery(
 	num number(8) constraint delivery_pk_num primary key,
 	paid_num number(8) constraint delivery_fk_paid_num references paid(num),
 	company varchar2(12),
-	deliv_num number(12) UNIQUE,
+	deliv_num number(16) UNIQUE,
 	state number(1) default 0 not null constraint delivery_ck_state check(state between 0 and 3),
 	deliv_start date not null,
 	deliv_end date

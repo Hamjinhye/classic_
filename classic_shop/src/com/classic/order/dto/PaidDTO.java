@@ -47,9 +47,15 @@ public class PaidDTO {
 	String g_color;
 	String g_size;
 	int deliv_state;
+	String deliv_num;
 	
 	
-	
+	public String getDeliv_num() {
+		return deliv_num;
+	}
+	public void setDeliv_num(String deliv_num) {
+		this.deliv_num = deliv_num;
+	}
 	public int getDeliv_state() {
 		return deliv_state;
 	}
@@ -197,7 +203,7 @@ public class PaidDTO {
 				+ "\", \"pay_with\":" + pay_with + ", \"order_money\":" + order_money + ", \"payment\":"
 				+ payment + ", \"order_date\":\"" + order_date + "\", \"order_state\":" + order_state
 				+ ", \"deposit_name\":\"" + deposit_name + "\", \"g_num\":" + g_num + ", \"g_name\":\"" + g_name
-				+ "\", \"g_color\":\"" + g_color + "\", \"g_size\":\"" + g_size + ", \"deliv_state\":" + deliv_state + "}";
+				+ "\", \"g_color\":\"" + g_color + "\", \"g_size\":\"" + g_size + "\", \"deliv_num\":\"" + deliv_num + "\", \"deliv_state\":" + deliv_state + "}";
 	}
 	
 	

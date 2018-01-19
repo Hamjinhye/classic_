@@ -6,6 +6,7 @@ public class WishDTO {
 	MEM_NUM                  NUMBER(8)
 	INDATE                   DATE*/
 	
+	private int rowNum;
 	private String productName;
 	private int price;
 	private int wishQuantity;
@@ -17,6 +18,8 @@ public class WishDTO {
 	private String colour;
 	
 	
+	public int getRowNum() {return rowNum;}
+	public void setRowNum(int rowNum) {this.rowNum = rowNum;}
 	public String getProductName() {return productName;}
 	public void setProductName(String productName) {this.productName = productName;}
 	public int getPrice() {return price;}
@@ -37,7 +40,7 @@ public class WishDTO {
 	public void setColour(String colour) {this.colour = colour;}
 	@Override
 	public String toString() {
-		return "{ \"productName\" : \"" + productName + "\", \"price\" : " + price + ", \"wishQuantity\" : "
+		return "{ \"rowNum\": "+rowNum+", \"productName\" : \"" + productName + "\", \"price\" : " + price + ", \"wishQuantity\" : "
 				+ wishQuantity + ", \"num\" : " + num + ", \"productNum\" : " + productNum
 				+ ", \"memNum\" : " + memNum + ", \"indate\" : \"" + indate + "\", \"sizu\" : \"" + sizu
 				+ "\", \"colour\" : \"" + colour + "\"}";

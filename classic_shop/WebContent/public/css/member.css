@@ -162,20 +162,25 @@
     padding-bottom: 40px;
 }
 .recentaddr_wrap{
-	border-bottom: 1px solid #c5b4b4e6;
 	padding-bottom: 40px;
 	padding-top: 40px;
 }
 .recentaddr_wrap .table{	
 	border-top: none;
-	border-bottom: 1px solid #e6e6e6;
 }
-.table.address_table{
+.address_wrap .table{
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 }
-.table.address_table label{
+.address_wrap .table label{
 	margin-bottom: 0px;
+}
+ .address_wrap .table>tbody>tr>td{
+	vertical-align: middle;
+}
+
+.address_wrap .table>tbody>tr>th{
+	vertical-align: middle;
 }
 
 /* 배송주소록 등록 */
@@ -185,9 +190,7 @@
 	color: #000;
 	border-bottom: 1px solid #000;
 }
-.table.addressBook_table{
 
-}
 .zip_code_wrap{
 	overflow: hidden;
 }

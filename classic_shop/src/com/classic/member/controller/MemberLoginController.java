@@ -13,8 +13,6 @@ import com.classic.member.dto.MemberDTO;
 import com.classic.member.service.MemberService;
 import com.classic.member.serviceImp.MemberServiceImp;
 
-
-
 @WebServlet("/login.do")
 public class MemberLoginController extends HttpServlet{
 	

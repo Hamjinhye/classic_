@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.classic.member.dto.MemberDTO;
 import com.classic.member.serviceImp.MemberServiceImp;
 
-@WebServlet("/mypage/modify.do")
+@WebServlet("/user/mypage/modify.do")
 public class MemberModifyJSON extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String str_num = req.getParameter("num");
 		MemberDTO memDTO = new MemberServiceImp().readMember(Integer.parseInt(str_num));
 		req.setAttribute("modifyMem", memDTO);
-		req.getRequestDispatcher("/view/member/mypage/modify.jsp").forward(req, resp);
+		req.getRequestDispatcher("/view/member/mypage/memModify.jsp").forward(req, resp);
 	}
 	
 	@Override

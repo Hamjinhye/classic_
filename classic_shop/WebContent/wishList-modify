@@ -8,4 +8,12 @@ WishListController
 - 위시리스트에 담긴 상품이 없을 때, 컨트롤러에서 하지마시고 자바스크립트에서 하시는 건 어떠세요?
 	아니면 애초에 기본 view를 담긴 상품이 '0'이라는 가정 하에 만드시는 건?  - 잘.. 잘 이해 못함.. 
 
-wish.jsp에 있는 자바스크립트 파일, 지금은 한 곳에 있더라도 나중엔 외부 스크립트 파일로 빼주세요 - 요건 난중에 하께오~~~
+wish.jsp에 있는 자바스크립트 파일, 지금은 한 곳에 있더라도 나중엔 외부 크립트 파일로 빼주세요 - 요건 난중에 하께오~~~
+
+-- wish list 해야할것 
+- row num 구하기 dao - ok
+- wish pageing - ok
+- modal 중앙으로 - ok
+- modal db연동
+- wishList update(quentity 랑  num, 매개변수)
+- 

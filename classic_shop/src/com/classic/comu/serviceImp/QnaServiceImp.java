@@ -199,5 +199,17 @@ public class QnaServiceImp implements QnaService{
 		return memTotalRecord;
 	}
 
-
+	@Override
+	public int count(int num) {
+		int count = 0;
+		try {
+			conn = ClassicDBConnection.getConnection();
+			count = new QnaDAOImp(conn).count(num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return count;
+	}
 }

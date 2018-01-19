@@ -18,6 +18,7 @@ public interface QnaDAO {
 	public int deleteQna(int num) throws Exception; //qna 글 삭제
 	public int qnaTotalRecord() throws Exception; //qna 게시글수
 	public int qnaMemTotalRecord(int mem_num) throws Exception; //특정회원의 qna 글 수
+	public int count(int num) throws Exception; //qna 조회수
 	
 	
 	

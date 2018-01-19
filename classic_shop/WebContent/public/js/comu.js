@@ -176,10 +176,10 @@ var modifyQnaForm = function(num){
 var modifyQna = function(qnaModifyForm){
 	var num = qnaModifyForm.qnaNum.value;
 	var mem_num = qnaModifyForm.memNum.value;
-	var subject = qnaModifyForm.subjectValue.value;
+	var subject = qnaModifyForm.subject.value;
 	var content = qnaModifyForm.qnaContent.value;
 	var secure = qnaModifyForm.qnaSecure.value;
-	var pwd = qnaModifyForm.qnaPwdValue.value;
+	var pwd = qnaModifyForm.qnaPwd.value;
 	var urlSet = "/classic_shop/community/qna/modify.do?num="+num;
 	var method = "PUT";
 	var http = new XMLHttpRequest();
@@ -203,10 +203,10 @@ var modifyQna = function(qnaModifyForm){
 var registerQna = function(qnaRegisterForm){
 	//첨부파일 아직X
 	var mem_num = qnaRegisterForm.memNum.value;
-	var subject = qnaRegisterForm.subjectValue.value;
+	var subject = qnaRegisterForm.subject.value;
 	var content = qnaRegisterForm.qnaContent.value;
 	var secure = qnaRegisterForm.qnaSecure.value;
-	var pwd = qnaRegisterForm.qnaPwdValue.value;
+	var pwd = qnaRegisterForm.qnaPwd.value;
 	var url = "/classic_shop/community/qna/register.do";
 	var method = "POST";
 	var data = "mem_num="+mem_num+"&subject="+subject+"&content="+content+"&secure="+secure+"&pwd="+pwd;
@@ -230,7 +230,7 @@ var registerQna = function(qnaRegisterForm){
 }
 
 //qna 검색
-var qnaSearch = function(searchForm){
+/*var qnaSearch = function(searchForm){
 	var subject = searchForm.subject.value;
 	var name = searchForm.name.value;
 }
@@ -240,12 +240,30 @@ $(function(){
 		var selectedVal = $("#qnaSearchField").find(":selected").val;
 		alert(selectedVal);
 	});
+});*/
+
+/* QNA register PWD 활성/비활성 설정 */
+$(function(){
+	$(".qna-secure-data").change(function(){
+		var secureVal = $(".qna-secure-data input[type='radio']:checked").val();
+		if(secureVal=="1"){
+			$(".qna-pwd-data input").prop('disabled', false);
+		}else{
+			$(".qna-pwd-data input").prop('disabled', true);
+		}
+	});
 });
 
-
-/*
-	1. qna 옵션 셀렉트 선택
-		- subject 선택하면, input -> option창으로 변경
-		- 그 후, option에 value를 int로 설정
-		- DB 돌리고
- * */
+//QNA 첨부파일 Form 추가
+$(function(){
+	$("#addFileForm").click(function(){
+		$("#qnaFileTbody>tr:last").clone(true).insertAfter("#qnaFileTbody>tr:last");
+		$("#qnaFileTbody>tr:last #fileName").val("");
+		$("#qnaFileTbody>tr:last #removeSpan").attr("style", "display: inline-block");
+		return false;
+	});
+	$("#removeFileForm").click(function(){
+		$("#qnaFileTbody>tr:last").remove();
+		return false;
+	});
+});

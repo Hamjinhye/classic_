@@ -11,7 +11,7 @@ import com.classic.comu.dto.FaqDTO;
 import com.classic.util.ClassicDBConnection;
 
 public class FaqDAOImp implements FaqDAO{
-																	
+																	//git 01-17
 	private Connection conn;
 	public FaqDAOImp(Connection conn) {
 		this.conn = conn;
@@ -55,7 +55,7 @@ public class FaqDAOImp implements FaqDAO{
 			
 		
 	
-	@Override   //ê´€ë¦¬ìë¡œ ì´ë™ì˜ˆì •
+	@Override   //°ü¸®ÀÚ·Î ÀÌµ¿¿¹Á¤
 	public int insert(FaqDTO faqDTO) throws Exception {
 		int insert = 0;
 		String sql = "INSERT INTO REVIEWS (num,indate,goods_num,member_num,star,content) VALUES "
@@ -69,7 +69,7 @@ public class FaqDAOImp implements FaqDAO{
 		return insert;
 	}
 
-//ì£¼ì„ìœ¼ë¡œ ë¹¼ë©´ ì—ëŸ¬ ë– ì„œ ì¼ë‹¨ mainì„ ì‚­ì œ ëª»í–‡ëŠ”ë° ë‚˜ì¤‘ì— ìˆ˜ì •í• ê²Œìš” ã… ã… 
+//ÁÖ¼®À¸·Î »©¸é ¿¡·¯ ¶°¼­ ÀÏ´Ü mainÀ» »èÁ¦ ¸øÇŞ´Âµ¥ ³ªÁß¿¡ ¼öÁ¤ÇÒ°Ô¿ä ¤Ğ¤Ğ
 	public static void main(String[] args) {
 
 		Connection conn = null;

@@ -41,4 +41,22 @@
   	<servlet-name>qnaList</servlet-name>
   	<url-pattern>/community/qna.do</url-pattern>
   </servlet-mapping> -->
+<!--     <filter>
+  	<filter-name>UserHeaderFilter</filter-name>
+  	<filter-class>com.classic.common.filter.UserHeaderFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>UserHeaderFilter</filter-name>
+  	<url-pattern>/user/*</url-pattern>
+  </filter-mapping> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </web-app>

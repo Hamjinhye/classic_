@@ -11,10 +11,12 @@ import javax.xml.ws.WebFault;
 
 import com.sun.xml.internal.ws.api.ha.HaInfo;
 
-@WebServlet("/order/ordersheet.do")
+@WebServlet("/user/ordersheet.do")
 public class OrderSheetController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		//String str_num=req.getParameter("num");
+		//req.getRequestDispatcher("/view/order/sheet.jsp").forward(req, resp);
+		//from주연
 	}
 }

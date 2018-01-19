@@ -857,6 +857,14 @@ insert into paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip
 values (paid_seq.nextval,1,35,null,2017122400000121,'유정',01012341234,11758,'경기도 의정부시 장암동','**아파트 101동 504호','크리스마스조심',to_date('2017-12-24','yyyy-mm-dd'),0,100000,1000000,to_date('2017-12-25','yyyy-mm-dd'),1,'유정',(select num from sizu where product_num =35 and sizu='L'),(select num from colour where product_num=35 and name='색상5'));
 insert into paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) 
 values (paid_seq.nextval,1,52,null,2017123000000122,'김상우',01012341234,11758,'경기도 의정부시 장암동','**아파트 101동 504호','신년조심',to_date('2017-12-30','yyyy-mm-dd'),0,100000,1000000,to_date('2017-12-30','yyyy-mm-dd'),1,'김상우',(select num from sizu where product_num =52 and sizu='FREE'),(select num from colour where product_num=52 and name='색상11'));
+--주문 db --다혜 취소,교환/반품 테스트디비 추가
+insert into paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) 
+values (paid_seq.nextval,1,52,null,2017123000000122,'김다혜',01012341234,11758,'경기도 구리시 장암동','**아파트 101동 504호','취소할거',to_date('2017-12-30','yyyy-mm-dd'),0,100000,1000000,to_date('2017-12-30','yyyy-mm-dd'),-2,'김다혜',(select num from sizu where product_num =52 and sizu='FREE'),(select num from colour where product_num=52 and name='색상11'));
+insert into paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) 
+values (paid_seq.nextval,1,52,null,2017123000000122,'김라혜',01012341234,11758,'경기도 안산시 장암동','**아파트 101동 504호','교환할거',to_date('2017-12-30','yyyy-mm-dd'),0,100000,1000000,to_date('2017-12-30','yyyy-mm-dd'),-1,'김라혜',(select num from sizu where product_num =52 and sizu='FREE'),(select num from colour where product_num=52 and name='색상11'));
+insert into paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) 
+values (paid_seq.nextval,1,52,null,2017123000000122,'김마혜',01012341234,11758,'경기도 남양주시 장암동','**아파트 101동 504호','반품할거',to_date('2017-12-30','yyyy-mm-dd'),0,100000,1000000,to_date('2017-12-30','yyyy-mm-dd'),-1,'김마혜',(select num from sizu where product_num =52 and sizu='FREE'),(select num from colour where product_num=52 and name='색상11'));
+
 
 --wish db
 -- 							num, productNum, productNum, date, sizuNum, colourNum
@@ -918,23 +926,56 @@ INSERT INTO bank VALUES(bank_seq.nextval ,'우리은행' ,'1002536238755','클�
 INSERT INTO bank VALUES(bank_seq.nextval ,'신한은행' ,'22875504956326','클래식');
 INSERT INTO bank VALUES(bank_seq.nextval ,'국민은행' ,'5678920563257','클래식');
 
+--delivery// 요 밑에 디비 못넣음 혜진 체크용 --다혜 디비수정0118 (order_state와 deliv_state 상황 맞춰서 재수정)
+--order_State=0결제대기 -> delivery_state=0배송준비
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=0 and num=2) ,NULL,NULL ,0 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=0 and num=6) ,NULL,NULL ,0 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=0 and num=9) ,NULL,NULL ,0 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=0 and num=11) ,NULL,NULL ,0 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=0 and num=18) ,NULL,NULL ,0 ,sysdate , NULL);
+--order_State=1결제완료 -> delivery_state=1배송중
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=1) ,'CJ택배','6898000111111111' ,1 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=3) ,'CJ택배','6898000122222222' ,1 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=7) ,'CJ택배','6898000133333333' ,1 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=8) ,'CJ택배','6898000144444444' ,1 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=10) ,'CJ택배','6898000145555555' ,1 ,sysdate , NULL);
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=20) ,'CJ택배','6898000146666666' ,1 ,sysdate , NULL);
+--order_State=1결제완료 -> delivery_state=2배송완료
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=12) ,'CJ택배','1111111144426575' ,2 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=13) ,'CJ택배','2222222244426575' ,2 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=15) ,'CJ택배','3333333344426575' ,2 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=17) ,'CJ택배','4444444444426575' ,2 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=1 and num=19) ,'CJ택배','5555555544426575' ,2 ,sysdate , '20180118');
+--order_State=2주문확인 -> delivery_state=3수취확인
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=2 and num=4) ,'대한통운','6666666633334444' ,3 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=2 and num=5) ,'대한통운','7777777733334444' ,3 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=2 and num=10) ,'대한통운','8888222233334444' ,3 ,sysdate , '20180118');
+--order_State=-1교환/반품 -> delivery_state=2배송완료
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=-1 and num=22) ,'대한통운','999999233334444' ,3 ,sysdate , '20180118');
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=-1 and num=23) ,'대한통운','999222233334444' ,3 ,sysdate , '20180118');
+--order_State=-2주문취소 -> delivery_state=0배송준비
+INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=-2 and num=21) ,NULL,NULL ,0 ,sysdate , NULL);
+
+--delivery
+---------------------!!!!!!!!DO NOT INSERT DATA DOWN BELOW!!!!!!!!!!!!------------------------
 --delivery// 요 밑에 디비 못넣음 혜진 체크용 
+>>>>>>> 1a55f9a30659555c9b6f5a458ece6a87a4653fe4
 INSERT INTO delivery VALUES(delivery_seq.nextval ,41 ,'CJ택배','6898000144426575' ,1 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,52 ,NULL,NULL ,0 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,43 ,'대한통운','1111222233334444' ,2 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,47 ,'대한통운','6666222233335555' ,3 ,sysdate , '20180107');
 
---trade
-INSERT INTO trade VALUES(trade_seq.nextval ,44,0,sysdate,NULL,0);
-INSERT INTO trade VALUES(trade_seq.nextval ,45,2,sysdate,NULL,2);
+--trade--다혜 디비수정0118 (order_state와 deliv_state 상황 맞춰서 재수정)
+INSERT INTO trade VALUES(trade_seq.nextval ,(select num from paid where order_state=-1 and num=22),0,sysdate,NULL,0);
 
---refund
-INSERT INTO refund VALUES(refund_seq.nextval ,46,sysdate,1,NULL,1,'카카오뱅크','12345678912','김다혜');
-INSERT INTO refund VALUES(refund_seq.nextval ,47,sysdate,5,NULL,2,'우리은행','12345678912','홍길동');
+--refund--다혜 디비수정0118 (order_state와 deliv_state 상황 맞춰서 재수정)
+INSERT INTO refund VALUES(refund_seq.nextval ,(select num from paid where order_state=-1 and num=23),sysdate,1,NULL,1,'카카오뱅크','12345678912','김다혜');
 
---cancel
-INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
-INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
+--cancel--다혜 디비수정0118 (order_state와 deliv_state 상황 맞춰서 재수정)
+INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_state=-2 and num=21),sysdate,NULL);
+--INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
+
+---------------------!!!!!!!!DO NOT INSERT DATA ABOVE!!!!!!!!!!!! 디비안들어가는 거 확인함------------------------
 
 --혜진 필요 DB
 INSERT INTO member VALUES(member_seq.nextval, 'member4', '1234', '01099998888', 'member4@c.com', 3, sysdate);
@@ -958,3 +999,6 @@ INSERT INTO wish VALUES(wish_seq.nextval ,(select num from product where code='0
 INSERT INTO wish VALUES(wish_seq.nextval ,(select num from product where code='0000057'), (select num from member where id='member4'), sysdate);
 INSERT INTO wish VALUES(wish_seq.nextval ,(select num from product where code='0000057'), (select num from member where id='member4'), sysdate);
 
+--cancel
+INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
+INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');

@@ -26,6 +26,7 @@ public class ImgPathDTO {
 	private int notice_num;
 	private int banner_num;
 	private String name;
+	
 	public int getNum() {
 		return num;
 	}

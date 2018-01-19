@@ -16,10 +16,10 @@ public interface FaqDAO {
 		this.setMem_num(rs.getInt("mem_num"));
 		this.seta_content(rs.getString("a_content"));
 		this.setq_title(rs.getString("q_title"));
-			dtoì—ì„œ ì´ë™	
+			dto¿¡¼­ ÀÌµ¿	
 			
 			*/
-			//ì¼ë‹¨ ìœ„ì—  selectFaqë¶€í„° í–‡ì–´ìš”~
+			//ÀÏ´Ü À§¿¡  selectFaqºÎÅÍ ÇŞ¾î¿ä~
 	
 
 

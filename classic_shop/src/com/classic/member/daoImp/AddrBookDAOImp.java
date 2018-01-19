@@ -51,12 +51,13 @@ public class AddrBookDAOImp implements AddrBookDAO {
 	}
 
 	@Override
-	public int addrBookDelete(int num) throws Exception {
+	public int addrBookDelete(int num, int mem_num) throws Exception {
 		int delete = 0;
-		String sql ="delete from addr_book where num=?";
+		String sql ="delete from addr_book where mem_num=? and num=?";
 		PreparedStatement pstmt = null;
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, num);
+		pstmt.setInt(1, mem_num);
+		pstmt.setInt(2, num);
 		delete = pstmt.executeUpdate();
 		return delete;
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.classic.order.dao.WishListDAO;
 import com.classic.order.dto.WishDTO;
+import com.classic.util.ClassicDBConnection;
 
 public class WishListDAOImp implements WishListDAO{
 	/*test�슜
@@ -49,7 +50,7 @@ public class WishListDAOImp implements WishListDAO{
 			wish.setColour(rs.getString("colour"));
 			wishList.add(wish);
 		}
-		System.out.println(wishList);
+		//System.out.println(wishList);
 		return wishList;
 	}
 
@@ -75,4 +76,35 @@ public class WishListDAOImp implements WishListDAO{
 		delete = pstmt.executeUpdate();
 		return delete;
 	}
+	@Override
+	public int recodeTotal(int memNum) throws Exception {
+		int recode = 0;
+		String sql = "select count(*) as a from (select w.product_num ,count(w.product_num) as count, s.sizu, c.name as color " 
+					+"from product p, wish w ,sizu s , colour c " 
+					+"where p.num = w.product_num " 
+					+"and w.sizu_num = s.num " 
+					+"and w.colour_num = c.num " 
+					+"and w.mem_num = ? " 
+					+"group by w.product_num, p.num, s.sizu, c.name) ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, memNum);
+		ResultSet rs =pstmt.executeQuery();
+		if(rs.next()) {
+			recode = rs.getInt("a");
+		}
+		return recode;
+	}
+	/* recode total count용 test
+	 * public static void main(String[] args) {
+		Connection conn = null;
+		int recode = 0;
+		try {
+			conn = ClassicDBConnection.getConnection();
+			WishListDAO wish = new WishListDAOImp(conn);
+			recode = wish.recodeTotal(4);
+			System.out.println(recode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}*/
 }

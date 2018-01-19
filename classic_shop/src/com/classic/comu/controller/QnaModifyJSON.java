@@ -16,6 +16,7 @@ public class QnaModifyJSON extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		String str_num = req.getParameter("num");
 		QnaDTO qnaDTO = new QnaServiceImp().readQna(Integer.parseInt(str_num));
 		req.setAttribute("qnaModify", qnaDTO);
@@ -24,6 +25,7 @@ public class QnaModifyJSON extends HttpServlet{
 	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		//update
 		String str_num = req.getParameter("num");
 		String mem_num = req.getParameter("mem_num");
