@@ -1,23 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-
-
-<script>
-
-$(function(){
-	//console.log(${productDetail});
-	console.log(${colourList});
-	console.log(${sizuList});
-	console.log(${reviewList});
-	$.ajax({
-	});//ajax
-});//ready
-
-</script>
-<link rel="stylesheet" href="<c:url value='/public/css/product.css' />">
-
+   
 </head>
+<link rel="stylesheet" href="<c:url value='/public/css/product.css' />">
+<script src='<c:url value="/public/js/product_detail.js"/>'></script>
 <body>
 
 
@@ -98,6 +84,7 @@ $(function(){
 									<c:forEach var="sizu" items="${sizuList}">
 										<option value="${sizu.num}">${sizu.sizu}</option>
 									</c:forEach>
+									<c:set value="안녕" var="finalSizu" /> 
 										<!-- <option selected value="8">셀렉트</option> -->
 									
 								</select>
@@ -109,35 +96,38 @@ $(function(){
 					<table>   
 						<tr>
 							<th>${productDetail.name}{Color,Size}</th> <!-- 선택한 컬러와 사이즈 -->
-							<script> 
-								//var test = $("#sizuTest2 :selected").val();
-								//alert(test);
-									
-								
-								//console.log($("#sizuSelect option:eq(3)").val());
-							</script>
+							
 							<td>
 							
-	<!-- <img src="http://placehold.it/10x10" alt="" width="10" height="10" class="bt_down" />  -->
-									<button class="bt_down">-</button>
-		                  			<input type="text" size="3" name="num" value="1" id="" class="num"/>	               
-									<button class="bt_up">+</button>
-	<!-- <img src="http://placehold.it/10x10" alt="" width="10" height="10" class="bt_down" /> -->
+									<button id="bt_minus" class="bt_down">-</button>
+		                  			<input readonly style="text-align: center;" id="quantity" type="text" size="2" name="num" value="1" id="" class="num"/>	               
+									<button id="bt_plus" class="bt_up">+</button>
+									
+									<!-- <div class="input-group input-group-sm mb-3"> 왜 부트스트랩 버튼 안 먹어?
+									<div class="input-group-prepend">
+									<span class="input-group-text" id="inputGroup-sizing-sm">+</span>
+									</div>
+									<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+									</div> -->
+									<script>
+										/* var quantityMinus=function(){
+											var val = Number($("#quantity").val());
+											if(val>1){
+												val-=1
+											}
+											$("#quantity").val(val);
+										}
+										var quantityPlus=function(){
+											var val = Number($("#quantity").val());
+											if(val<99){
+												val+=1
+											}
+											$("#quantity").val(val);
+										} */
+									</script>
+	
 	                 		
-							<script>
-							/* $(function(){ 
-								  $('.bt_up').click(function(){ 
-								    var n = $('.bt_up').index(this);
-								    var num = $(".num:eq("+n+")").val();
-								    num = $(".num:eq("+n+")").val(num*1+1); 
-								  });
-								  $('.bt_down').click(function(){ 
-								    var n = $('.bt_down').index(this);
-								    var num = $(".num:eq("+n+")").val();
-								    num = $(".num:eq("+n+")").val(num*1-1); 
-								  });
-							})  */
-							</script>
+							
 							</td>
 							<td>${productDetail.price}원(가격*수량)</td>
 						</tr>
@@ -228,35 +218,100 @@ $(function(){
 	 	</script> -->
 		<div class="highlight"><pre><code id="productDetailTest" class="language-html" data-lang="html">초기내용
 		</code></pre></div>
-		<div class="container">
-			<ul class="list-group" id="reviews"> 
-					<c:forEach var="list" items="${reviewList}">
-						<li id="reviewEx" class="list-group-item">
-							<ul class="list-group">
-								<li class="list-group-item stars text-warning">
-								
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-half-o"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-									<i class="fa fa-star-o"></i>
-								</li>
-								<li class="list-group-item content h5">
-									${list.content}
-								</li>
-								<li class="list-group-item writer h6">
-									<span class="indate">2018-1-12 14:47</span>
-									<span class="user">김길동(noname)</span>
-								</li>
-							</ul>
+		
+		
+		
+		<!-- <hr>
+		<div class="review">
+			<div class="review_header">
+			</div>
+			<div class="review_body">
+				<div class="page">
+					<ul>
+						<li>
+							<div>
+								<a>
+									<div>
+										내용
+									</div>
+								</a>
+								<ul>
+									<li></li>
+								</ul>
+							</div>
+						
 						</li>
-					</c:forEach>
+						<li></li>
+						<li></li>
 					</ul>
-		</div>
+					<div class="nodate">
+					</div>
+				</div>
+			</div>
+			<div class="review_footer">
+				페이지 목록 버튼
+			</div>
+		</div>전체  -->
+		
+		<hr>
+		
+			<ul class="list-group"> 
+				<li class="list-group-item">
+					<c:forEach var="list" items="${reviewList}" varStatus="i">
+						<ul class="list-group">
+						<div class="item">
+    							<a data-toggle="collapse" data-parent="#exampleAccordion" href="#exampleAccordion${i.index}" role="button" aria-expanded="true" aria-controls="exampleAccordion1">
+	   							 <div>
+							<li class="list-group-item stars text-warning">
+								<table style="width: 100%">
+									<tr>
+										<td style="width:60%">
+											<c:forEach begin="1" end="${list.star}">
+												<i class="fa fa-star"></i>
+											</c:forEach>
+											<c:forEach begin="1" end="${5-list.star}">
+												<i class="fa fa-star-o"></i>
+											</c:forEach>
+										</td>
+										<td>
+											${list.id}
+										</td>
+										<td>
+											${list.indate}
+										</td>
+									</tr>
+								</table>
+							</li>
+							</div>
+							</a>
+							<div id="exampleAccordion${i.index}" class="collapse" role="tabpanel">
+			  					<div class="container">
+			  						<p>	신체 사이즈: ${list.body_size} </p>
+									<li class="list-group-item content h5" id="reviewList${i.index}">
+										${list.content}
+									</li>
+			  					</div>
+								
+							</div>
+							</div>
+					
+						</ul>
+					</c:forEach>
+				</li>
+			</ul>
+	
 		
 		
 		
 	<script>
+	
+	$('[data-toggle=collapse]').on('show', function () {
+		  // Handle setting display here before show transition starts
+		  $(this).show();
+		}).on('hidden', function () {
+		  // Handle adding display:none or visibility: hidden here after element is done transitioning
+		  $(this).css("display", "none");
+		});
 	//$(function(){
 		var productDetailInfo=function(){
 			$.ajax({

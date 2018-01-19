@@ -21,6 +21,13 @@ public class ReviewDAOImp implements ReviewDAO{
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		String sql = "select r.*, m.id from review r, member m where r.mem_num=m.num and "
 					+ "paid_num in (select product_num from paid where product_num=?)";
+		
+		/*
+		select r.content, to_char(r.indate, 'YYYY-MM-DD') indate, p.name, s.sizu, c.name from 
+		review r, product p, sizu s, colour c, paid o 
+		where r.paid_num=o.num and o.product_num = p.num and o.sizu_num=s.num 
+		and o.colour_num = c.num and r.paid_num=o.num and o.product_num=1
+		 */
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, product_num);
 		ResultSet rs = pstmt.executeQuery();

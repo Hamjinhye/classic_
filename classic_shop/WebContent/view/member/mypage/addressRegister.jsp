@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="address_wrap">
 			<h2 class="addressBookTitle">ADDRESS BOOK</h2>
-				<form name="addrForm" method="post" action="<c:url value='/addresslist/insert.do'/>">
+				<form name="addrForm" method="post" action="<c:url value='/user/address/register.do'/>">
 					<div>
 						<div class="boardWrite">
 							<table class="table table-bordered addressBook_table">
@@ -80,7 +80,7 @@
 						<!-- 버튼 -->
 						<div class="modify_btn_group">
 							<button class="btn btn-default" type="button" onclick="addrJson(this.form)">등록</button>
-							<button class="btn btn-default" type="button" onclick="location.href='<c:url value='/view/address/list.do?mem_num=${loginMem.num}'/>'">취소</button>
+							<button class="btn btn-default" type="button" onclick="location.href='<c:url value='/user/address.do?num=${loginMem.num}'/>'">취소</button>
 						</div>
 					</div>
 				</form>
@@ -95,7 +95,7 @@
 		var zip_code = addrForm.addrZip.value;
 		var base_addr = addrForm.addrBase.value;
 		var detail_addr = addrForm.addrDetail.value;
-		var url = "http://localhost:9999/classic_shop/view/address/register.do"
+		var url = "/classic_shop/user/address/register.do"
 		var method = "POST";
 		var data = "mem_num="+mem_num+"&zip_code="+zip_code+"&base_addr="+base_addr+"&detail_addr="+detail_addr;
 		console.log(data);
@@ -106,7 +106,7 @@
 				var register = JSON.parse(this.response)["register"];
 				if(register){
 					alert("등록했당");
-					location.href="http://localhost:9999/classic_shop/view/address/list.do?mem_num="+mem_num;
+					location.href="/classic_shop/user/address.do?num="+mem_num;
 					
 				}else{
 					alert("다시 시도");

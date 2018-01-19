@@ -21,13 +21,13 @@ import com.classic.util.ClassicDBConnection;
 public class AddrBookListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String mem_num = req.getParameter("num");
+		String memNum = req.getParameter("num");
 		Connection conn = null;
 		List<AddrBookDTO> addrList = new ArrayList<AddrBookDTO>();
 		try {
 			conn= ClassicDBConnection.getConnection();
 			AddrBookDAO addrDAO = new AddrBookDAOImp(conn);
-			addrList = addrDAO.addrBookSelect(Integer.parseInt(mem_num));
+			addrList = addrDAO.addrBookSelect(Integer.parseInt(memNum));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

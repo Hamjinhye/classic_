@@ -957,6 +957,9 @@ INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where or
 INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where order_state=-2 and num=21) ,NULL,NULL ,0 ,sysdate , NULL);
 
 --delivery
+---------------------!!!!!!!!DO NOT INSERT DATA DOWN BELOW!!!!!!!!!!!!------------------------
+--delivery// 요 밑에 디비 못넣음 혜진 체크용 
+>>>>>>> 1a55f9a30659555c9b6f5a458ece6a87a4653fe4
 INSERT INTO delivery VALUES(delivery_seq.nextval ,41 ,'CJ택배','6898000144426575' ,1 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,52 ,NULL,NULL ,0 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,43 ,'대한통운','1111222233334444' ,2 ,sysdate , NULL);
@@ -971,6 +974,8 @@ INSERT INTO refund VALUES(refund_seq.nextval ,(select num from paid where order_
 --cancel--다혜 디비수정0118 (order_state와 deliv_state 상황 맞춰서 재수정)
 INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_state=-2 and num=21),sysdate,NULL);
 --INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
+
+---------------------!!!!!!!!DO NOT INSERT DATA ABOVE!!!!!!!!!!!! 디비안들어가는 거 확인함------------------------
 
 --혜진 필요 DB
 INSERT INTO member VALUES(member_seq.nextval, 'member4', '1234', '01099998888', 'member4@c.com', 3, sysdate);

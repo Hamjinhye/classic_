@@ -22,7 +22,7 @@ public class AddrBookDeleteJSON extends HttpServlet {
 		Connection conn = null;
 		int delete = 0;
 		String strMemNum = req.getParameter("mem_num");
-		String strNum = req.getParameter("num");
+		String strNum = req.getParameter("addr_num");
 		
 		try {
 			conn=ClassicDBConnection.getConnection();

@@ -16,7 +16,7 @@ import com.classic.product.daoImp.MiniCateDAOImp;
 import com.classic.product.dto.MiniCateDTO;
 import com.classic.util.ClassicDBConnection;
 
-@WebServlet("/template/mini_cate.do")
+@WebServlet("/template/mini_cate.do") // "/product/cate.do"
 public class MiniCateListAJAX extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

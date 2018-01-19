@@ -185,3 +185,34 @@ var memModify = function(memModifyForm){
 	}
 	http.send();
 }
+
+//배송주소록 등록
+var addrJson = function(addrForm){
+	var mem_num = addrForm.memNum.value;
+	var zip_code = addrForm.addrZip.value;
+	var base_addr = addrForm.addrBase.value;
+	var detail_addr = addrForm.addrDetail.value;
+	var url = "/classic_shop/user/address/register.do"
+	var method = "POST";
+	var data = "mem_num="+mem_num+"&zip_code="+zip_code+"&base_addr="+base_addr+"&detail_addr="+detail_addr;
+	console.log(data);
+	var http = new XMLHttpRequest();
+	http.open(method, url, true);
+	http.onreadystatechange = function(){
+		if(this.readyState==4 && this.status==200){
+			var register = JSON.parse(this.response)["register"];
+			if(register){
+				alert("등록했당");
+				location.href="/classic_shop/user/address.do?num="+mem_num;
+				
+			}else{
+				alert("다시 시도");
+			}
+		}
+	}
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+	/* charset=UTF-8 을 추가하지 않으면 ajax 전송시 한글이 깨짐...... */
+	http.send(data);
+}
+
+//배송주소록 삭제

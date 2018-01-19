@@ -1,5 +1,5 @@
 $(function(){
-	console.log(document.location.href);
+	//console.log(document.location.href);
 	$.ajax({
 		url:"/classic_shop/template/cate.do",
 		type:"GET",
@@ -42,5 +42,6 @@ $(function(){
 		$("#cateNavbar").append(cateListHTML);
 		}		
 	});
+
 });
 
