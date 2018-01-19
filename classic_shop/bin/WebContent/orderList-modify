@@ -1,6 +1,0 @@
-
-1/10 위시리스트 수정사항
-
-OrderListController
-- 맵핑한 주소 header.jsp 125번, 134번 라인에 걸어주세요
-- finally에서 close 처리하실 때 파라미터 안에 null 쓰지마세요(DBConnection 가시면 유형별로 메소드 만들어놨습니다)

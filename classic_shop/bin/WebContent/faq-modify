@@ -1,5 +1,0 @@
-
-1/10 faq 수정사항
-
-FaqDTO
-- setSelect 메소드 쓰지마세요 귀찮아도 Dao에 써주세요!
