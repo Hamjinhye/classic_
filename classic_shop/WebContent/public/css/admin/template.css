@@ -1,15 +1,32 @@
 @charset "UTF-8";
 
 .main-container{
-	/* margin-right: 3%;
-	margin-left: 3%; */
-	padding-top: 115px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding: 115px 20px 50px 20px;
 }
+
+.main-first-row{
+	padding-top: 50px;
+	margin: 1%;
+}
+
+.main-second-row, .main-third-row{
+	margin: 1%;
+}
+
+.order-card-box>div{
+	width: 25%;
+}
+
+/* 나중에 지워 */
+.main-third-row>div{
+	border: 1px solid #000
+}
+
+/* 
 
 .main-row{
 	margin: 1%;
+	border: 1px solid #000
 }
 
 .main-contents{
@@ -17,7 +34,7 @@
 	width: 50%;
 	height: 600px;
 	border: 1px solid #000
-}
+} */
 
 .common-body-container{
 	margin-top: 30px;

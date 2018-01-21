@@ -18,6 +18,7 @@
 <script src='<c:url value="/public/js/jquery/jquery-3.2.1.min.js"/>' ></script>
 <script src='<c:url value="/public/bootstrap-4.0.0/js/bootstrap.min.js"/>' ></script>
 <title>CLASSIC ADMIN</title>
+
 <div class=" fixed-top">
 	<nav class="navbar navbar-expand navbar-dark bg-dark">
 		<h2><a href="#">CLASSIC ADMIN</a></h2>
@@ -43,12 +44,26 @@
 					<c:when test="${loginMem ne null}">
 						<li class="nav-item"><a class="nav-link" href="#">${loginMem.id}님 접속(관리자)</a></li>
 						<li class="nav-item"><a class="nav-link" href="<c:url value='/logout.do'/>">LOGOUT</a></li>
+						<li class="nav-item"><button type="button" class="btn btn-outline-light btn-sm" onclick="location.href='/classic_shop/main.do'">MY SHOP</button></li>
 					</c:when>
 					<c:otherwise>
-						<li class="nav-item"><a class="nav-link" href="#">LOGIN</a></li>
+						<li class="nav-item">
+							<form>
+								<div class="form-row align-items-right">
+									<div class="col-sm-4 my-1">
+										<input type="text" class="form-control" name="memId" placeholder="ID">
+									</div>
+									<div class="col-sm-4 my-1">
+										<input type="password" class="form-control" name="memPw" placeholder="PASSWORD">
+									</div>
+									<div class="col-auto my-1">
+										<button type="submit" class="btn btn-outline-light">LOGIN</button>
+									</div>
+								</div>
+							</form>
+						</li>
 					</c:otherwise>
 				</c:choose>
-						<li class="nav-item"><button type="button" class="btn btn-outline-light btn-sm" onclick="location.href='/classic_shop/main.do'">MY SHOP</button></li>
 			</ul>
 		</div>
 	</nav>

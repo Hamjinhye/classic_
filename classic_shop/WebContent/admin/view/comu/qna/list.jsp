@@ -24,8 +24,13 @@
 		</nav>
 		<!-- 우측 바디 -->
 		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
-			<div class="common-right-title">
-				<p class="h3">QNA</p>
+			<div class="row">
+				<div class="col-8 common-right-title">
+					<p class="h3">QNA</p>
+				</div>
+				<div class="col comu-register-btn">
+					<button class="btn btn-outline-danger">댓글 미작성 모아보기</button>
+				</div>
 			</div>
 			<div class="common-inner-body">
 				<div class="table-responsive">
@@ -51,6 +56,30 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+				<!-- 페이징 -->
+				<!-- 옵션창 -->
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<select class="form-control">
+							<option selected>글 정렬 선택</option>
+							<option>최신순</option>
+							<option>댓글 미작성</option>
+						</select>
+					</div>
+					<div class="form-group col-md-2">
+						<select class="form-control">
+							<option selected>SEARCH</option>
+							<option>SUBJECT</option>
+							<option>NAME</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4">
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-outline-dark">&#128269;</button>
+					</div>
 				</div>
 			</div>
 		</div>
