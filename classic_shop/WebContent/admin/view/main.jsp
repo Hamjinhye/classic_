@@ -188,6 +188,289 @@
 		<div class="row main-third-row">
 			<div class="col-8 chart-box">
 				<label class="main-box-title">통계</label>
+				<span class="main-plus-read"><a href="#"><small>더보기</small></a></span>
+				<div class="main-chart-nav">
+					<ul class="nav nav-pills" id="pills-tab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="pills-sales-tab" data-toggle="pill" href="#pills-sales" role="tab" aria-controls="pills-sales" aria-selected="true">
+								매출
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-order-tab" data-toggle="pill" href="#pills-order" role="tab" aria-controls="pills-order" aria-selected="false">
+								주문
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-newMem-tab" data-toggle="pill" href="#pills-newMem" role="tab" aria-controls="pills-newMem" aria-selected="false">
+								신규회원
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tab-content" id="pills-tabContent">
+					<div class="tab-pane fade show active" id="pills-sales" role="tabpanel" aria-labelledby="pills-sales-tab">
+						<div class="row">
+							<div class="col-6 main-chart-table">
+								<table class="table table-hover table-sm" style="text-align: center;">
+									<thead>
+										<tr>
+											<th>날짜</th>
+											<th>매출금액</th>
+											<th>판매금액</th>
+											<th>환불금액</th>
+										</tr>
+									</thead>
+									<tbody class="main-sales-date">
+										<tr>
+											<td>01/21</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/22</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/23</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/24</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/25</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/26</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/27</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-week">
+										<tr>
+											<td>7일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-fifteen">
+										<tr>
+											<td>15일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-month">
+										<tr>
+											<td>30일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-3 main-chart-graph">
+								통계 그래프1
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+						<div class="row">
+							<div class="col-6 main-chart-table">
+								<table class="table table-hover table-sm" style="text-align: center;">
+									<thead>
+										<tr>
+											<th>날짜</th>
+											<th>판매금액</th>
+											<th>구매건수</th>
+											<th>구매개수</th>
+										</tr>
+									</thead>
+									<tbody class="main-sales-date">
+										<tr>
+											<td>01/21</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/22</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/23</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/24</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/25</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/26</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/27</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-week">
+										<tr>
+											<td>7일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-fifteen">
+										<tr>
+											<td>15일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-month">
+										<tr>
+											<td>30일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-3 main-chart-graph">
+								통계 그래프1
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="pills-newMem" role="tabpanel" aria-labelledby="pills-newMem-tab">
+						<div class="row">
+							<div class="col-6 main-chart-table">
+								<table class="table table-hover table-sm" style="text-align: center;">
+									<thead>
+										<tr>
+											<th>날짜</th>
+											<th>신규회원</th>
+											<th>탈퇴회원</th>
+											<th>전체회원</th>
+										</tr>
+									</thead>
+									<tbody class="main-sales-date">
+										<tr>
+											<td>01/21</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/22</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/23</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/24</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/25</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/26</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+										<tr>
+											<td>01/27</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-week">
+										<tr>
+											<td>7일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-fifteen">
+										<tr>
+											<td>15일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+									<tbody class="main-sales-month">
+										<tr>
+											<td>30일 합계</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-3 main-chart-graph">
+								통계 그래프1
+							</div>
+						</div>
+					</div>
+				</div>
 			</div><!-- chart box END -->
 			<div class="col calendar-box">
 				<label class="main-box-title">달력</label>
