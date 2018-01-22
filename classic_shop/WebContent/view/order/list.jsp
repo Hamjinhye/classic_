@@ -2,32 +2,34 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 <script src="<c:url value='/public/js/order.js'/>"></script>
+<script>
+	$( function() {
+	  $( ".datepicker" ).datepicker();
+	} );
+</script>
 </head>
 <body>
-<div class="order_list_body">
-	<div id="contents">
-		<h2 id="orderlistTitle">ORDER LIST</h2>
-		<div id="serchContents">
-			<div class="searchDay">
-				<div class="serchBtn">
-			 	 	<button type="button" class="btn btn-default">오늘</button>
-			 		<button type="button" class="btn btn-default">일주일</button>
-			 		<button type="button" class="btn btn-default">1개월</button>
-			 		<button type="button" class="btn btn-default">3개월</button>
-			 		<button type="button" class="btn btn-default">6개월</button>	
-		 		</div>
-				<div class="searchCal">
-					<input type="text" name="startDate" value="" class="order_date_input">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-					</button> ~ 
-					<input type="text" name="startDate" value="" class="order_date_input">
-					<button type="button" class="btn btn-default">
-						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-					</button>
-					<button class="btn btn-default">조회</button>
-				</div>
+<div id="contents">
+	<h2 id="orderlistTitle">ORDER LIST</h2>
+	<div id="serchContents">
+		<div class="searchDay">
+			<div class="serchBtn">
+		 	 	<button type="button" id="todayBtn" class="btn btn-default">오늘</button>
+		 		<button type="button" class="btn btn-default">일주일</button>
+		 		<button type="button" class="btn btn-default">1개월</button>
+		 		<button type="button" class="btn btn-default">3개월</button>
+		 		<button type="button" class="btn btn-default">6개월</button>	
+	 		</div>
+	 		<!-- DatePicker 날짜선택 -->
+			<div class="searchCal">
+					<input type="text" id="search_start_date" class="datepicker">
+					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+					 ~ 
+					<input type="text" id="search_end_date" class="datepicker">
+					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+				<button type="submit" class="btn btn-default">조회</button>
 			</div>
+			
 		</div>
 	
 		<div id="list"  class="table-responsive">
@@ -48,7 +50,7 @@
 						<td><a href="<c:url value='/view/order/detail.jsp'/>">${list.order_num}</a></td>
 						<td>
 							<img alt="images" src=""  align="left" hspace="10">
-							<label><a href="#">${list.g_name}</a></label><br>
+							<label><a href="<c:url value='/product/detail.do?num=${list.product_num}' />">${list.g_name}</a></label><br>
 							[옵션]색상:<strong>${list.g_color}</strong>, 사이즈:<strong>${list.g_size}</strong>
 						</td>
 						<td>1(임시)</td>
@@ -58,13 +60,14 @@
 							<c:if test="${list.deliv_state==0}"><strong>배송준비</strong></c:if>
 							<c:if test="${list.deliv_state==1}"><strong>배송중</strong><br>(송장번호:${list.deliv_num})</c:if>
 							<c:if test="${list.deliv_state==2}"><strong>배송완료</strong><br>(송장번호:${list.deliv_num})</c:if>
-							<c:if test="${list.deliv_state==3}"><strong>수취확인</strong></c:if>
+							<c:if test="${list.deliv_state==3}"><strong>구매확정</strong></c:if>
 							
 						</td>
 						<!-- 배송상태에 따른 버튼 출력 0배송준비 1배송중 2배송완료 3수취확인 -->
 
 						<c:if test="${list.deliv_state==0}">
 							<td>
+							<!-- 주문취소하면 버튼 사라져야 함 --> 
 							<c:choose>
 								<c:when test="${list.order_state==-2}">
 									<p style="color:red;">주문 취소건</p>
@@ -78,7 +81,7 @@
 							</c:choose>
 							
 							</td>
-						</c:if> <!-- 주문취소하면 버튼 사라져야 함 --> 
+						</c:if>
 						
 						<c:if test="${list.deliv_state==1}">
 							<td>
@@ -86,12 +89,12 @@
 									onclick="window.open('https://www.doortodoor.co.kr/parcel/pa_004.jsp','CJ대한통운 배송조회','width=430,height=550,location=no,status=no,scrollbars=yes');">
 										배송조회
 								</button><br>
-								<button type="button" class="btn btn-default">수취확인</button>
+								<button type="button" class="btn btn-default">구매확정</button>
 							</td>
 						</c:if>
 						<c:if test="${list.order_state==1 && list.deliv_state==2}">
 							<td>
-								<button type="button" class="btn btn-default">수취확인</button><br>
+								<button type="button" class="btn btn-default">구매확정</button><br>
 								<button type="button" class="btn btn-default">리뷰작성</button><br>
 								<button type="button" class="btn btn-default">교환/반품</button>
 							</td>
@@ -101,7 +104,6 @@
 								<button type="button" class="btn btn-default">리뷰작성</button>
 							</td>
 						</c:if>
-						
 					</tr>
 				</c:forEach>		
 			</tbody>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style></style>
 </head>
 <body>
 
@@ -27,10 +28,101 @@
 		</nav>
 		<!-- 우측 바디 -->
 		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
+			<!-- 타이틀 -->
 			<div class="common-right-title">
 				<p class="h3">취소 리스트</p>
 			</div>
+			<!-- 검색 -->
+			<div class="container">
+				<div class="row">
+				    <div class="col">Column</div>
+				    <div class="col">Column</div>
+				    <div class="w-100"></div>
+				    <div class="col">Column</div>
+				    <div class="col">Column</div>
+				</div>
+			</div>
+			<div id="searchBtn">
+				<button type="button" class="btn btn-secondary">검색</button>
+			</div>
 			
+			<div>
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col" width="5%"><input type="checkbox" id="allCheck"></th>
+				      
+				      <th scope="col">번호</th>
+				      <th scope="col">주문번호</th>
+				      <th scope="col">주문자</th>
+				      <th scope="col">수취인</th>
+				      <th scope="col">상품번호</th>
+				      <th scope="col">상품명</th>
+				      <th scope="col">수량</th>
+				      <th scope="col">총 결제금액</th>
+				      <th scope="col">처리상태</th>
+				      <th scope="col">배송상태</th>
+				      <th scope="col">취소신청일</th>
+				      <th scope="col">취소완료일</th>
+				      <th scope="col">취소수량</th>
+				      <th scope="col">결제방법</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row"><input type="checkbox" id="allCheck"></th>
+				      <td>row_num</td>
+				      <td>order_num</td>
+				      <td>mem_name</td>
+				      <td>p.name</td>
+				      <td>g.num</td>
+				      <td>g.name</td>
+				      <td>1</td>
+				      <td>payment</td>
+				      <td>order_state</td>
+				      <td>deliv_state</td>
+				      <td>cancel_start</td>
+				      <td>cancel_end</td>
+				      <td>1</td>
+				      <td>pay_with</td>
+				    </tr>
+				    <tr>
+				      <th scope="row"><input type="checkbox" id="allCheck"></th>
+				      <td>row_num</td>
+				      <td>order_num</td>
+				      <td>mem_name</td>
+				      <td>p.name</td>
+				      <td>g.num</td>
+				      <td>g.name</td>
+				      <td>1</td>
+				      <td>payment</td>
+				      <td>order_state</td>
+				      <td>deliv_state</td>
+				      <td>cancel_start</td>
+				      <td>cancel_end</td>
+				      <td>1</td>
+				      <td>pay_with</td>
+				    </tr>
+				    <tr>
+				      <th scope="row"><input type="checkbox" id="allCheck"></th>
+				      <td>row_num</td>
+				      <td>order_num</td>
+				      <td>mem_name</td>
+				      <td>p.name</td>
+				      <td>g.num</td>
+				      <td>g.name</td>
+				      <td>1</td>
+				      <td>payment</td>
+				      <td>order_state</td>
+				      <td>deliv_state</td>
+				      <td>cancel_start</td>
+				      <td>cancel_end</td>
+				      <td>1</td>
+				      <td>pay_with</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
