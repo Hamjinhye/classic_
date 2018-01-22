@@ -116,7 +116,6 @@
 					  <li class="nav-item">
 					    <a class="nav-link" href="#">환불</a>
 					  </li>
-					  
 					</ul>
 				</div>
 			</div>
