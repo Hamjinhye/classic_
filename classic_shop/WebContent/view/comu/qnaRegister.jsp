@@ -20,7 +20,7 @@
 		<p class="comu_title">QNA</p>
 		<!-- QNA 글 등록 -->
 		<form name="qnaRegisterForm" action="<c:url value='/community/qna/register.do'/>" method="post" enctype="multipart/form-data">
-			<div class="rable-responsive">
+			<div class="table-responsive">
 				<table class="table table-hover">
 					<tbody>
 						<!-- SUBJECT 선택 -->
