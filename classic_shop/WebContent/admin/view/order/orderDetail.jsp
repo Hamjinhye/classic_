@@ -9,6 +9,12 @@
 #orderNumInfo p{
 	margin: 3px;
 }
+#paymentTab {
+	margin-top: 25px;
+}
+#paymentTab td div{	
+	display: inline-block;
+}
 </style>
 <body>
 <!--  새 칭으로 open -->
@@ -23,12 +29,73 @@
 					<p>주문번호: 123456 	주문일시 : 2017-11-14 HH:mm:ss</p>
 				</div>
 				<div>
-					<table class="table table-default">
+					<table class="table table-sm text-center" id ="paymentTab">
 						<tr class="table-active">
 							<th>총 결제금액</th>
 							<th>총 취소금액</th>
 							<th>총 환불금액</th>
 						</tr>
+						<tr>
+							<td>100000</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td class="clearfix">
+								<div class="col-6 float-left">결제예정금액</div>
+								<div class="col-6 float-left"> - </div>
+							</td>
+							<td class="clearfix">
+								<div class="col-6 float-left">취소예정금액</div>
+								<div class="col-6 float-left"> - </div>
+							</td>
+							<td class="clearfix">
+								<div class="col-6 float-left">환불예정금액</div>
+								<div class="col-6 float-left"> - </div>
+							</td>
+						</tr>
+					</table>
+					<p class="h4 border-bottom">상품정보 </p>
+					<table class="table table-sm">
+						<thead>
+							<tr class="table-active">
+								<th><input type="checkbox"></th>
+								<th>번호</th>
+								<th>상품주문번호</th>
+								<th>주문상품</th>
+								<th>수량</th>
+								<th>상품금액</th>
+								<th>총할인금액</th>
+								<th>배송비</th>
+								<th>총주문금액</th>
+								<th>운송장번호</th>
+								<th>주문상태</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>1</td>
+								<td>54523</td>
+								<td>상품1</td>
+								<td>1</td>
+								<td>100000</td>
+								<td>0</td>
+								<td>0</td>
+								<td>100000</td>
+								<td>54612154</td>
+								<td>구매확정</td>
+							</tr>
+							<tr class="table-active">
+								<td colspan="11">
+									<i class="fa fa-check text-danger"/> 
+										선택한 주문 
+											<select>
+											
+											</select>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>
