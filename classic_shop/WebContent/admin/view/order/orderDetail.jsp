@@ -88,7 +88,7 @@
 							</tr>
 							<tr class="table-active">
 								<td colspan="11">
-									<i class="fa fa-check text-danger"/> 
+									<i class="fa fa-check text-danger"></i> 
 									선택한 주문 
 									<select>
 										<option>=주문상태=</option>
