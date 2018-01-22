@@ -16,10 +16,13 @@ public class CouponLogDAOImp implements CouponLogDAO{
 	}
 
 	@Override
-	public List<CouponLogDTO> couponLogSelect() throws Exception {
+	public List<CouponLogDTO> couponLogSelect(int mem_num) throws Exception {
 		List<CouponLogDTO> couponLog = new ArrayList<CouponLogDTO>();
-		String sql = "select * from coupon_log";
+		String sql = " select c.num, l.name, l.content, l.start_date, l.end_date, c.state "
+				+ "from coupon c, coupon_log l, member m "
+				+ "where c.mem_num=m.num and c.log_num=l.num and c.mem_num=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			CouponLogDTO couponDTO = new CouponLogDTO();
@@ -38,5 +41,4 @@ public class CouponLogDAOImp implements CouponLogDAO{
 		}		
 		return couponLog;
 	}
-
 }

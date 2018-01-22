@@ -4,6 +4,7 @@
 	window.location.href="/classic_shop/main.do";
 </script>
 
+
 <!-- 
 	안 한 거
 		-. 이메일 인증 api
@@ -28,9 +29,13 @@
 			- 아코디언
 			- 비밀번호 입력창 / 로그인 id/pw 찾기창
 			- footer Map CSS
+ 		-. MAIN VIEW
+ 		-. CHART VIEW
  -->
 <!-- 
 	한 거
+ 		-. QNA VIEW
+ 		-. LOGIN VIEW
 		1. 세션 로그인
 		2. 회원가입
 		3. 게시판 유효성 검사/첨부파일/reply 제외한 기본적인 CRUD

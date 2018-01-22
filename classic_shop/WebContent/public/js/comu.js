@@ -63,7 +63,7 @@ var qnaListBtn = function(){
 /*
  var secureNum = document.getElementById("qnaSecureNum").value;
 	if(secureNum=="1"){ //비공개글
-		window.open('/classic_shop/comu/qna/securePassword.html','_blank','width=350 height=200');
+ 45		window.open('/classic_shop/comu/qna/securePassword.html','_blank','width=350 height=200');
 	} else if(secureNum=="0"){
  * */
 

@@ -6,6 +6,11 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9634cbc392b8b80779d4f419ee72bf3a"></script>
 </head>
 <body>
+<fieldset>
+<legend></legend>
+</fieldset>
+
+
 <div class="map_body">
 	<div class="container">
 		<div class="company_project">
