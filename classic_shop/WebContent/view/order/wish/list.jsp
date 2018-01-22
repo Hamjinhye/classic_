@@ -39,25 +39,26 @@
 										<li class="list-group-item"><strong>color : ${wish.colour}   <input type="hidden" name="product_colour" value="${wish.colour}" class="paramValue">size : ${wish.sizu}<input type="hidden" name="product_sizu" value="${wish.sizu}" class="paramValue"> </strong></li>
 										<!-- 모달버튼  -->
 										<li class="list-group-item">
-											<button class="btn btn-default" data-toggle = "popover" data-trigger="focus" data-title="옵션선택" type="button">옵션변경</button>
+											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#wishOption${wish.productNum}" >옵션변경</button>
 										</li>
-										<%-- <!-- 모달 -->
+										 <!-- 모달 -->
 										<div class="modal fade" id="wishOption${wish.productNum}" tabindex="-1" role="dialog">
   											<div class="modal-dialog" role="document">
   												<div class="modal-content">
      												<div class="modal-header">
-     	  												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     	  												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     	  												<span aria-hidden="true">&times;</span></button>
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
       												<div class="modal-body" class="wishOptionSelect">
       													<div>
-	      													<select class="form-control">
-	      													
+	      													<select class="form-control" onclick = "ProductColourSelect(${wish.productNum})">
+	      														<option>${wish.colour}</option>
 	      													</select>
       													</div>
       													<div>
 	      													<select class="form-control">
-	      													
+	      														<option>${wish.sizu}</option>
 	      													</select>
       													</div>
      												</div>
@@ -66,7 +67,7 @@
       												</div>
    												</div>
  											</div>
-										</div> --%>
+										</div> 
 									</ul>
 								</div>
 							</td>
@@ -86,7 +87,8 @@
 							</c:choose>
 							<td>
 								<div class="buttonGroup">
-									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">주문하기</a>									
+									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
+									<a type="button" class="btn btn-default partOrder" href="#">주문하기</a>									
 									<button type="button" class="btn btn-default" onclick="pickWishDel(${loginMem.num},${wish.productNum})">삭제</button>
 								</div>
 							</td>
@@ -195,9 +197,9 @@
 		</table>
 		<div id="wishCRUDBtn">
 			<button type="button" class="btn btn-default" onclick="allWishDel(${loginMem.num})">전체삭제</button>
-			<!-- ~~~~~~~~~~~~~~~mem_num으로 바꿔야댐~~~~~~~~`~~~~~~~~~~~~-->
 			<button type="button" class="btn btn-default" >선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
+			<a class="btn btn-default" href="#" >선택 상품 장바구니 이동</a>
 			<button class="btn btn-default pull-right">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
@@ -222,19 +224,19 @@
 		</div> -->
 	</div>
 <script>
-/* var popoverTemplate = [
-	'<div class="popover" role="tooltip">',
-		' <div class="popover-arrow">',
-		'</div>',
-		'<h3 class="popover-title"></h3>',
-		'<div class="popover-content"></div>',
-	'</div>'
-].join(''); */
-/* $("[data-toggle = 'popover']").Popover({
-	/* html : true,
-	template : popoverTemplate 
-}); */
-$("[data-toggle = 'popover']").Popover();
+
+var ProductColourSelect = function(productNum){
+	var method = "GET";
+	var http = new XMLHttpRequest();
+	http.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			
+		}
+	}
+	http.open(method,url, true);
+	http.send();
+	
+};
 $("#allCheck").click(function(){
 	if(this.checked){
 		$('input:checkbox[class*="checkWish"]').each(function(){
