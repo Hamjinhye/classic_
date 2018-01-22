@@ -3,12 +3,34 @@
 <link rel="stylesheet" href="<c:url value='/public/css/comu.css' />">
 <script src="<c:url value='/public/js/comu.js'/>"></script>
 
-<div class="comu_body">
-	<div class="container">
-	<p class="comu_title">NOTICE</p>
-		<!--글 등록 -->
-		<form name="noticeRegisterForm method=post action="">
-			<!-- SUBJECT 선택 -->
+<div class="container-fluid common-body-container">
+	<div class="row">
+		<!-- 좌측 네비게이션 -->
+		<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar common-left-nav">
+			<p class="left-nav-outer-title">네비게이션 항목 title1</p>
+				<ul class="nav nav-pills flex-column left-nav-inner-title">
+					<li class="nav-item"><a class="nav-link active" href="#">세부 항목 title1</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title2</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title3</a></li>
+				</ul>
+			<p class="left-nav-outer-title">네비게이션 항목 title2</p>
+				<ul class="nav nav-pills flex-column left-nav-inner-title">
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title1</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title2</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title3</a></li>
+				</ul>
+			<p class="left-nav-outer-title">네비게이션 항목 title3</p>
+				<ul class="nav nav-pills flex-column left-nav-inner-title">
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title1</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title2</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">세부 항목 title3</a></li>
+				</ul>
+		</nav>
+		<!-- 우측 바디 -->
+		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
+			<div class="common-right-title">
+				<p class="h3">NOTICE</p>
+			</div>
 			<div class="form-group">
 				<label id="subjectField">TITLE</label>
 				<td><input name="title" size="220"></td>
@@ -39,7 +61,6 @@
 				<button type="submit" class="btn btn-outline-danger">등록</button>
 				<button type="reset" class="btn btn-outline-danger" onclick="location.href='<c:url value='/comu/notice/adminlist.jsp'/>'">취소</button>
 			</div>
-		</form>
-	</div>
-</div>
+
+
 
