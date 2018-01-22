@@ -1,4 +1,5 @@
-## CLASSIC SHOPPING MALL SITE *<small>(ver.USER)</small>* <span style="float:right; font-size: 10pt">[Go to ver.ADMIN](https://github.com/juuuu6/classic_admin.git)</span>##
+## CLASSIC SHOPPING MALL SITE *<small>(ver.USER)</small>* ##
+#### [Go to ver.ADMIN](https://github.com/juuuu6/classic_admin.git) ####
 
 ### INDEX ###
 
