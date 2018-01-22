@@ -2,11 +2,29 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/admin/template.css' />">
 </head>
+<style>
+	.main-alert-label{
+		font-size: 10pt;
+	}
+	.main-container a{
+		text-decoration: none;
+		color: #000;
+	}
+	.main-plus-read small{
+		color: #777;
+	}
+	.main-box-title, .main-plus-read{
+		padding-bottom: 15px;
+		border-bottom: 1px solid #000;
+	}
+	
+</style>
 <body>
 	<div class="container-fluid main-container">
 		<div class="row main-first-row">
 			<div class="col-6 order-box">
-				<label class="main-box-title">주문 관리</label>
+				<label class="col-11 h4 main-box-title">주문 관리</label>
+				<span class="main-plus-read" style="padding-left: 30px;"><a href="#"><small>더보기</small></a></span>
 				<div class="row order-card-box">
 					<div class="card">
 						<div class="card-body">
@@ -61,31 +79,32 @@
 				</div><!-- order card box END -->
 			</div><!-- order box END -->
 			<div class="col-2 comu-box">
-				<label class="main-box-title">문의/답변 관리</label>
+				<label class="col-9 h4 main-box-title">문의/답변 관리</label>
+				<span class="main-plus-read" style="padding-left: 10px;"><a href="#"><small>더보기</small></a></span>
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<tr>
-							<th>상품 후기</th>
-							<td class="text-right">0건</td>
+							<th><a href="#">상품 후기</a></th>
+							<td class="text-right"><a href="#">0건</a></td>
 						</tr>
 						<tr>
-							<th>상품 문의</th>
-							<td class="text-right">0/0건</td>
+							<th><a href="#">상품 문의</a></th>
+							<td class="text-right"><a href="#">0/0건</a></td>
 						</tr>
 						<tr>
-							<th>환불 문의</th>
-							<td class="text-right">0/0건</td>
+							<th><a href="#">환불 문의</a></th>
+							<td class="text-right"><a href="#">0/0건</a></td>
 						</tr>
 						<tr>
-							<th>교환 문의</th>
-							<td class="text-right">0/0건</td>
+							<th><a href="#">교환 문의</a></th>
+							<td class="text-right"><a href="#">0/0건</a></td>
 						</tr>
 					</table>
 				</div>
 			</div><!-- comu box END -->
 			<div class="col memo-box">
-				<label class="main-box-title">관리 메모</label>
-				<select>
+				<label class="col-8 h4 main-box-title">관리 메모</label>
+				<select class="col-3 custom-select main-select-box">
 					<option>공유 메모</option>
 					<option>개인 메모</option>
 				</select>
@@ -101,7 +120,7 @@
 								<td>
 									<small>최종 수정 : YYYY/MM/DD HH:mm:ss</small>
 								</td>
-								<td>
+								<td style="padding-left: 200px;">
 									<button type="button" class="btn btn-outline-danger btn-sm">저장</button>
 									<button type="button" class="btn btn-outline-dark btn-sm">전체 삭제</button>
 								</td>
@@ -113,7 +132,7 @@
 		</div><!-- main first row END -->
 		<div class="row main-second-row">
 			<div class="col coupon-box">
-				<label class="main-box-title">쿠폰</label>
+				<label class="col-11 h4 main-box-title">쿠폰</label>
 				<span class="main-plus-read"><a href="#"><small>더보기</small></a></span>
 				<div align="right" class="main-alert-label">
 					<label>진행 중인 쿠폰</label>
@@ -137,7 +156,7 @@
 				</div>
 			</div><!-- coupon box END -->
 			<div class="col banner-box">
-				<label class="main-box-title">배너</label>
+				<label class="col-11 h4 main-box-title">배너</label>
 				<span class="main-plus-read"><a href="#"><small>더보기</small></a></span>
 				<div align="right" class="main-alert-label">
 					<label>진행 중인 이벤트</label>
@@ -157,7 +176,7 @@
 				</div>
 			</div><!-- banner box END -->
 			<div class="col notice-box">
-				<label class="main-box-title">공지사항</label>
+				<label class="col-11 h4 main-box-title">공지사항</label>
 				<span class="main-plus-read"><a href="#"><small>더보기</small></a></span>
 				<div class="table-responsive">
 					<table class="table table-hover table-sm">
@@ -187,7 +206,7 @@
 		</div><!-- main second row END -->
 		<div class="row main-third-row">
 			<div class="col-8 chart-box">
-				<label class="main-box-title">통계</label>
+				<label class="col-11 h4 main-box-title">통계</label>
 				<span class="main-plus-read"><a href="#"><small>더보기</small></a></span>
 				<div class="main-chart-nav">
 					<ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -473,7 +492,7 @@
 				</div>
 			</div><!-- chart box END -->
 			<div class="col calendar-box">
-				<label class="main-box-title">달력</label>
+				<label class="h4 main-box-title">달력</label>
 			</div><!-- calendar box END -->
 		</div><!-- main third row END -->
 	</div><!-- main container END -->

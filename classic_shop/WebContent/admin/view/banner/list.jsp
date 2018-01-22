@@ -84,8 +84,8 @@
 					</table>				
 				</div>
 				<div class="banner-remove-btn">
-					<button>전체 삭제</button>
-					<button>선택 삭제</button>
+					<button class="btn btn-dark">전체 삭제</button>
+					<button class="btn btn-outline-dark">선택 삭제</button>
 				</div>
 			</div>
 		</div>

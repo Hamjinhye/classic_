@@ -25,39 +25,35 @@
 							<tbody>
 								<tr>
 									<th>TITLE</th>
-									<td>
-										<input type="text" class="col-3 form-control">
-									</td>
+									<td><input type="text" class="form-control"></td>
 								</tr>
 								<tr>
 									<th>DATE</th>
 									<td>
-										<div class="row">
-											<input type="text" class="col-3 form-control">
-											<span><i class="fa fa-calendar"></i></span>
-											~
-											<input type="text" class="col-3 form-control">
-											<span><i class="fa fa-calendar"></i></span>
+										<div class="form-inline">
+											<input type="text" class="form-control"><span>&nbsp;<i class="fa fa-calendar"></i></span>
+											&nbsp;&nbsp;~&nbsp;&nbsp;
+											<input type="text" class="form-control"><span>&nbsp;<i class="fa fa-calendar"></i></span>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<th>CONTENT</th>
-									<td><textarea class="form-control" rows="20"></textarea></td>
+									<td><textarea rows="20" class="form-control"></textarea></td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
 									<th>FILE</th>
 									<td>
-										<input type="file" class="form-control" style="display: inline-block;">
+										<input type="file" style="display: inline-block;">
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="banner-btn-group">
-							<button type="button" class="btn btn-light">등록</button>
-							<button type="button" class="btn btn-light">취소</button>
+							<button type="button" class="btn btn-outline-dark">등록</button>
+							<button type="button" class="btn btn-dark">취소</button>
 						</div>
 					</div>
 				</form>

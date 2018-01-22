@@ -56,7 +56,7 @@
 									<div class="col-sm-4 my-1">
 										<input type="password" class="form-control" name="memPw" placeholder="PASSWORD">
 									</div>
-									<div class="col-auto my-1">
+									<div class="col-sm-2 my-1">
 										<button type="submit" class="btn btn-outline-light">LOGIN</button>
 									</div>
 								</div>
