@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/admin/template.css' />">
-<!-- chart lib -->
-<link rel="stylesheet" href="<c:url value='/public/bower_components/chartist/dist/chartist.min.css' />">
-<script src="bower_components/chartist/dist/chartist.min.js"></script>
 </head>
 <style>
 	.main-alert-label{
@@ -314,7 +311,6 @@
 								</table>
 							</div>
 							<div class="col-3 main-chart-graph">
-								통계 그래프1
 							</div>
 						</div>
 					</div>
@@ -401,7 +397,7 @@
 								</table>
 							</div>
 							<div class="col-3 main-chart-graph">
-								통계 그래프1
+							<!-- 통계 그래프  -->
 							</div>
 						</div>
 					</div>

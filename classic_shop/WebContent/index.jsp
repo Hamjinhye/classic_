@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <script>
 	window.location.href="/classic_shop/main.do";
 </script>
-
 
 <!-- 
 	안 한 거
@@ -73,4 +72,3 @@
 	https://blog.erulabo.com/web-development/javascript-popup-window/
  -->
 
- 
