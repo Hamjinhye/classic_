@@ -27,8 +27,7 @@
 	<!--  관리자 기능 관련 메뉴  -->
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="<c:url value='/admin/view/member/basic.jsp'/>">기본 설정</a></li>
-				<li class="nav-item"><a class="nav-link" href="<c:url value='/admin/view/member/memberAdmin.jsp'/>">회원</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">기본&amp;회원</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">상품</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">주문</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
