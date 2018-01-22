@@ -6,9 +6,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 import com.classic.common.dto.PagingDTO;
+
 import com.classic.comu.dao.NoticeDAO;
 import com.classic.comu.dto.NoticeDTO;
+import com.classic.util.ClassicDBConnection;
+
 
 
 public class NoticeDAOImp implements NoticeDAO{
@@ -96,6 +102,10 @@ public class NoticeDAOImp implements NoticeDAO{
 		return noticeDTO;
 	}
 
+
+
+
+
 	@Override
 	public int noticeTotalRecord() throws Exception {
 		int totalRecord = 0;
@@ -109,6 +119,7 @@ public class NoticeDAOImp implements NoticeDAO{
 		}
 		return totalRecord;
 	}
+}
 	
 //유정이가 전에 해놓은 거
 /*	@Override
@@ -149,4 +160,3 @@ public class NoticeDAOImp implements NoticeDAO{
 		return notice;
 	}*/
 
-}
