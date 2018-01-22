@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+$(function(){
+	$(".datepicker").datepicker(); 
+});
+</script>
 </head>
 <style>
 /* .miniNav{
@@ -59,6 +64,7 @@
  	
  }
 </style>
+
 <body>
 <div class="container-fluid common-body-container">
 	<div class="row">
@@ -118,9 +124,9 @@
 								<option>배송시작일</option>
 								<option>배송종료일</option>
 							</select>
-							<input type="text" class="startDate">
+							<input type="text" class="datepicker">
 							<i class="fa fa-calendar"></i> ~
-							<input type="text" class="endDate">
+							<input type="text" class="datepicker">
 							<i class="fa fa-calendar"></i>
 						</td>
 					</tr>
@@ -196,6 +202,5 @@
 	</div>
 </div>
 <script>
-	//$("#startDate").datepicker(); 
-	//$("#endDate").datepicker();
+	
 </script>

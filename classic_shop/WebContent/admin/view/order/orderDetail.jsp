@@ -15,11 +15,12 @@
 #paymentTab td div{	
 	display: inline-block;
 }
+
 </style>
 <body>
 <!--  새 칭으로 open -->
 <div class="container-fluid common-body-container">
-	<div class="row">
+	<div class= >
 		<div class="col-sm-9 ml-sm-auto col-md-12 pt-3 common-right-body">
 			<div class="common-right-title">
 				<p class="h3">주문상세정보</p>
@@ -103,22 +104,91 @@
 						</tbody>
 					</table>
 					<p class="h4">취소/교환/반품/환불 정보</p>
-					<ul class="nav nav-tabs nav-pills nav-justified">
-					  <li class="nav-item">
-					    <a class="nav-link active" href="#">취소</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link" href="#">교환</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link" href="#">반품</a>
-					  </li>
-					  <li class="nav-item">
-					    <a class="nav-link" href="#">환불</a>
-					  </li>
+					<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+ 						<li class="nav-item">
+   							<a class="nav-link active text-dark" id="pills-cancel-tab" data-toggle="pill" href="#pills-cancel" role="tab" aria-controls="pills-cencel" aria-selected="true">취소</a>
+  						</li>
+  						<li class="nav-item">
+							<a class="nav-link text-dark" id="pills-exchang-tab" data-toggle="pill" href="#pills-exchange" role="tab" aria-controls="pills-exchange" aria-selected="false">교환</a>
+  						</li>
+  						<li class="nav-item">
+  							<a class="nav-link text-dark" id="pills-return-tab" data-toggle="pill" href="#pills-return" role="tab" aria-controls="pills-return" aria-selected="false">반품</a>
+  						</li>
+  						<li class="nav-item">
+  							<a class="nav-link text-dark" id="pills-refund-tab" data-toggle="pill" href="#pills-refund" role="tab" aria-controls="pills-refund" aria-selected="false">환불</a>
+  						</li>
+  						
 					</ul>
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-cancel" role="tabpanel" aria-labelledby="pills-cancel-tab">
+							<table class="table table-sm text-center">
+								<thead>
+									<tr class="table-active">
+										<th>번호</th>
+										<th>처리상테</th>
+										<th>상품</th>
+										<th>취소수량</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="4">취소 정보가 없습니다.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane fade" id="pills-exchange" role="tabpanel" aria-labelledby="pills-exchange-tab">
+						<table class="table table-sm text-center">
+								<thead>
+									<tr class="table-active">
+										<th>번호</th>
+										<th>처리상테</th>
+										<th>상품</th>
+										<th>교환수량</th>
+										<th>교환사유</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="5">교환 정보가 없습니다.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane fade" id="pills-return" role="tabpanel" aria-labelledby="pills-return-tab">
+						<table class="table table-sm text-center">
+								<thead>
+									<tr class="table-active row">
+										<th class="">번호</th>
+										<th>처리상테</th>
+										<th>상품</th>
+										<th>반품사유</th>
+										<th>환불계좌</th>
+										<th>수정</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="row">
+										<td>1</td>
+										<td>반품처리중</td>
+										<td>고객변심</td>
+										<td class="row">
+											<input type="text" readonly="readonly" value="하나" style="border: hidden;" id ="bankName">
+											<input type="text" readonly="readonly" value="254616-54-5123" style="border: hidden;" id="">
+											<input type="text" readonly="readonly" value="김미나" style="border: hidden;">
+										</td>
+										<td>12215213-2451-154</td>
+										<td><a href="#" class="btn btn-light">수정</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="tab-pane fade" id="pills-refund" role="tabpanel" aria-labelledby="pills-refund-tab">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
