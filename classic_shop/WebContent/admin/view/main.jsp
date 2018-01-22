@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/admin/template.css' />">
+<!-- chart lib -->
+<link rel="stylesheet" href="<c:url value='/public/bower_components/chartist/dist/chartist.min.css' />">
+<script src="bower_components/chartist/dist/chartist.min.js"></script>
 </head>
 <style>
 	.main-alert-label{
