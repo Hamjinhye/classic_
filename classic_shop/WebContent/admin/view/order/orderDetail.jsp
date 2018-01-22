@@ -20,7 +20,7 @@
 <!--  새 칭으로 open -->
 <div class="container-fluid common-body-container">
 	<div class="row">
-		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
+		<div class="col-sm-9 ml-sm-auto col-md-12 pt-3 common-right-body">
 			<div class="common-right-title">
 				<p class="h3">주문상세정보</p>
 			</div>
@@ -97,11 +97,27 @@
 										<option>배송완료</option>
 										<option>구매확정</option>
 									</select>
-									<button type="button">일괄처리</button>	
+									<button type="button" class="btn btn-light btn-sm">일괄처리</button>	
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<p class="h4">취소/교환/반품/환불 정보</p>
+					<ul class="nav nav-tabs nav-pills nav-justified">
+					  <li class="nav-item">
+					    <a class="nav-link active" href="#">취소</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#">교환</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#">반품</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#">환불</a>
+					  </li>
+					  
+					</ul>
 				</div>
 			</div>
 		</div>
