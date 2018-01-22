@@ -89,10 +89,15 @@
 							<tr class="table-active">
 								<td colspan="11">
 									<i class="fa fa-check text-danger"/> 
-										선택한 주문 
-											<select>
-											
-											</select>
+									선택한 주문 
+									<select>
+										<option>=주문상태=</option>
+										<option>결제완료</option>
+										<option>상품준비중</option>
+										<option>배송완료</option>
+										<option>구매확정</option>
+									</select>
+									<button type="button">일괄처리</button>	
 								</td>
 							</tr>
 						</tbody>
