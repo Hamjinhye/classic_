@@ -24,12 +24,12 @@
 		</nav>
 		<!-- 우측 바디 -->
 		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
-			<div class="row">
-				<div class="col-8 common-right-title">
-					<p class="h3">QNA 관리</p>
-				</div>
-				<div class="col comu-register-btn">
-					<button class="btn btn-outline-danger">댓글 미작성 모아보기</button>
+			<div class="common-right-title">
+				<div class="container row mb-1">
+					<div class="col-md-10">
+						<p class="h3">QNA 관리</p>
+					</div>
+					<div class="col-md-1"><button class="btn btn-outline-danger">답변 미작성 모아보기</button></div>
 				</div>
 			</div>
 			<div class="common-inner-body">
