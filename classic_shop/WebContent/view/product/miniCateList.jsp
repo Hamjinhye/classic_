@@ -11,7 +11,7 @@
 	<c:forEach var="mini" items="${miniCateList}">
   		<a href="<c:url value='/product/miniCateList.do?num=${mini.num}' />" class="cate">
   		<c:choose>
-  			<c:when test="${param.num eq mini.num }">
+  			<c:when test="${param.num eq mini.num}">
   				<strong>${mini.name}</strong>
   			</c:when>
   			<c:otherwise>
