@@ -125,7 +125,7 @@
 								<thead>
 									<tr class="table-active">
 										<th>번호</th>
-										<th>처리상테</th>
+										<th>처리상태</th>
 										<th>상품</th>
 										<th>취소수량</th>
 									</tr>
@@ -142,7 +142,7 @@
 								<thead>
 									<tr class="table-active">
 										<th>번호</th>
-										<th>처리상테</th>
+										<th>처리상태</th>
 										<th>상품</th>
 										<th>교환수량</th>
 										<th>교환사유</th>
@@ -157,10 +157,18 @@
 						</div>
 						<div class="tab-pane fade" id="pills-return" role="tabpanel" aria-labelledby="pills-return-tab">
 						<table class="table table-sm text-center">
+							<colgroup>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="30%"/>
+								<col width="30%"/>
+								<col width="10%"/>
+							</colgroup>
 								<thead>
-									<tr class="table-active row">
-										<th class="">번호</th>
-										<th>처리상테</th>
+									<tr class="table-active">
+										<th>번호</th>
+										<th>처리상태</th>
 										<th>상품</th>
 										<th>반품사유</th>
 										<th>환불계좌</th>
@@ -168,23 +176,80 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="row">
+									<tr>
 										<td>1</td>
 										<td>반품처리중</td>
+										<td>test1</td>
 										<td>고객변심</td>
-										<td class="row">
-											<input type="text" readonly="readonly" value="하나" style="border: hidden;" id ="bankName">
-											<input type="text" readonly="readonly" value="254616-54-5123" style="border: hidden;" id="">
-											<input type="text" readonly="readonly" value="김미나" style="border: hidden;">
+										<td>
+											<div class="row">
+												<input type="text" class="col-2" readonly="readonly" value="하나" style="border: hidden;" id ="bankName">
+												<input type="text" class="col-5"readonly="readonly" value="254616-54-5123" style="border: hidden;" id="">
+												<input type="text" class="col-3" readonly="readonly" value="김미나" style="border: hidden;">
+											</div>
 										</td>
-										<td>12215213-2451-154</td>
 										<td><a href="#" class="btn btn-light">수정</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 						<div class="tab-pane fade" id="pills-refund" role="tabpanel" aria-labelledby="pills-refund-tab">
+						<table class="table table-sm text-center">
+							<colgroup>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="20%"/>
+								<col width="30%"/>
+								<col width="10%"/>
+							</colgroup>
+								<thead>
+									<tr class="table-active">
+										<th>번호</th>
+										<th>처리상태</th>
+										<th>상품</th>
+										<th>환불수량</th>
+										<th>환불사유</th>
+										<th>환불계좌</th>
+										<th>수정</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>반품처리중</td>
+										<td>test1</td>
+										<td>1</td>
+										<td>고객변심</td>
+										<td>
+											<div class="row">
+												<input type="text" class="col-2" readonly="readonly" value="하나" style="border: hidden;" id ="bankName">
+												<input type="text" class="col-5"readonly="readonly" value="254616-54-5123" style="border: hidden;" id="">
+												<input type="text" class="col-3" readonly="readonly" value="김미나" style="border: hidden;">
+											</div>
+										</td>
+										<td><a href="#" class="btn btn-light">수정</a></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
+					</div>
+				</div>
+				<div style="border: solid;" class="row">
+					<div class="col container">
+						<div>
+							<h5>결제정보</h5>
+							<table>
+								<thead>
+									<tr>
+										<th></th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+					<div style="background-color: red; height :20px;" class="col container">
 					</div>
 				</div>
 			</div>
