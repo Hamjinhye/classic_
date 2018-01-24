@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 <script src="<c:url value='/public/js/order.js'/>"></script>
+<<<<<<< HEAD
 <script>
 	$( function() {
 	  $( ".datepicker" ).datepicker();
@@ -29,7 +30,6 @@
 					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				<button type="submit" class="btn btn-default">조회</button>
 			</div>
-			
 		</div>
 	
 		<div id="list"  class="table-responsive">
@@ -47,7 +47,7 @@
 			<tbody class="list_contents">
 				<c:forEach items="${orderList}" var="list">
 					<tr>
-						<td><a href="<c:url value='/view/order/detail.jsp'/>">${list.order_num}</a></td>
+						<td><a href="<c:url value='/user/order/detail.do?num=${list.mem_num}&order_num=${list.order_num}'/>">${list.order_num}</a></td>
 						<td>
 							<img alt="images" src=""  align="left" hspace="10">
 							<label><a href="<c:url value='/product/detail.do?num=${list.product_num}' />">${list.g_name}</a></label><br>
@@ -79,10 +79,8 @@
 									<button type="button" class="btn btn-default">주문취소</button>
 								</c:otherwise>
 							</c:choose>
-							
 							</td>
 						</c:if>
-						
 						<c:if test="${list.deliv_state==1}">
 							<td>
 								<button type="button" class="btn btn-default" 

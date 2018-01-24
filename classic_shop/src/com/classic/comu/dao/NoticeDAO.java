@@ -1,12 +1,7 @@
 package com.classic.comu.dao;
 
 import java.util.List;
-
-
-
-
 import com.classic.common.dto.PagingDTO;
-
 import com.classic.comu.dto.NoticeDTO;
 
 public interface NoticeDAO {

@@ -6,11 +6,14 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9634cbc392b8b80779d4f419ee72bf3a"></script>
 </head>
 <body>
+<<<<<<< HEAD
 <fieldset>
 <legend></legend>
 </fieldset>
 
 
+=======
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e
 <div class="map_body">
 	<div class="container">
 		<div class="company_project">

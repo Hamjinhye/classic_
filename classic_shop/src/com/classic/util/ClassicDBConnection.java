@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 
 public class ClassicDBConnection {
 	
-	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	//private static String url = "jdbc:oracle:thin:@192.168.0.2:1521:XE"; //for Gwak MBP
+	//private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	private static String url = "jdbc:oracle:thin:@192.168.0.2:1521:XE"; //for Gwak MBP
 	private static String driverName = "oracle.jdbc.driver.OracleDriver";
 	private static String id = "classic_admin";
 	private static String pw = "admin1234";

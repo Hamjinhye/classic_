@@ -39,26 +39,45 @@
 										<li class="list-group-item"><strong>color : ${wish.colour}   <input type="hidden" name="product_colour" value="${wish.colour}" class="paramValue">size : ${wish.sizu}<input type="hidden" name="product_sizu" value="${wish.sizu}" class="paramValue"> </strong></li>
 										<!-- 모달버튼  -->
 										<li class="list-group-item">
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#wishOption${wish.productNum}" >옵션변경</button>
 										</li>
 										 <!-- 모달 -->
+=======
+											<button class="btn btn-default" data-toggle = "popover" data-trigger="focus" data-title="옵션선택" type="button">옵션변경</button>
+										</li>
+										<%-- <!-- 모달 -->
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 										<div class="modal fade" id="wishOption${wish.productNum}" tabindex="-1" role="dialog">
   											<div class="modal-dialog" role="document">
   												<div class="modal-content">
      												<div class="modal-header">
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
      	  												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
      	  												<span aria-hidden="true">&times;</span></button>
+=======
+     	  												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
       												<div class="modal-body" class="wishOptionSelect">
       													<div>
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 	      													<select class="form-control" onclick = "ProductColourSelect(${wish.productNum})">
 	      														<option>${wish.colour}</option>
+=======
+	      													<select class="form-control">
+	      													
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 	      													</select>
       													</div>
       													<div>
 	      													<select class="form-control">
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 	      														<option>${wish.sizu}</option>
+=======
+	      													
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 	      													</select>
       													</div>
      												</div>
@@ -67,7 +86,11 @@
       												</div>
    												</div>
  											</div>
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 										</div> 
+=======
+										</div> --%>
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 									</ul>
 								</div>
 							</td>
@@ -87,8 +110,12 @@
 							</c:choose>
 							<td>
 								<div class="buttonGroup">
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
 									<a type="button" class="btn btn-default partOrder" href="#">주문하기</a>									
+=======
+									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">주문하기</a>									
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 									<button type="button" class="btn btn-default" onclick="pickWishDel(${loginMem.num},${wish.productNum})">삭제</button>
 								</div>
 							</td>
@@ -197,9 +224,19 @@
 		</table>
 		<div id="wishCRUDBtn">
 			<button type="button" class="btn btn-default" onclick="allWishDel(${loginMem.num})">전체삭제</button>
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 			<button type="button" class="btn btn-default" >선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
+<<<<<<< HEAD
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
+=======
+			<a class="btn btn-default" href="#" >선택 상품 장바구니 이동</a>
+=======
+			<!-- ~~~~~~~~~~~~~~~mem_num으로 바꿔야댐~~~~~~~~`~~~~~~~~~~~~-->
+			<button type="button" class="btn btn-default" >선택주문</button>
+			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
+>>>>>>> origin
 			<button class="btn btn-default pull-right">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
@@ -224,6 +261,7 @@
 		</div> -->
 	</div>
 <script>
+<<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 
 var ProductColourSelect = function(productNum){
 	var method = "GET";
@@ -237,6 +275,21 @@ var ProductColourSelect = function(productNum){
 	http.send();
 	
 };
+=======
+/* var popoverTemplate = [
+	'<div class="popover" role="tooltip">',
+		' <div class="popover-arrow">',
+		'</div>',
+		'<h3 class="popover-title"></h3>',
+		'<div class="popover-content"></div>',
+	'</div>'
+].join(''); */
+/* $("[data-toggle = 'popover']").Popover({
+	/* html : true,
+	template : popoverTemplate 
+}); */
+$("[data-toggle = 'popover']").Popover();
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 $("#allCheck").click(function(){
 	if(this.checked){
 		$('input:checkbox[class*="checkWish"]').each(function(){

@@ -19,7 +19,11 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9634cbc392b8b80779d4f419ee72bf3a"></script>
 <!-- 개인 lib -->
 <link rel="stylesheet" href="<c:url value='/public/css/common.css' />">
+<<<<<<< HEAD
+<script src='<c:url value="/public/js/script_header.js"/>'></script> 
+=======
 <script src='<c:url value="/public/js/script_header.js"/>'></script>
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e
 <title>CLASSIC</title>
 <script>
 	if("${msg}"!=""){
@@ -33,6 +37,9 @@
 				<div id="productNav">
 					<div class="nav navbar-nav navbar-left">
 						<ul class="nav nav-pills" id="cateNavbar">
+<<<<<<< HEAD
+						
+=======
 						<%-- <li><a href="<c:url value='/main.do' />">CLASSIC</a></li>
 							<li><a href="#">NEW</a></li>
 							<li><a href="#">BEST</a></li>
@@ -76,6 +83,7 @@
 									<li><a href="#">ACC</a></li>
 								</ul>
 							</li> --%>
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e
 						</ul>
 					</div>
 				</div>
@@ -113,7 +121,11 @@
 								</li>
 								<li>
 									<a href="<c:url value='/user/cart.do'/>">CART
+<<<<<<< HEAD
 										<span class="badge badge-pill badge-secondary" style="background-color: #ccc;" id="cartSymbol"></span>
+=======
+										<span class="badge badge-pill badge-secondary" style="background-color: #ccc;">0</span>
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e
 									</a>
 								</li>
 								<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">ORDER</a></li>
@@ -137,6 +149,7 @@
 				</div>
 			</div>
 		</nav>
+<<<<<<< HEAD
 <script>
 $(function(){
  	var cookies = document.cookie.split(";");
@@ -156,3 +169,5 @@ $(function(){
  	}
 });
 </script>
+=======
+>>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e
