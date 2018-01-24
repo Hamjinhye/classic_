@@ -47,7 +47,7 @@
 			<tbody class="list_contents">
 				<c:forEach items="${orderList}" var="list">
 					<tr>
-						<td><a href="<c:url value='/view/order/detail.jsp'/>">${list.order_num}</a></td>
+						<td><a href="<c:url value='/user/order/detail.do?num=${list.mem_num}&order_num=${list.order_num}'/>">${list.order_num}</a></td>
 						<td>
 							<img alt="images" src=""  align="left" hspace="10">
 							<label><a href="<c:url value='/product/detail.do?num=${list.product_num}' />">${list.g_name}</a></label><br>

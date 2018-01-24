@@ -42,6 +42,8 @@ public class PaidDTO {
 	private String deposit_name;
 	
 	//다혜 필요 DTO
+	
+	//리스트
 	int g_num;
 	String g_name;
 	String g_color;
@@ -49,7 +51,31 @@ public class PaidDTO {
 	int deliv_state;
 	String deliv_num;
 	
+	//디테일
+	int coupon_sale; //coupon_log
+	String coupon_name; //coupon_log
+	String deliv_com; //택배사
 	
+	
+	
+	public String getDeliv_com() {
+		return deliv_com;
+	}
+	public void setDeliv_com(String deliv_com) {
+		this.deliv_com = deliv_com;
+	}
+	public String getCoupon_name() {
+		return coupon_name;
+	}
+	public void setCoupon_name(String coupon_name) {
+		this.coupon_name = coupon_name;
+	}
+	public int getCoupon_sale() {
+		return coupon_sale;
+	}
+	public void setCoupon_sale(int coupon_sale) {
+		this.coupon_sale = coupon_sale;
+	}
 	public String getDeliv_num() {
 		return deliv_num;
 	}
@@ -196,14 +222,15 @@ public class PaidDTO {
 	}
 	@Override
 	public String toString() {
-		return "{ \"num\":" + num + ", \"mem_num\":" + mem_num + ", \"product_num\":" + product_num
+		return "{ \"num\":" + num + ", \"mem_num\":" + mem_num+ ", \"coupon_sale\":" + coupon_sale + ", \"product_num\":" + product_num
 				+ ", \"coupon_num\":" + coupon_num + ", \"order_num\":\"" + order_num + "\", \"name\":\"" + name
 				+ "\", \"phone\":" + phone + ", \"zip_code\":\"" + zip_code + "\", \"base_addr\":\"" + base_addr
 				+ "\", \"detail_addr\":\"" + detail_addr + "\", \"memo\":\"" + memo + "\", \"paid_date\":\"" + paid_date
 				+ "\", \"pay_with\":" + pay_with + ", \"order_money\":" + order_money + ", \"payment\":"
 				+ payment + ", \"order_date\":\"" + order_date + "\", \"order_state\":" + order_state
 				+ ", \"deposit_name\":\"" + deposit_name + "\", \"g_num\":" + g_num + ", \"g_name\":\"" + g_name
-				+ "\", \"g_color\":\"" + g_color + "\", \"g_size\":\"" + g_size + "\", \"deliv_num\":\"" + deliv_num + "\", \"deliv_state\":" + deliv_state + "}";
+				+ "\", \"g_color\":\"" + g_color + "\", \"g_size\":\"" + g_size +"\", \"coupon_name\":\"" + coupon_name
+				+ "\", \"deliv_com\":\"" + deliv_com + "\", \"deliv_num\":\"" + deliv_num + "\", \"deliv_state\":" + deliv_state + "}";
 	}
 	
 	
