@@ -42,7 +42,6 @@ public class PaidDTO {
 	private String deposit_name;
 	
 	//다혜 필요 DTO
-	
 	//리스트
 	int g_num;
 	String g_name;

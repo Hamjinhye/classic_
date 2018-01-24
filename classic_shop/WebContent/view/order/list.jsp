@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 <script src="<c:url value='/public/js/order.js'/>"></script>
+<<<<<<< HEAD
 <script>
 	$( function() {
 	  $( ".datepicker" ).datepicker();
@@ -29,7 +30,6 @@
 					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 				<button type="submit" class="btn btn-default">조회</button>
 			</div>
-			
 		</div>
 	
 		<div id="list"  class="table-responsive">
@@ -79,10 +79,8 @@
 									<button type="button" class="btn btn-default">주문취소</button>
 								</c:otherwise>
 							</c:choose>
-							
 							</td>
 						</c:if>
-						
 						<c:if test="${list.deliv_state==1}">
 							<td>
 								<button type="button" class="btn btn-default" 

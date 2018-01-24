@@ -25,7 +25,7 @@ public class FaqServiceImp implements FaqService{
 			ClassicDBConnection.close(conn);
 		}
 		return faqList;
-	}
+	}   // 먼가 중복 같아 보이는데 삭제하면 에러 떠서 일단 그냥 둿어요~
 
 	@Override
 	public FaqDTO readFaq(int num) {

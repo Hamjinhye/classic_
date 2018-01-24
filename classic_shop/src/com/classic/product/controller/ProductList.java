@@ -111,7 +111,6 @@ public class ProductList extends HttpServlet {
 			
 		}
 		
-		
 	}
 	
 }

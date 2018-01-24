@@ -9,7 +9,7 @@
 		<h2 id="orderdetailTitle">ORDER DETAIL</h2>
 	</div>
 	<div id="orderNum">
-		<h4><strong>주문번호 :${detail.order_num} </strong></h4>
+		<h4><strong>주문번호 : order_num</strong></h4>
 	</div>
 	<div id="paidInfo">
 		<div class="panel panel-default">
@@ -20,19 +20,19 @@
 					<th>할인금액</th>
 					<th>배송비</th>
 					<th>결제수단</th>
+					<th>총 예상 적립금</th>
 				</tr>
 				<tr>
-					<td>${detail.order_money} 원</td>
-					<td>${detail.coupon_sale} 원</td>
-					<td>2,500원(임시)</td>
-					<td>
-						<c:if test="${detail.pay_with==0}">무통장입금</c:if>
-						<c:if test="${detail.pay_with==1}">신용카드</c:if>
-					</td>				
+					<td>order_money</td>
+					<td>cupon_log_sale</td>
+					<td>2,500원</td>
+					<td>pay_with:0무통장입금</td>
+					<td>sum:now_mileage</td>
+					
 				</tr>
 			</table>
 		</div>
-		<h4 id="totalPayment">총 결제금액: ${detail.payment} 원</h4>
+		<h4 id="totalPayment">총 결제금액: payment</h4>
 	</div>
 	<div id="productInfo">
 		<div class="panel panel-default">
@@ -43,23 +43,29 @@
 					<th>수량</th>
 					<th>주문금액</th>
 					<th>배송상태</th>
-					<th>송장번호</th>
+					<th>예상 적립금</th>	
 				</tr>
 				<tr>
 					<td>
-						<!-- 상품명 누르면 상품상세정보로 -->
-						<label><a href="<c:url value='/product/detail.do?num=${detail.product_num}' />">상품명: ${detail.g_name}</a></label><br>
-						<strong>[옵션]</strong> 색상: ${detail.g_color}, 사이즈: ${detail.g_size}
+						<img alt="images" src=""  align="left" hspace="10">
+						<label><a href="#">상품명:product_name</a></label><br><!-- 상품명 누르면 상품상세정보로 -->
+						[옵션]색상:color_name, 사이즈:product_sizu
 					</td>
 					<td>1</td>
-					<td>${detail.order_money} 원</td>
+					<td>order_money</td>
+					<td>delivery_state:0배송준비</td>
+					<td>now_mileage</td>
+				</tr>
+				<tr>
 					<td>
-						<c:if test="${detail.deliv_state==0}"><strong>배송준비</strong></c:if>
-						<c:if test="${detail.deliv_state==1}"><strong>배송중</strong></c:if>
-						<c:if test="${detail.deliv_state==2}"><strong>배송완료</strong></c:if>
-						<c:if test="${detail.deliv_state==3}"><strong>구매확정</strong></c:if>
+						<img alt="images" src=""  align="left" hspace="10">
+						<label><a href="#">상품명:product_name</a></label><br><!-- 상품명 누르면 상품상세정보로 -->
+						[옵션]색상:color_name, 사이즈:product_sizu
 					</td>
-					<td><strong>${detail.deliv_com}</strong> : ${detail.deliv_num}</td>
+					<td>3</td>
+					<td>order_money</td>
+					<td>delivery_state:0배송준비</td>
+					<td>now_mileage</td>
 				</tr>
 			</table>
 		</div>
@@ -77,12 +83,12 @@
 					<th>배송메모</th>
 				</tr>
 				<tr>
-					<td>${detail.name}</td>
-					<td>${detail.phone}</td>
-					<td>${detail.zip_code}</td>
-					<td>${detail.base_addr}</td>
-					<td>${detail.detail_addr}</td>
-					<td>${detail.memo}</td>
+					<td>name</td> <!--  input으로 받은 값?? -->
+					<td>phonNumber</td>
+					<td>zip_code</td>
+					<td>base_addr</td>
+					<td>detail_addr</td>
+					<td>paid_memo</td>
 				</tr>
 			</table>
 		</div>

@@ -12,18 +12,6 @@ import com.classic.order.dto.WishDTO;
 import com.classic.util.ClassicDBConnection;
 
 public class WishListDAOImp implements WishListDAO{
-	/*test�슜
-	 * public static void main(String[] args) {
-		try {
-			Connection conn = ClassicDBConnection.getConnection();
-			List<WishDTO> wish = new ArrayList<WishDTO>();
-			WishListDAO wishDao = new WishListDAOImp();
-			wish = wishDao.selectWish(conn,22);
-			System.out.println(wish);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
 	private Connection conn;
 	public WishListDAOImp(Connection conn) {
 		this.conn = conn;
@@ -124,5 +112,4 @@ public class WishListDAOImp implements WishListDAO{
 		}
 		return colour;
 	}
-	
 }

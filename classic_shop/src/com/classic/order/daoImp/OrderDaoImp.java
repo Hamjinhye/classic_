@@ -130,20 +130,6 @@ public class OrderDaoImp implements OrderDAO{
 	}
 	
 	
-	
-	//▼ 이거 나중에 개발 다 끝났을 땐 지우셔야 돼요(다른 곳에 있는 syso 포함!)
-	/*public static void main(String[] args) {
-		Connection conn=null;
-		try {
-			conn=ClassicDBConnection.getConnection();
-			OrderDAO dao = new OrderDaoImp(conn);
-			//System.out.println(dao.ListSelect(1)); //주문내역
-			//System.out.println(dao.DetailSelect(1, "2017110800000002")); //주문상세
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 
 	
 }
