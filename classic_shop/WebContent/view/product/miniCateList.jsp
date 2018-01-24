@@ -9,9 +9,9 @@
 	
   <p> <!-- miniCate -->
 	<c:forEach var="mini" items="${miniCateList}">
-  		<a href="<c:url value='/product/miniCateList.do?num=${mini.num}' />" class="cate">
+  		<a href="<c:url value='/product.do?cate=1&num=${mini.num}' />" class="cate">
   		<c:choose>
-  			<c:when test="${param.num eq mini.num }">
+  			<c:when test="${param.num eq mini.num}">
   				<strong>${mini.name}</strong>
   			</c:when>
   			<c:otherwise>
@@ -65,52 +65,6 @@
 	</div><!-- row -->
     
 </div>
-<!--  
-<script>
-console.log(${productList});
-$(function(){
-	
-	$.ajax({
-		url:"<c:url value='list.do'/>",
-		type:"GET",
-		dataType:"json",
-		success:function(data){
-			console.log(data);
-			var contents="";
-			$(data).each(function(index, item){
-				var thum
-				$(".row").append(function(){
-					var thum="";
-					thum+="<div class='col-sm-6 col-md-4 border-0 border-white'>";
-					thum+="<div class='thumbnail'>";
-					thum+="<a href=\"<c:url value='/product/detail.do?num="+item.num+"'/>\">";
-					thum+="<img data-src='' data-holder-rendered='true' style='height: 400px; width: 400px; display: block;'></a>";
-					thum+="<div class='product_caption'>";
-					/*  */
-					/* thum+="<a href=\"<c:url value='/product/detail.do?num="+item.num+"'/>\""; */
-					thum+="<a href=\"<c:url value='/product/detail.do?num="+item.num+"'/>\">";
-					thum+="<span>"+item.name+"</span></a>";
-					thum+="<span style='display: inline-block; width:10px; height:10px; background-color:red;'></span> <span style='display: inline-block; width:10px; height:10px; background-color:blue;'></span>";
-				
-/* 					thum+="<p class='product_name'>"+item.name;
-					thum+="<span style='display: inline-block; width:10px; height:10px; background-color:red;'></span> <span style='display: inline-block; width:10px; height:10px; background-color:blue;'></span></p>"; */
-					
-					thum+="<hr><p class='product_price'>"+item.price+"</p>"
-					thum+="<p class='product_description'>"+item.sub_info+"</p></div></div></div>"
-				
-					return thum;
-					});	//html		
-			});//each		
-		}//success	
-	});//ajax
-	
-
-
-
-});//ready
-</script>
--->
-  
   <!-- /.bs-example -->
   
    <div class="bs-example" data-example-id="disabled-active-pagination">
