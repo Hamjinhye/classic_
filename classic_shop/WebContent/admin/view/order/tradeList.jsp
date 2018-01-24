@@ -67,8 +67,8 @@ padding:2px 2px;
 				</ul>
 			<p class="left-nav-outer-title"><strong>취소/교환/반품/환불 관리</strong></p>
 				<ul class="nav nav-pills flex-column left-nav-inner-title">
-					<li class="nav-item"><a class="nav-link active" href="#">취소 리스트</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">교환 리스트</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">취소 리스트</a></li>
+					<li class="nav-item"><a class="nav-link active" href="#">교환 리스트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">반품 리스트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">환불 리스트</a></li>				
 				</ul>
@@ -77,7 +77,7 @@ padding:2px 2px;
 		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
 			<!-- 타이틀 -->
 			<div class="common-right-title">
-				<p class="h3">취소 리스트</p>
+				<p class="h3">교환 리스트</p>
 			</div>
 			<!-- 검색 -->
 			<div class="common-inner-body">
@@ -106,8 +106,12 @@ padding:2px 2px;
 							<th class="searchTh">기간검색</th>
 							<td>
 								<select class="searchSelect">
-									<option>취소완료일</option>
+									<option>교환완료일</option>
+									<option>교환신청일</option>
 									<option>주문일</option>
+									<option>배송완료일</option>
+									<option>송장등록일</option>
+									
 								</select>
 								<input type="text" id="search_start_date" class="datepicker">
 								<i class="fa fa-calendar"></i>
@@ -146,11 +150,11 @@ padding:2px 2px;
 					      <th scope="col">상품명</th>
 					      <th scope="col">수량</th>
 					      <th scope="col">총 결제금액</th>
-					      <th scope="col">처리상태</th>
-					      <th scope="col">배송상태</th>
-					      <th scope="col">취소신청일</th>
-					      <th scope="col">취소완료일</th>
-					      <th scope="col">취소수량</th>
+					      <th scope="col">교환상태</th>
+					      <th scope="col">교환접수일</th>
+					      <th scope="col">교환완료일</th>
+					      <th scope="col">교환수량</th>
+					      <th scope="col">사유</th>
 					      <th scope="col">결제방법</th>
 					    </tr>
 					  </thead>
@@ -166,10 +170,10 @@ padding:2px 2px;
 					      <td>1</td>
 					      <td>payment</td>
 					      <td>order_state</td>
-					      <td>deliv_state</td>
 					      <td>cancel_start</td>
 					      <td>cancel_end</td>
 					      <td>1</td>
+					      <td>reason</td>
 					      <td>pay_with</td>
 					    </tr>
 					    <tr>
@@ -183,10 +187,10 @@ padding:2px 2px;
 					      <td>1</td>
 					      <td>payment</td>
 					      <td>order_state</td>
-					      <td>deliv_state</td>
 					      <td>cancel_start</td>
 					      <td>cancel_end</td>
 					      <td>1</td>
+					      <td>reason</td>
 					      <td>pay_with</td>
 					    </tr>
 					    <tr>
@@ -200,10 +204,10 @@ padding:2px 2px;
 					      <td>1</td>
 					      <td>payment</td>
 					      <td>order_state</td>
-					      <td>deliv_state</td>
 					      <td>cancel_start</td>
 					      <td>cancel_end</td>
 					      <td>1</td>
+					      <td>reason</td>
 					      <td>pay_with</td>
 					    </tr>
 					  </tbody>

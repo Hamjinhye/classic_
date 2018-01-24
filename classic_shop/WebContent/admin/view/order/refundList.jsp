@@ -67,17 +67,17 @@ padding:2px 2px;
 				</ul>
 			<p class="left-nav-outer-title"><strong>취소/교환/반품/환불 관리</strong></p>
 				<ul class="nav nav-pills flex-column left-nav-inner-title">
-					<li class="nav-item"><a class="nav-link active" href="#">취소 리스트</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">취소 리스트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">교환 리스트</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">반품 리스트</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">환불 리스트</a></li>				
+					<li class="nav-item"><a class="nav-link active" href="#">환불 리스트</a></li>				
 				</ul>
 		</nav>
 		<!-- 우측 바디 -->
 		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
 			<!-- 타이틀 -->
 			<div class="common-right-title">
-				<p class="h3">취소 리스트</p>
+				<p class="h3">환불 리스트</p>
 			</div>
 			<!-- 검색 -->
 			<div class="common-inner-body">
@@ -106,8 +106,12 @@ padding:2px 2px;
 							<th class="searchTh">기간검색</th>
 							<td>
 								<select class="searchSelect">
-									<option>취소완료일</option>
+									<option>환불완료일</option>
+									<option>환불신청일</option>
 									<option>주문일</option>
+									<option>배송완료일</option>
+									<option>송장등록일</option>
+									
 								</select>
 								<input type="text" id="search_start_date" class="datepicker">
 								<i class="fa fa-calendar"></i>
@@ -146,12 +150,11 @@ padding:2px 2px;
 					      <th scope="col">상품명</th>
 					      <th scope="col">수량</th>
 					      <th scope="col">총 결제금액</th>
-					      <th scope="col">처리상태</th>
-					      <th scope="col">배송상태</th>
-					      <th scope="col">취소신청일</th>
-					      <th scope="col">취소완료일</th>
-					      <th scope="col">취소수량</th>
-					      <th scope="col">결제방법</th>
+					      <th scope="col">환불상태</th>
+					      <th scope="col">환불접수일</th>
+					      <th scope="col">환불금액</th>
+					      <th scope="col">환불수단</th>
+					      <th scope="col">사유</th>
 					    </tr>
 					  </thead>
 					  <tbody>
