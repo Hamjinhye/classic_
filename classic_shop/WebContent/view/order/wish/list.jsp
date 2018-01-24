@@ -199,7 +199,7 @@
 			<button type="button" class="btn btn-default" onclick="allWishDel(${loginMem.num})">전체삭제</button>
 			<button type="button" class="btn btn-default" >선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
-			<a class="btn btn-default" href="#" >선택 상품 장바구니 이동</a>
+			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
 			<button class="btn btn-default pull-right">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
@@ -248,11 +248,25 @@ $("#allCheck").click(function(){
 		});
 	}	
 });
-
+var GoCartWishSelected=function(mem_num){
+	if(${(fn:length(wishList))!=0}){
+		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
+		var url ='<c:url value="/user/cart.do?num=${loginMem.num}&productNum="/>';
+		/* var method="GET";
+		var http = new XMLHttpRequest(); */
+		$('input:checkbox[class*="checkWish"]').each(function(){
+			if(this.checked){
+				url+=this.value+"_";
+			}		
+		});
+		url=url.substr(0, url.length-1);
+		location.href=url;
+	}
+}
 var delWishSelected=function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num=";
-		/* var url ='<c:url value="/order/delwish.do?num='+mem_num+'&product_num="/>'; */
+		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
+		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'&product_num="/>';
 		var method="GET";
 		var http = new XMLHttpRequest();
 		$('input:checkbox[class*="checkWish"]').each(function(){
@@ -280,8 +294,8 @@ var delWishSelected=function(mem_num){
 }
 var allWishDel = function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num;
-		/* var url ='<c:url value="/order/delwish.do?num='+mem_num+'"/>'; */
+		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num; */
+		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'"/>';
 		var method="DELETE";
 		var http = new XMLHttpRequest();
 		http.onreadystatechange=function(){
