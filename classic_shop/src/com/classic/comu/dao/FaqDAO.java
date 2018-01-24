@@ -11,15 +11,15 @@ public interface FaqDAO {
 	public List<FaqDTO> selectList(FaqDTO faqDTO,int num) throws Exception;
 	public int insert(FaqDTO faqDTO) throws Exception;
 
-/*public void setSelect(ResultSet rs) throws SQLException {
+		/*public void setSelect(ResultSet rs) throws SQLException {
 		this.setNum(rs.getInt("num"));
 		this.setMem_num(rs.getInt("mem_num"));
 		this.seta_content(rs.getString("a_content"));
 		this.setq_title(rs.getString("q_title"));
-			dto¿¡¼­ ÀÌµ¿	
+		dtoï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½	
 			
 			*/
-			//ÀÏ´Ü À§¿¡  selectFaqºÎÅÍ ÇÞ¾î¿ä~
+			//ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½  selectFaqï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ï¿½~
 	
 
 

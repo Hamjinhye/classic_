@@ -43,168 +43,186 @@
 				</div>
 				<div class="common-inner-body">
 					<ol>
-					</ol>
+
+<!-- contact -->
+<div id="contact" class="container">
+	<div class="row">
+
+		<!-- wrap -->
+		<div id="wrap">
+			<!-- 관리자용wf에 select만 더 추가해서 구현할 예정이에욥 -->
+			<!-- 글씨색상은 a태그 걸린것은 파랑으로 햇어요 -->
+
+			<!-- 580px 이하에서 메뉴바 생성 -->
+			<script type="text/javascript">
+$(".handle").on("click", function() {
+	$("nav ul").toggleClass("showing");
+});
+</script>
+								</div>
+							</div>
+						</div>
+						<div class="comu_body">
+							<div class="panel-group" id="accordion" role="tablist"
+								aria-multiselectable="true">
+
+								<div class="panel panel-default">
+
+									<div id="faqTitleOne" class="panel-collapse collapse in"
+										role="tabpanel" aria-labelledby="headingOne">
+										<div class="panel-body">FAQ contents</div>
+
+										<div class="type1_nav">
+
+
+											<button type="button" class="btn btn-default pull-right"
+												onclick="location.href='/classic_shop/comu/faq/faq_register.jsp'">
+						등록</button>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- section -->
 
-	<!-- contact -->
-	<div id="contact" class="container">
-		<div class="row">
+	<div class="section">
+		<div class="panel panel-default">
+			<!-- Table -->
+			<table class="type1">
+				<tr>
 
-			<!-- wrap -->
-			<div id="wrap">
-				<!-- 관리자용wf에 select만 더 추가해서 구현할 예정이에욥 -->
-				<!-- 글씨색상은 a태그 걸린것은 파랑으로 햇어요 -->
+					<td>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="input-group"></div>
+							</div>
+						</div>
 
-				<!-- 580px 이하에서 메뉴바 생성 -->
-				<script type="text/javascript">
-					$(".handle").on("click", function() {
-						$("nav ul").toggleClass("showing");
-					});
-				</script>
+					</td>
 
-				<div class="comu_body">
-					<div class="panel-group" id="accordion" role="tablist"
-						aria-multiselectable="true">
+				</tr>
+				<tr>
+				</tr>
 
-						<div class="panel panel-default">
+				<div class="panel panel-default">
+					<table class="faq_title">
+						<tr>
+							<th>No.</th>
 
-							<div id="faqTitleOne" class="panel-collapse collapse in"
-								role="tabpanel" aria-labelledby="headingOne">
-								<div class="panel-body">FAQ contents</div>
+							<th>SUBJECT</th>
 
-								<div class="type1_nav">
+							<th>NAME</th>
 
-									<button type="button" class="btn btn-default pull-right"
-										onclick="location.href='/classic_shop/comu/faq/faq_register.jsp'">
-										등록</button>
-									<!-- section -->
-									<div class="section">
-										<div class="panel panel-default">
-											<!-- Table -->
-											<table class="type1">
-												<tr>
+							<th>DATE</th>
 
-													<td>
-														<div class="row">
-															<div class="col-lg-6">
-																<div class="input-group"></div>
-															</div>
-														</div>
+							<th>VIEW</th>
+						</tr>
 
-													</td>
-												</tr>
+						<tr>
 
-												<tr>
-
-													<div class="panel panel-default">
-														<table class="faq_title">
-															<tr>
-																<th>No.</th>
-
-																<th>SUBJECT</th>
-
-																<th>NAME</th>
-
-																<th>DATE</th>
-
-																<th>VIEW</th>
-															</tr>
-
-															<tr>
-
-																<td><label><input type="checkbox"
-																		aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
+							<td><label> <input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a>
+							</label><br></td>
 
 
 
-																<th>1</th>
-																<th>order_money</th>
-																<th>YYYY-MM-DD</th>
-																<th>now_mileage</th>
-															</tr>
+
+							<th>1</th>
+							<th>order_money</th>
+							<th>YYYY-MM-DD</th>
+							<th>now_mileage</th>
+						</tr>
 
 
 
-															<tr>
-																<td><label><input type="checkbox"
-																		aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
-																<td>3</td>
-																<td>order_money</td>
-																<td>YYYY-MM-DD</td>
-																<td>now_mileage</td>
-															</tr>
-															<tr>
-																<td><label><input type="checkbox"
-																		aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
-																<td>3</td>
-																<br>
-																<td>order_money</td>
-																<br>
-																<td>YYYY-MM-DD</td>
-																<br>
-																<td>now_mileage</td>
-															</tr>
+						<tr>
+							<td><label><input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
+								<!-- 상품명 누르면 상품상세정보로 --></td>
+							<td>3</td>
+							<td>order_money</td>
+							<td>YYYY-MM-DD</td>
+							<td>now_mileage</td>
+						</tr>
 
-															<tr>
-																<td><label>
-																<input type="checkbox" aria-label="  "> 
-	 															
-	 															<a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
-																<td>3</td>
-																<td>order_money</td>
-																<td>YYYY-MM-DD</td>
-																<td>now_mileage</td>
-															</tr>
+						<tr>
+							<td><label> <input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a>
+									</label><br> 
+									
+									
+									<!-- 상품명 누르면 상품상세정보로 --></td>
+							<td>3</td>
+							<br>
+							<td>order_money</td>
+							<br>
+							<td>YYYY-MM-DD</td>
+							<br>
+							<td>now_mileage</td>
+						</tr>
 
-
-															<tr>
-																<td><label><input type="checkbox"
-																		aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
-																<td>3</td>
-																<td>order_money</td>
-																<td>YYYY-MM-DD</td>
-																<td>now_mileage</td>
-															</tr>
-															<tr>
-																<td><label><input type="checkbox"
-																		aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
-																<td>3</td>
-																<td>order_money</td>
-																<td>YYYY-MM-DD</td>
-																<td>now_mileage</td>
-															</tr>
-															<tr>
-																<td><label><input type="checkbox"
-																		aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
-																	<!-- 상품명 누르면 상품상세정보로 --></td>
-																<td>3</td>
-																<td>order_money</td>
-																<td>YYYY-MM-DD</td>
-																<td>now_mileage</td>
-															</tr>
-															</div>
-															</div>
-														</table>
-													</div>
+						<tr>
+							<td><label> <input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a>
+							</label><br> <!-- 상품명 누르면 상품상세정보로 --></td>
+							<td>3</td>
+							<td>order_money</td>
+							<td>YYYY-MM-DD</td>
+							<td>now_mileage</td>
+						</tr>
 
 
-													<div class="type1_nav">
+						<tr>
+							<td><label> <input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a>
+							</label><br> <!-- 상품명 누르면 상품상세정보로 --></td>
+							<td>3</td>
+							<td>order_money</td>
+							<td>YYYY-MM-DD</td>
+							<td>now_mileage</td>
+						</tr>
+						<tr>
+							<td><label> <input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a>
+							</label><br> <!-- 상품명 누르면 상품상세정보로 --></td>
+							<td>3</td>
+							<td>order_money</td>
+							<td>YYYY-MM-DD</td>
+							<td>now_mileage</td>
+						</tr>
+						<tr>
+							<td><label><input type="checkbox"
+									aria-label="  "> <a href="#">상품명:product_name</a></input></label><br>
 
-														<button type="button" class="btn btn-default pull-right"
-															onclick="location.href='/classic_shop/comu/faq/faq_register.jsp'">
-															선택한 글 삭제</button>
-													</div>
+								<!-- 상품명 누르면 상품상세정보로 --></td>
+							<td>3</td>
+							<td>order_money</td>
+							<td>YYYY-MM-DD</td>
+							<td>now_mileage</td>
+						</tr>
+						</div>
+						</div>
+						
+					</table>
 
-													</div>
-													</div>
-													</div>
+	<div class="type1_nav">
+
+					<button type="button" class="btn btn-default pull-right">
+					<a href="<c:url value='/community/faq.do'/>">선택한 글 삭제</a>
+					</button>
+						
+						
+				</div>
+</div>			
+
+
+				</div>
+
+			</table>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
