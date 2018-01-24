@@ -8,7 +8,7 @@
 	color: #ccc;	
 }
  */
- .selectTab {
+/*  .selectTab {
  	margin-top: 30px;
  }
  .selectTab p:first-child {
@@ -28,7 +28,7 @@
  .selectTabBtn {
  	width: 100%;
  	height: 100%;
- }
+ } */
  .orderListSelectNav{
  	text-align: right;
  }
@@ -90,9 +90,54 @@
 			<div class="common-right-title">
 			<p class="h3">결제 완료 리스트</p>
 			</div>
-			<div class="selectTab">
-				<p class="col-12 h5">주문검색</p>
-				<table class="col-12 table table-default">
+			<div class="selectTab row">
+				<div class="col-6 ml-auto mr-auto">
+					<div class="bg-danger" style="height:20px;">
+					
+					</div>
+					<!-- 
+					 <table class="table table-borderless">
+						<colgroup>
+							<col width="15%">
+							<col width="85%">
+						</colgroup>
+						<tr>
+							<th class="text-center">검색어</th>
+							<td class="row">
+								<select class="col-3">
+									<option>통합검색</option>
+									<option>주문번호</option>
+									<option>주문자명</option>
+									<option>주문자 휴대전화</option>
+									<option>수령인</option>
+									<option>입금자명</option>
+									<option>송장번호</option>
+								</select>
+								<input type="text" class="col-9 form-control">
+							</td>
+						</tr>
+						<tr>
+							<th class="text-center">기간검색</th>
+							<td class="row clearfix">
+								<select class="col-3">
+									<option>통합검색</option>
+									<option>주문일</option>
+									<option>배송시작일</option>
+									<option>배송종료일</option>
+								</select>
+								<input type="text" class="startDate form-control col-3" >
+								<i class="fa fa-calendar col"></i> ~
+								<input type="text" class="endDate form-control col-3">
+								<i class="fa fa-calendar col"></i>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="text-center"><button class="btn btn-outline-dark">검색</button></td>
+						</tr>
+					</table>
+					 -->
+				</div>
+				<!--<table class="table text-center ml-auto mr-auto">
 					<tr>
 						<th>검색어</th>
 						<td>
@@ -124,7 +169,7 @@
 							<i class="fa fa-calendar"></i>
 						</td>
 					</tr>
-				</table>
+				</table>-->
 			</div>
 			<div class="orderListContents">
 				<hr>

@@ -236,20 +236,114 @@
 						</div>
 					</div>
 				</div>
-				<div style="border: solid;" class="row">
+				<div class="row">
 					<div class="col container">
 						<div>
 							<h5>결제정보</h5>
-							<table>
-								<thead>
+							<table class="table table-sm">
+								<colgroup>
+									<col width="20%">
+									<col width="80%">
+								</colgroup>
 									<tr>
-										<th></th>
+										<th class="table-active">상품 판매금액</th>
+										<td class="text-right">100000</td>
 									</tr>
-								</thead>
+									<tr>
+										<th class="table-active">총 배송비</th>
+										<td class="text-right">0원</td>
+									</tr>
+									<tr>
+										<th class="table-active">총 할인금액</th>
+										<td class="text-right">3000원</td>
+									</tr>
+									<tr>
+										<th class="table-active">실 결제금액</th>
+										<td class="text-right">97000</td>
+									</tr>
+									<tr>
+										<th class="table-active">총 적립금액</th>
+										<td class="text-right">940p</td>
+									</tr>
 							</table>
 						</div>
 					</div>
-					<div style="background-color: red; height :20px;" class="col container">
+					<div class="col container">
+					<h5>결제수단</h5>
+							<table class="table table-sm">
+								<colgroup>
+									<col width="20%">
+									<col width="80%">
+								</colgroup>
+									<tr>
+										<th class="table-active">결제방법</th>
+										<td class="text-right">무통장입금</td>
+									</tr>
+									<tr>
+										<th class="table-active">입금자명</th>
+										<td class="text-right">김수한무</td>
+									</tr>
+									<tr>
+										<th class="table-active">결제확인일</th>
+										<td class="text-right">2017-11-19</td>
+									</tr>
+							</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col container">
+						<div>
+							<div>
+								<h5 class="float-left">주문자 정보</h5>
+								<a class="badge badge-danger text-white float-right">정보수정</a>
+							</div>
+							<table class="table table-sm">
+								<colgroup>
+									<col width="20%">
+									<col width="80%">
+								</colgroup>
+									<tr>
+										<th class="table-active">주문자 아이디</th>
+										<td class="text-right">test1</td>
+									</tr>
+									<tr>
+										<th class="table-active">연락처</th>
+										<td class="text-right">010-1234-2342</td>
+									</tr>
+									<tr>
+										<th class="table-active">이메일</th>
+										<td class="text-right">jadk@c.</td>
+									</tr>
+							</table>
+						</div>
+					</div>
+					<div class="col container">
+					<div>
+						<h5 class="float-left">수령자 정보</h5>
+						<a class="badge badge-danger text-white float-right">정보수정</a>
+					</div>
+							<table class="table table-sm">
+								<colgroup>
+									<col width="30%">
+									<col width="70%">
+								</colgroup>
+									<tr>
+										<th class="table-active">수령자명</th>
+										<td class="text-right">두루미</td>
+									</tr>
+									<tr>
+										<th class="table-active">휴대폰 번호</th>
+										<td class="text-right">010151348221</td>
+									</tr>
+									<tr>
+										<th class="table-active">주소</th>
+										<td class="text-right">경기도 추워시</td>
+									</tr>
+									<tr>
+										<th class="table-active">배송 메세지</th>
+										<td class="text-right">추위조심</td>
+									</tr>
+							</table>
 					</div>
 				</div>
 			</div>
