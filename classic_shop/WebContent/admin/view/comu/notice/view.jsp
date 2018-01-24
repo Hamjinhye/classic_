@@ -58,13 +58,11 @@
 				</tbody>
 			</table>
 					<!-- 글 등록-->
-		<div class="insert_btn" align="left">
-			<button type="button" class="btn btn-outline-danger" onclick="location.href='<c:url value='/comu/notice/adminlist.jsp'/>'">목록</button>
-		</div>
-		</div>
 		<div class="insert_btn" align="right">
-			<button type="button" class="btn btn-outline-danger" onclick="location.href='<c:url value='/comu/notice/adminmodify.jsp'/>'">수정</button>
-			<button type="button" class="btn btn-outline-danger" onclick="location.href='<c:url value='/comu/notice/adminlist.jsp'/>'">삭제</button>
+			<a class="btn btn-dark" href="list.jsp" role="button">목록</a>
+				<button type="submit" class="btn btn-dark"">수정</button>
+				<!-- <a class="btn btn-dark" href="modify.jsp" role="button">수정</a>-->
+				<a class="btn btn-dark" href="list.jsp" role="button">삭제</a>
 		</div>
 		</div>
 <!-- PAGING -->

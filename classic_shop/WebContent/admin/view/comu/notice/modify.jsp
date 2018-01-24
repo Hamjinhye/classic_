@@ -61,8 +61,8 @@
 			</div>
 			<!--  버튼 -->
 			<div class="notice_btn_group">
-				<button type="button" class="btn btn-outline-danger"onclick="location.href='<c:url value='/comu/notice/adminView.jsp'/>'">수정</button>
-				<button type="button" class="btn btn-outline-danger"onclick="location.href='<c:url value='/comu/notice/adminlist.jsp'/>'">삭제</button>
+				<a class="btn btn-dark" href="view.jsp" role="button">수정</a>
+				<a class="btn btn-dark" href="list.jsp" role="button">삭제</a>
 			</div>
 			
 			</div>

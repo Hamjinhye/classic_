@@ -44,10 +44,11 @@
 			    <label for="noticeFile">File Upload</label>
 			    <input type="file" class="form-control-file" id="noticeFile">
 			  </div>
+			  <br>
 		
 			<div class="notice_option">
-				<label class="col-xs-2">공개</label>
-					<div class="checkbox">
+ 				<!-- <label class="col-xs-2">공개여부</label> -->
+				<div class="checkbox">
 						<input type="radio" name="secure" id="noticeOpen" value="0" checked> 공개
 						<input type="radio" name="secure" id="noticeSecure" value="1"> 비공개
 					</div>
@@ -56,11 +57,14 @@
 				<label class="col-xs-2">Password</label>
 				<input type="password" name="pwd" placeholder="비밀번호 설정" disabled>
 			</div>
+			<br>
 			<!--  버튼 -->
 			<div class="notice_btn_group">
-				<button type="submit" class="btn btn-outline-danger">등록</button>
-				<button type="reset" class="btn btn-outline-danger" onclick="location.href='<c:url value='/comu/notice/adminlist.jsp'/>'">취소</button>
-			</div>
+			
+				<button type="submit" class="btn btn-dark"">등록</button>
+				<a class="btn btn-dark" href="list.jsp" role="button">취소</a>
+	
+			</div><br>
 
 
 

@@ -46,8 +46,8 @@
 				
 				<!-- 글 등록-->
 		<div class="insert_btn" align="right">
-			<button type="button" class="btn btn-outline-danger" onclick=location.href="<c:url value='/comu/notice/adminregister.jsp'/>">글 등록</button>	
-		</div>
+			<a class="btn btn-dark" href="register.jsp" role="button">글 등록</a>
+		</div><br>
 
 				<tbody class="notice_contents">
 					<c:forEach var="notice" items="${noticeList}">
