@@ -23,7 +23,7 @@ $(function(){
 						$(data["miniCate"]).each(function(i,mini){
 							if(cateNum == mini.cate_num){
 								//console.log(cateNum);
-								cateListHTML+='<li class="dropdown-menu-item"><a href="/classic_shop/product/miniCateList.do?cate=1&num='+mini.num+'">'+mini.name+'</a></li>';
+								cateListHTML+='<li class="dropdown-menu-item"><a href="/classic_shop/product.do?cate=1&num='+mini.num+'">'+mini.name+'</a></li>';
 							}
 						});//miniCate
 				$(data["miniCate"]).each(function(i,mini){

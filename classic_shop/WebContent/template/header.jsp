@@ -19,7 +19,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9634cbc392b8b80779d4f419ee72bf3a"></script>
 <!-- 개인 lib -->
 <link rel="stylesheet" href="<c:url value='/public/css/common.css' />">
-<script src='<c:url value="/public/js/script_header.js"/>'></script>
+<script src='<c:url value="/public/js/script_header.js"/>'></script> 
 <title>CLASSIC</title>
 <script>
 	if("${msg}"!=""){

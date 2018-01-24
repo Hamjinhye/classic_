@@ -42,11 +42,372 @@
 			</div>
 			<div class="common-inner-body">
 				
-				<form>
-					<div class="form-group row">
-						<label class="col col-form-label-lg">상품등록</label>
+				<form class="container">
+					<div class="row">
+							<p class="h4">상품 등록</p>
+						</div>
+					<div class="row container">
+						<table class="table col-md-12">
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">카테고리연결</th>
+								<td class="col-md-3 container">
+									<select class="form-control form-select col-md-12" name="cate_num">
+										<option>JUMPER</option>
+										<option>JACKET</option>
+										<option>CARDIGAN</option>
+									</select>
+								</td>
+								<td class="col-md-7 container">
+									<p class="text-left m-0 col-md-6" style="font-size: x-small;">
+										*카테고리가 먼저 등록 되어 있어야 연결 가능합니다.<br>
+									</p>
+									<p class="text-left text-danger m-0 col-md-6" style="font-size: x-small;">
+										<u>카테고리 등록하기</u>
+									</p>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">노출설정</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													노출함
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													노출안함
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+								<th class="col-md-2 form-label table-active">판매설정</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													판매함
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													판매안함
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품명</th>
+								<td class="col-md-4 container">
+									<input class="form-control" type="text" placeholder="내용을 입력하세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">자체상품코드</th>
+								<td class="col-md-4 container">
+									<input class="form-control" type="text" placeholder="내용을 입력하세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품노출시점</th>
+								<td class="col-md-4 container">
+									<div class="row container">
+										<input class="form-control col-md-10" type="text" id="datepicker" placeholder="jqueryui datepicker be here">
+										<i class="fa fa-calendar fa-2x col-md-2" aria-hidden="true"></i>
+									</div>
+								</td>
+								<td class="col-md-6 container">
+									<p class="text" style="font-size: x-small;">
+										<br>*노출 시간을 설정하지 않을 경우, 상품 등록 후 바로 쇼핑몰에 노출됩니다.
+									</p>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품색상</th>
+								<td class="col-md-4 container">
+									<div class="row container">
+										<span class="form-control" style="background-color: red; height: 37px; width: 37px;"></span>
+										<input class="form-control col-md-7 ml-1" type="text" id="datepicker" placeholder="색상명입력">
+										<i class="fa fa-plus fa-2x col-md-2" aria-hidden="true"></i>
+										<i class="fa fa-minus fa-2x col-md-1" aria-hidden="true"></i>
+									</div>
+								
+								</td>
+								<th class="col-md-2 form-label table-active">상품사이즈</th>
+								<td class="col-md-4 container">
+									<div class="row container">
+										<input class="form-control col-md-8" type="text" id="datepicker" placeholder="FREE">
+										<i class="fa fa-plus fa-2x col-md-2" aria-hidden="true"></i>
+										<i class="fa fa-minus fa-2x col-md-2" aria-hidden="true"></i>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">판매가</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">매입가</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품명</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">상품소개</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">소재</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">사이즈</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">색상</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">무게</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">제조사</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">A/S책임자</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">제조일</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">A/S번호</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">제조국</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">세탁법</th>
+								<td class="col-md-4 container">
+									파일 업로드
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">공급사</th>
+								<td class="col-md-4 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="내용을 입력해주세요.">
+								</td>
+								<th class="col-md-2 form-label table-active">품질보증기준</th>
+								<td class="col-md-4 container">
+									파일업로드 붙이기
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">재고</th>
+								<td class="col-md-3 container">
+									<div class="row container">
+										<input class="form-control col-md-10" type="text" id="datepicker" placeholder="갯수입력">
+										<span class="text col-md-1 mt-2">개</span>
+									</div>
+								</td>
+								<td class="col-md-7 container">
+									<p class="text" style="font-size: x-small;">
+										<br>*상품의 재고는 쇼핑몰에 노출 되지 않습니다.	
+									</p>
+								</td>
+							</tr>							
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품할인설정</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													할인안함
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													할인함
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+								<th class="col-md-2 form-label table-active">상품할인율</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<span class="text col-md-4 mt-1">상품금액의</span>
+										<input class="form-control col-md-3 ml-1 mr-1" type="text" id="datepicker" placeholder="할인율">
+										<span class="text col-md-1 mt-1">%</span>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품 아이콘 선택</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													사용함
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													사용안함
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="col-md-6 container">
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													ICON1
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													ICON2
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													ICON3
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													ICON4
+												</label>
+											</div>
+										</div>
+									
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">아이콘 노출기간</th>
+								<td class="col-md-4 container">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+												<label class="form-check-label" for="gridRadios1">
+													무기한
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+												<label class="form-check-label" for="gridRadios2">
+													기간제한
+												</label>
+											</div>
+										</div>
+									</div>
+								</td>
+								<td class="col-md-6 container">
+									<div class="row">
+										<input class="form-control col-md-4" type="text" id="datepicker" placeholder="datepicker">
+										<i class="fa fa-calendar fa-2x col-md-1" aria-hidden="true"></i>
+										<span class="text text-center col-md-1">~</span>
+										<input class="form-control col-md-4" type="text" id="datepicker" placeholder="datepicker">
+										<i class="fa fa-calendar fa-2x col-md-1" aria-hidden="true"></i>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">메인 노출 이미지</th>
+								<td class="col-md-10 container">
+									<div class="row container">
+										<input class="form-control col-md-3" type="text" id="datepicker" placeholder="no_img.jpg">
+										<button class="btn btn-dark col-md-2 ml-2">찾아보기</button>
+										<p class="text col-md-3" style="font-size: xx-small;"><br>*상품 상세 이용 안내에서 설정 가능합니다.</p>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품 정보 이미지</th>
+								<td class="col-md-10 container">
+									<div class="row container">
+										<input class="form-control col-md-3 mr-2" type="text" id="datepicker" placeholder="no_img.jpg">
+										<button class="btn btn-dark col-md-2">찾아보기</button>
+										<i class="fa fa-plus fa-2x col-md-1" aria-hidden="true"></i>
+										<i class="fa fa-minus fa-2x" aria-hidden="true"></i>
+									</div>
+								</td>
+							</tr>
+							<tr class="row form-group mb-0">
+								<th class="col-md-2 form-label table-active">상품 짧은 설명</th>
+								<td class="col-md-10 container">
+									<input class="form-control col-md-11" type="text" id="datepicker" placeholder="*상품 짧은 설명은 메인 리스트에 노출됩니다.">
+								</td>
+							</tr>
+							<tr class="row form-group mb-0 border border-left-0 border-right-0 border-top-0">
+								<th class="col-md-2 form-label table-active">상품 상세 설명</th>
+								<td class="col-md-10 container">
+									<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="5" placeholder="내용을 입력해주세요."></textarea>
+								</td>
+							</tr>
+							
+						</table>
 					</div>
-					
+					<hr>
 					<!-- 1. 카테고리 -->
 					<div class="form-group row border border-left-0 border-bottom-0 border-right-0 m-0">
 						<label for="inputPassword3" class="col-md-2 col-form-label bg-secondary">카테고리연결</label>
@@ -135,7 +496,7 @@
 					
 					<!-- 5. 상품색상  -->
 					<div class="form-group row border border-left-0 border-bottom-0 border-right-0 m-0">
-						<label for="inputPassword3" class="col-md-2 col-form-label bg-secondary">상품노출시점</label>
+						<label for="inputPassword3" class="col-md-2 col-form-label bg-secondary">상품색상</label>
 						<span class="form-control" style="background-color: red; height: 37px; width: 37px;"></span>
 						<input class="form-control col-md-3 ml-1" type="text" id="datepicker" placeholder="색상명입력">
 						
