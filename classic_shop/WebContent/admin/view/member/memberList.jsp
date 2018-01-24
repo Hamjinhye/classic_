@@ -5,17 +5,17 @@
 <style>
 .fa-calendar:hover{
 	color: black;
-
 }
 /* .memberList{
 	vertical-origin: middle;
 	background: black;
 } */
+.member_table
 
-
-
+.member_table td, .member_table th{
+	vertical-align: middle;
+}
 </style>
-
 </head>
 <body>
 
@@ -24,9 +24,7 @@
 등급 수정한 게 있을 때 수정버튼 활성화
 체크박스 위치.. 
  -->
-
-
-<!-- 전체 container 태그 이름 변경X-->
+<!-- 전체 container 태그 이름 변경X -->
 <div class="container-fluid common-body-container">
 	<div class="row">
 		<!-- 좌측 네비게이션 -->
@@ -53,17 +51,15 @@
 						<p class="h5">회원검색</p>
 					</div>
 					<div>
-						<table style="border-bottom: 1px solid;" class="table">
+						<table style="border-bottom: 1px solid;" class="table member_table">
 							<colgroup>
 								<col style="width:15%;">
-								<col style="width:35%;">
-								<col style="width:15%;">
-								<col style="width:35%;">
+								<col style="width:85%;">
 							</colgroup>
 							<tbody>
 								<tr>
 									<th scope="row" style="background: #eee">검색어</th>
-									<td colspan="3">
+									<td>
 										<div>
 											<select style="display: inline-block; width: auto;" id="inputState" class="form-control">
 									        	<option selected>=통합검색=</option>
@@ -89,6 +85,8 @@
 									        	<option>관리자</option>
 											</select>
 									</td>
+								</tr>
+								<tr>
 									<th scope="row" style="background: #eee">회원가입일</th>
 									<td>
 										<input style="display: inline-block; width: auto;" type="text" class="form-control col-sm-4" id="inputCity">

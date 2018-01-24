@@ -12,6 +12,10 @@ position: static;
     margin: 0 5px 0 0;
 }
 
+.coupon_table td, .coupon_table th{
+	vertical-align: middle;
+}
+
 </style>
 
 </head>
@@ -147,7 +151,7 @@ position: static;
 						<div style="margin-top: 20px; border-bottom: 1px solid #000;" class="member-right-title">
 							<p class="h5">제한조건 설정</p>
 						</div>
-						<table style="border-bottom: 1px solid;" class="table">
+						<table style="border-bottom: 1px solid;" class="table coupon_table">
 							<colgroup>
 								<col style="width:15%;">
 								<col style="width:85%;">

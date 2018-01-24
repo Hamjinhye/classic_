@@ -5,12 +5,18 @@
 <style>
 .fa-calendar:hover{
 	color: black;
+	
 
 }
 .coupon_table input[type="radio"]{
 position: static;
     margin: 0 5px 0 0;
 }
+.coupon_table td, .coupon_table th{
+	vertical-align: middle;
+}
+
+
 
 </style>
 
@@ -45,26 +51,94 @@ position: static;
 		<!-- 우측 바디 -->
 		<div class="col-sm-9 ml-sm-auto col-md-10 pt-3 common-right-body">
 			<div class="common-inner-body">
-				<form>
-					<div style="overflow: hidden;" class="common-right-title">
-						<p style="float: left;" class="h3">쿠폰리스트</p>
-						<button style="float: right; margin: 1px 10px 3px 0px;" type="button" class="btn btn-outline-danger" onclick="location.href='<c:url value='/admin/view/member/couponInsert.jsp'/>'">쿠폰 등록</button>
-					</div>
-					<div style="margin-top: 20px; border-bottom: 1px solid #000;" class="member-right-title">
-						<p class="h5">쿠폰검색</p>
-					</div>
-					<div>
+				<div style="overflow: hidden;" class="common-right-title">
+					<p style="float: left;" class="h3">쿠폰리스트</p>
+					<button style="float: right; margin: 1px 10px 3px 0px;" type="button" class="btn btn-outline-danger" onclick="location.href='<c:url value='/admin/view/member/couponInsert.jsp'/>'">쿠폰 등록</button>
+				</div>
+				<div style="margin-top: 20px; border-bottom: 1px solid #000;" class="member-right-title">
+					<p class="h5">쿠폰검색</p>
+				</div>
+				<div class="coupon_wrap">
+					<form class="offset-3 banner-search-input-box">
+						<div class="form-group row">
+							<label for="bannerSearchValue" class="col-2 col-form-label">검색어</label>
+							<div class="col-5">
+								<input type="text" id="bannerSearchValue" class="form-control" placeholder="쿠폰이름을 입력해주세요">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="bannerSearchTerm" class="col-2 col-form-label">사용 가능 기간</label>
+							<div class="col-6">
+								<div class="row">
+									<div style="padding-left: 15px;">
+										<input style="display: inline-block;" type="text" class="form-control" id="inputCity">
+									</div>
+									<div>
+										<span style="display: inline-block; width: auto; cursor: pointer; color: gray; padding: 2px 12px 2px 0px;">
+											<i style="font-size: 30px;" class="fa fa-calendar" aria-hidden="true"></i>
+										</span>
+									</div>
+									<div style="display: inline-block;">
+										<h3>~</h3>
+									</div>
+									<div style="padding-left: 12px;">
+										<input style="display: inline-block;" type="text" class="form-control" id="inputCity">
+									</div>
+									<span style="display: inline-block; width: auto; cursor: pointer; color: gray; padding: 2px 0px 2px 0px;">
+										<i style="font-size: 30px;"class="fa fa-calendar" aria-hidden="true"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="bannerSearchValue" class="col-2 col-form-label">쿠폰유형</label>
+							<div class="col-5">
+								<label class="align-middle radio-inline" for="exampleRadios1">
+									<input type="radio" name="optradio" checked>
+									전체
+								</label>
+								<label class="align-middle radio-inline" for="exampleRadios1">
+									<input type="radio" name="optradio">
+									주문적용
+								</label>
+								<label class="align-middle radio-inline" for="exampleRadios1">
+									<input type="radio" name="optradio">
+									배송비할인
+								</label>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="bannerSearchValue" class="col-2 col-form-label">발급방식</label>
+							<div class="col-5">
+								<label class="align-middle radio-inline" for="exampleRadios1">
+									<input type="radio" name="optradio2" checked>
+									전체
+								</label>
+								<label class="align-middle radio-inline" for="exampleRadios1">
+									<input type="radio" name="optradio2">
+									자동발급
+								</label>
+								<label class="align-middle radio-inline" for="exampleRadios1">
+									<input type="radio" name="optradio2">
+									회원발급
+								</label>
+							</div>
+						</div>
+						<div class="form-group row">
+							<button type="button" class="offset-4 btn btn-outline-dark btn-lg">검색</button>
+						</div>
+					</form>
+					
+<!-- 					
 						<table style="border-bottom: 1px solid;" class="table coupon_table">
 							<colgroup>
 								<col style="width:15%;">
-								<col style="width:35%;">
-								<col style="width:15%;">
-								<col style="width:35%;">
+								<col style="width:85%;">
 							</colgroup>
 							<tbody>
 								<tr>
 									<th scope="row" style="background: #eee">검색어</th>
-									<td colspan="3">
+									<td>
 										<div>
 										<input style="display: inline-block; width: auto;" type="text" class="form-control" id="inputCity">
 										   <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -91,6 +165,9 @@ position: static;
 											배송비할인
 										</label>
 									</td>
+									
+								</tr>
+								<tr>
 									<th scope="row" style="background: #eee">발급방식</th>							
 									<td>
 										<label class="form-check-label" for="exampleRadios1">
@@ -106,11 +183,10 @@ position: static;
 											회원발급
 										</label>
 									</td>
-									
 								</tr>
 								<tr>
 									<th scope="row" style="background: #eee">사용 가능 기간</th>
-									<td colspan="3">
+									<td>
 										<input style="display: inline-block; width: auto;" type="text" class="form-control" id="inputCity">
 										<span style="display: inline-block; width: auto; cursor: pointer; color: gray;">
 											<i style="font-size: 30px;" class="fa fa-calendar" aria-hidden="true"></i>
@@ -125,9 +201,9 @@ position: static;
 									</td>
 								</tr>
 							</tbody>
-						</table>
-					</div>
-				</form>
+						</table> 
+						윗테이블삭제 -->
+				</div>
 				<div>
 					<table class="table">
 						<tbody>
