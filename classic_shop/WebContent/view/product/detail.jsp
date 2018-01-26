@@ -265,13 +265,16 @@
 							<li class="list-group-item stars text-warning">
 								<table style="width: 100%">
 									<tr>
-										<td style="width:60%">
+										<td>
 											<c:forEach begin="1" end="${list.star}">
 												<i class="fa fa-star"></i>
 											</c:forEach>
 											<c:forEach begin="1" end="${5-list.star}">
 												<i class="fa fa-star-o"></i>
 											</c:forEach>
+										</td>
+										<td style="width:65%">
+											${list.product_name}
 										</td>
 										<td>
 											${list.id}
@@ -286,10 +289,20 @@
 							</a>
 							<div id="exampleAccordion${i.index}" class="collapse" role="tabpanel">
 			  					<div class="container">
-			  						<p>	신체 사이즈: ${list.body_size} </p>
+			  						<%-- <p>	신체 사이즈 : ${list.body_size} </p> --%>
+			  						<%-- <p>	구입 색상 : ${list.colour_name} </p>
+			  						<p> 구입 사이즈 : ${list.product_size} </p> --%>
+			  					
 									<li class="list-group-item content h5" id="reviewList${i.index}">
+										신체 사이즈 : ${list.body_size}<br>
+										구입 색상 : ${list.colour_name}<br>
+										구입 사이즈 : ${list.product_size}<br>
+										<hr>
 										${list.content}
+										<br>
+										${list.img_path}
 									</li>
+									
 			  					</div>
 								
 							</div>
@@ -297,6 +310,7 @@
 					
 						</ul>
 					</c:forEach>
+					<jsp:include page="/common/paging.jsp"/>
 				</li>
 			</ul>
 	

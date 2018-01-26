@@ -24,7 +24,7 @@ import com.classic.product.dto.SizuDTO;
 import com.classic.util.ClassicDBConnection;
 
 
-@WebServlet("/product/detail.do")
+@WebServlet("/detail.do")
 public class ProductDetail extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

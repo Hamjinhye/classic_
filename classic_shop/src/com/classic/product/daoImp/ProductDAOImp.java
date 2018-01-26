@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.classic.common.dto.PagingDTO;
 import com.classic.product.controller.ProductDetail;
 import com.classic.product.dao.ProductDAO;
 import com.classic.product.dto.ProductDTO;
@@ -40,15 +41,23 @@ public class ProductDAOImp implements ProductDAO{
 		this.conn=conn;
 	}
 	@Override
-	public List<ProductDTO> selectProductList(int cate_num) throws Exception {
+	public List<ProductDTO> selectProductList(PagingDTO pagingDTO, int cate, int num) throws Exception {
 		List<ProductDTO> productList = new ArrayList<ProductDTO>();
-		String sql="select * from product "
-				+ "where cate_num in"
+		String sql="";
+		
+		if(cate==0) {
+			sql="select * from product "
+					+ "where cate_num in"
 					+ "(select m.num from mini_cate m, cate c "
 					+ "where m.cate_num=c.num and c.num=? and m.state!=0)";
+			
+			
+		}else if(cate==1) {
+			sql="SELECT * FROM PRODUCT WHERE cate_num=?";
+		}
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, cate_num);
+		pstmt.setInt(1, num);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			ProductDTO productDTO = new ProductDTO();
@@ -132,6 +141,30 @@ public class ProductDAOImp implements ProductDAO{
 		}
 		
 		return productList;
+	}
+	@Override
+	public int productTotalRecord(int cate, int num) throws Exception { //for Paigination
+		int totalRecord = 0;
+		String sql="";
+		if(cate==0) {
+			sql="select COUNT(*) as total from product "
+					+ "where cate_num in"
+					+ "(select m.num from mini_cate m, cate c "
+					+ "where m.cate_num=c.num and c.num=? and m.state!=0)";
+			
+		}else if(cate==1) {
+			sql="SELECT COUNT(*) as total FROM PRODUCT WHERE cate_num=?";
+		}
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			totalRecord = rs.getInt("total");
+		}
+		return totalRecord;
 	}
 
 /*	@Override
