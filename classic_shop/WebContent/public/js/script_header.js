@@ -3,7 +3,7 @@ $(function(){
 		url:"/classic_shop/template/cate.do",
 		type:"GET",
 		dataType:"json",
-		success:function(data){
+		success:function(data){ //왜 수정이 안되니?
 			
 			var miniCate
 			var cateListHTML="";

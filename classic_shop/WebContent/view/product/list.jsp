@@ -11,11 +11,8 @@
 	
   <p> <!-- miniCate -->
 	<c:forEach var="mini" items="${miniCateList}">
-<<<<<<< HEAD:classic_shop/WebContent/view/product/list.jsp
   		<a href="<c:url value='/product.do?cate=1&num=${mini.num}' />" class="cate">${mini.name}</a>
-=======
-  		<a href="<c:url value='/product/miniCateList.do?num=${mini.num}' />" class="cate">${mini.name}</a>
->>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/product/list.jsp
+
 	</c:forEach>
   </p>
 </div>
