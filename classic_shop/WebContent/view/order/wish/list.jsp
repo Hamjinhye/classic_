@@ -1,7 +1,7 @@
 <%@page import="com.classic.order.dto.WishDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
+<%-- <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 </head>
 <body>
 <body>
@@ -46,7 +46,7 @@
 =======
 											<button class="btn btn-default" data-toggle = "popover" data-trigger="focus" data-title="옵션선택" type="button">옵션변경</button>
 										</li>
-										<%-- <!-- 모달 -->
+										<!-- 모달 -->
 >>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 										<div class="modal fade" id="wishOption${wish.productNum}" tabindex="-1" role="dialog">
   											<div class="modal-dialog" role="document">
@@ -89,15 +89,15 @@
 <<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 										</div> 
 =======
-										</div> --%>
+										</div>
 >>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
 									</ul>
 								</div>
 							</td>
 							<td><input type="hidden" name="price" value="${wish.price}" class="paramValue">${wish.price}원</td>
 							<td><input type="hidden" name="wishQuantity" value="${wish.wishQuantity}" class="paramValue">${wish.wishQuantity}개</td>
-							<%-- <fmt:parseNumber var="percent" value="${((wish.price*wish.wishQuantity)*0.02)}" integerOnly="true" />
-							<td>${percent}</td> --%>
+							<fmt:parseNumber var="percent" value="${((wish.price*wish.wishQuantity)*0.02)}" integerOnly="true" />
+							<td>${percent}</td>
 							<c:choose>
 								<c:when test="${wish.price>50000}">
 									<td>무료</td>
@@ -128,7 +128,7 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
-<%-- 			<c:choose>
+			<c:choose>
 				<c:when test="${wishList!=null}">
 					<c:forEach var="wish" items="${wishList}">
 					<tr>
@@ -179,8 +179,8 @@
 						<td colspan="8">wish list가 비었습니다.<td>
 					</tr>
 				</c:otherwise>
-			</c:choose> --%>
-			<%-- <%if(wishList==null){ %>
+			</c:choose>
+			<%if(wishList==null){ %>
 				<td colspan="8">wish list가 비었습니다.<td>
 			<%} else { 
 				 for(int i = 0; i<wishList.size(); i++){ %>
@@ -219,7 +219,7 @@
 					</td>
 				</tr>
 				<%} 
-				}%> --%>
+				}%>
 			</tbody>
 		</table>
 		<div id="wishCRUDBtn">
@@ -227,12 +227,16 @@
 <<<<<<< HEAD:classic_shop/WebContent/view/order/wish/list.jsp
 			<button type="button" class="btn btn-default" >선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
+<<<<<<< HEAD
 			<a class="btn btn-default" href="#" >선택 상품 장바구니 이동</a>
 =======
 			<!-- ~~~~~~~~~~~~~~~mem_num으로 바꿔야댐~~~~~~~~`~~~~~~~~~~~~-->
 			<button type="button" class="btn btn-default" >선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
 >>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e:classic_shop/WebContent/view/order/wish/list.jsp
+=======
+			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
+>>>>>>> 73cecb1acab98ba150b7ea3d0fcabd52c1f4296c
 			<button class="btn btn-default pull-right">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
@@ -297,11 +301,25 @@ $("#allCheck").click(function(){
 		});
 	}	
 });
-
+var GoCartWishSelected=function(mem_num){
+	if(${(fn:length(wishList))!=0}){
+		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
+		var url ='<c:url value="/user/cart.do?num=${loginMem.num}&productNum="/>';
+		/* var method="GET";
+		var http = new XMLHttpRequest(); */
+		$('input:checkbox[class*="checkWish"]').each(function(){
+			if(this.checked){
+				url+=this.value+"_";
+			}		
+		});
+		url=url.substr(0, url.length-1);
+		location.href=url;
+	}
+}
 var delWishSelected=function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num=";
-		/* var url ='<c:url value="/order/delwish.do?num='+mem_num+'&product_num="/>'; */
+		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
+		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'&product_num="/>';
 		var method="GET";
 		var http = new XMLHttpRequest();
 		$('input:checkbox[class*="checkWish"]').each(function(){
@@ -329,8 +347,8 @@ var delWishSelected=function(mem_num){
 }
 var allWishDel = function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num;
-		/* var url ='<c:url value="/order/delwish.do?num='+mem_num+'"/>'; */
+		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num; */
+		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'"/>';
 		var method="DELETE";
 		var http = new XMLHttpRequest();
 		http.onreadystatechange=function(){
@@ -371,4 +389,4 @@ var pickWishDel = function(mem_num,product_num){
 	http.open(method,url,true);
 	http.send();
 }
-</script>
+</script> --%>

@@ -34,7 +34,6 @@ public class WishDeleteJSON extends HttpServlet{
 		}
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("utf-8");
-		System.out.println(delete);
 		resp.getWriter().append("{\"delete\":"+delete+"}");
 	}
 	@Override
@@ -66,7 +65,6 @@ public class WishDeleteJSON extends HttpServlet{
 		WishListDAO wish = null;
 		int delete = 0;
 		try {
-			System.out.println("앗");
 			conn = ClassicDBConnection.getConnection();
 			wish = new WishListDAOImp(conn);
 			for(int i =0; i<productNum.length; i++) {

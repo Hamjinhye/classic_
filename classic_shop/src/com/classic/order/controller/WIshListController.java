@@ -23,7 +23,6 @@ public class WIshListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setCharacterEncoding("utf-8");
 		Connection conn =null;
-		System.out.println(req.getParameter("num"));
 		if(req.getParameter("num")!="") {
 			int memNum = Integer.parseInt(req.getParameter("num"));
 			int totalRecode = 0;
