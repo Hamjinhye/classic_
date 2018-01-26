@@ -13,16 +13,51 @@ public class ReviewDTO {
 	INDATE                                             DATE
 	 */
 	
+	/*
+	select r.content, to_char(r.indate, 'YYYY-MM-DD') indate, p.name, s.sizu, c.name, (select name from img_path where review_num=r.num) img_path 
+	from review r, product p, sizu s, colour c, paid o 
+	where r.paid_num=o.num and o.product_num = p.num and o.sizu_num=s.num 
+	and o.colour_num = c.num and r.paid_num=o.num and o.product_num=1
+	 */
+	
 	private int num;
 	private int paid_num;
-	private int mem_num;
 	private String body_size;
 	private String content;
 	private int star;
 	private String indate;
 	private String id;
+	private String product_name;
+	private String product_size;
+	private String colour_name;
+	private String img_path;  //디비에 img_path table에 review_num이 있다!
 	
 	
+	
+	public String getProduct_size() {
+		return product_size;
+	}
+	public void setProduct_size(String product_size) {
+		this.product_size = product_size;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public String getColour_name() {
+		return colour_name;
+	}
+	public void setColour_name(String colour_name) {
+		this.colour_name = colour_name;
+	}
+	public String getImg_path() {
+		return img_path;
+	}
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -35,12 +70,7 @@ public class ReviewDTO {
 	public void setPaid_num(int paid_num) {
 		this.paid_num = paid_num;
 	}
-	public int getMem_num() {
-		return mem_num;
-	}
-	public void setMem_num(int mem_num) {
-		this.mem_num = mem_num;
-	}
+	
 	public String getBody_size() {
 		return body_size;
 	}
@@ -71,13 +101,18 @@ public class ReviewDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 	@Override
 	public String toString() {
-		return "{\"num\":\"" + num + "\", \"paid_num\":\"" + paid_num + "\", \"mem_num\":\"" + mem_num
-				+ "\", \"body_size\":\"" + body_size + "\", \"content\":\"" + content + "\", \"star\":\""
-				+ star + "\", \"indate\":\"" + indate + "\", \"id\":\"" + id + "\"}";
+		return "{\"num\":\"" + num + "\", \"paid_num\":\"" + paid_num + "\", \"body_size\":\"" + body_size
+				+ "\", \"content\":\"" + content + "\", \"star\":\"" + star + "\", \"indate\":\"" + indate
+				+ "\", \"id\":\"" + id + "\", \"product_name\":\"" + product_name
+				+ "\", \"product_size\":\"" + product_size + "\", \"colour_name\":\"" + colour_name
+				+ "\", \"img_path\":\"" + img_path + "\"}";
 	}
+	
+	
+	
+	
 	
 	
 	
