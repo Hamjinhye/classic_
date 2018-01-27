@@ -1,3 +1,4 @@
+339 lines (336 sloc)  12.2 KB
 <%@page import="com.classic.order.dto.WishDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -46,7 +47,8 @@
   											<div class="modal-dialog" role="document">
   												<div class="modal-content">
      												<div class="modal-header">
-     	  												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     	  												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     	  												<span aria-hidden="true">&times;</span></button>
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
       												<div class="modal-body" class="wishOptionSelect">
@@ -199,8 +201,6 @@
 			<button type="button" class="btn btn-default" >선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
-			<a class="btn btn-default" href="#" >선택 상품 장바구니 이동</a>
-			<!-- ~~~~~~~~~~~~~~~mem_num으로 바꿔야댐~~~~~~~~`~~~~~~~~~~~~-->
 			<button class="btn btn-default pull-right">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
@@ -237,7 +237,6 @@ var ProductColourSelect = function(productNum){
 	http.send();
 	
 };
-
 $("#allCheck").click(function(){
 	if(this.checked){
 		$('input:checkbox[class*="checkWish"]').each(function(){
