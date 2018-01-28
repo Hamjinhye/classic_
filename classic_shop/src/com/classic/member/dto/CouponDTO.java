@@ -18,6 +18,21 @@ public class CouponDTO {
 	private int state;
 	private Date indate;
 	
+	//혜진 필요 DTO
+	private String coupon_name;
+	private int sale;
+	public String getCoupon_name() {
+		return coupon_name;
+	}
+	public void setCoupon_name(String coupon_name) {
+		this.coupon_name = coupon_name;
+	}
+	public int getSale() {
+		return sale;
+	}
+	public void setSale(int sale) {
+		this.sale = sale;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -51,6 +66,6 @@ public class CouponDTO {
 	@Override
 	public String toString() {
 		return "CouponDTO [num=" + num + ", mem_num=" + mem_num + ", log_num=" + log_num + ", state=" + state
-				+ ", indate=" + indate + "]";
+				+ ", indate=" + indate + ", coupon_name=" + coupon_name + ", sale=" + sale + "]";
 	}
 }

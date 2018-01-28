@@ -40,6 +40,14 @@ public class PaidDTO {
 	private String order_date;
 	private int order_state;
 	private String deposit_name;
+	private int colour_num;
+	private int sizu_num;
+	
+	
+	//혜진필요  dto
+	private String colour;
+	private String sizu;
+	
 	
 	//다혜 필요 DTO
 	//리스트
@@ -219,6 +227,30 @@ public class PaidDTO {
 	public void setG_size(String g_size) {
 		this.g_size = g_size;
 	}
+	public int getColour_num() {
+		return colour_num;
+	}
+	public void setColour_num(int colour_num) {
+		this.colour_num = colour_num;
+	}
+	public int getSizu_num() {
+		return sizu_num;
+	}
+	public void setSizu_num(int sizu_num) {
+		this.sizu_num = sizu_num;
+	}
+	public String getColour() {
+		return colour;
+	}
+	public void setColour(String colour) {
+		this.colour = colour;
+	}
+	public String getSizu() {
+		return sizu;
+	}
+	public void setSizu(String sizu) {
+		this.sizu = sizu;
+	}
 	@Override
 	public String toString() {
 		return "{ \"num\":" + num + ", \"mem_num\":" + mem_num+ ", \"coupon_sale\":" + coupon_sale + ", \"product_num\":" + product_num
@@ -229,7 +261,8 @@ public class PaidDTO {
 				+ payment + ", \"order_date\":\"" + order_date + "\", \"order_state\":" + order_state
 				+ ", \"deposit_name\":\"" + deposit_name + "\", \"g_num\":" + g_num + ", \"g_name\":\"" + g_name
 				+ "\", \"g_color\":\"" + g_color + "\", \"g_size\":\"" + g_size +"\", \"coupon_name\":\"" + coupon_name
-				+ "\", \"deliv_com\":\"" + deliv_com + "\", \"deliv_num\":\"" + deliv_num + "\", \"deliv_state\":" + deliv_state + "}";
+				+ "\", \"deliv_com\":\"" + deliv_com + "\", \"deliv_num\":\"" + deliv_num + "\", \"deliv_state\":" + deliv_state
+				+ ",\"colour_num\" : "+colour_num+", \"sizu_num\":"+sizu_num+",\"colour\":\""+colour+"\",\"sizu\":\""+sizu+"\"}";
 	}
 	
 	

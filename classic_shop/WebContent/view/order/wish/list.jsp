@@ -74,8 +74,6 @@
 							</td>
 							<td><input type="hidden" name="price" value="${wish.price}" class="paramValue">${wish.price}원</td>
 							<td><input type="hidden" name="wishQuantity" value="${wish.wishQuantity}" class="paramValue">${wish.wishQuantity}개</td>
-							<%-- <fmt:parseNumber var="percent" value="${((wish.price*wish.wishQuantity)*0.02)}" integerOnly="true" />
-							<td>${percent}</td> --%>
 							<c:choose>
 								<c:when test="${wish.price>50000}">
 									<td>무료</td>
@@ -89,7 +87,7 @@
 							<td>
 								<div class="buttonGroup">
 									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
-									<a type="button" class="btn btn-default partOrder" href="#">주문하기</a>									
+									<a type="button" class="btn btn-default partOrder" href='<c:url value="/user/ordersheet.do?num=${loginMem.num}&cookie=f&productNum=${wish.productNum}"/>'>주문하기</a>									
 									<button type="button" class="btn btn-default" onclick="pickWishDel(${loginMem.num},${wish.productNum})">삭제</button>
 								</div>
 							</td>
@@ -102,129 +100,39 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
-<%-- 			<c:choose>
-				<c:when test="${wishList!=null}">
-					<c:forEach var="wish" items="${wishList}">
-					<tr>
-					<!-- var == 내가 설정하는 이름 즉, 내가 ${이 안에서 쓰는 변수이름} -->
-					<!-- items == 내가 컨트롤러에서 setAtt~("wishList", wishDTO) 이렇게 설정한 이름 -->
-						<!-- wishList에 뭐가 있을 때 -->
-						<td><input type="checkbox" value="${wish.productNum}"></td>		
-						<td class ="infoList">
-						<div class="infoListDiv">
-							<div>
-								<p><a>이미지임</a></p>
-							</div>
-							<div>
-								<ul class="list-group" >
-									<li class="list-group-item"><strong><a>${wish.productName}</a></strong></li>
-									<li class="list-group-item"><strong>color ${wish.colour} size ${wish.sizu} %></strong></li>
-									<li class="list-group-item"><button type="button" class="btn btn-default">옵션변경</button></li> <!--  onclick구현 -->
-								</ul>
-							</div>
-						</div>
-					</td>
-					<td>${wish.price}원</td>
-					<td>${wish.wishQuantity}개</td>
-					<td>(${wish.productNum}*${wish.wishQuantity*0.02}</td>
-					<c:choose>
-						<c:when test="${wish.price>50000}">
-							<td>무료</td>
-							<td>${wish.price*wish.wishQuantity}원</td>
-						</c:when>
-						<c:when test="${wish.price<50000}">
-							<td>2500원</td>
-							<td>${wish.price*wish.wishQuantity+2500}원</td>
-						</c:when>
-					</c:choose>
-					<td>
-						<div class="buttonGroup">
-							<button type="button" class="btn btn-default">주문하기</button>
-							<button type="button" class="btn btn-default">장바구니 등록</button>
-							<button type="button" class="btn btn-default">삭제</button>
-						</div>
-					</td>
-				</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<!-- wishList에 아무것도 없을 때 -->
-					<tr>
-						<td colspan="8">wish list가 비었습니다.<td>
-					</tr>
-				</c:otherwise>
-			</c:choose> --%>
-			<%-- <%if(wishList==null){ %>
-				<td colspan="8">wish list가 비었습니다.<td>
-			<%} else { 
-				 for(int i = 0; i<wishList.size(); i++){ %>
-				<tr>
-					<td><input type="checkbox" value="<%=wishList.get(i).getProductNum()%>"></td>
-					<td class ="infoList">
-						<div class="infoListDiv">
-							<div>
-								<p><a>이미지임</a></p>
-							</div>
-							<div>
-								<ul class="list-group" >
-									<li class="list-group-item"><strong><a><%=wishList.get(i).getProductName()%></a></strong></li>
-									<li class="list-group-item"><strong>color <%=wishList.get(i).getColour()%> size <%=wishList.get(i).getSizu() %></strong></li>
-									<li class="list-group-item"><button type="button" class="btn btn-default">옵션변경</button></li> <!--  onclick구현 -->
-								</ul>
-							</div>
-						</div>
-					</td>
-					<td><%=wishList.get(i).getPrice() %>원</td>
-					<td><%=wishList.get(i).getWishQuantity() %>개</td>
-					<td><%=wishList.get(i).getPrice()*wishList.get(i).getWishQuantity()*0.02 %></td>
-					<% if(wishList.get(i).getPrice()>50000){ %>
-						<td>무료</td>
-						<td><%=wishList.get(i).getPrice()*wishList.get(i).getWishQuantity() %>원</td>
-					<%}else{  %>
-						<td>2500원</td>
-						<td><%=wishList.get(i).getPrice()*wishList.get(i).getWishQuantity()+2500 %>원</td>
-					<%} %>
-					<td>
-						<div class="buttonGroup">
-							<button type="button" class="btn btn-default">주문하기</button>
-							<button type="button" class="btn btn-default">장바구니 등록</button>
-							<button type="button" class="btn btn-default">삭제</button>
-						</div>
-					</td>
-				</tr>
-				<%} 
-				}%> --%>
 			</tbody>
 		</table>
 		<div id="wishCRUDBtn">
 			<button type="button" class="btn btn-default" onclick="allWishDel(${loginMem.num})">전체삭제</button>
-			<button type="button" class="btn btn-default" >선택주문</button>
+			<button type="button" class="btn btn-default" onclick="CheckGoSheet(${loginMem.num})">선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
-			<button class="btn btn-default pull-right">전체상품 주문</button>
+			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
-		<!-- <div id="pagingBtn">
-			<ul class="pagination">
-				<li>
-					<a href="#" aria-label="Previous">
-						<span aria-hidden="true">&laquo; Pre</span>
-					</a>	
-				</li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li>
-					<a href="#" aria-label="Next">
-						<span aria-hidden="true">Next &raquo;</span>
-					</a>	
-				</li>
-			</ul>
-		</div> -->
-	</div>
 <script>
+var AllGoSheet = function(memNum){
+	if(${(fn:length(wishList))!=0}){
+		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=f&productNum="/>';
+		$('input:checkbox[class*="checkWish"]').each(function(){
+			url+=this.value+"_";
+		});
+		url=url.substr(0, url.length-1);
+		location.href=url;
+	}
+}
+var CheckGoSheet = function(memNum){
+	if(${(fn:length(wishList))!=0}){
+		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=f&productNum="/>';
+		$('input:checkbox[class*="checkWish"]').each(function(){
+			if(this.checked){
+				url+=this.value+"_";
+			}		
+		});
+		url=url.substr(0, url.length-1);
+		location.href=url;
+	}
+}
 var ProductColourSelect = function(productNum){
 	var method = "GET";
 	var http = new XMLHttpRequest();
@@ -252,8 +160,6 @@ var GoCartWishSelected=function(mem_num){
 	if(${(fn:length(wishList))!=0}){
 		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
 		var url ='<c:url value="/user/cart.do?num=${loginMem.num}&productNum="/>';
-		/* var method="GET";
-		var http = new XMLHttpRequest(); */
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			if(this.checked){
 				url+=this.value+"_";

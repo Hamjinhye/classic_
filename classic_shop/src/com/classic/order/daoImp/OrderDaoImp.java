@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.classic.member.dto.CouponDTO;
 import com.classic.order.dao.OrderDAO;
 import com.classic.order.dto.PaidDTO;
 import com.classic.util.ClassicDBConnection;
@@ -129,6 +130,52 @@ public class OrderDaoImp implements OrderDAO{
 		return detail;
 	}
 	
+	
+	
+	
+	//혜진 주문전 sheet에서 쿠폰 몇장인지보여줄때 
+	@Override
+	public int couponCount(int mem_num) throws Exception {
+		int coupon=0;
+		String sql = "SELECT COUNT(*) FROM COUPON WHERE mem_num=? AND state=1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			coupon = rs.getInt("COUNT(*)");
+		}
+		return coupon;
+	}
+	//쿠폰 선택할 때 정보
+	@Override
+	public List<CouponDTO> selectCoupon(int mem_num) throws Exception {
+		List<CouponDTO> couponList = new ArrayList<CouponDTO>();
+		CouponDTO coupon = null;
+		String sql = "SELECT c.num coupon_num, c.mem_num mem_num , cl.name coupon_name, cl.sale disconunt "
+					+ "from coupon c, coupon_log cl " 
+					+ "where c.log_num = cl.num and "
+					+ "cl.start_date<=sysdate and cl.end_date>=sysdate "
+					+ "and c.mem_num = ? and c.state=1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			coupon = new CouponDTO();
+			coupon.setNum(rs.getInt("coupon_num"));
+			coupon.setMem_num(rs.getInt("mem_num"));
+			coupon.setCoupon_name(rs.getString("coupon_name"));
+			coupon.setSale(rs.getInt("discount"));
+			//coupon.setIndate(rs.getString("indate")); - 얘 dto에서 date로 받을건지 무렁봐야대 
+			couponList.add(coupon);
+		}
+		return couponList;
+	}
+	@Override
+	public int insert(PaidDTO paidDTO) throws Exception {
+		int insert = 0; 
+		String sql = "INSERT paid INTO "
+		return 0;
+	}
 	
 
 	

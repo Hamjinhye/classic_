@@ -1,20 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 	<div class="container" id="orderMainDiv">
 		<h2 id="orderName">주문서</h2>
+		<h2>${productList}</h2>
+		<form action="addorder.do" method="post">
 		<table class="table" id="benefitInfo">
 			<tr>
 				<th width="10%">혜택정보</th>
+				
 				<td width="90%">
 					<div>
-						<p><span>ham</span>님의 회원 등급은 <span>grade</span> 입니다.</p>					
+						<input type="hidden" name="memNum" value="${loginMem.num}">
+						<p><span>${loginMem.id}</span>님의 회원 등급은 <span>
+						<c:if test="${loginMem.grade==0}">
+							관리자
+						</c:if>
+						<c:if test="${loginMem.grade==1}">
+							Lv.1
+						</c:if>
+						<c:if test="${loginMem.grade==2}">
+							Lv.2
+						</c:if>
+						<c:if test="${loginMem.grade==3}">
+							Lv.3
+						</c:if>
+						</span> 입니다.</p>					
 					</div>
 					<div>
-						<p>가용적립금  :  <span>1,000</span>  원<br>
-						쿠폰  :  <span>0</span>  장 </p>
+						<p>쿠폰  :  <span>${coupon}</span>  장 </p>
 					</div>
 				</td>
 			</tr>
@@ -23,65 +40,63 @@
 			<tbody id="orderTitle">
 				<tr>
 					<th width="5%"><input type="checkbox"></th>
-					<th width="35%">상품정보</th>
+					<th width="45%">상품정보</th>
 					<th width="10%">판매가</th>
 					<th width="10%">수량</th>
-					<th width="10%">적립금</th>
 					<th width="10%">배송구분</th>
 					<th width="10%">배송비</th>
 					<th width="10%">합계</th>
 				</tr>
 			</tbody>
 			<tbody id="orderContents">
+				<c:forEach var="product" items="${productList}">
 				<tr>
 					<td><input type="checkbox"></td>
 					<td id ="orderDetailList">
-						<div id="orderDetailListDiv">
-							<div>
-								<p><a href="#">이미지임</a></p>
+						<div id="orderDetailListDiv" class="row clearfix">
+							<div class="col-2 float-left">
+								<p class="productThumb"><a href="#">이미지임</a></p>
 							</div>
-							<div>
+							<div class="col-10 float-left">
 								<ul class="list-group" >
-									<li class="list-group-item"><strong><a href="#">product Name</a></strong></li>
-									<li class="list-group-item"><strong><a href="#">color 검정 size M</a></strong></li>
+									<li class="list-group-item"><strong><a href="#"><input type="hidden" name="productNum" value ="${product.productName}">${product.productName}</a></strong></li>
+									<li class="list-group-item row clearfix">
+										<p class="col-2">color</p>"${product.colour}
+										<input class="col-4" type="hidden" name="colour" value ="${product.colour}">
+										<p class="col-2">size</p> ${product.sizu}
+										<input class="col-4" type="hidden" class="form-item" name="sizu" value ="${product.sizu}" >
+										</li>
 								</ul>
 							</div>
 						</div>
 					</td>
-					<td>100000원</td>
-					<td>1</td>
-					<td>20원</td>
+					<td>${product.price}</td>
+					<td><input type="text" class="form-item text-center" name="quantity" value ="${product.wishQuantity}" style="border: hidden;" readonly="readonly"></td>
 					<td>기본배송</td>
-					<td>무료</td>
-					<td>100000원</td>
+					<td>
+						<c:if test="${product.price>50000}">
+							<p>무료</p>
+						</c:if>
+						<c:if test="${product.price<50000}">
+							<p>2500</p>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${product.price>50000}">
+							<input type="text" class="form-item text-center" name="price" value ="${product.price}" style="border: hidden;">
+						</c:if>
+						<c:if test="${product.price<50000}">
+							<input type="text" class="form-item text-center" name="price" value ="${product.price+2500}" style="border: hidden;">  
+						</c:if>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox"></td>
-					<td id ="orderDetailList2">
-						<div id="orderDetailListDiv2">
-							<div>
-								<p><a href="#">이미지임</a></p>
-							</div>
-							<div>
-								<ul class="list-group" >
-									<li class="list-group-item"><strong><a href="#">product Name</a></strong></li>
-									<li class="list-group-item"><strong><a href="#">color 검정 size M</a></strong></li>
-								</ul>
-							</div>
-						</div>
-					</td>
-					<td>100000원</td>
-					<td>1</td>
-					<td>20원</td>
-					<td>기본배송</td>
-					<td>무료</td>
-					<td>100000원</td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="container" id="paymentInfo">
-			<p>*상품의 옵션 및 수량변경은 상품 상세 또는 장바구니에서 변경 가능합니다.</p>
-			<p>상품구매금액   <span>200,000</span>원 + 배송비 <span>0</span>원 = 합계: <span>200,000</span>원</p>
+			<p class="h5">*상품의 옵션 및 수량변경은 상품 상세 또는 장바구니에서 변경 가능합니다.</p>
+			<p>상품구매금액   <span></span>원 + 배송비 <span>0</span>원 = 합계: <span>200,000</span>원</p>
 		</div>
 		<button class="btn btn-defult" id="selectProductDel">선택 상품 삭제</button>
 		<div id="orderInfo">
@@ -90,32 +105,32 @@
 				<tr>
 					<th class="tabFirst">주문하시는  분</th>
 					<td class="tabSecond "><span class="redRound">10</span></td>
-					<td class="tabThird" ><input type="text"></td>
+					<td class="tabThird" ><input type="text" name="orderMemName"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst">주소</th>
 					<td class="tabSecond"><span class="redRound">10</span></td>
-					<td class="tabThird" ><input type="text"><button type="button" class="btn" onclick='javascript:window.open()'>우편번호</button></td>
+					<td class="tabThird" ><input type="text" id="orderPostcode" name="orderPostcode"><button type="button" class="btn" onclick='OrderDaumPostcode()'>우편번호</button></td>
 				</tr>
 				<tr>
 					<th class="tabFirst"></th>
 					<td class="tabSecond"></td>
-					<td class="tabThird" ><input type="text" value="기본주소"></td>
+					<td class="tabThird" ><input type="text" name ="orderAddress"value="기본주소" id="orderAddress"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst"></th>
 					<td class="tabSecond"></td>
-					<td class="tabThird" ><input type="text" value="상세주소"></td>
+					<td class="tabThird" ><input type="text" value="상세주소" id="orderAddress2" name="orderAddress2"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst">일반전화</th>
 					<td class="tabSecond"><span class="redRound">10</span></td>
-					<td class="tabThird" ><input type="number"></td>
+					<td class="tabThird" ><input type="number" name="orderHomeNumber"></td>
 				</tr>
 				<tr>
 					<th class="orderTab tabFirst">휴대전화</th>
 					<td class="tabSecond"><span class="redRound sec">10</span></td>
-					<td class="tabThird"><input type="number"></td>
+					<td class="tabThird"><input type="number" name="orderPhone"></td>
 				</tr>
 			</table>
 		</div>
@@ -126,7 +141,7 @@
 					<th class="tabFirst">배송지선택</th>
 					<td class="tabSecond"></td>
 					<td class="tabThird" id="adressChoiceBtn">
-						<div class="radio">
+						<div class="radio ">
 							<label><input type="radio" name="optraio" >주문자 정보와 동일</label>
 						</div>
 						<div class="radio">
@@ -138,43 +153,44 @@
 				<tr>
 					<th class="tabFirst">주문하시는  분</th>
 					<td class="tabSecond"><span class="redRound">10</span></td>
-					<td class="tabThird"><input type="text"></td>
+					<td class="tabThird"><input type="text" name="delivName"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst">주소</th>
 					<td class="tabSecond"><span class="redRound">10</span></td>
-					<td class="tabThird" ><input type="text"><button type="button" class="btn" onclick='javascript:window.open()'>우편번호</button></td>
+					<td class="tabThird" ><input type="text" name='delivPostcode' id='delivPostcode'><button type="button" class="btn" onclick='DelivDaumPostcode()'>우편번호</button></td>
 				</tr>
 				<tr>
 					<th class="tabFirst"></th>
 					<td class="tabSecond"></td>
-					<td class="tabThird" ><input type="text" value="기본주소"></td>
+					<td class="tabThird" ><input type="text" value="기본주소" id='delivAddress' name ="delivAddress"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst"></th>
 					<td class="tabSecond"></td>
-					<td class="tabThird" ><input type="text" value="상세주소"></td>
+					<td class="tabThird" ><input type="text" value="상세주소" id='delivAddress2' name="delivAddress2"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst">일반전화</th>
 					<td class="tabSecond"><span class="redRound">10</span></td>
-					<td class="tabThird" ><input type="number"></td>
+					<td class="tabThird" ><input type="number" name="delivHomeNumber"></td>
 				</tr>
 				<tr>
 					<th class="tabFirst">휴대전화</th>
 					<td class="tabSecond"><span class="redRound">10</span></td>
-					<td class="tabThird" ><input type="number"></td>
+					<td class="tabThird" ><input type="number" name="delivPhone"></td>
 				</tr>
 				<tr>
 					<th class="delivTab tabFirst">배송메세지</th>
 					<td class="tabSecond"></td>
 					<td class="tabThird" >
 						<div class="form-group">
-							<textarea class="form-control" rows="5" id="delivComent"></textarea>
+							<textarea class="form-control" rows="5" id="delivComent" name="delivComent"></textarea>
 							<p>배송 메세지란에는 배송시 참고 할 사항이 있으면 적어주세요.</p>
 						</div>
 					</td>
 				</tr>
+				
 			</table>
 		</div>
 		<div id="payAmount">
@@ -187,7 +203,7 @@
 				</tr>
 				<tr>
 					<td>200,000원</td>
-					<td>-0 원</td>
+					<td id="discountPrice"></td>
 					<td>200,000원</td>
 				</tr>
 			</table>
@@ -200,18 +216,16 @@
 					<th>총 부가결제금액</th>
 					<td><strong>0원</strong></td>
 				</tr>
-				<tr id="payPoint">
-					<th>적립금</th>
-					<td><input type="number"><p>원 <span>(총 사용 가능 적립금: 3000)</span></p></td>
-				</tr>
 				<tr>
 					<th>쿠폰사용</th>
 					<td>
+						<c:forEach items="${couponList}">
 						<select>
 							<option>회원가입 기념 쿠폰</option>
 							<option>생일기념 할인 쿠폰</option>
 							<option>신년기념 할인 쿠폰</option>
 						</select>
+						</c:forEach>
 					</td>
 				</tr>
 			</table>
@@ -240,10 +254,95 @@
 				<p><span>무통장입금</span>최종 결제 금액</p>
 				<h2>200,000원</h2>
 				<p><input type="checkbox" value="true">결제 정보를 확인하였으며, 구매 진행에 동의 합니다.</p>
-				<button type="button" class="btn btn-primary btn-lg">결제하기</button>
+				<button type="submit" class="btn btn-primary btn-lg">결제하기</button>
 			</div>
 		</div>
+		</form>
 		<div id="orderInfoText">
 			<p><strong>주문<br>이용 안내 공간</strong></p>
 		</div>
 	</div>
+<script>
+function OrderDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
+
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('orderPostcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('orderAddress').value = fullAddr;
+
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById('orderAddress2').focus();
+        }
+    }).open();
+}
+function DelivDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
+
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('delivPostcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('delivAddress').value = fullAddr;
+
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById('delivAddress2').focus();
+        }
+    }).open();
+}
+</script>
