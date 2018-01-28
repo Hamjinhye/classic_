@@ -83,11 +83,11 @@
 									</ul>
 								</li>
 							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" href="<c:url value='/view/product/search/searchForm.jsp' />" role="button">&#128269;</a><!-- 경로설정 안됨  -->
-								<ul class="dropdown-menu" role="menu">
+								<a class="dropdown-toggle" href="<c:url value='/product/search.do' />" role="button">&#128269;</a>
+								<!-- <ul class="dropdown-menu" role="menu">
 									<li><input type="text" placeholder="상품명 검색" id="productSearch">
 										<button id="searchBtn">&#128269;</button></li>
-								</ul>
+								</ul> -->
 							</li>
 						</ul>
 					</div>

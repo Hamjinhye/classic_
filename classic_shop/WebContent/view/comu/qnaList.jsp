@@ -100,7 +100,7 @@
 					<option value="4">교환/환불 문의</option>
 					<option value="5">기타 문의</option>
 				</select>
-					<input type="text" class="form-control" name="qnaSearchValue" id="qnaSearchValue">
+					<input type="text" class="form-control" name="searchName" id="qnaSearchValue">
 					<button type="button" class="btn btn-default" id="qnaSearchBtn" onclick="qnaSearch(this.form)">&#128269;</button>
 			</form>
 		</div>
@@ -123,11 +123,11 @@ $("#qnaSearchField").click(function(){
 /* $("#qnaSubjectNum").click(function(){
 	var qnaSubject = $("#qnaSubjectNum").val();
 	var setting={
-			url: "/classic_shop/qna/search/subject.do?subject="+qnaSubject,
+			url: "/classic_shop/qna/search/subject.do?subject="+qnaSubject+"&pageNum=",
 			data: "GET",
 			dataType: "json",
 			success: function(data){
-				
+				alert("이게 뭐냐");
 			}
 	}
 	$.ajax(setting);

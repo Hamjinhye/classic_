@@ -9,11 +9,12 @@ import com.classic.product.dto.MiniCateDTO;
 import com.classic.product.dto.ProductDTO;
 
 public interface ProductService {
-	public List<ProductDTO> searchItems(PagingDTO pagingDTO, String searchField, String searchValue, String searchArray);
-	public int searchTotal(String searchField, String searchValue);
 	public List<ProductDTO> listProduct(PagingDTO pagingDTO, int cate, int num);
 	public List<ColourDTO> listColour(PagingDTO pagingDTO, int cate, int num);
 	public List<MiniCateDTO> listMiniCate(PagingDTO pagingDTO, int cate, int num);
 	public int recordTotal(int cate, int num);
 	public CateDTO cateDTO(PagingDTO pagingDTO, int cate, int num);
+	
+	//product search
+	public List<MiniCateDTO> forSearchCateRead();
 }

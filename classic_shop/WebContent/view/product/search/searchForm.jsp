@@ -14,10 +14,15 @@
 					<div class="row">
 						<label class="control-label col-xs-2">카테고리</label>
 							<div class="col-xs-6">
-								<select class="form-control">
-									<option>Category</option>
-									<option></option>
-								</select>
+									<select class="form-control">
+										<option>Category</option>
+								<c:forEach var="cate" items="${cateList}">
+										<option value="${cate.name}">${cate.name}</option>
+								</c:forEach>
+								<c:forEach var="mini" items="${miniCateList}">
+										<option value="${mini.name}">${mini.cate_name} &gt; ${mini.name}</option>
+								</c:forEach>
+									</select>
 							</div>
 					</div>
 				</div>
@@ -25,7 +30,31 @@
 					<div class="row">
 						<label class="control-label col-xs-2">상품명</label>
 						<div class="col-xs-6">
-							<input type="text" name="productSearchName" class="form-control">
+							<input list="productNameList" name="name" onkeyup="getProductName(this.value)" class="form-control">
+							<!-- <input type="text" name="productSearchName" class="form-control"> -->
+							<datalist id="productNameList">
+							</datalist>
+<script>
+	var getProductName = function(productNameValue){
+		if(productNameValue.trim()){
+			var url = "/classic_shop/product/search/name.do?name="+productNameValue;
+			var http = new XMLHttpRequest();
+			http.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					var productNameList = JSON.parse(this.response);
+					console.log(productNameList);
+					var productNameHTML = "";
+					productNameList.forEach(function(name){
+						productNameHTML+="<option>"+name+"</option>";
+					});
+					document.getElementById("productNameList").innerHTML = productNameHTML;
+				}
+			}
+			http.open("GET", url, true);
+			http.send();
+		}
+	}
+</script>
 						</div>
 					</div>
 				</div>
@@ -70,24 +99,5 @@
 			<label>&#128269; 검색된 상품이 없습니다.</label>
 		</div>
 		<!-- 페이징  -->
-		<div class="product_paging">
-			<ul class="pagination">
-			    <li>
-			      <a href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			 </ul>
-		</div>
 	</div>
 </div>

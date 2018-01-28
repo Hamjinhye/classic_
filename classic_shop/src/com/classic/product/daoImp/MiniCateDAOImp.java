@@ -68,6 +68,25 @@ public class MiniCateDAOImp implements MiniCateDAO {
 		}
 		return miniCateList;
 	}
+	@Override
+	public List<MiniCateDTO> forSearchCataList() throws Exception {
+		List<MiniCateDTO> searchMiniCateList = new ArrayList<MiniCateDTO>();
+		String sql = "SELECT m.num, m.name, m.cate_num, c.name as cate_name"
+				+ " FROM cate c, mini_cate m"
+				+ " WHERE m.cate_num=c.num"
+				+ " AND m.state=1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			MiniCateDTO miniCateDTO = new MiniCateDTO();
+			miniCateDTO.setCate_num(rs.getInt("cate_num"));
+			miniCateDTO.setCate_name(rs.getString("cate_name"));
+			miniCateDTO.setName(rs.getString("name"));
+			miniCateDTO.setNum(rs.getInt("num"));
+			searchMiniCateList.add(miniCateDTO);
+		}
+		return searchMiniCateList;
+	}
 	
 	
 /*	public static void main(String[] args) {
