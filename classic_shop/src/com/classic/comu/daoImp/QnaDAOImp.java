@@ -17,37 +17,14 @@ public class QnaDAOImp implements QnaDAO{
 	public QnaDAOImp(Connection conn) {
 		this.conn = conn;
 	}
-/*	@Override
-	public List<QnaDTO> selectQna() throws Exception {
-		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
-		String sql = "SELECT q.num, q.mem_num, m.id as name, q.subject, q.count, q.indate, q.secure"
-				+ " FROM qna q, member m"
-				+ " WHERE q.mem_num=m.num"
-				+ " ORDER BY q.num DESC";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			QnaDTO qnaDTO = new QnaDTO();
-			qnaDTO.setNum(rs.getInt("num"));
-			qnaDTO.setMem_num(rs.getInt("mem_num"));
-			qnaDTO.setName(rs.getString("name"));
-			qnaDTO.setSubject(rs.getInt("subject"));
-			qnaDTO.setCount(rs.getInt("count"));
-			qnaDTO.setIndate(rs.getDate("indate"));
-			qnaDTO.setSecure(rs.getInt("secure"));
-			qnaList.add(qnaDTO);
-		}
-		return qnaList;
-	}*/
 	
 	@Override
 	public List<QnaDTO> selectQna(PagingDTO pagingDTO) throws Exception {
 		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
 		String sql = "SELECT * FROM"
 				+ " (SELECT ROWNUM row_num, qna.* FROM"
-				+ " (SELECT q.num, m.id as name, q.subject, q.count, q.indate, q.secure"
+				+ " (SELECT q.num, m.id as name, q.subject, q.count, q.indate, q.secure,"
+					+ "(SELECT COUNT(*) FROM qna_reply r WHERE r.qna_num=q.num) as reply_count"
 				+ " FROM qna q, member m"
 				+ " WHERE q.mem_num=m.num"
 				+ " ORDER BY q.num DESC) qna"
@@ -68,6 +45,7 @@ public class QnaDAOImp implements QnaDAO{
 			qnaDTO.setCount(rs.getInt("count"));
 			qnaDTO.setIndate(rs.getDate("indate"));
 			qnaDTO.setSecure(rs.getInt("secure"));
+			qnaDTO.setReply_count(rs.getInt("reply_count"));
 			qnaList.add(qnaDTO);
 		}
 		return qnaList;

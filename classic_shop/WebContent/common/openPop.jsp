@@ -15,6 +15,8 @@
 			<p>${banner.name}</p>
 			<p>${banner.content}</p>
 			<p>${banner.state}</p>
+			<p>${banner.img_num}</p>
+			<p>${banner.img_name}</p>
 		</div>
 		<div>
 			<input type="checkbox" id="popClose" name="popClose" value="on" onchange="javacript:todayClose(this.value)">

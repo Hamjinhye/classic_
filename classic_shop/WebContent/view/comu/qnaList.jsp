@@ -33,19 +33,39 @@
 						<tr>
 							<td>${qnaList.num}</td>
 								<td style="text-align: left;">
-									<a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>">
-										<c:choose>
-											<c:when test="${qnaList.subject==0}">상품 문의</c:when>
-											<c:when test="${qnaList.subject==1}">배송 문의</c:when>
-											<c:when test="${qnaList.subject==2}">배송 전 변경</c:when>
-											<c:when test="${qnaList.subject==3}">입금 문의</c:when>
-											<c:when test="${qnaList.subject==4}">교환/환불 문의</c:when>
-											<c:when test="${qnaList.subject==5}">기타 문의</c:when>
-										</c:choose>
-									</a>
+									<c:choose>
+										<c:when test="${qnaList.secure==0}">
+											<a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>">
+												<c:choose>
+													<c:when test="${qnaList.subject==0}">상품 문의</c:when>
+													<c:when test="${qnaList.subject==1}">배송 문의</c:when>
+													<c:when test="${qnaList.subject==2}">배송 전 변경</c:when>
+													<c:when test="${qnaList.subject==3}">입금 문의</c:when>
+													<c:when test="${qnaList.subject==4}">교환/환불 문의</c:when>
+													<c:when test="${qnaList.subject==5}">기타 문의</c:when>
+												</c:choose>
+											</a>										
+										</c:when>
+										<c:otherwise>
+											<a href="javascript:qnaSecureCheck(${qnaList.num})">
+											<%-- <a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>"> --%>
+												<c:choose>
+													<c:when test="${qnaList.subject==0}">상품 문의</c:when>
+													<c:when test="${qnaList.subject==1}">배송 문의</c:when>
+													<c:when test="${qnaList.subject==2}">배송 전 변경</c:when>
+													<c:when test="${qnaList.subject==3}">입금 문의</c:when>
+													<c:when test="${qnaList.subject==4}">교환/환불 문의</c:when>
+													<c:when test="${qnaList.subject==5}">기타 문의</c:when>
+												</c:choose>
+											</a>
+										</c:otherwise>
+									</c:choose>
 									<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
 									<c:if test="${qnaList.secure==1}">
 										<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+									</c:if>
+									<c:if test="${qnaList.reply_count > 0}">
+										<span class="badge" style="background-color: #e62b10a6; border-style: none; font-size:10px;">${qnaList.reply_count}</span>
 									</c:if>
 								</td>
 							<td>${qnaList.name}</td>

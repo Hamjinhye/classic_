@@ -14,28 +14,14 @@ public class BannerDAOImp implements BannerDAO{
 	public BannerDAOImp(Connection conn) {
 		this.conn = conn;
 	}
-/*	@Override
-	public List<BannerDTO> selectBanner() throws Exception {
-		List<BannerDTO> bannerList = new ArrayList<BannerDTO>();
-		String sql = "SELECT num, name, content, state FROM banner ORDER BY num DESC";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			BannerDTO bannerDTO = new BannerDTO();
-			bannerDTO.setNum(rs.getInt("num"));
-			bannerDTO.setName(rs.getString("name"));
-			bannerDTO.setContent(rs.getString("content"));
-			bannerDTO.setState(rs.getInt("state"));
-			bannerList.add(bannerDTO);
-		}
-		return bannerList;
-	}*/
+
 	@Override
 	public BannerDTO selectBanner() throws Exception {
 		BannerDTO bannerDTO = null;
-		String sql = "SELECT num, name, content, state FROM banner WHERE state=0";
+		String sql = "SELECT b.num, b.name, b.content, b.state, i.num as img_num, i.name as img_name"
+				+ " FROM banner b, img_path i"
+				+ " WHERE b.num=i.banner_num"
+				+ " AND b.state=0";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
@@ -46,6 +32,8 @@ public class BannerDAOImp implements BannerDAO{
 			bannerDTO.setName(rs.getString("name"));
 			bannerDTO.setContent(rs.getString("content"));
 			bannerDTO.setState(rs.getInt("state"));
+			bannerDTO.setImg_num(rs.getInt("img_num"));
+			bannerDTO.setImg_name(rs.getString("img_name"));
 		}
 		return bannerDTO;
 	}

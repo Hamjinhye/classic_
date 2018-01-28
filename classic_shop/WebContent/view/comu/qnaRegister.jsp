@@ -20,11 +20,7 @@
 		<p class="comu_title">QNA</p>
 		<!-- QNA 글 등록 -->
 		<form name="qnaRegisterForm" action="<c:url value='/community/qna/register.do'/>" method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
 			<div class="table-responsive">
-=======
-			<div class="rable-responsive">
->>>>>>> c3e6436486e2f638d9631f148d2bd3102c75f05e
 				<table class="table table-hover">
 					<tbody>
 						<!-- SUBJECT 선택 -->
@@ -92,54 +88,3 @@
 		</form>
 	</div>
 </div>
-
-
-<!-- <script>
-var filesize = 0;
-var filetype = "";
-	
-//파일 용량 체크
-function bytesToSize(bytes){
-	var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB''];
-	if(bytes==0) return '0 Byte';
-	var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-	return Math.round(bytes / Math.pow(1024, i), 2)+' '+sizes[i];
-};
-
-//파일 사이즈 체크
-$(".qna-file-data>input[type='file']").bind('change', function(){
-	filesize=this.files[0].size;
-	filesize=bytesToSize(filesize);
-	var point=this.files[0].name.lastIndexOf('.');
-	filetype=this.files[0].name.substring(point+1,this.lenght).toLowerCase();
-	console.log(filesize);
-	$('#filesize').text("("+filesize +")");
-	if(filetype != 'gif' && filetype != 'jpg' && filetype != 'jpeg' && filetype != 'png'){
-		//$('img').hide();
-		$('#filetype').show();
-	}else{
-		//$('img').show();
-		$('#filetype').hide();
-	}
-	setTimeout(function() {setHeight()}, 0);
-   });
-
-//이미지 미리보기
-$(function() {
-          $(".qna-file-data>input[type='file']").on('change', function(){
-              readURL(this);
-          });
-      });
-
-      function readURL(input) {
-          if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-                  $('#preImage').attr('src', e.target.result);
-              }
-            reader.readAsDataURL(input.files[0]);
-          }
-      }
-});
-</script> -->

@@ -35,6 +35,7 @@ public class MypageMyPostingController extends HttpServlet{
 		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);
 		req.setAttribute("memQnaList", memQnaList);
+		req.setAttribute("memTotalRecord", memTotalRecord);
 		req.getRequestDispatcher("/view/member/mypage/myposting.jsp").forward(req, resp);
 	}
 

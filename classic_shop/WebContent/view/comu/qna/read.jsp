@@ -58,10 +58,19 @@
 			<!-- 댓글 폼 -->
 			<div class="qna_reply_form">
 				<table class="table table-bordered">
-					<tr>
-						<th class="col-sm-2" id="qnaReplyId">작성자</th>
-						<td>댓글 내용</td>
-					</tr>
+					<c:choose>
+						<c:when test="${qnaReplyDTO.mem_num > 0}">
+							<tr>
+								<th class="col-sm-2" id="qnaReplyId" style="text-align: center;">${qnaReplyDTO.name}</th>
+								<td style="text-align: left;">${qnaReplyDTO.content}</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="2">작성된 댓글이 없습니다.</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 		</div>

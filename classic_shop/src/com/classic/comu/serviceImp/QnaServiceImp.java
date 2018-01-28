@@ -14,20 +14,6 @@ public class QnaServiceImp implements QnaService{
 	
 	static Connection conn = null;
 
-/*	@Override
-	public List<QnaDTO> listQna() {
-		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
-		try {
-			conn = ClassicDBConnection.getConnection();
-			qnaList = new QnaDAOImp(conn).selectQna();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ClassicDBConnection.close(conn);
-		}
-		return qnaList;
-	}*/
-
 	@Override
 	public List<QnaDTO> listQna(PagingDTO pagingDTO) {
 		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
