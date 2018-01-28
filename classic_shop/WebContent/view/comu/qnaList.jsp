@@ -89,12 +89,47 @@
 			<form name="qnaSearchForm" action="" class="form-inline">
 				<select class="form-control" id="qnaSearchField">
 					<option>SEARCH</option>
-					<option value="0">SUBJECT</option>
-					<option value="1">NAME</option>
+					<option value="9">SUBJECT</option>
+					<option value="8">NAME</option>
 				</select>
-					<input type="text" class="form-control" name="qnaSearchValue">
-					<button type="button" class="btn btn-default" onclick="qnaSearch(this.form)">&#128269;</button>
+				<select class="form-control" name="searchSubject" id="qnaSubjectNum" style="display: none;">
+					<option value="0">상품 문의</option>
+					<option value="1">배송 문의</option>
+					<option value="2">배송 전 변경</option>
+					<option value="3">입금 문의</option>
+					<option value="4">교환/환불 문의</option>
+					<option value="5">기타 문의</option>
+				</select>
+					<input type="text" class="form-control" name="qnaSearchValue" id="qnaSearchValue">
+					<button type="button" class="btn btn-default" id="qnaSearchBtn" onclick="qnaSearch(this.form)">&#128269;</button>
 			</form>
 		</div>
 </div>
 
+<script>
+$("#qnaSearchField").click(function(){
+	var qnaSearchOption = $("#qnaSearchField").val();
+	if(qnaSearchOption == 9){
+		$("#qnaSubjectNum").attr("style", "display: inline-block");
+		$("#qnaSearchValue").attr("style", "display: none");
+		$("#qnaSearchBtn").attr("style", "display: none");
+	} else{
+		$("#qnaSubjectNum").attr("style", "display: none");
+		$("#qnaSearchValue").attr("style", "display: inline-block");
+		$("#qnaSearchBtn").attr("style", "display: inline-block");
+	}
+});
+
+/* $("#qnaSubjectNum").click(function(){
+	var qnaSubject = $("#qnaSubjectNum").val();
+	var setting={
+			url: "/classic_shop/qna/search/subject.do?subject="+qnaSubject,
+			data: "GET",
+			dataType: "json",
+			success: function(data){
+				
+			}
+	}
+	$.ajax(setting);
+}); */
+</script>

@@ -53,8 +53,38 @@ public class QnaDAOImp implements QnaDAO{
 	@Override
 	public List<QnaDTO> searchQna(int subject, String name, PagingDTO pagingDTO) throws Exception {
 		List<QnaDTO> qnaSearchList = new ArrayList<QnaDTO>();
+		String sql = "SELECT * FROM"
+				+ " (SELECT ROWNUM row_num, qna.* FROM"
+				+ " (SELECT q.num, m.id as name, q.subject, q.count, q.indate, q.secure,"
+					+ "(SELECT COUNT(*) FROM qna_reply r WHERE r.qna_num=q.num) as reply_count"
+				+ " FROM qna q, member m"
+				+ " WHERE q.mem_num=m.num"
+				+ " AND q.subject=?"
+				+ " ORDER BY q.num DESC) qna"
+				+ " WHERE ROWNUM <= ?)"
+				+ " WHERE row_num >= ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, subject);
+		pstmt.setInt(2, pagingDTO.getEndRecord());
+		pstmt.setInt(3, pagingDTO.getStartRecord());
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			QnaDTO qnaDTO = new QnaDTO();
+			qnaDTO.setRow_num(rs.getInt("row_num"));
+			qnaDTO.setNum(rs.getInt("num"));
+			qnaDTO.setName(rs.getString("name"));
+			qnaDTO.setSubject(rs.getInt("subject"));
+			qnaDTO.setCount(rs.getInt("count"));
+			qnaDTO.setIndate(rs.getDate("indate"));
+			qnaDTO.setSecure(rs.getInt("secure"));
+			qnaDTO.setReply_count(rs.getInt("reply_count"));
+			qnaSearchList.add(qnaDTO);
+		}
 		return qnaSearchList;
 	}
+	
 	@Override
 	public List<QnaDTO> selectMemQna(int mem_num, PagingDTO pagingDTO) throws Exception {
 		List<QnaDTO> memQnaList = new ArrayList<QnaDTO>();

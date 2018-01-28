@@ -29,7 +29,7 @@ public class QnaListController extends HttpServlet{
 		
 		String url=req.getContextPath()+"/community/qna.do?pageNum=";
 		List<QnaDTO> qnaList = new QnaServiceImp().listQna(pagingDTO);
-		req.setAttribute("url", url); //url 내장객체에 담기
+		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);
 		req.setAttribute("qnaList", qnaList);
 		req.getRequestDispatcher("/view/comu/qnaList.jsp").forward(req, resp);

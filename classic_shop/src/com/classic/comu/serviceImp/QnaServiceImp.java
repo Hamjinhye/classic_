@@ -36,6 +36,27 @@ public class QnaServiceImp implements QnaService{
 	}
 
 	@Override
+	public List<QnaDTO> searchQna(int subject, PagingDTO pagingDTO) {
+		List<QnaDTO> qnaSearchList = new ArrayList<QnaDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			qnaSearchList = new QnaDAOImp(conn).searchQna(subject, null, pagingDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try{
+				conn.rollback();
+			} catch (Exception e2){
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return qnaSearchList;
+	}
+
+	@Override
 	public List<QnaDTO> readMemQna(int mem_num, PagingDTO pagingDTO) {
 		List<QnaDTO> memQnaList = new ArrayList<QnaDTO>();
 		try {
@@ -198,4 +219,6 @@ public class QnaServiceImp implements QnaService{
 		}
 		return count;
 	}
+
+
 }
