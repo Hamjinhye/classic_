@@ -3,6 +3,17 @@
 <link rel="stylesheet" href="<c:url value='/public/css/comu.css' />">
 <script src="<c:url value='/public/js/comu.js'/>"></script>
 </head>
+<<style>
+.ui-accordion .ui-accordion-header{
+	padding: 15px;
+}
+.ui-state-active{
+	border: 1px solid #091679ba;
+    background: #091679ba;
+    font-weight: normal;
+    color: #fff;
+}
+</style>
 <body>
 <!-- COMMUNITY MENU -->
 <div class="comu_menu">

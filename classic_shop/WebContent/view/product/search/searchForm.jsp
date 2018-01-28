@@ -86,11 +86,11 @@
 					<small><strong>TOTAL ? Items</strong></small>
 				</div>
 				<div class="productArrayKeyword">
-					<small><strong><a href="#">최신순</a></strong></small>
-					<small><strong><a href="#">인기순</a></strong></small>
-					<small><strong><a href="#">리뷰순</a></strong></small>
-					<small><strong><a href="#">높은 가격</a></strong></small>
-					<small><strong><a href="#">낮은 가격</a></strong></small>
+					<small><strong><a href="#" id="productNew">최신순</a></strong></small>
+					<small><strong><a href="#" id="productBest">인기순</a></strong></small>
+					<small><strong><a href="#" id="productReview">리뷰순</a></strong></small>
+					<small><strong><a href="#" id="productHighPrice">높은 가격</a></strong></small>
+					<small><strong><a href="#" id="productLowPrice">낮은 가격</a></strong></small>
 				</div>
 			</div>
 		</div>

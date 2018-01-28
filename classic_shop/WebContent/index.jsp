@@ -8,7 +8,7 @@
 	안 한 거
 		-. 이메일 인증 api
 		-. 구글 로그인
-		-. product search
+		-. product search (자동완성O)
 		-. 첨부파일 기능 아예 안함 == 나중에 할 것
 		-. qna 유효성 검사 및 자잘한 것들
 			- 비공개글 클릭 시 비밀번호 입력창
@@ -17,10 +17,9 @@
 			- 네비게이션 三
 			- 반응형
 			- 버튼 위치
-			- 게시판 아이콘(카메라, +,-)
+			- 게시판 아이콘(카메라)
 			- 테이블 효과 제거
 			- 테이블 위치 및 여백, 출력 라인
-			- 아코디언
 			- 비밀번호 입력창 / 로그인 id/pw 찾기창
  -->
 <!-- 
@@ -30,7 +29,6 @@
 	http://hunit.tistory.com/306
 	http://compunication.tistory.com/15
 	https://prezi.com/ggcv6bezgvmr/mvc/
-	
 	
 	http://drsggg.tistory.com/47
 	https://shj7242.github.io/2017/12/04/Spring28/
@@ -69,9 +67,22 @@
   	부모창, 자식창, 객체값 어떻게?	
    -->
  <!-- 
- 	PRODUCT SEARCH
- 		- 검색 INPUT AJAX 자동완성
-  -->
- 
+	** 검색 조건 : 1) 카테고리 2) 상품명 3) 가격대
+	SELECT * FROM product WHERE ? like '%?%' ORDER BY ? DESC
+												cate						indate DESC
+												mini_cate				total_pcs ASC
+												name						
+												price						price DESC
+																			price ASC
+	최신순 		: SELECT * FROM product WHERE 검색 조건 ORDER BY indate DESC
+	인기순		: SELECT * FROM product WHERE 검색 조건 ORDER BY 판매량 DESC
+	리뷰순		: SELECT * FROM product WHERE 검색 조건 ORDER BY 리뷰수 DESC
+	높은 가격 	: SELECT * FROM product WHERE 검색 조건 ORDER BY price DESC
+	낮은 가격 	: SELECT * FROM product WHERE 검색 조건 ORDER BY price ASC
+	
+Q1) 리뷰 많은 순으로 정렬하고 싶은데, 상품->주문->리뷰 DB 구조라 어떻게 해야할지 모르겠다!
+Q2) WHERE price like 안에 ~이상 ~이하 조건 주는 게 가능한지?
+
+ -->
  
  

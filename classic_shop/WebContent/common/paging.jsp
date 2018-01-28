@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<style>
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus{
+background-color: #000;
+	color: #fff;
+}
+.pagination li a{
+	border: hidden;
+	color: #000;
+}
+.pagination li a:focus, .pagination li a:hover {
+	color: #000;
+}
+</style>
 <div id="pagingBlock" align="center">
 	<ul class="pagination">
 		<li>
