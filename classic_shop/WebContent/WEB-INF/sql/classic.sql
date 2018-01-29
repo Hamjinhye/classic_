@@ -252,6 +252,7 @@ create table delivery(
 	deliv_end date
 );
 
+--마일리지 DB 삭제
 create sequence mileage_seq start with 1 increment by 1;
 create table mileage(
 	num number(8) constraint mileage_pk_num primary key,
@@ -303,7 +304,7 @@ create table review(
 	star number(1) default 0 not null constraint review_ck_star check(star between 0 and 5),
 	indate date
 );
-
+-- 배너 이미지 분리
 create sequence img_path_seq start with 1 increment by 1;
 create table img_path(
 	num number(8) constraint img_pk_num primary key,

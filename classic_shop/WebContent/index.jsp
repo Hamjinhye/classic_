@@ -66,6 +66,8 @@
   	
   	부모창, 자식창, 객체값 어떻게?	
    -->
+   
+   
  <!-- 
 	** 검색 조건 : 1) 카테고리 2) 상품명 3) 가격대
 	SELECT * FROM product WHERE ? like '%?%' ORDER BY ? DESC
@@ -81,7 +83,10 @@
 	낮은 가격 	: SELECT * FROM product WHERE 검색 조건 ORDER BY price ASC
 	
 Q1) 리뷰 많은 순으로 정렬하고 싶은데, 상품->주문->리뷰 DB 구조라 어떻게 해야할지 모르겠다!
-Q2) WHERE price like 안에 ~이상 ~이하 조건 주는 게 가능한지?
+	- product Num을 기준으로 paid에 가서 해당 프로덕트 넘으로 셀렉트하고,
+	- 프로덕트 넘버를 기준으로 리뷰에 가서 카운트를 해
+	- 이게 무슨 말임?ㅎㅎㅎㅎㅎㅎㅎ!
+Q2) WHERE price like 안에 ~이상 ~이하 조건 주는 게 가능한지? where절에 and쓰기
 
  -->
  
