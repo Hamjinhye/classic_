@@ -52,6 +52,7 @@ public class OrderSheetController extends HttpServlet {
 				}else if(isCookie.equals("t")) {
 					//cart(cookie)에서 do 접근 시 
 					wish = new WishDTO();
+					
 					productList.add(wish);
 				}else {
 					//productDetail에서 do 접근시 

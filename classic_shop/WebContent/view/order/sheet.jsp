@@ -6,7 +6,7 @@
 <body>
 	<div class="container" id="orderMainDiv">
 		<h2 id="orderName">주문서</h2>
-		<h2>${productList}</h2>
+		<h2>${couponList}</h2>
 		<form action="addorder.do" method="post">
 		<table class="table" id="benefitInfo">
 			<tr>
@@ -59,8 +59,8 @@
 							</div>
 							<div class="col-10 float-left">
 								<ul class="list-group" >
-									<li class="list-group-item"><strong><a href="#"><input type="hidden" name="productNum" value ="${product.productName}">${product.productName}</a></strong></li>
-									<li class="list-group-item row clearfix">
+									<li class="list-group-item"><strong><a href="#"><input type="hidden" name="productNum" value ="${product.productNum}">${product.productName}</a></strong></li>
+									<li class="list-group-item row ">
 										<p class="col-2">color</p>"${product.colour}
 										<input class="col-4" type="hidden" name="colour" value ="${product.colour}">
 										<p class="col-2">size</p> ${product.sizu}
@@ -142,7 +142,7 @@
 					<td class="tabSecond"></td>
 					<td class="tabThird" id="adressChoiceBtn">
 						<div class="radio ">
-							<label><input type="radio" name="optraio" >주문자 정보와 동일</label>
+							<label><input type="radio" name="optraio" id="getOrderInfo" >주문자 정보와 동일</label>
 						</div>
 						<div class="radio">
 							<label><input type="radio" name="optraio" checked>새로운 배송지</label>
@@ -210,7 +210,7 @@
 			<table class="table">
 				<tr>
 					<th>총 할인금액</th>
-					<td><strong>0원</strong></td>
+					<td><span><input value=""></span></td>
 				</tr>
 				<tr>
 					<th>총 부가결제금액</th>
@@ -219,13 +219,12 @@
 				<tr>
 					<th>쿠폰사용</th>
 					<td>
-						<c:forEach items="${couponList}">
-						<select>
-							<option>회원가입 기념 쿠폰</option>
-							<option>생일기념 할인 쿠폰</option>
-							<option>신년기념 할인 쿠폰</option>
-						</select>
+						<select name="couponNum">
+						<c:forEach var="coupon" items="${couponList}">
+							<option value="${coupon.num}">${coupon.coupon_name}</option>
 						</c:forEach>
+							<option value="0">사용안함</option>
+						</select>
 					</td>
 				</tr>
 			</table>
@@ -263,6 +262,9 @@
 		</div>
 	</div>
 <script>
+/* $("#getOrderInfo:checked").is(":checked",function(){
+	console.log("암ㅅ");
+}); */
 function OrderDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {

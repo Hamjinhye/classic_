@@ -18,82 +18,6 @@
 				</tr>
 			</tbody>
 			<tbody id="cartContents">
-				<!-- <tr>
-					<td><input type="checkbox"></td>
-					<td id ="cartDetailList">
-						<div id="cartDetailListDiv">
-							<div>
-								<p><a href="#">이미지임</a></p>
-							</div>
-							<div>
-								<ul class="list-group" >
-									<li class="list-group-item"><strong><a href="#">product Name</a></strong></li>
-									<li class="list-group-item"><strong><a href="#">color 검정 size M</a></strong></li>
-									<li class="list-group-item"><button type="button" class="btn">옵션변경</button></li>
-								</ul>
-							</div>
-						</div>
-					</td>
-					<td>100000원</td>
-					<td>
-						<div id="productQuantity">
-							<div>
-								<input type="number" value="1" min="1">
-							</div>
-							<div>
-								<button class="btn" >변경</button>
-							</div>					
-						</div>
-					</td>
-					<td>20원</td>
-					<td>0원</td>
-					<td>100000원</td>
-					<td>
-						<div class="btn-group" id="cartListBtn">
-							<button type="button" class="btn" >주문하기</button>
-							<button type="button" class="btn">WISH LIST 등록</button>
-							<button type="button" class="btn">삭제</button>
-						</div>
-					</td>
-				</tr> -->
-				<!-- <tr>
-					<td><input type="checkbox"></td>
-					<td id="cartDetailList2">
-						<div id="cartDetailListDiv2">
-							<div>
-								<p><a href="#">이미지임</a></p>
-							</div>
-							<div>
-								<ul class="list-group" >
-									<li class="list-group-item"><strong><a href="#">product Name</a></strong></li>
-									<li class="list-group-item"><strong><a href="#">color 검정 size M</a></strong></li>
-									<li class="list-group-item"><button type="button" class="btn">옵션변경</button></li>
-								</ul>
-							</div>
-						</div>
-					</td>
-					<td>100000원</td>
-					<td>
-						<div id="productQuantity2">
-							<div>
-								<input type="number" value="1" min="1">
-							</div>
-							<div>
-								<button class="btn" >변경</button>
-							</div>					
-						</div>
-					</td>
-					<td>20원</td>
-					<td>0원</td>
-					<td>100000원</td>
-					<td>
-						<div class="btn-group" id="cartListBtn2">
-							<button type="button" class="btn">주문하기</button>
-							<button type="button" class="btn">장바구니 등록</button>
-							<button type="button" class="btn">삭제</button>
-						</div>
-					</td>
-				</tr> -->
 			</tbody>
 		</table>
 		<div class="btn-group" id="cartCRUDBtn">
@@ -117,7 +41,7 @@
 			</table>
 		</div>
 		<div id="paidUpdateBtn">
-			<button type="button" class="btn"><strong>전체 상품 주문</strong></button>
+			<button type="button" class="btn" onclick="AllCartGoSheet(${loginMem.num})"><strong>전체 상품 주문</strong></button>
 			<button type="button" class="btn"><strong>선택 상품 주문</strong></button>
 		</div>
 		<div id="cartInfo">
@@ -128,59 +52,29 @@
 	var cookies = document.cookie.split(";");
 	var product = {};
 	var pNum;
-	/* var pInfo;
-	var value; */
-	//var temp = 0; 
 	for(i=0; i<cookies.length; i++){
 		var key = cookies[i].split("=")[0].trim();
-		//console.log(key);
-		//console.log(eval("map"+i));
 		if(key.startsWith("classic_")){
 			pNum = key.split("_")[1].trim();
-			var pInfo = key.split("_")[2].trim();			//productInfo
+			var pInfo = key.split("_")[2].trim();			
 			var value = cookies[i].split("=")[1].trim();
-			//console.log(pNum+"="+pInfo+"="+value);
 			if(eval("typeof(c"+pNum+")=='undefined'")){
 				eval("var c"+pNum+"= {}");
 				eval("c"+pNum+"."+pInfo+"=\""+value+"\"");
 			} else {
 				eval("c"+pNum+"."+pInfo+"=\""+value+"\"");
 			}
-			/* if(temp!=pNum){
-				temp = pNum;
-				console.log("temp : "+temp);
-				console.log(pInfo);
-				console.log(value);  
-				eval("var c"+pNum+"= {}");
-				eval("c"+pNum+"."+pInfo+"=\""+value+"\"");
-				console.log(eval("c"+pNum));
-			}else{
-				console.log(pNum);
-				console.log(pInfo);
-				console.log(value);  
-				eval("c"+pNum+"."+pInfo+"=\""+value+"\"");
-			} */
 		}
-		//이미지 경로 붙은면 length가 4가 될수도
-		if(eval("Object.keys(c"+pNum+").length==3")){
-			product[pNum]=eval("c"+pNum);
-		} else if(eval("Object.keys(c"+pNum+").length==5")){
+		if(eval("Object.keys(c"+pNum+").length==5")){
 			product[pNum]=eval("c"+pNum);
 		}
 	}
-	//console.log(product);
-	//product[pNum] = info;
-	//console.log(product);
 	var table = document.getElementById("cartContents");
-	//console.log(table);
-	/* console.log(product);
-	console.log(Object.keys(product).length); */
 	var innerText ="";
 	var key ;
 	for(key in product){
-		//if(product[key].size==undefined){console.log("eld");}
 		innerText +='<tr>';
-		innerText +='	<td><input type="checkbox"></td>';
+		innerText +='	<td><input type="checkbox" class="checkCart" value="'+product[key]+'"></td>';
 		innerText +='	<td id ="cartDetailList">';
 		innerText +='		<div id="cartDetailListDiv">';
 		innerText +='			<div>';
@@ -223,4 +117,15 @@
 		innerText +='</tr>';
 	}
 	table.innerHTML =innerText;
+	
+var AllChartGoSheet = function(memNum){
+	if(${(fn:length(wishList))!=0}){
+		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=t&productNum="/>';
+		$('input:checkbox[class*="checkCart"]').each(function(){
+			url+=this.value+"_";
+		});
+		url=url.substr(0, url.length-1);
+		location.href=url;
+	}
+}
 </script>

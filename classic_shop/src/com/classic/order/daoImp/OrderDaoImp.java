@@ -151,7 +151,7 @@ public class OrderDaoImp implements OrderDAO{
 	public List<CouponDTO> selectCoupon(int mem_num) throws Exception {
 		List<CouponDTO> couponList = new ArrayList<CouponDTO>();
 		CouponDTO coupon = null;
-		String sql = "SELECT c.num coupon_num, c.mem_num mem_num , cl.name coupon_name, cl.sale disconunt "
+		String sql = "SELECT c.num coupon_num, c.mem_num mem_num , cl.name coupon_name, cl.sale discount "
 					+ "from coupon c, coupon_log cl " 
 					+ "where c.log_num = cl.num and "
 					+ "cl.start_date<=sysdate and cl.end_date>=sysdate "
@@ -165,7 +165,6 @@ public class OrderDaoImp implements OrderDAO{
 			coupon.setMem_num(rs.getInt("mem_num"));
 			coupon.setCoupon_name(rs.getString("coupon_name"));
 			coupon.setSale(rs.getInt("discount"));
-			//coupon.setIndate(rs.getString("indate")); - 얘 dto에서 date로 받을건지 무렁봐야대 
 			couponList.add(coupon);
 		}
 		return couponList;
@@ -173,8 +172,28 @@ public class OrderDaoImp implements OrderDAO{
 	@Override
 	public int insert(PaidDTO paidDTO) throws Exception {
 		int insert = 0; 
-		String sql = "INSERT paid INTO "
-		return 0;
+		String sql ="INSERT INTO paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) " 
+				+"values (paid_seq.nextval,?,?,?,?,?,?,?,?,?,?,NULL,0,?,?,SYSDATE,0,?,(select num from sizu where product_num =? and sizu=?),(select num from colour where product_num=? and name=?))";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, paidDTO.getMem_num());
+		pstmt.setInt(2, paidDTO.getProduct_num());
+		pstmt.setInt(3, paidDTO.getCoupon_num());
+		pstmt.setString(4, paidDTO.getOrder_num());
+		pstmt.setString(5, paidDTO.getName());
+		pstmt.setInt(6, paidDTO.getPhone());
+		pstmt.setString(7,paidDTO.getZip_code());
+		pstmt.setString(8, paidDTO.getBase_addr());
+		pstmt.setString(9, paidDTO.getDetail_addr());
+		pstmt.setString(10, paidDTO.getMemo());
+		pstmt.setInt(11, paidDTO.getOrder_money());
+		pstmt.setInt(12, paidDTO.getPayment());
+		pstmt.setString(13, paidDTO.getDeposit_name());
+		pstmt.setInt(14, paidDTO.getMem_num());
+		pstmt.setString(15, paidDTO.getSizu());
+		pstmt.setInt(16, paidDTO.getMem_num());
+		pstmt.setString(17, paidDTO.getColour());
+		insert = pstmt.executeUpdate();
+		return insert;
 	}
 	
 
