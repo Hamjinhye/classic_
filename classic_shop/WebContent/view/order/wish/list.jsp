@@ -158,7 +158,6 @@ $("#allCheck").click(function(){
 });
 var GoCartWishSelected=function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
 		var url ='<c:url value="/user/cart.do?num=${loginMem.num}&productNum="/>';
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			if(this.checked){
@@ -171,7 +170,6 @@ var GoCartWishSelected=function(mem_num){
 }
 var delWishSelected=function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
 		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'&product_num="/>';
 		var method="GET";
 		var http = new XMLHttpRequest();
@@ -200,7 +198,6 @@ var delWishSelected=function(mem_num){
 }
 var allWishDel = function(mem_num){
 	if(${(fn:length(wishList))!=0}){
-		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num; */
 		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'"/>';
 		var method="DELETE";
 		var http = new XMLHttpRequest();
@@ -222,8 +219,7 @@ var allWishDel = function(mem_num){
 	}
 }
 var pickWishDel = function(mem_num,product_num){
-	var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="+product_num;
-	/* var url ='<c:url value="/order/delwish.do?num='+mem_num+'&product_num='+product_num+'"/>'; */
+	var url ="<c:url value='/user/wish/remove.do?num="+mem_num+"&product_num="+product_num;'/>";
 	var method= "PUT";
 	var http = new XMLHttpRequest();
 	console.log

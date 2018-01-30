@@ -32,7 +32,6 @@ public class OrderListController extends HttpServlet {
 		}finally {
 			ClassicDBConnection.close(conn);
 		}
-		
 		req.setAttribute("orderList", orderList);
 		req.getRequestDispatcher("/view/order/list.jsp").forward(req, resp);
 	}
