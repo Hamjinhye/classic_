@@ -173,29 +173,30 @@ public class OrderDaoImp implements OrderDAO{
 	public int insert(PaidDTO paidDTO) throws Exception {
 		int insert = 0; 
 		String sql ="INSERT INTO paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) " 
-				+"values (paid_seq.nextval,?,?,?,?,?,?,?,?,?,?,NULL,0,?,?,SYSDATE,0,?,(select num from sizu where product_num =? and sizu=?),(select num from colour where product_num=? and name=?))";
+				+"values (paid_seq.nextval,?,?,?,to_number(?),?,?,?,?,?,?,NULL,?,?,?,SYSDATE,?,?,(select num from sizu where product_num =? and sizu=?),(select num from colour where product_num=? and name=?))";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, paidDTO.getMem_num());
 		pstmt.setInt(2, paidDTO.getProduct_num());
 		pstmt.setInt(3, paidDTO.getCoupon_num());
-		pstmt.setString(4, paidDTO.getOrder_num());
+		pstmt.setString(4,paidDTO.getOrder_num());
 		pstmt.setString(5, paidDTO.getName());
 		pstmt.setInt(6, paidDTO.getPhone());
 		pstmt.setString(7,paidDTO.getZip_code());
 		pstmt.setString(8, paidDTO.getBase_addr());
 		pstmt.setString(9, paidDTO.getDetail_addr());
 		pstmt.setString(10, paidDTO.getMemo());
-		pstmt.setInt(11, paidDTO.getOrder_money());
-		pstmt.setInt(12, paidDTO.getPayment());
-		pstmt.setString(13, paidDTO.getDeposit_name());
-		pstmt.setInt(14, paidDTO.getMem_num());
-		pstmt.setString(15, paidDTO.getSizu());
-		pstmt.setInt(16, paidDTO.getMem_num());
-		pstmt.setString(17, paidDTO.getColour());
+		pstmt.setInt(11, paidDTO.getPay_with());
+		pstmt.setInt(12, paidDTO.getOrder_money());
+		pstmt.setInt(13, paidDTO.getPayment());
+		pstmt.setInt(14, paidDTO.getOrder_state());
+		pstmt.setString(15, paidDTO.getDeposit_name());
+		pstmt.setInt(16, paidDTO.getProduct_num());
+		pstmt.setString(17, paidDTO.getSizu());
+		pstmt.setInt(18, paidDTO.getProduct_num());
+		pstmt.setString(19, paidDTO.getColour());
 		insert = pstmt.executeUpdate();
 		return insert;
 	}
 	
 
-	
 }

@@ -65,7 +65,7 @@
 										<input class="col-4" type="hidden" name="colour" value ="${product.colour}">
 										<p class="col-2">size</p> ${product.sizu}
 										<input class="col-4" type="hidden" class="form-item" name="sizu" value ="${product.sizu}" >
-										</li>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -90,7 +90,6 @@
 						</c:if>
 					</td>
 				</tr>
-				<tr>
 				</c:forEach>
 			</tbody>
 		</table>
@@ -183,7 +182,7 @@
 				<tr>
 					<th class="delivTab tabFirst">배송메세지</th>
 					<td class="tabSecond"></td>
-					<td class="tabThird" >
+					<td class="tabThird">
 						<div class="form-group">
 							<textarea class="form-control" rows="5" id="delivComent" name="delivComent"></textarea>
 							<p>배송 메세지란에는 배송시 참고 할 사항이 있으면 적어주세요.</p>
@@ -219,9 +218,9 @@
 				<tr>
 					<th>쿠폰사용</th>
 					<td>
-						<select name="couponNum">
+						<select name="couponNum" onchange="selectCoupon()" id="couponSelect">
 						<c:forEach var="coupon" items="${couponList}">
-							<option value="${coupon.num}">${coupon.coupon_name}</option>
+							<option value="${coupon.num}_${coupon.sale}">${coupon.coupon_name}</option>
 						</c:forEach>
 							<option value="0">사용안함</option>
 						</select>
@@ -231,25 +230,29 @@
 		</div>
 		<div id="methodPay">
 			<p id="payName">결제수단</p>
-			<div id="methodPayDetail">
-				<div class="radio">
-					<label><input type="radio" name="optraio" checked>무통장입금</label>
-				</div>
-				<div class="radio">
-					<label><input type="radio" name="optraio">신용카드</label>
-				</div>
-				<div id="payBank">
-					<label>입금자명 : <input type="text"></label><br>
-					<label>입금은행: 
-						<select>
+			<div id="methodPayDetail" class="container clear-fix">
+				<div class="col-6">
+					<div class="row d-inline">
+						<div class="radio col-3">
+							<label><input type="radio" name="payWith"  value="0" checked>무통장입금</label>
+						</div>
+						<div class="radio col-3">
+							<label><input type="radio" name="payWith" value="1">신용카드</label>
+						</div>
+					</div>
+					<div id="payBank">
+						<label>입금자명 : <input type="text" name="depositName"></label><br>
+						<label>입금은행: 
+							<select>
 								<option value="1">국민(241587-51-17452)</option>
 								<option value="2">하나(899631-158-2564)</option>
 								<option value="3">신한(62583-8550-8874)</option>
 							</select>
-					</label>
+						</label>
+					</div>
 				</div>
 			</div>
-			<div id="finalAmount">
+			<div id="finalAmount" class="col-6">
 				<p><span>무통장입금</span>최종 결제 금액</p>
 				<h2>200,000원</h2>
 				<p><input type="checkbox" value="true">결제 정보를 확인하였으며, 구매 진행에 동의 합니다.</p>
@@ -262,6 +265,10 @@
 		</div>
 	</div>
 <script>
+var selectCoupon = function(s){
+	console.log($("#couponSelect").find("option:selected").val());
+	
+}
 /* $("#getOrderInfo:checked").is(":checked",function(){
 	console.log("암ㅅ");
 }); */

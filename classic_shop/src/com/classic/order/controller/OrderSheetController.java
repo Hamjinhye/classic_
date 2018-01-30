@@ -25,7 +25,6 @@ import com.sun.xml.internal.ws.api.ha.HaInfo;
 public class OrderSheetController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//String str_num=req.getParameter("num");
 		//req.getRequestDispatcher("/view/order/sheet.jsp").forward(req, resp);
 		//from주연
 		int num = Integer.parseInt(req.getParameter("num"));
@@ -52,7 +51,6 @@ public class OrderSheetController extends HttpServlet {
 				}else if(isCookie.equals("t")) {
 					//cart(cookie)에서 do 접근 시 
 					wish = new WishDTO();
-					
 					productList.add(wish);
 				}else {
 					//productDetail에서 do 접근시 
