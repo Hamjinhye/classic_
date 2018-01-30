@@ -13,7 +13,8 @@ public class BannerDTO {
 	CONTENT             				VARCHAR2(4000) 
 	START_DATE 	NOT NULL 		DATE           
 	END_DATE            				DATE           
-	STATE               					NUMBER(1)     
+	STATE               					NUMBER(1)
+	IMG_PATH							VARCHAR2(200)     
 	 */
 
 	private int num;
@@ -24,8 +25,7 @@ public class BannerDTO {
 	private int state;
 
 	private String name;
-	private int img_num;
-	private String img_name;
+	private String img_path;
 	public int getNum() {
 		return num;
 	}
@@ -68,23 +68,16 @@ public class BannerDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getImg_num() {
-		return img_num;
+	public String getImg_path() {
+		return img_path;
 	}
-	public void setImg_num(int img_num) {
-		this.img_num = img_num;
-	}
-	public String getImg_name() {
-		return img_name;
-	}
-	public void setImg_name(String img_name) {
-		this.img_name = img_name;
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
 	}
 	@Override
 	public String toString() {
-		return "{\"num\":\"" + num + "\", \"mem_num\":\"" + mem_num + "\", \"content\":\"" + content
-				+ "\", \"start_date\":\"" + start_date + "\", \"end_date\":\"" + end_date + "\", \"state\":\"" + state
-				+ "\", \"name\":\"" + name + "\", \"img_num\":\"" + img_num + "\", \"img_name\":\"" + img_name + "\"} ";
+		return "{\"num\" : \"" + num + "\", \"mem_num\" : \"" + mem_num + "\", \"content\" : \"" + content
+				+ "\", \"start_date\" : \"" + start_date + "\", \"end_date\" : \"" + end_date + "\", \"state\" : \""
+				+ state + "\", \"name\" : \"" + name + "\", \"img_path\" : \"" + img_path + "\"}";
 	}
-
 }

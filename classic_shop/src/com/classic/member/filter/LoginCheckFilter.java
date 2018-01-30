@@ -16,8 +16,7 @@ import javax.servlet.http.HttpSession;
 public class LoginCheckFilter implements Filter{
 
 	@Override
-	public void destroy() {
-	}
+	public void destroy() {}
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -41,9 +40,6 @@ public class LoginCheckFilter implements Filter{
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void init(FilterConfig arg0) throws ServletException {}
 
 }

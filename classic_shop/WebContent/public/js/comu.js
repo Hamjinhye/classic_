@@ -60,23 +60,6 @@ var qnaListBtn = function(){
 	location.href="/classic_shop/community/qna.do";
 }
 
-/*
- var secureNum = document.getElementById("qnaSecureNum").value;
-	if(secureNum=="1"){ //비공개글
- 45		window.open('/classic_shop/comu/qna/securePassword.html','_blank','width=350 height=200');
-	} else if(secureNum=="0"){
- * */
-
-/*	var secureCheck = function(num){
-		var secureNum = num;
-		if(secureNum==0){
-			readQna();
-		}else{
-			window.open('/classic_shop/comu/qna/securePassword.html','_blank','width=350 height=200');
-		}
-	}*/
-
-
 //qnaDelete
 var removeQna = function(num){
 	var removeNum = num;
@@ -152,7 +135,6 @@ var registerQna = function(qnaRegisterForm){
 			var register = JSON.parse(this.response)["register"];
 			if(register){
 				alert("문의하신 글이 정상적으로 등록 되었습니다.");
-				//location.href="/classic_shop/community/qna.do?num="+num;
 				qnaListBtn();
 			}else{
 				alert("다시 시도해주세요.");
@@ -188,4 +170,18 @@ $(function(){
 		$("#qnaFileTbody>tr:last").remove();
 		return false;
 	});
+});
+
+//QNA 검색
+$("#qnaSearchField").click(function(){
+	var qnaSearchOption = $("#qnaSearchField").val();
+	if(qnaSearchOption == 9){
+		$("#qnaSubjectNum").attr("style", "display: inline-block");
+		$("#qnaSearchValue").attr("style", "display: none");
+		$("#qnaSearchBtn").attr("style", "display: none");
+	} else{
+		$("#qnaSubjectNum").attr("style", "display: none");
+		$("#qnaSearchValue").attr("style", "display: inline-block");
+		$("#qnaSearchBtn").attr("style", "display: inline-block");
+	}
 });

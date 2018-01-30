@@ -19,28 +19,6 @@ public class NoticeDAOImp implements NoticeDAO{
 		this.conn = conn;
 	}
 	
-/*	@Override
-	public List<NoticeDTO> selectNotice() throws Exception{
-		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-		String sql = "SELECT n.num, m.id as name, n.title, n.count, n.indate"
-				+ " FROM notice n, member m"
-				+ " WHERE n.mem_num=m.num"
-				+ " ORDER BY n.num DESC";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			NoticeDTO noticeDTO = new NoticeDTO();
-			noticeDTO.setNum(rs.getInt("num"));
-			noticeDTO.setName(rs.getString("name"));
-			noticeDTO.setTitle(rs.getString("title"));
-			noticeDTO.setCount(rs.getInt("count"));
-			noticeDTO.setIndate(rs.getDate("indate"));
-			noticeList.add(noticeDTO);
-		}
-		return noticeList;
-	}*/
 	
 	@Override
 	public List<NoticeDTO> selectNotice(PagingDTO pagingDTO) throws Exception {

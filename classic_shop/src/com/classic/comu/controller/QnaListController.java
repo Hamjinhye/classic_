@@ -32,6 +32,6 @@ public class QnaListController extends HttpServlet{
 		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);
 		req.setAttribute("qnaList", qnaList);
-		req.getRequestDispatcher("/view/comu/qnaList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/view/comu/qna/list.jsp").forward(req, resp);
 	}
 }

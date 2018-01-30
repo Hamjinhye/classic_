@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="<c:url value='/public/js/product_detail.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/public/css/product.css' />">
 </head>
 <body>
@@ -16,12 +17,12 @@
 							<div class="col-xs-6">
 									<select class="form-control">
 										<option>Category</option>
-								<c:forEach var="cate" items="${cateList}">
-										<option value="${cate.name}">${cate.name}</option>
-								</c:forEach>
-								<c:forEach var="mini" items="${miniCateList}">
-										<option value="${mini.name}">${mini.cate_name} &gt; ${mini.name}</option>
-								</c:forEach>
+										<c:forEach var="cate" items="${cateList}">
+											<option value="${cate.name}">${cate.name}</option>
+										</c:forEach>
+										<c:forEach var="mini" items="${miniCateList}">
+											<option value="${mini.name}">${mini.cate_name} &gt; ${mini.name}</option>
+										</c:forEach>
 									</select>
 							</div>
 					</div>
@@ -30,31 +31,9 @@
 					<div class="row">
 						<label class="control-label col-xs-2">상품명</label>
 						<div class="col-xs-6">
-							<input list="productNameList" name="name" onkeyup="getProductName(this.value)" class="form-control">
-							<!-- <input type="text" name="productSearchName" class="form-control"> -->
+							<input list="productNameList" name="name" onkeyup="getSearchProductName(this.value)" class="form-control">
 							<datalist id="productNameList">
 							</datalist>
-<script>
-	var getProductName = function(productNameValue){
-		if(productNameValue.trim()){
-			var url = "/classic_shop/product/search/name.do?name="+productNameValue;
-			var http = new XMLHttpRequest();
-			http.onreadystatechange = function(){
-				if(this.readyState == 4 && this.status == 200){
-					var productNameList = JSON.parse(this.response);
-					console.log(productNameList);
-					var productNameHTML = "";
-					productNameList.forEach(function(name){
-						productNameHTML+="<option>"+name+"</option>";
-					});
-					document.getElementById("productNameList").innerHTML = productNameHTML;
-				}
-			}
-			http.open("GET", url, true);
-			http.send();
-		}
-	}
-</script>
 						</div>
 					</div>
 				</div>

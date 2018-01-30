@@ -105,31 +105,3 @@
 			</form>
 		</div>
 </div>
-
-<script>
-$("#qnaSearchField").click(function(){
-	var qnaSearchOption = $("#qnaSearchField").val();
-	if(qnaSearchOption == 9){
-		$("#qnaSubjectNum").attr("style", "display: inline-block");
-		$("#qnaSearchValue").attr("style", "display: none");
-		$("#qnaSearchBtn").attr("style", "display: none");
-	} else{
-		$("#qnaSubjectNum").attr("style", "display: none");
-		$("#qnaSearchValue").attr("style", "display: inline-block");
-		$("#qnaSearchBtn").attr("style", "display: inline-block");
-	}
-});
-
-/* $("#qnaSubjectNum").click(function(){
-	var qnaSubject = $("#qnaSubjectNum").val();
-	var setting={
-			url: "/classic_shop/qna/search/subject.do?subject="+qnaSubject+"&pageNum=",
-			data: "GET",
-			dataType: "json",
-			success: function(data){
-				alert("이게 뭐냐");
-			}
-	}
-	$.ajax(setting);
-}); */
-</script>

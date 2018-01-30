@@ -20,6 +20,6 @@ public class FaqListController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		List<FaqDTO> faqList = new FaqServiceImp().readFaq();
 		req.setAttribute("faqList", faqList);
-		req.getRequestDispatcher("/view/comu/faqList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/view/comu/faq/list.jsp").forward(req, resp);
 	}
 }

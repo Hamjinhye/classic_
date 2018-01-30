@@ -111,7 +111,8 @@ public class ProductServiceImp implements ProductService{
 		
 		return cateDTO;
 	}
-
+	
+	//상품 검색 카테고리 출력
 	@Override
 	public List<MiniCateDTO> forSearchCateRead() {
 		List<MiniCateDTO> searchMiniCateList = new ArrayList<MiniCateDTO>();

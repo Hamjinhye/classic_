@@ -154,7 +154,6 @@
 											<td class="col-sm-1">${qna.row_num}</td>
 											<td class="col-sm-4">
 												<a href="<c:url value='/community/qna/read.do?num=${qna.num}'/>">
-												<%-- <a href="javascript:readQna('${qna.num}')"> --%>
 													<c:choose>
 														<c:when test="${qna.subject==0}">상품 문의</c:when>
 														<c:when test="${qna.subject==1}">배송 문의</c:when>
@@ -181,11 +180,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-<!-- 
-table 맨 밑줄 border -> 어떤 테이블의 맨 밑에 border를 넣는건가여?
-order List에 주문번호 추가(일단 이건 하지마) -> 넵!!
-my posting -> 제목에 링크했습니다
- -->

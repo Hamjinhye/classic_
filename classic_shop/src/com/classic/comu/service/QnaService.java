@@ -8,7 +8,6 @@ import com.classic.comu.dto.QnaDTO;
 
 public interface QnaService {
 	
-	//public List<QnaDTO> listQna();
 	public List<QnaDTO> listQna(PagingDTO pagingDTO);
 	public List<QnaDTO> searchQna(int subject, PagingDTO pagingDTO);
 	public List<QnaDTO> readMemQna(int mem_num, PagingDTO pagingDTO);

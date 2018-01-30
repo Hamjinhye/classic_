@@ -67,7 +67,8 @@ create table banner(
 	content varchar2(4000),
 	start_date date not null,
 	end_date date,
-	state number(1) DEFAULT 0 constraint banner_ck_state check(state IN(-1,0,1))
+	state number(1) DEFAULT 0 constraint banner_ck_state check(state IN(-1,0,1)),
+	img_path varchar2(200)
 );
 
 create sequence faq_seq start with 1 increment by 1;
@@ -252,17 +253,6 @@ create table delivery(
 	deliv_end date
 );
 
---마일리지 DB 삭제
-create sequence mileage_seq start with 1 increment by 1;
-create table mileage(
-	num number(8) constraint mileage_pk_num primary key,
-	mem_num number(8) constraint mileage_fk_mem_num references member(num),
-	paid_num number(8) null constraint mileage_fk_paid_num references paid(num),
-	now_mileage number(12) not null,
-	indate date,
-	state number(1) default 0 not null constraint mileage_ck_state check(state between 0 and 2)
-);
-
 create sequence trade_seq start with 1 increment by 1;
 create table trade(
 	num number(8) constraint trade_pk_num primary key,
@@ -304,7 +294,7 @@ create table review(
 	star number(1) default 0 not null constraint review_ck_star check(star between 0 and 5),
 	indate date
 );
--- 배너 이미지 분리
+
 create sequence img_path_seq start with 1 increment by 1;
 create table img_path(
 	num number(8) constraint img_pk_num primary key,
@@ -315,8 +305,7 @@ create table img_path(
 	review_num number(8) null constraint img_fk_review_num references review(num),
 	qna_num number(8) null constraint img_fk_qna_num references qna(num),
 	notice_num number(8) null constraint img_fk_notice_num references notice(num),
-	banner_num number(8) null constraint img_fk_banner_num references banner(num),
-	name varchar2(100) default 'no_img.jpg' not null
+	name varchar2(200) default 'no_img.jpg' not null
 );
 
 drop user classic_admin cascade;
