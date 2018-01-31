@@ -3,13 +3,13 @@
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 </head>
 <body>
-<!-- div 추가 (orderDetail.css 삭제하고 order.css에 추가)-->
+
 <div class="order_detail_body">
 	<div id="mainTitle">    
 		<h2 id="orderdetailTitle">ORDER DETAIL</h2>
 	</div>
 	<div id="orderNum">
-		<h4><strong>주문번호 : order_num</strong></h4>
+		<h4><strong>주문번호 : ${detail.order_num} </strong></h4>
 	</div>
 	<div id="paidInfo">
 		<div class="panel panel-default">
@@ -23,16 +23,25 @@
 					<th>총 예상 적립금</th>
 				</tr>
 				<tr>
-					<td>order_money</td>
-					<td>cupon_log_sale</td>
-					<td>2,500원</td>
-					<td>pay_with:0무통장입금</td>
-					<td>sum:now_mileage</td>
-					
+					<td>${detail.order_money} 원</td>
+					<td>${detail.order_money-detail.payment} 원</td>
+					<td>
+						<!-- 배송비가 10만원 이상일 때 무료, 아니면 2500원 -->
+						<c:choose>
+							<c:when test="${detail.order_money>99999}">
+								무료
+							</c:when>
+							<c:otherwise>2,500원</c:otherwise>
+						</c:choose>
+					</td>
+					<td>
+						<c:if test="${detail.pay_with==0}">무통장입금</c:if>
+						<c:if test="${detail.pay_with==1}">신용카드</c:if>
+					</td>				
 				</tr>
 			</table>
 		</div>
-		<h4 id="totalPayment">총 결제금액: payment</h4>
+		<h4 id="totalPayment"><strong>총 결제금액:</strong> ${detail.payment}원 <small>(주문금액-할인금액+배송비)</small></h4>
 	</div>
 	<div id="productInfo">
 		<div class="panel panel-default">
@@ -47,9 +56,8 @@
 				</tr>
 				<tr>
 					<td>
-						<img alt="images" src=""  align="left" hspace="10">
-						<label><a href="#">상품명:product_name</a></label><br><!-- 상품명 누르면 상품상세정보로 -->
-						[옵션]색상:color_name, 사이즈:product_sizu
+						<label><a href="<c:url value='/product/detail.do?num=${detail.product_num}' />">상품명: ${detail.g_name}</a></label><br>
+						<strong>[옵션]</strong> 색상: ${detail.g_color}, 사이즈: ${detail.g_size}
 					</td>
 					<td>1</td>
 					<td>order_money</td>
@@ -93,5 +101,7 @@
 			</table>
 		</div>
 	</div>
+	
+	
 </div>
 

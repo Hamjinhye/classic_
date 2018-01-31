@@ -2,15 +2,9 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 <script src="<c:url value='/public/js/order.js'/>"></script>
-<<<<<<< HEAD
-<script>
-	$( function() {
-	  $( ".datepicker" ).datepicker();
-	} );
-</script>
 </head>
 <body>
-<div id="contents">
+<div id="contents" class="order_list_body">
 	<h2 id="orderlistTitle">ORDER LIST</h2>
 	<div id="serchContents">
 		<div class="searchDay">
@@ -21,7 +15,6 @@
 		 		<button type="button" class="btn btn-default">3개월</button>
 		 		<button type="button" class="btn btn-default">6개월</button>	
 	 		</div>
-	 		<!-- DatePicker 날짜선택 -->
 			<div class="searchCal">
 					<input type="text" id="search_start_date" class="datepicker">
 					<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -31,7 +24,9 @@
 				<button type="submit" class="btn btn-default">조회</button>
 			</div>
 		</div>
-	
+		<h4 class="text-left">
+			<strong>총 주문건 수</strong> <span class="badge">${totalRecord}건</span>
+		</h4>
 		<div id="list"  class="table-responsive">
 		  <table class="table table-hover">
 		  	<tbody class="list_title">
@@ -55,19 +50,15 @@
 						</td>
 						<td>1(임시)</td>
 						<td>${list.payment}</td>
-						
-						<td><!-- 배송상태 검사 -->
+						<td>
 							<c:if test="${list.deliv_state==0}"><strong>배송준비</strong></c:if>
 							<c:if test="${list.deliv_state==1}"><strong>배송중</strong><br>(송장번호:${list.deliv_num})</c:if>
 							<c:if test="${list.deliv_state==2}"><strong>배송완료</strong><br>(송장번호:${list.deliv_num})</c:if>
 							<c:if test="${list.deliv_state==3}"><strong>구매확정</strong></c:if>
 							
 						</td>
-						<!-- 배송상태에 따른 버튼 출력 0배송준비 1배송중 2배송완료 3수취확인 -->
-
 						<c:if test="${list.deliv_state==0}">
 							<td>
-							<!-- 주문취소하면 버튼 사라져야 함 --> 
 							<c:choose>
 								<c:when test="${list.order_state==-2}">
 									<p style="color:red;">주문 취소건</p>
@@ -108,26 +99,8 @@
 		  </table>
 		</div>
 		
-		<div id="listPage">
-			<nav>
-			  <ul class="pagination">
-			    <li>
-			      <a href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
+		<div>
+			<c:import url="/common/paging.jsp"></c:import>
 		</div>
 	</div>
 </div>

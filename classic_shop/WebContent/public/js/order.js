@@ -3,3 +3,4 @@
  */
 
 //orderList
+$( ".datepicker" ).datepicker();

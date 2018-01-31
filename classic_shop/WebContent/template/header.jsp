@@ -73,7 +73,7 @@
 										<span class="badge badge-pill badge-secondary" style="background-color: #ccc;" id="cartSymbol"></span>
 									</a>
 								</li>
-								<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">ORDER</a></li>
+								<li><a href="<c:url value='/order/list.do?num=${loginMem.num}' />">ORDER</a></li>
 							<li role="presentation" class="dropdown">
 									<a class="dropdown-toggle" href="<c:url value='/community/notice.do' />" role="button" aria-expanded="false">COMMUNITY</a>
 									<ul class="dropdown-menu" role="menu">
