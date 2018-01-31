@@ -28,12 +28,19 @@
 						<th class='col-sm-1'>DATE</th>
 						<th class='col-sm-1'>VIEW</th>
 					</tr>
-				</tbody>
+				</tbody> <!-- switch를 선언하는 절은 choose, when은 case, otherwise는 default -->
+
 				<tbody class="notice_list_contents">
-					<c:forEach var="notice" items="${noticeList}">
+					<c:forEach var="noticeList" items="${noticeList}">
 						<tr>
 							<td>${notice.num}</td>
-							<td style="text-align: left;"><a href="javascript:readNotice('${notice.num}')">${notice.title}</a></td>
+							<td style="text-align: left;">
+								<%--<a href="javascript:readNotice('${notice.num}')">${notice.title} --%>
+									<a href="<c:url value='/community/notice/read.do?num=${noticeList.num}'/>">
+								</a>
+								<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+							</td>
+							<td>${notice.title}</td>
 							<td>${notice.name}</td>
 							<td>${notice.indate}</td>
 							<td>${notice.count}</td>
@@ -44,4 +51,5 @@
 		</div>
 <!-- PAGING -->
 	<jsp:include page="/common/paging.jsp"/>
+	
 </div>

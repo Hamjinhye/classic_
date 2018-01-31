@@ -9,6 +9,7 @@ public interface NoticeDAO {
 	public List<NoticeDTO> selectNotice(PagingDTO pagingDTO) throws Exception; //notice list-paging
 	public NoticeDTO selectNotice(int num) throws Exception; //notice detail
 	public int noticeTotalRecord() throws Exception;//notice total
-	
+	public int selectCount(int num) throws Exception; //조회수
+
 	
 }
