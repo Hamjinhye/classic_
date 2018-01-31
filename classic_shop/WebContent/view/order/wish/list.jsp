@@ -3,13 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
+<script src="<c:url value='/public/js/order.js'/>"></script>
 </head>
 <body>
 <body>
 	<div class="container" id="mainDiv">
-		<h2 class="text-left" id="wishName">WISH LIST</h2>
+		<h2 class="text-left mb-0" id="wishName">WISH LIST</h2>
 		<table class="table" id="wishTable">
-			<thead id="wishTitle">
+			<thead id="wishTitle" class="align-top">
 				<tr>
 					<th width="5%"><input type="checkbox" id="allCheck"></th>
 					<th width="45%">상품정보</th>
@@ -110,136 +111,3 @@
 			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
 		<jsp:include page="/common/paging.jsp"/>
-<script>
-var AllGoSheet = function(memNum){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=f&productNum="/>';
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			url+=this.value+"_";
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-var CheckGoSheet = function(memNum){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=f&productNum="/>';
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			if(this.checked){
-				url+=this.value+"_";
-			}		
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-var ProductColourSelect = function(productNum){
-	var method = "GET";
-	var http = new XMLHttpRequest();
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			
-		}
-	}
-	http.open(method,url, true);
-	http.send();
-	
-};
-$("#allCheck").click(function(){
-	if(this.checked){
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			this.checked = true;
-		});
-	} else {
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			this.checked = false;
-		});
-	}	
-});
-var GoCartWishSelected=function(mem_num){
-	if(${(fn:length(wishList))!=0}){
-		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
-		var url ='<c:url value="/user/cart.do?num=${loginMem.num}&productNum="/>';
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			if(this.checked){
-				url+=this.value+"_";
-			}		
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-var delWishSelected=function(mem_num){
-	if(${(fn:length(wishList))!=0}){
-		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="; */
-		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'&product_num="/>';
-		var method="GET";
-		var http = new XMLHttpRequest();
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			if(this.checked){
-				url+=this.value+"_";
-			}		
-		});
-		url=url.substr(0, url.length-1);
-		http.onreadystatechange=function(){
-			if(this.readyState==4 && this.status==200){
-				var delete_json = JSON.parse(this.response);
-				if(delete_json["delete"]){
-					alert("삭제되었습니다.");
-					location.reload();
-				}else{
-					alert("삭제실패");
-				}
-			}
-		}
-		http.open(method,url,true);
-		http.send();
-	} else {
-		alert("wish list가 비었습니다.");
-	}
-}
-var allWishDel = function(mem_num){
-	if(${(fn:length(wishList))!=0}){
-		/* var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num; */
-		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'"/>';
-		var method="DELETE";
-		var http = new XMLHttpRequest();
-		http.onreadystatechange=function(){
-			if(this.readyState==4 && this.status==200){
-				var delete_json = JSON.parse(this.response);
-				if(delete_json["delete"]){
-					alert("삭제되었습니다.");
-					location.reload();
-				}else{
-					alert("삭제실패");
-				}
-			}
-		}
-		http.open(method,url,true);
-		http.send();
-	} else {
-		alert("wish list가 비었습니다.");
-	}
-}
-var pickWishDel = function(mem_num,product_num){
-	var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="+product_num;
-	/* var url ='<c:url value="/order/delwish.do?num='+mem_num+'&product_num='+product_num+'"/>'; */
-	var method= "PUT";
-	var http = new XMLHttpRequest();
-	console.log
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			var delete_json = JSON.parse(this.response);	
-			console.log(delete_json["delete"]);
-			if(delete_json["delete"]){
-				alert("삭제되었습니다.");
-				location.reload();
-			}else{
-				alert("삭제실패");
-			}
-		}
-	}
-	http.open(method,url,true);
-	http.send();
-}
-</script>

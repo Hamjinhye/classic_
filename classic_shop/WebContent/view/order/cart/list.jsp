@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
+<script src="<c:url value='/public/js/order.js'/>"></script>
 </head>
 <body>
 	<div class="container" id="cartMainDiv">
@@ -48,84 +49,3 @@
 			<p>장바구니 안내문</p>
 		</div>
 	</div>
-<script>
-	var cookies = document.cookie.split(";");
-	var product = {};
-	var pNum;
-	for(i=0; i<cookies.length; i++){
-		var key = cookies[i].split("=")[0].trim();
-		if(key.startsWith("classic_")){
-			pNum = key.split("_")[1].trim();
-			var pInfo = key.split("_")[2].trim();			
-			var value = cookies[i].split("=")[1].trim();
-			if(eval("typeof(c"+pNum+")=='undefined'")){
-				eval("var c"+pNum+"= {}");
-				eval("c"+pNum+"."+pInfo+"=\""+value+"\"");
-			} else {
-				eval("c"+pNum+"."+pInfo+"=\""+value+"\"");
-			}
-		}
-		if(eval("Object.keys(c"+pNum+").length==5")){
-			product[pNum]=eval("c"+pNum);
-		}
-	}
-	var table = document.getElementById("cartContents");
-	var innerText ="";
-	var key ;
-	for(key in product){
-		innerText +='<tr>';
-		innerText +='	<td><input type="checkbox" class="checkCart" value="'+product[key]+'"></td>';
-		innerText +='	<td id ="cartDetailList">';
-		innerText +='		<div id="cartDetailListDiv">';
-		innerText +='			<div>';
-		innerText +='				<p><a href="#">이미지임</a></p>';
-		innerText +='			</div>';
-		innerText +='			<div>';
-		innerText +='				<ul class="list-group" >';
-		innerText +='					<li class="list-group-item"><a href="#">'+product[key].name+'</a></li>';
-		innerText +='					<li class="list-group-item">';
-		innerText += (product[key].colour==undefined)?"":"color"+product[key].colour;
-		innerText += (product[key].sizu==undefined)?"":"sizu"+product[key].sizu;
-		innerText +='					</li>';
-		innerText +='					<li class="list-group-item"><button type="button" class="btn btn-default">옵션변경</button></li>';
-		innerText +='				</ul>';
-		innerText +='			</div>';
-		innerText +='		</div>';
-		innerText +='	</td>';
-		innerText +='	<td>'+product[key].price+'</td>';
-		innerText +='	<td>';
-		innerText +='		<div id="productQuantity">';
-		innerText +='			<div>';
-		innerText +='				<input type="number" value="'+product[key].count+'" min="1">';
-		innerText +='			</div>';
-		innerText +='			<div>';
-		innerText +='				<button class="btn btn-default" >변경</button>';
-		innerText +='			</div>';					
-		innerText +='		</div>';
-		innerText +='	</td>'
-		innerText +='	<td>';
-		innerText += (product[key].price>50000)?"무료":"2500원";
-		innerText +='	</td>';
-		innerText +='	<td>'+product[key].price+'</td>';
-		innerText +='	<td>';
-		innerText +='		<div class="btn-group" id="cartListBtn">';
-		innerText +='			<button type="button" class="btn btn-default" >주문하기</button>';
-		innerText +='			<button type="button" class="btn btn-default">WISH LIST 등록</button>';
-		innerText +='			<button type="button" class="btn btn-default">삭제</button>';
-		innerText +='		</div>';
-		innerText +='	</td>';
-		innerText +='</tr>';
-	}
-	table.innerHTML =innerText;
-	
-var AllChartGoSheet = function(memNum){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=t&productNum="/>';
-		$('input:checkbox[class*="checkCart"]').each(function(){
-			url+=this.value+"_";
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-</script>
