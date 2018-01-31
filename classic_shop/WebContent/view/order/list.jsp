@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 <script src="<c:url value='/public/js/order.js'/>"></script>
-<<<<<<< HEAD
 <script>
 	$( function() {
 	  $( ".datepicker" ).datepicker();

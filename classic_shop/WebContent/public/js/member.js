@@ -186,33 +186,90 @@ var memModify = function(memModifyForm){
 	http.send();
 }
 
-//배송주소록 등록
+
+//우편번호 API
+function sample6_execDaumPostcode() {
+	new daum.Postcode({
+			oncomplete: function(data) {
+            var fullAddr = '';
+            var extraAddr = '';
+
+            if (data.userSelectedType === 'R') {
+                fullAddr = data.roadAddress;
+
+            } else {
+                fullAddr = data.jibunAddress;
+            }
+
+            if(data.userSelectedType === 'R'){
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+            document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById('sample6_address').value = fullAddr;
+
+            document.getElementById('sample6_address2').focus();
+        }
+    }).open();
+}
+
+//배송주소록 삭제
+var addrDelBtn = function(memNum,addrNum){
+	var url = "/classic_shop/user/address/remove.do?mem_num="+memNum+"&addr_num="+addrNum;
+	var method = "DELETE";
+	var http= new XMLHttpRequest();
+	http.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			var delete_json = JSON.parse(this.response);
+			console.log(delete_json["delete"]);
+			if(delete_json["delete"]){
+				alert("삭제 성공");
+				location.href="/classic_shop/user/address.do?num="+memNum;
+			}else{
+				alert("삭제 실패");
+			}
+		}
+	}
+	http.open(method, url, true);
+	http.send();
+}
+
+// 배송주소록 등록
 var addrJson = function(addrForm){
+	var method = "POST";
+	var url = "/classic_shop/user/address/register.do"
+	var check=true;
 	var mem_num = addrForm.memNum.value;
 	var zip_code = addrForm.addrZip.value;
 	var base_addr = addrForm.addrBase.value;
 	var detail_addr = addrForm.addrDetail.value;
-	var url = "/classic_shop/user/address/register.do"
-	var method = "POST";
-	var data = "mem_num="+mem_num+"&zip_code="+zip_code+"&base_addr="+base_addr+"&detail_addr="+detail_addr;
-	console.log(data);
-	var http = new XMLHttpRequest();
-	http.open(method, url, true);
-	http.onreadystatechange = function(){
-		if(this.readyState==4 && this.status==200){
-			var register = JSON.parse(this.response)["register"];
-			if(register){
-				alert("등록했당");
-				location.href="/classic_shop/user/address.do?num="+mem_num;
-				
-			}else{
-				alert("다시 시도");
-			}
-		}
+	if(!zip_code.trim() || !base_addr.trim() || !detail_addr.trim()){
+		check=false;
+		alert("주소 항목은 필수 입력값입니다.");
 	}
-	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
-	/* charset=UTF-8 을 추가하지 않으면 ajax 전송시 한글이 깨짐...... */
+	else if(check){
+		var data = "mem_num="+mem_num+"&zip_code="+zip_code+"&base_addr="+base_addr+"&detail_addr="+detail_addr;
+		console.log(data);
+		var http = new XMLHttpRequest();
+		http.open(method, url, true);
+		http.onreadystatechange = function(){
+			if(this.readyState==4 && this.status==200){
+				var register = JSON.parse(this.response)["register"];
+				if(register){
+					alert("등록 성공");
+					location.href="/classic_shop/user/address.do?num="+mem_num;
+				}else{
+					alert("등록 실패");
+				}
+			}
+		}	
+	}			
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8;");
 	http.send(data);
+	/* charset=UTF-8 을 추가하지 않으면 ajax 전송시 한글이 깨짐...... */
 }
-
-//배송주소록 삭제

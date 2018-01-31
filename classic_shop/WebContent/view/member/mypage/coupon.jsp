@@ -15,7 +15,6 @@
 						<th class="col-sm-1">No.</th>
 						<th class="col-sm-2">쿠폰명</th>
 						<th class="col-sm-3">내용</th>
-						<th class="col-sm-1">적용상품</th>
 						<th class="col-sm-1">사용가능기간</th>
 						<th class="col-sm-1">사용여부</th>
 					</tr>
@@ -23,12 +22,11 @@
 				<tbody>
 					<c:forEach var="coupon" items="${couponList}">
 						<tr>
-							<td>1</td>
-							<td>50% 쿠폰</td>
-							<td>50,000원 이상 구매시 50% 할인</td>
-							<td>의류</td>
-							<td>18/02/02</td>
-							<td>사용안함</td>
+							<td>${coupon.c_num}</td>
+							<td>${coupon.name}</td>
+							<td>${coupon.content}</td>
+							<td>${conpon.end_date}</td>
+							<td>${coupon.c_state}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -56,6 +54,19 @@
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="inputCouponName" placeholder="쿠폰명을 입력해 주세요.">
 					</div>
+					<button class="btn btn-default" type="button">쿠폰 등록</button>
+				</div>
+			</form>
+			<div class="couponFormTitle">쿠폰 등록하기2</div>
+			<form class="couponForm">
+				<div class="couponFormGroup">
+					<select class="form-control">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
 					<button class="btn btn-default" type="button">쿠폰 등록</button>
 				</div>
 			</form>

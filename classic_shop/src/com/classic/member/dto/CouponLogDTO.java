@@ -2,6 +2,8 @@ package com.classic.member.dto;
 
 import java.sql.Date;
 
+import java.sql.Date;
+
 public class CouponLogDTO {
 /*
 		 Name                                      Null?    Type
@@ -22,14 +24,29 @@ public class CouponLogDTO {
 	private int grade;
 	private int state;
 	private int issue;
-	private String name;
 	private int sale;
+	private int total;
+	private int count;
+	private String name;
 	private String content;
 	private Date start_date;
 	private Date end_date;
-	private int total;
-	private int count;
 	
+	private int c_num;
+	private int c_state;
+		
+	public int getC_num() {
+		return c_num;
+	}
+	public void setC_num(int c_num) {
+		this.c_num = c_num;
+	}
+	public int getC_state() {
+		return c_state;
+	}
+	public void setC_state(int c_state) {
+		this.c_state = c_state;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -98,8 +115,10 @@ public class CouponLogDTO {
 	}
 	@Override
 	public String toString() {
-		return "CouponLogDTO [num=" + num + ", grade=" + grade + ", state=" + state + ", issue=" + issue + ", name="
-				+ name + ", sale=" + sale + ", content=" + content + ", start_date=" + start_date + ", end_date="
-				+ end_date + ", total=" + total + ", count=" + count + "]";
+		return "{\"num\":\"" + num + "\", \"grade\":\"" + grade + "\", \"state\":\"" + state + "\", \"issue\":\""
+				+ issue + "\", \"sale\":\"" + sale + "\", \"total\":\"" + total + "\", \"count\":\"" + count
+				+ "\", \"name\":\"" + name + "\", \"content\":\"" + content + "\", \"start_date\":\"" + start_date
+				+ "\", \"end_date\":\"" + end_date + "\", \"c_num\":\"" + c_num + "\", \"c_state\":\"" + c_state
+				+ "\"}";
 	}
 }

@@ -9,102 +9,80 @@
 		<div class="address_wrap">
 		${addrList}
 			<h2 class="addressTitle">ADRESS LIST</h2>
-			<table class="table address_table">
-			
-				<tbody>
-					<tr>
-						<th class="col-sm-1">
-							<label>
-								<input type="checkbox" id="blankCheckbox" value="option1" aria-label="checkbox">
-							</label>
-						</th>
-						<th class="col-sm-1">No.</th>
-						<th class="col-sm-3">주소</th>
-						<th class="col-sm-1">삭제</th>
-					</tr>
-				</tbody>
-				<tbody>
-					<c:forEach var="addr" items="${addrList}">
+			<form action="/user/address/remove.do" method="post" name="delForm">
+				<table class="table address_table">
+					<tbody>
 						<tr>
-							<td>
+							<th class="col-sm-1">
 								<label>
-									<input type="checkbox" id="blankCheckbox" value="${addr.num}" aria-label="checkbox">
+									<input name="checkAll" id="th_checkAll" type="checkbox" onclick="checkAll()">
 								</label>
-							</td>
-							<td>${addr.num }</td>
-							<td>${addr.zip_code} ${addr.base_addr} ${addr.detail_addr}</td>
-							<td><button class="btn btn-default" type="button" onclick="addrDelBtn(${addr.mem_num},${addr.num})">삭제</button></td>
+							</th>
+							<th class="col-sm-1">No.</th>
+							<th class="col-sm-3">주소</th>
+							<th class="col-sm-1">삭제</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</tbody>
+					<tbody>
+						<c:forEach var="addr" items="${addrList}">
+							<tr>
+								<td>
+									<label>
+										<input name="checkRow" type="checkbox" value="${addr.num}">
+									</label>
+								</td>
+								<td>${addr.num }</td>
+								<td>${addr.zip_code} ${addr.base_addr} ${addr.detail_addr}</td>
+								<!-- onclick="addrJson(this.form)" -->
+								<td><button class="btn btn-default" type="button" onclick="addrDelBtn(${addr.mem_num},${addr.num})">삭제</button></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
  			<div class="adress_btn_group">
-				<button class="btn btn-default" type="button" onclick="location.href='<c:url value='/user/address/register.do'/>'">주소 등록</button>
+				<button class="btn btn-default" data-toggle="modal" data-target="#myModal" type="button">주소 등록</button>
 			</div>
-		</div>
-<%-- 		<!-- RECENT ADDRESS -->
-		<div class="recentaddr_wrap">
-			<h2 class="addressTitle">RECENT ADDRESS</h2>
-			<table class="table address_table">
-				<thead>
-					<tr>
-						<th class="col-sm-1">
-							<label>
-								<input type="checkbox" id="blankCheckbox" value="option1" aria-label="checkbox">
-							</label>
-						</th>
-						<th class="col-sm-1">No.</th>
-						<th class="col-sm-3">주소</th>
-						<th class="col-sm-1">연락처</th>
-						<th class="col-sm-1">수령인</th>
-						<th class="col-sm-1">상태</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="addr" items="${addrBookList}">
-						<tr>
-							<td>
-								<label>
-									<input type="checkbox" id="blankCheckbox" value="option1" aria-label="checkbox">
-								</label>
-							</td>
-							<td>${addr.num }</td>
-							<td><a href="#">${addr.zip_code} ${addr.base_addr} ${addr.detail_addr}</a></td>
-							<td>010-2222-3333</td>
-							<td>나야나</td>
-							<td>상태</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
- 			<div class="recentadress_btn_group">
-				<button class="btn btn-default" type="button">전체 선택</button>
-				<button class="btn btn-default" type="button">선택 삭제</button>
-				<button class="btn btn-default" type="button">기본 주소로 등록</button>
+			<!-- 모달 -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<!-- 모달 내용 -->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">X</button>
+							<h4 class="modal-title">주소 등록</h4>
+						</div>
+						<form action="/user/address/register.do" method="post" name="addrForm">
+							<div class="modal-body">
+								<div class="zip_code_wrap">
+									<div class="col-sm-3 zip_code_input">
+										<input name="addrZip" type="text" id="sample6_postcode" class="form-control" placeholder="우편번호">
+									</div>
+									<button onclick="sample6_execDaumPostcode()" class="btn btn-default" type="button">우편번호</button>
+								</div>
+								<div class="addrbase_wrap">
+									<div class="col-sm-5 addrbase_input">
+										<input name="addrBase" type="text" id="sample6_address" class="form-control" placeholder="주소">
+									</div>
+									<div class="col-sm-5 addrdetail_input">
+										<input name="addrDetail" type="text" id="sample6_address2" class="form-control" placeholder="상세주소">
+									</div>
+								</div>
+								<!-- 우편번호 API -->
+								<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+								<input type="hidden" name="memNum" value="${loginMem.num}">
+								<div class="modify_btn_group">
+									<button class="btn btn-default" type="button" onclick="addrJson(this.form)">등록</button>
+									<button class="btn btn-default" type="button" onclick="location.href='<c:url value='/user/address.do?num=${loginMem.num}'/>'">취소</button>
+								</div>
+							</div>
+						</form>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div> --%>					
+		</div>				
 	</div>
 </div>
-
-<!-- member.js로 이동함 -->
-<script>
- 	var addrDelBtn = function(mem_num,addr_num){
-		var url="http://localhost:9999/classic_shop/user/address/remove.do?mem_num="+mem_num+"&addr_num="+addr_num;
-		var method="DELETE";
-		var http= new XMLHttpRequest();
-		http.onreadystatechange=function(){
-			if(this.readyState==4 && this.status==200){
-				var delete_json = JSON.parse(this.response);
-				console.log(delete_json["delete"]);
-				if(delete_json["delete"]){
-					alert("삭제성공");
-					location.reload();
-				}else{
-					alert("삭제 실패");
-				}
-			}
-		}
-	}
-	http.open(method,url,true);
-	http.send();
-</script>

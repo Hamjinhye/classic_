@@ -1,6 +1,7 @@
 package com.classic.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,6 @@ import com.classic.member.daoImp.AddrBookDAOImp;
 import com.classic.util.ClassicDBConnection;
 
 @WebServlet("/user/address/remove.do")
-/*@WebServlet("/addresslist/delete.do")*/
 public class AddrBookDeleteJSON extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class AddrBookDeleteJSON extends HttpServlet {
 		int delete = 0;
 		String strMemNum = req.getParameter("mem_num");
 		String strNum = req.getParameter("addr_num");
-		
+
 		try {
 			conn=ClassicDBConnection.getConnection();
 			AddrBookDAO addrDAO = new AddrBookDAOImp(conn);
@@ -34,7 +34,7 @@ public class AddrBookDeleteJSON extends HttpServlet {
 			ClassicDBConnection.close(conn);
 		}
 		resp.setCharacterEncoding("UTF-8");
-		resp.getWriter().append("{\"delete\":"+delete+"}");
+		resp.getWriter().append("{\"delete\":\""+delete+"\"}");
 	
 	}
 }

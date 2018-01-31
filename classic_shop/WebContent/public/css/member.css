@@ -182,6 +182,15 @@
 .address_wrap .table>tbody>tr>th{
 	vertical-align: middle;
 }
+.zip_code_input, .addrbase_input{
+    padding-right: 0px;
+}
+.addrdetail_input{
+	padding-left: 2px;
+}
+.addrbase_wrap{
+	margin-top: 8px;
+}
 
 /* 배송주소록 등록 */
 
