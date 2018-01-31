@@ -2,6 +2,7 @@ package com.classic.member.dao;
 
 import java.util.List;
 
+import com.classic.common.dto.PagingDTO;
 import com.classic.member.dto.AddrBookDTO;
 
 

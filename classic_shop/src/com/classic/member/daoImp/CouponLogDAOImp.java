@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.classic.member.dao.CouponLogDAO;
 import com.classic.member.dto.CouponLogDTO;
+import com.classic.util.ClassicDBConnection;
 
 public class CouponLogDAOImp implements CouponLogDAO{
 	private Connection conn;
@@ -18,27 +19,35 @@ public class CouponLogDAOImp implements CouponLogDAO{
 	@Override
 	public List<CouponLogDTO> couponLogSelect(int mem_num) throws Exception {
 		List<CouponLogDTO> couponLog = new ArrayList<CouponLogDTO>();
-		String sql = " select c.num, l.name, l.content, l.start_date, l.end_date, c.state "
-				+ "from coupon c, coupon_log l, member m "
-				+ "where c.mem_num=m.num and c.log_num=l.num and c.mem_num=?";
+		String sql = "select l.name, l.content, l.start_date as start_date, l.end_date as end_date, c.num as c_num, c.state as c_state"
+				+ " from coupon c, coupon_log l, member m"
+				+ " where c.mem_num=m.num and c.log_num=l.num and c.mem_num=? order by c.num desc";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, mem_num);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
-			CouponLogDTO couponDTO = new CouponLogDTO();
-			couponDTO.setNum(rs.getInt("num"));
-			couponDTO.setGrade(rs.getInt("grade"));
-			couponDTO.setState(rs.getInt("state"));
-			couponDTO.setIssue(rs.getInt("issue"));
-			couponDTO.setSale(rs.getInt("num"));
-			couponDTO.setCount(rs.getInt("count"));
-			couponDTO.setTotal(rs.getInt("total"));
-			couponDTO.setName(rs.getString("name"));
-			couponDTO.setContent(rs.getString("content"));
-			couponDTO.setStart_date(rs.getDate("start_date"));
-			couponDTO.setEnd_date(rs.getDate("end_date"));
-			couponLog.add(couponDTO);
+			CouponLogDTO couponlogDTO = new CouponLogDTO();
+			couponlogDTO.setName(rs.getString("name"));
+			couponlogDTO.setContent(rs.getString("content"));
+			couponlogDTO.setStart_date(rs.getDate("start_date"));
+			couponlogDTO.setEnd_date(rs.getDate("end_date"));
+			couponlogDTO.setC_num(rs.getInt("c_num"));
+			couponlogDTO.setC_state(rs.getInt("c_state"));			
+			couponLog.add(couponlogDTO);
 		}		
 		return couponLog;
 	}
+	public static void main(String[] args) {
+		Connection conn = null;
+		List<CouponLogDTO> couponList = new ArrayList<CouponLogDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			CouponLogDAO couponDao = new CouponLogDAOImp(conn);
+			couponList=couponDao.couponLogSelect(1);
+			System.out.println(couponList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

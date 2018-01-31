@@ -12,7 +12,6 @@
   <p> 
 	<c:forEach var="mini" items="${miniCateList}">
   		<a href="<c:url value='/product.do?cate=1&num=${mini.num}' />" class="cate">${mini.name}</a>
-
 	</c:forEach>
   </p>
 </div>

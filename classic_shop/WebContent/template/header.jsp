@@ -61,7 +61,7 @@
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="<c:url value='/user/mypage/modify.do?num=${loginMem.num}'/>">회원정보수정</a></li>
 										<li><a href="<c:url value='/user/address.do?num=${loginMem.num}'/>">배송주소록</a></li>
-										<li><a href="<c:url value='/view/member/mypage/coupon.jsp'/>">쿠폰</a></li><!-- 경로설정 안됨 -->
+										<li><a href="<c:url value='/user/coupon.do?num=${loginMem.num}'/>">쿠폰</a></li>
 										<li><a href="<c:url value='/cart.do'/>">장바구니</a></li>
 										<li><a href="<c:url value='/user/wish.do?num=${loginMem.num}'/>">위시리스트</a></li>
 										<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">주문내역</a></li>

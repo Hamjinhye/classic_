@@ -17,7 +17,6 @@ import com.classic.member.dto.AddrBookDTO;
 import com.classic.util.ClassicDBConnection;
 
 @WebServlet("/user/address.do")
-//@WebServlet("/addresslist.do")
 public class AddrBookListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,25 +32,13 @@ public class AddrBookListController extends HttpServlet{
 		}finally {
 			ClassicDBConnection.close(conn);
 		}
-		req.setAttribute("addrList", addrList);
-		req.getRequestDispatcher("/view/member/mypage/addressList.jsp").forward(req, resp);
+		System.out.println("addrList:"+addrList);
+
+			req.setAttribute("addrList", addrList);
+			req.getRequestDispatcher("/view/member/mypage/addressList.jsp").forward(req, resp);
+/*		}else {
+			resp.sendRedirect(req.getContextPath()+"/login.do");
+			
+		}*/
 	}
-/*	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Connection conn = null;
-		int delete = 0;
-		String str_num = req.getParameter("num");
-		try {
-			conn=ClassicDBConnection.getConnection();
-			AddrBookDAO addrDAO = new AddrBookDAOImp(conn);
-			delete = addrDAO.addrBookDelete(Integer.parseInt(str_num));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			ClassicDBConnection.close(conn);
-		}
-		resp.setCharacterEncoding("utf-8");
-		resp.setContentType("application/json");
-		resp.getWriter().append("{\"delete\":"+delete+"}");
-	}*/
 }

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.classic.common.dto.PagingDTO;
 import com.classic.member.dao.AddrBookDAO;
 import com.classic.member.dto.AddrBookDTO;
 
@@ -16,7 +17,8 @@ public class AddrBookDAOImp implements AddrBookDAO {
 	public AddrBookDAOImp(Connection conn) {
 		this.conn = conn;
 	}
-
+	
+	
 	@Override
 	public List<AddrBookDTO> addrBookSelect(int mem_num) throws Exception {
 		List<AddrBookDTO> addrBookList = new ArrayList<AddrBookDTO>();
@@ -61,4 +63,5 @@ public class AddrBookDAOImp implements AddrBookDAO {
 		delete = pstmt.executeUpdate();
 		return delete;
 	}
+
 }

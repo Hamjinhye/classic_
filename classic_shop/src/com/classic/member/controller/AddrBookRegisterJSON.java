@@ -16,13 +16,7 @@ import com.classic.member.serviceImp.AddrBookServiceImp;
 import com.classic.util.ClassicDBConnection;
 
 @WebServlet("/user/address/register.do")
-//@WebServlet("/addresslist/insert.do")
 public class AddrBookRegisterJSON extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/view/member/mypage/addressRegister.jsp").forward(req, resp);
-	}
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String memNum = req.getParameter("mem_num");
