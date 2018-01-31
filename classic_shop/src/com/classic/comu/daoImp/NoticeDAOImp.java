@@ -27,7 +27,7 @@ public class NoticeDAOImp implements NoticeDAO{
 	
 	
 	@Override
-	public List<NoticeDTO> selectList(PagingDTO pagingDTO) throws Exception {
+	public List<NoticeDTO> selectNotice(PagingDTO pagingDTO) throws Exception {
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
 		String sql = "SELECT * FROM"
 					+ " (SELECT ROWNUM row_num, notice.* FROM"
