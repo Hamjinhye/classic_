@@ -34,9 +34,8 @@ import com.classic.product.service.ProductService;
 import com.classic.product.serviceImp.ProductServiceImp;
 import com.classic.util.ClassicDBConnection;
 
-@WebServlet("/product.do") // "/product.do"
+@WebServlet("/product.do") 
 public class ProductList extends HttpServlet {
-	//!!!나중에 ctroller, dto, dao, servie... 분리 해서 만들거임! 참고할 사람은 이거 참고하지마세요
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

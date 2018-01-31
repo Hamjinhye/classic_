@@ -64,33 +64,5 @@ public class CateDAIOImp implements CateDAO{
 		return cate_num;
 	}
 	
-	/*public static void main(String[] args) {
-		Connection conn=null;
-		try {
-			conn = ClassicDBConnection.getConnection();
-			System.out.println(new CateDAIOImp(conn).selectCateList());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			ClassicDBConnection.close(conn);
-			
-		}
-		
-	}*/
-	
-	/*public static void main(String[] args) {
-		Connection conn = null;
-		try {
-			conn = ClassicDBConnection.getConnection();
-			System.out.println(new CateDAIOImp(conn).selectCateNum(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			ClassicDBConnection.close(conn);
-			
-		}
-	}*/
 
 }

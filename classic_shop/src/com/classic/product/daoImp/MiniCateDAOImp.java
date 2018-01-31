@@ -88,25 +88,6 @@ public class MiniCateDAOImp implements MiniCateDAO {
 		return searchMiniCateList;
 	}
 	
-	
-/*	public static void main(String[] args) {
-		Connection conn = null;
-		List<MiniCateDTO> miniCateList = new ArrayList<MiniCateDTO>();
-		int cate_num = 3;
-		
-		try {
-			conn=ClassicDBConnection.getConnection();
-			MiniCateDAO miniCateDAO = new MiniCateDAOImp(conn);
-			//miniCateList=miniCateDAO.selectMiniCateList(cate_num);
-			miniCateList = miniCateDAO.selectMiniCateListAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			ClassicDBConnection.close(conn);
-			
-		}
-		System.out.println(miniCateList);
-		
-	}*/
+
 
 }

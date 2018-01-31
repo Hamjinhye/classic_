@@ -13,14 +13,7 @@ import com.classic.util.ClassicDBConnection;
 
 public class ColourDAOImp implements ColourDAO {
 
-	/*public static void main(String[] args) {
-		
-		try {
-			System.out.println(new ColourDAOImp().selectColourList(1));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
+	
 	private Connection conn = null;
 	public ColourDAOImp(Connection conn) {
 		this.conn=conn;
@@ -71,24 +64,7 @@ public class ColourDAOImp implements ColourDAO {
 		}		
 		return coloursList;
 	}
-/*	
-	public static void main(String[] args) {
-		List<ColourDTO> coloursList = new ArrayList<ColourDTO>();
-		Connection conn= null;
-		
-		try {
-			conn=ClassicDBConnection.getConnection();
-			coloursList=new ColourDAOImp(conn).selectCateListColours(5);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			ClassicDBConnection.close(conn);
-		}
-		System.out.println(coloursList);
-		
-	}*/
+
 
 	@Override
 	public List<ColourDTO> selectMiniCateListColours(int cate_num) throws Exception {

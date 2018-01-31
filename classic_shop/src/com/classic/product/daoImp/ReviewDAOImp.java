@@ -19,8 +19,7 @@ public class ReviewDAOImp implements ReviewDAO{
 	@Override
 	public List<ReviewDTO> selectReviewList(int product_num) throws Exception {
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-		/*String sql = "select r.*, m.id from review r, member m where r.mem_num=m.num and "
-					+ "paid_num in (select product_num from paid where product_num=?)";*/
+		
 		
 		String sql= "select r.content, to_char(r.indate, 'YYYY-MM-DD') indate, r.body_size, p.name product_name, "
 					+"s.sizu product_size, c.name colour_name, m.id, r.star, "
@@ -49,20 +48,7 @@ public class ReviewDAOImp implements ReviewDAO{
 		}
 		return reviewList;
 	}
-	/*public static void main(String[] args) {
-		Connection conn = null;
-		
-		try {
-			conn=ClassicDBConnection.getConnection();
-			System.out.println(new ReviewDAOImp(conn).selectReviewList(1));
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			
-		}
-		
-	}*/
+	
 
 	@Override
 	public List<ReviewDTO> selectReviewListAll() throws Exception {
