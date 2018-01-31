@@ -1,6 +1,5 @@
 
 $(function(){
-	//js 파일 안에서는 jstl 안됨!
 	
 	$("#bt_minus").click(function(){
 		var val = Number($("#quantity").val());
@@ -18,4 +17,4 @@ $(function(){
 		$("#quantity").val(val);
 	});
 	
-});//ready
+});

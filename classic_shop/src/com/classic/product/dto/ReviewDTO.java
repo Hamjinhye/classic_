@@ -13,12 +13,7 @@ public class ReviewDTO {
 	INDATE                                             DATE
 	 */
 	
-	/*
-	select r.content, to_char(r.indate, 'YYYY-MM-DD') indate, p.name, s.sizu, c.name, (select name from img_path where review_num=r.num) img_path 
-	from review r, product p, sizu s, colour c, paid o 
-	where r.paid_num=o.num and o.product_num = p.num and o.sizu_num=s.num 
-	and o.colour_num = c.num and r.paid_num=o.num and o.product_num=1
-	 */
+	
 	
 	private int num;
 	private int paid_num;
@@ -30,7 +25,7 @@ public class ReviewDTO {
 	private String product_name;
 	private String product_size;
 	private String colour_name;
-	private String img_path;  //디비에 img_path table에 review_num이 있다!
+	private String img_path; 
 	
 	
 	
