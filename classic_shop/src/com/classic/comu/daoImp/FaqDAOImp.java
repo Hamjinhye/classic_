@@ -11,7 +11,6 @@ import com.classic.comu.dto.FaqDTO;
 import com.classic.util.ClassicDBConnection;
 
 public class FaqDAOImp implements FaqDAO{
-																	//git 01-17
 	private Connection conn;
 	public FaqDAOImp(Connection conn) {
 		this.conn = conn;
