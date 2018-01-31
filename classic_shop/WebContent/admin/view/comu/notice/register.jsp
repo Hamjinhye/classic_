@@ -31,17 +31,22 @@
 			<div class="common-right-title">
 				<p class="h3">NOTICE</p>
 			</div>
-			<div class="form-group">
-				<label id="subjectField">TITLE</label>
-				<td><input name="title" size="220"></td>
-			</div>
+		<div class="input-group mb-3">
+  		<div class="input-group-prepend">
+    		<span class="input-group-text" id="subjectField">TITLE</span>
+  		</div>
+  		<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+		</div>
+			
 			<!--글 내용 -->
-			<div class="form-group">
-				<textarea class="form-control" rows="20" name="noticeContents"></textarea>
-			</div>
+				<div class="form-group">
+    			<label for="exampleFormControlTextarea1"></label>
+    			<textarea class="form-control" id="noticeContents" rows="20"></textarea>
+  			</div>
+	
 			<!--첨부파일 및 옵션 -->
-			  <div class="notice_option">
-			    <label for="noticeFile">File Upload</label>
+				<div class="notice_option">
+			    <input type="file" class="form-control-file" id="noticeFile">
 			    <input type="file" class="form-control-file" id="noticeFile">
 			  </div>
 			  <br>

@@ -33,23 +33,26 @@
 			<div class="common-inner-body">
 			
 				<!--글 등록 -->
-		<form name="noticeRegisterForm method=post action="">
+		<form name="noticeRegisterForm" method="post" action="">
 			<!-- SUBJECT 선택 -->
-			<div class="form-group">
-				<label id="subjectField">TITLE</label>
-				<td><input name="title" size="220"></td>
-			</div>
+		<div class="input-group mb-3">
+  		<div class="input-group-prepend">
+    		<span class="input-group-text" id="inputGroup-sizing-default">TITLE</span>
+  		</div>
+  		<input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+		</div>
 			<!--글 내용 -->
 			<div class="form-group">
-				<textarea class="form-control" rows="20" name="noticeContents"></textarea>
-			</div>
+    			<label for="exampleFormControlTextarea1"></label>
+    			<textarea class="form-control" id="exampleFormControlTextarea1" rows="20"></textarea>
+  			</div>
 			<!--첨부파일 및 옵션 -->
 			<div class="notice_option">
-			    <label for="noticeFile">File Upload</label>
+			    <input type="file" class="form-control-file" id="noticeFile">
 			    <input type="file" class="form-control-file" id="noticeFile">
 			  </div>
+			  <br>
 			<div class="notice_option">
-				<label class="col-xs-2">공개</label>
 					<div class="checkbox">
 						<input type="radio" name="secure" id="noticeOpen" value="0" checked> 공개
 						<input type="radio" name="secure" id="noticeSecure" value="1"> 비공개
@@ -59,6 +62,7 @@
 				<label class="col-xs-2">Password</label>
 				<input type="password" name="pwd" placeholder="비밀번호 설정" disabled>
 			</div>
+			<br>
 			<!--  버튼 -->
 			<div class="notice_btn_group">
 				<a class="btn btn-dark" href="view.jsp" role="button">수정</a>

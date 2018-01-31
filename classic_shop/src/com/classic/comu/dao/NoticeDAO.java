@@ -15,9 +15,11 @@ public interface NoticeDAO {
 	public NoticeDTO select(Connection conn, int deptno) throws Exception; //2
 */	
 	//public List<NoticeDTO> selectNotice() throws Exception; //notice list
-	public List<NoticeDTO> selectNotice(PagingDTO pagingDTO) throws Exception; //notice list-paging
-	public NoticeDTO selectNotice(int num) throws Exception; //notice detail
+	public List<NoticeDTO> selectList(PagingDTO pagingDTO) throws Exception; //notice list-paging
+	//public NoticeDTO selectNotice(int num) throws Exception; //페이징 전 리스트? notice detail
+	public NoticeDTO detailNotice(int num) throws Exception; //글 읽기
 	public int noticeTotalRecord() throws Exception;//notice total
-	
+	public int selectCount(int num) throws Exception; //조회수
+
 	
 }
