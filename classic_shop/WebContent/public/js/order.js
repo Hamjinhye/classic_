@@ -129,7 +129,6 @@ var pickWishDel = function(mem_num,product_num){
 //cart
 $(document).ready(function(){
 	var cookies = document.cookie.split(";");
-	console.log(cookies);
 	var table = document.getElementById("cartContents");
 	var product = {};
 	var innerText ="";

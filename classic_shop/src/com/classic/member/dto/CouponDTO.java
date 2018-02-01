@@ -20,7 +20,7 @@ public class CouponDTO {
 	
 	//혜진 필요 DTO
 	private String coupon_name;
-	private int sale;
+	private double sale;
 	public String getCoupon_name() {
 		return coupon_name;
 	}

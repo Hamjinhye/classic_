@@ -222,6 +222,7 @@
 						<select name="couponNum" onchange="selectCoupon()" id="couponSelect">
 						<c:forEach var="coupon" items="${couponList}">
 							<option value="${coupon.num}_${coupon.sale}">${coupon.coupon_name}</option>
+							<script>console.log("'${coupon.num}'은 '${coupon.sale}'");</script>
 						</c:forEach>
 							<option value="0">사용안함</option>
 						</select>

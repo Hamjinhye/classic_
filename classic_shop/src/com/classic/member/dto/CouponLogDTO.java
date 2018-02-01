@@ -23,7 +23,7 @@ public class CouponLogDTO {
 	private int state;
 	private int issue;
 	private String name;
-	private int sale;
+	private double sale;
 	private String content;
 	private Date start_date;
 	private Date end_date;
