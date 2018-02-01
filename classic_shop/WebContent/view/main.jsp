@@ -125,6 +125,8 @@
 	}
 	
 	if(getCookie('popup')!="off"){
-		window.open('/classic_shop/event.do','_blank','top=100,left=200,width=400,height=400');
+		window.open('/classic_shop/event.do','CLASSIC HOT ISSUE',
+				'top=100,left=200,width=400,height=400,location=no,resizable=no,scrollbars=no,status=no');
 	}
+	
 </script>

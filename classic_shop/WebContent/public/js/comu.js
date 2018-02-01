@@ -16,6 +16,7 @@ function readNotice(num){
 			dataType: "json",
 			success: function(data){
 				$(".notice_div table").hide();
+				$("#noticePagingContainer").attr("style", "display: none");
 				//$(".comu_paging").hide();
 				var notice_contents="";
 				$(data).each(function(index, item){
