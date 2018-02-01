@@ -57,10 +57,10 @@ public class SearchProductListController extends HttpServlet{
 			priceLow = 100000;
 		}
 		
-		System.out.println("proController cate_num : "+cate_num);
-		System.out.println("proController name : "+name);
-		System.out.println("proController priceHigh : "+priceHigh);
-		System.out.println("proController priceLow : "+priceLow);
+		//System.out.println("proController cate_num : "+cate_num);
+		//System.out.println("proController name : "+name);
+		//System.out.println("proController priceHigh : "+priceHigh);
+		//System.out.println("proController priceLow : "+priceLow);
 		
 		PagingDTO pagingDTO = new PagingDTO();
 		String pageNum_temp = req.getParameter("pageNum");
@@ -75,7 +75,7 @@ public class SearchProductListController extends HttpServlet{
 		List<MiniCateDTO> miniCateList = new ProductServiceImp().forSearchCateRead();
 		List<ProductDTO> searchList = new ProductServiceImp().searchProduct(name, cate_num, priceHigh, priceLow, pagingDTO);
 		
-		System.out.println("pro searchList : "+searchList);
+		//System.out.println("pro searchList : "+searchList);
 		
 		Connection conn =null;
 		try {

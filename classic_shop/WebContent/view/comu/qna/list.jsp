@@ -69,7 +69,9 @@
 									</c:if>
 								</td>
 							<td>${qnaList.name}</td>
-							<td>${qnaList.indate}</td>
+							<td>
+								<fmt:formatDate value="${qnaList.indate}" pattern="yyyy-MM-dd HH:mm" />
+							</td>
 							<td>${qnaList.count}</td>
 						</tr>
 					</c:forEach>

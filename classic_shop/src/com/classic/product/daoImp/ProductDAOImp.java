@@ -154,7 +154,4 @@ public class ProductDAOImp implements ProductDAO{
 		}
 		return totalRecord;
 	}
-
-
-	
 }

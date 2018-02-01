@@ -29,7 +29,7 @@ public class QnaListController extends HttpServlet{
 		String pageNum_temp = req.getParameter("pageNum");
 		//int totalRecord = new QnaServiceImp().recordTotal();
 		int searchRecord = new QnaServiceImp().searchCount(subject);
-		System.out.println("searchRecord : "+searchRecord);
+		//System.out.println("searchRecord : "+searchRecord);
 		pagingDTO.setPageNum_temp(pageNum_temp);
 		pagingDTO.setTotalRecord(searchRecord);
 		pagingDTO = Paging.setPaging(pagingDTO);
