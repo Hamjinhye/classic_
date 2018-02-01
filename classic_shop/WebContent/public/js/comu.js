@@ -173,15 +173,18 @@ $(function(){
 });
 
 //QNA 검색
-$("#qnaSearchField").click(function(){
-	var qnaSearchOption = $("#qnaSearchField").val();
-	if(qnaSearchOption == 9){
-		$("#qnaSubjectNum").attr("style", "display: inline-block");
-		$("#qnaSearchValue").attr("style", "display: none");
-		$("#qnaSearchBtn").attr("style", "display: none");
-	} else{
-		$("#qnaSubjectNum").attr("style", "display: none");
-		$("#qnaSearchValue").attr("style", "display: inline-block");
-		$("#qnaSearchBtn").attr("style", "display: inline-block");
-	}
+$(function(){
+	$("#qnaSearchField").click(function(){
+		var qnaSearchOption = $("#qnaSearchField").val();
+		console.log(qnaSearchOption)
+		if(qnaSearchOption == 9){
+			$("#qnaSubjectNum").attr("style", "display: inline-block");
+			$("#qnaSearchValue").attr("style", "display: none");
+			//$("#qnaSearchBtn").attr("style", "display: none");
+		} else if(qnaSearchOption == 8){
+			$("#qnaSubjectNum").attr("style", "display: none");
+			$("#qnaSearchValue").attr("style", "display: inline-block");
+			//$("#qnaSearchBtn").attr("style", "display: inline-block");
+		}
+	});
 });

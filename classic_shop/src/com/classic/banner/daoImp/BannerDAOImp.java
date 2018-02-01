@@ -18,10 +18,7 @@ public class BannerDAOImp implements BannerDAO{
 	@Override
 	public BannerDTO selectBanner() throws Exception {
 		BannerDTO bannerDTO = null;
-		String sql = "SELECT b.num, b.name, b.content, b.state"
-				+ " FROM banner b, img_path i"
-				+ " WHERE b.num=i.banner_num"
-				+ " AND b.state=0";
+		String sql = "SELECT * FROM banner WHERE state=0";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
@@ -32,6 +29,7 @@ public class BannerDAOImp implements BannerDAO{
 			bannerDTO.setName(rs.getString("name"));
 			bannerDTO.setContent(rs.getString("content"));
 			bannerDTO.setState(rs.getInt("state"));
+			bannerDTO.setImg_path(rs.getString("img_path"));
 		}
 		return bannerDTO;
 	}

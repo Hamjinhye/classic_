@@ -134,4 +134,47 @@ public class ProductServiceImp implements ProductService{
 		return searchMiniCateList;
 	}
 
+	@Override
+	public List<ProductDTO> searchProduct(String name, String cate_num, int priceHigh, int priceLow,
+			PagingDTO pagingDTO) {
+		List<ProductDTO> productSearchList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			productSearchList = new SearchDAOImp(conn).searchProduct(name, cate_num, priceHigh, priceLow, pagingDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try{
+				conn.rollback();
+			} catch (Exception e2){
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return productSearchList;
+	}
+
+	@Override
+	public int searchCount(String name, String cate_num, int priceHigh, int priceLow) {
+		int searchCount = 0;
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			searchCount = new SearchDAOImp(conn).searchCount(name, cate_num, priceHigh, priceLow);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return searchCount;
+	}
+
 }
