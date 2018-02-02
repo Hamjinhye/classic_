@@ -1,5 +1,7 @@
 DROP tablespace CLASSIC_DB including contents AND datafiles;
 
+commit;
+
 create tablespace CLASSIC_DB
 datafile 'C:/oraclexe/app/oracle/oradata/XE/CLASSIC_DB.dbf'
 size 200m
@@ -10,6 +12,8 @@ DROP USER classic_dba cascade;
 CREATE USER classic_dba identified BY dba1234
 DEFAULT tablespace CLASSIC_DB quota unlimited ON CLASSIC_DB
 TEMPORARY tablespace temp;
+
+commit;
 
 grant connect, resource, dba to classic_dba;
 
@@ -308,6 +312,8 @@ create table img_path(
 	name varchar2(200) default 'no_img.jpg' not null
 );
 
+commit;
+
 drop user classic_admin cascade;
 create user classic_admin identified by admin1234 default tablespace CLASSIC_DB
 quota unlimited on CLASSIC_DB;
@@ -319,6 +325,8 @@ grant delete any table to classic_admin;
 grant update any table to classic_admin;
 grant insert any table to classic_admin;
 grant select any sequence to classic_admin;
+
+commit;
 
 conn classic_admin/admin1234;
 
@@ -379,3 +387,5 @@ create synonym refund_seq for classic_dba.refund_seq;
 create synonym cancel_seq for classic_dba.cancel_seq;
 create synonym mileage_seq for classic_dba.mileage_seq;
 create synonym img_path_seq for classic_dba.img_path_seq;
+
+commit;
