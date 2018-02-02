@@ -46,7 +46,7 @@ $("#allCheck").click(function(){
 });
 var GoCartWishSelected=function(mem_num){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/user/cart.do?num="+mem_num+"&productNum=";
+		var url ="http://localhost:9999/classic_shop/cart.do?num="+mem_num+"&productNum=";
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			if(this.checked){
 				url+=this.value+"_";
@@ -196,6 +196,7 @@ $(document).ready(function(){
 			innerText +='	</td>';
 			innerText +='</tr>';
 		}
+		console.log(table);
 		table.innerHTML =innerText;
 	} else {
 		innerText = "<td colspan='7'>장바구니가 비었습니다.</td>";
@@ -204,7 +205,6 @@ $(document).ready(function(){
 });
 
 //orderList
-//$( ".datepicker" ).datepicker();
 
 var AllChartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
