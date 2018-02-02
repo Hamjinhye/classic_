@@ -708,8 +708,8 @@ INSERT INTO icon VALUES(icon_seq.nextval, 4, 'hit', sysdate, TO_DATE('2018-04-05
 INSERT INTO icon VALUES(icon_seq.nextval, 5, 'sale', sysdate, TO_DATE('2018-04-05','yyyy-mm-dd'), 0);
 
 -- 배너
+insert into banner values(banner_seq.nextval,4,'리뷰이벤트','내용',TO_DATE('2017-01-02','yyyy-mm-dd'),TO_DATE('2017-01-09','yyyy-mm-dd'),0, 'test배너.png');
 insert into banner values(banner_seq.nextval,4,'연말특별세일','내용',TO_DATE('2017-01-02','yyyy-mm-dd'),TO_DATE('2017-01-09','yyyy-mm-dd'),1, null);
-insert into banner values(banner_seq.nextval,4,'리뷰이벤트','내용',TO_DATE('2017-01-02','yyyy-mm-dd'),TO_DATE('2017-01-09','yyyy-mm-dd'),0, null);
 insert into banner values(banner_seq.nextval,4,'무료배송이벤트','내용',TO_DATE('2017-01-02','yyyy-mm-dd'),TO_DATE('2017-01-09','yyyy-mm-dd'),-1, null);
 
 --faq
@@ -978,3 +978,4 @@ INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_
 --cancel
 INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
 INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
+commit;
