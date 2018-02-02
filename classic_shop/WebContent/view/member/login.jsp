@@ -29,7 +29,7 @@
 					<button id="naverIdLogin_loginButton" class="btn btn-success" style=" padding: 0px 0px;"><img class="btn-img" style="width: 100%; height: 100%;" src="<c:url value='/public/img/naverLoginIcon_Green2.PNG'/>"></button>
 				
 					<!-- <button id="naver_login" class="btn btn-success">NAVER LOGIN</button> -->
-					<button id="google_login" class="" data-onsuccess="onSignIn"><span class="fa fa-google-plus"> LOGIN</span></button>
+					<button id="google_login" class="btn btn-danger" data-onsuccess="onSignIn"><span class="fa fa-google-plus">GOOGLE LOGIN</span></button>
 					<!-- <button id="google_login" class="btn btn-danger" data-onsuccess="onSignIn"> -->
 					<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 					<!-- </button> -->

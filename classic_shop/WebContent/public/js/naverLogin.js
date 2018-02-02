@@ -3280,7 +3280,7 @@ nv.$$ = nv.cssquery = (function() {
      */
     cssquery.release = function() {
         if(nv._p_._JINDO_IS_IE) {
-            delete validUID;
+            //delete validUID;
             validUID = {};
             
             if(bUseResultCache){
@@ -6333,9 +6333,9 @@ nv._p_.cssNameToJavaScriptName = function(sName){
         sName = sName.replace(vandorPerfix,nv._p_.vendorPrefixObj[vandorPerfix]);
     }
     
-    return sName.replace(/(:?-(\w))/g,function(_,_,m){
+   /* return sName.replace(/(:?-(\w))/g,function(_,_,m){
        return m.toUpperCase();
-    });
+    });*/
 };
 
 //-!nv.$Element._getTransition.hidden start!-//

@@ -16,7 +16,7 @@
 	</div>
 </div>
 <div class="comu_body">
-	<p class="comu_title">QNA ${searchRecord}건</p>
+	<p class="comu_title">QNA </p>
 		<div class="table-responsive table-div">
 			<table class="table table-hover" id="qna_read">
 				<tbody class="qna_title">
@@ -108,13 +108,3 @@
 			</form>
 		</div>
 </div>
-<!-- <script>
-function searchBtn(){
-	if($("#qnaSearchValue").text().length == 0){
-		$("qnaSearchValue").focus();
-		alert("검색어를 입력해주세요");
-		return false;
-	}
-	qnaSearchForm.submit();
-}
-</script> -->

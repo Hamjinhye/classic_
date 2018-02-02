@@ -16,7 +16,7 @@
 <script src='<c:url value="/public/js/jquery/jquery-3.2.1.min.js"/>'></script>
 <script src='<c:url value="/public/js/jquery-ui/jquery-ui.min.js"/>'></script>
 <!-- kakao 지도 api -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9634cbc392b8b80779d4f419ee72bf3a"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=84bcade65eb930539142b96587f20ef0&libraries=services,clusterer,drawing"></script>
 <!-- 개인 lib -->
 <link rel="stylesheet" href="<c:url value='/public/css/common.css' />">
 <script src='<c:url value="/public/js/script_header.js"/>'></script>
