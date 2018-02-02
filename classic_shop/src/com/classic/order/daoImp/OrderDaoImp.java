@@ -164,7 +164,7 @@ public class OrderDaoImp implements OrderDAO{
 			coupon.setNum(rs.getInt("coupon_num"));
 			coupon.setMem_num(rs.getInt("mem_num"));
 			coupon.setCoupon_name(rs.getString("coupon_name"));
-			coupon.setSale(rs.getInt("discount"));
+			coupon.setSale(rs.getDouble("discount"));
 			couponList.add(coupon);
 		}
 		return couponList;

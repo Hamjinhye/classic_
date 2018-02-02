@@ -75,17 +75,15 @@ public class OrderController extends HttpServlet{
 					if(couponSale==couponSale.intValue()) {
 						if(i==0&&z==0) {
 							paidDTO.setPayment((int)(productPrice-couponSale));
-							System.out.println("정수 첫번째 : "+paidDTO.getPayment());
 						} else {
 							paidDTO.setPayment(productPrice);
-							System.out.println("정수 그 후  : "+paidDTO.getPayment());
 						}
 					}else {
-						System.out.println("실수 계산:"+(int)(productPrice-(productPrice*couponSale)));
+						paidDTO.setPayment((int)(productPrice-(productPrice*couponSale)));
 					}
 					conn = ClassicDBConnection.getConnection();
 					orderDAO = new OrderDaoImp(conn);
-					/*insert += orderDAO.insert(paidDTO);*/
+					insert += orderDAO.insert(paidDTO);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
