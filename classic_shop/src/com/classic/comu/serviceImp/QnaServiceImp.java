@@ -14,7 +14,7 @@ public class QnaServiceImp implements QnaService{
 	
 	static Connection conn = null;
 
-	@Override
+	/*@Override
 	public List<QnaDTO> listQna(PagingDTO pagingDTO) {
 		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
 		try {
@@ -33,16 +33,16 @@ public class QnaServiceImp implements QnaService{
 			ClassicDBConnection.close(conn);
 		}
 		return qnaList;
-	}
+	}*/
 
 	@Override
-	public List<QnaDTO> searchQna(int subject, PagingDTO pagingDTO) {
+	public List<QnaDTO> searchQna(String subject, String name, PagingDTO pagingDTO) {
 		List<QnaDTO> qnaSearchList = new ArrayList<QnaDTO>();
 		try {
 			conn = ClassicDBConnection.getConnection();
 			conn.setAutoCommit(false);
 			conn.commit();
-			qnaSearchList = new QnaDAOImp(conn).searchQna(subject, null, pagingDTO);
+			qnaSearchList = new QnaDAOImp(conn).searchQna(subject, name, pagingDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 			try{
@@ -218,6 +218,27 @@ public class QnaServiceImp implements QnaService{
 			ClassicDBConnection.close(conn);
 		}
 		return count;
+	}
+
+	@Override
+	public int searchCount(String subject) {
+		int searchCount = 0;
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			searchCount = new QnaDAOImp(conn).searchCount(subject);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return searchCount;
 	}
 
 

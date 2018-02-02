@@ -17,4 +17,6 @@ public interface ProductService {
 	
 	//product search
 	public List<MiniCateDTO> forSearchCateRead();
+	public List<ProductDTO> searchProduct(String name, String cate_num, int priceHigh, int priceLow, PagingDTO pagingDTO);
+	public int searchCount(String name, String cate_num, int priceHigh, int priceLow);
 }

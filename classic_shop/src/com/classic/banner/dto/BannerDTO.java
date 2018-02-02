@@ -19,12 +19,11 @@ public class BannerDTO {
 
 	private int num;
 	private int mem_num;
+	private String name;
 	private String content;
 	private Date start_date;
 	private Date end_date;
 	private int state;
-
-	private String name;
 	private String img_path;
 	public int getNum() {
 		return num;
@@ -37,6 +36,12 @@ public class BannerDTO {
 	}
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getContent() {
 		return content;
@@ -62,12 +67,6 @@ public class BannerDTO {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getImg_path() {
 		return img_path;
 	}
@@ -76,8 +75,9 @@ public class BannerDTO {
 	}
 	@Override
 	public String toString() {
-		return "{\"num\" : \"" + num + "\", \"mem_num\" : \"" + mem_num + "\", \"content\" : \"" + content
-				+ "\", \"start_date\" : \"" + start_date + "\", \"end_date\" : \"" + end_date + "\", \"state\" : \""
-				+ state + "\", \"name\" : \"" + name + "\", \"img_path\" : \"" + img_path + "\"}";
+		return "{\"num\":\"" + num + "\", \"mem_num\":\"" + mem_num + "\", \"name\":\"" + name + "\", \"content\":\""
+				+ content + "\", \"start_date\":\"" + start_date + "\", \"end_date\":\"" + end_date + "\", \"state\":\""
+				+ state + "\", \"img_path\":\"" + img_path + "\"} ";
 	}
+	
 }

@@ -29,7 +29,6 @@ public class MypageMainController extends HttpServlet{
 		MemberDTO memDTO = new MemberServiceImp().readMember(num); //회원 정보
 		List<QnaDTO> memQnaList = new QnaServiceImp().readMemQna(num, pagingDTO); //내가 쓴 qna
 		int memTotalRecord = new QnaServiceImp().memRecordTotal(num);
-		System.out.println("????????"+memTotalRecord);
 		req.setAttribute("memDTO", memDTO);
 		req.setAttribute("memQnaList", memQnaList);
 		req.setAttribute("memTotalRecord", memTotalRecord);

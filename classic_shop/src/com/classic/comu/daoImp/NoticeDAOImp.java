@@ -51,7 +51,7 @@ public class NoticeDAOImp implements NoticeDAO{
 	@Override
 	public NoticeDTO selectNotice(int num) throws Exception {
 		NoticeDTO noticeDTO = null;
-		String sql = "SELECT n.num, m.id as name, n.subject, n.content, n.count, n.indate"
+		String sql = "SELECT n.num, m.id as name, n.title, n.content, n.count, n.indate"
 				+ " FROM notice n, member m"
 				+ " WHERE n.mem_num=m.num" 
 				+ " AND n.num=?";
@@ -64,7 +64,7 @@ public class NoticeDAOImp implements NoticeDAO{
 			noticeDTO = new NoticeDTO();
 			noticeDTO.setNum(rs.getInt("num"));
 			noticeDTO.setName(rs.getString("name"));
-			noticeDTO.setSubject(rs.getInt("subject"));
+			noticeDTO.setTitle(rs.getString("title"));
 			noticeDTO.setContent(rs.getString("content"));
 			noticeDTO.setCount(rs.getInt("count"));
 			noticeDTO.setIndate(rs.getDate("indate"));
