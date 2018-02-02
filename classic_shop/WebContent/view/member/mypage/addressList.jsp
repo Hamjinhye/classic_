@@ -7,7 +7,6 @@
 <div class="member_body">
 	<div class="container">
 		<div class="address_wrap">
-		${addrList}
 			<h2 class="addressTitle">ADRESS LIST</h2>
 			<form action="/user/address/remove.do" method="post" name="delForm">
 				<table class="table address_table">
@@ -19,22 +18,22 @@
 								</label>
 							</th>
 							<th class="col-sm-1">No.</th>
-							<th class="col-sm-3">주소</th>
-							<th class="col-sm-1">삭제</th>
+							<th class="col-sm-9">주소</th>
+							<th class="col-sm-2">삭제</th>
 						</tr>
 					</tbody>
 					<tbody>
-						<c:forEach var="addr" items="${addrList}">
+						<c:forEach var="addr" items="${addrBookList}">
 							<tr>
 								<td>
 									<label>
-										<input name="checkRow" type="checkbox" value="${addr.num}">
+										<input name="checkAll" id="th_checkAll" type="checkbox" onclick="checkAll()">
 									</label>
 								</td>
-								<td>${addr.num }</td>
+								<td>${addr.row_num }</td>
 								<td>${addr.zip_code} ${addr.base_addr} ${addr.detail_addr}</td>
 								<!-- onclick="addrJson(this.form)" -->
-								<td><button class="btn btn-default" type="button" onclick="addrDelBtn(${addr.mem_num},${addr.num})">삭제</button></td>
+								<td><button class="btn btn-default" type="button" onclick="addrDelBtn(${loginMem.num},${addr.num})">삭제</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -68,8 +67,38 @@
 										<input name="addrDetail" type="text" id="sample6_address2" class="form-control" placeholder="상세주소">
 									</div>
 								</div>
-								<!-- 우편번호 API -->
 								<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+								<script>
+							    function sample6_execDaumPostcode() {
+									new daum.Postcode({
+							   			oncomplete: function(data) {
+							                var fullAddr = '';
+							                var extraAddr = '';
+	
+							                if (data.userSelectedType === 'R') {
+							                    fullAddr = data.roadAddress;
+	
+							                } else {
+							                    fullAddr = data.jibunAddress;
+							                }
+	
+							                if(data.userSelectedType === 'R'){
+							                    if(data.bname !== ''){
+							                        extraAddr += data.bname;
+							                    }
+							                    if(data.buildingName !== ''){
+							                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+							                    }
+							                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+							                }
+							                document.getElementById('sample6_postcode').value = data.zonecode;
+							                document.getElementById('sample6_address').value = fullAddr;
+	
+							                document.getElementById('sample6_address2').focus();
+							            }
+							        }).open();
+							    }
+								</script>
 								<input type="hidden" name="memNum" value="${loginMem.num}">
 								<div class="modify_btn_group">
 									<button class="btn btn-default" type="button" onclick="addrJson(this.form)">등록</button>
@@ -83,6 +112,8 @@
 					</div>
 				</div>
 			</div>
+		<!-- 페이징 -->
+		<jsp:include page="/common/paging.jsp"/>
 		</div>				
 	</div>
 </div>

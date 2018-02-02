@@ -18,7 +18,7 @@ public class CouponLogDAOImp implements CouponLogDAO{
 
 	@Override
 	public List<CouponLogDTO> couponLogSelect(int mem_num) throws Exception {
-		List<CouponLogDTO> couponLog = new ArrayList<CouponLogDTO>();
+		List<CouponLogDTO> couponLogList = new ArrayList<CouponLogDTO>();
 		String sql = "select l.name, l.content, l.start_date as start_date, l.end_date as end_date, c.num as c_num, c.state as c_state"
 				+ " from coupon c, coupon_log l, member m"
 				+ " where c.mem_num=m.num and c.log_num=l.num and c.mem_num=? order by c.num desc";
@@ -33,18 +33,18 @@ public class CouponLogDAOImp implements CouponLogDAO{
 			couponlogDTO.setEnd_date(rs.getDate("end_date"));
 			couponlogDTO.setC_num(rs.getInt("c_num"));
 			couponlogDTO.setC_state(rs.getInt("c_state"));			
-			couponLog.add(couponlogDTO);
+			couponLogList.add(couponlogDTO);
 		}		
-		return couponLog;
+		return couponLogList;
 	}
 	public static void main(String[] args) {
 		Connection conn = null;
-		List<CouponLogDTO> couponList = new ArrayList<CouponLogDTO>();
+		List<CouponLogDTO> couponLogList = new ArrayList<CouponLogDTO>();
 		try {
 			conn = ClassicDBConnection.getConnection();
-			CouponLogDAO couponDao = new CouponLogDAOImp(conn);
-			couponList=couponDao.couponLogSelect(1);
-			System.out.println(couponList);
+			CouponLogDAO couponDAO = new CouponLogDAOImp(conn);
+			couponLogList=couponDAO.couponLogSelect(1);
+			System.out.println(couponLogList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
