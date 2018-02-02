@@ -10,8 +10,6 @@ import com.classic.common.dto.PagingDTO;
 import com.classic.comu.dao.NoticeDAO;
 import com.classic.comu.dto.NoticeDTO;
 
-
-
 public class NoticeDAOImp implements NoticeDAO{
 	
 	private Connection conn;
