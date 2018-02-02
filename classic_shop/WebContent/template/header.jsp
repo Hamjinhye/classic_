@@ -90,22 +90,3 @@
 				</div>
 			</div>
 		</nav>
-<script>
-$(function(){
- 	var cookies = document.cookie.split(";");
- 	var cartSymbol = document.getElementById("cartSymbol");
- 	//console.log(cookies);
- 	var productCount=0;
- 	var i;
- 	for(i = 0; i<cookies.length; i++){
- 		var key = (cookies[i].split("=")[0].trim()).split("_")[2];
- 		if(key=="name"){
- 			productCount++;
- 		}
- 	}
- 	cartSymbol.innerHTML = productCount;
- 	if(productCount!=0){
- 		cartSymbol.style.background = "red";
- 	}
-});
-</script>

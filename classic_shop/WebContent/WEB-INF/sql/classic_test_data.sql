@@ -978,15 +978,3 @@ INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_
 --cancel
 INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
 INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
-
-
-alter table coupon_log modify sale null;
-ALTER TABLE coupon_log DROP COLUMN sale;
-ALTER TABLE coupon_log add (sale number(6,2));
-select * from COUPON_LOG;
-update coupon_log set sale =2500 where num=1;
-update coupon_log set sale =0.3 where num=2;
-update coupon_log set sale =0.5 where num=3;
-update coupon_log set sale =0.5 where num=4;
-ALTER TABLE coupon_log MODIFY sale NOT NULL;
-commit;

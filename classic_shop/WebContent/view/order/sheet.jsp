@@ -84,7 +84,8 @@
 					</td>
 					<td>
 						<c:if test="${product.price>50000}">
-							<input type="text" class="form-item text-center" name="price" value ="${product.price}" style="border: hidden;">
+							
+							<input type="text" class="form-item text-center" name="price" value ="${product}" style="border: hidden;">
 						</c:if>
 						<c:if test="${product.price<50000}">
 							<input type="text" class="form-item text-center" name="price" value ="${product.price+2500}" style="border: hidden;">  
