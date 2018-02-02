@@ -19,24 +19,28 @@ public class QnaListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		//qnaList
-		PagingDTO pagingDTO = new PagingDTO(); //dto 호출
-		String pageNum_temp = req.getParameter("pageNum"); //view에서 pageNum 받아오기
-		int totalRecord = new QnaServiceImp().recordTotal(); //totalRecord 호출
-		pagingDTO.setPageNum_temp(pageNum_temp); //view에서 받아온 String 타입의 pageNum을, pageNum_temp에 넣기(integer.parse도 Paging.java에 있음. 변환 필요X)
-		pagingDTO.setTotalRecord(totalRecord); //전체 게시물 수 넣기
-		pagingDTO = Paging.setPaging(pagingDTO); //pagingDTO에 Paging.java setting
-		
-		String url=req.getContextPath()+"/community/qna.do?pageNum="; //url 값 설정
-		/*
-		 view에서 어떻게 쓰이는지는, /common/paging.jsp 참고
-		 pageNum과 또 다른 파라미터를 받아와야 하는 상황이라면, 아래의 형식으로 설정
-		 String url = req.getContextPath()+"/mypage/myposting.do?num="+mem_num+"&pageNum=";
-		 * */
-		List<QnaDTO> qnaList = new QnaServiceImp().listQna(pagingDTO); //list 호출
-		req.setAttribute("url", url); //url 내장객체에 담기
+		//search setting
+		String subject = req.getParameter("searchSubject");
+		String name = req.getParameter("searchName");
+		if(subject == null || subject == "") { subject = ""; }
+		if(name == null || name == "") { name = ""; }
+		//paging setting
+		PagingDTO pagingDTO = new PagingDTO();
+		String pageNum_temp = req.getParameter("pageNum");
+		//int totalRecord = new QnaServiceImp().recordTotal();
+		int searchRecord = new QnaServiceImp().searchCount(subject);
+		//System.out.println("searchRecord : "+searchRecord);
+		pagingDTO.setPageNum_temp(pageNum_temp);
+		pagingDTO.setTotalRecord(searchRecord);
+		pagingDTO = Paging.setPaging(pagingDTO);
+		String url=req.getContextPath()+"/community/qna.do?pageNum=";
+		String returnPage = "&searchSubject="+subject+"&searchName="+name;
+		List<QnaDTO> qnaList = new QnaServiceImp().searchQna(subject, name, pagingDTO);
+		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);
+		req.setAttribute("returnPage", returnPage);
 		req.setAttribute("qnaList", qnaList);
-		req.getRequestDispatcher("/view/comu/qnaList.jsp").forward(req, resp);
+		req.setAttribute("searchRecord", searchRecord);
+		req.getRequestDispatcher("/view/comu/qna/list.jsp").forward(req, resp);
 	}
 }

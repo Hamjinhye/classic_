@@ -11,14 +11,16 @@
 <body>
 	<div id="bannerPage">
 		<div id="bannerInner">
-			<p>${banner.num}</p>
+			<%-- <p>${banner.num}</p>
 			<p>${banner.name}</p>
 			<p>${banner.content}</p>
-			<p>${banner.state}</p>
+			<p>${banner.state}</p> --%>
+			<img src="<c:url value='/public/img/bannerImg/${banner.img_path}' />">
+			<%-- <img alt="" src="<c:url value='/public/img/bannerImg/test배너.png '/>"> --%>
 		</div>
-		<div>
+		<div class="container-fluid" style="text-align: right; font-family: 굴림; font-size: 12px; padding: 3px 5px; color: rgb(255, 255, 255); width: 300px; background-color: rgb(49, 48, 49);">
+			<label for="popClose" style="margin-right:20px;">오늘 하루동안 이 창을 열지 않기</label>
 			<input type="checkbox" id="popClose" name="popClose" value="on" onchange="javacript:todayClose(this.value)">
-			<label for="popClose">오늘 하루동안 이 창을 열지 않기</label>
 		</div>
 	</div>
 <script>

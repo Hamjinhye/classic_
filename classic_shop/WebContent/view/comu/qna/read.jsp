@@ -58,10 +58,24 @@
 			<!-- 댓글 폼 -->
 			<div class="qna_reply_form">
 				<table class="table table-bordered">
-					<tr>
-						<th class="col-sm-2" id="qnaReplyId">작성자</th>
-						<td>댓글 내용</td>
-					</tr>
+						<c:forEach var="reply" items="${replyList}">
+							<c:choose>
+								<c:when test="${reply.content ne null}">
+									<tr>
+										<th class="col-sm-2" id="qnaReplyId" style="text-align: center;">${reply.name}</th>
+										<td style="text-align: left;">${reply.content}</td>
+										<td class="col-sm-2">
+											<fmt:formatDate value="${reply.indate}" pattern="yyyy-MM-dd HH:mm" />
+										</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="3">작성된 댓글이 없습니다.</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 				</table>
 			</div>
 		</div>

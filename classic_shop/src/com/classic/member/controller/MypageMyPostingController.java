@@ -21,8 +21,6 @@ public class MypageMyPostingController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//페이징 된 qna 리스트
-		//리뷰
 		PagingDTO pagingDTO = new PagingDTO();
 		String mem_num = req.getParameter("num"); //mem_num
 		String pageNum_temp = req.getParameter("pageNum");
@@ -35,6 +33,7 @@ public class MypageMyPostingController extends HttpServlet{
 		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);
 		req.setAttribute("memQnaList", memQnaList);
+		req.setAttribute("memTotalRecord", memTotalRecord);
 		req.getRequestDispatcher("/view/member/mypage/myposting.jsp").forward(req, resp);
 	}
 

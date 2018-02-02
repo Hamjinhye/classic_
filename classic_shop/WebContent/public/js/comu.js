@@ -16,6 +16,7 @@ function readNotice(num){
 			dataType: "json",
 			success: function(data){
 				$(".notice_div table").hide();
+				$("#noticePagingContainer").attr("style", "display: none");
 				//$(".comu_paging").hide();
 				var notice_contents="";
 				$(data).each(function(index, item){
@@ -60,22 +61,6 @@ var qnaListBtn = function(){
 	location.href="/classic_shop/community/qna.do";
 }
 
-/*
- var secureNum = document.getElementById("qnaSecureNum").value;
-	if(secureNum=="1"){ //비공개글
- 45		window.open('/classic_shop/comu/qna/securePassword.html','_blank','width=350 height=200');
-	} else if(secureNum=="0"){
- * */
-
-/*	var secureCheck = function(num){
-		var secureNum = num;
-		if(secureNum==0){
-			readQna();
-		}else{
-			window.open('/classic_shop/comu/qna/securePassword.html','_blank','width=350 height=200');
-		}
-	}*/
-
 //qnaDelete
 var removeQna = function(num){
 	var removeNum = num;
@@ -95,77 +80,10 @@ var removeQna = function(num){
 	$.ajax(setting);
 }
 
-//readQna
-/*var readQna = function(num){
-	var setting={
-			url: "/classic_shop/qna/readRemove.do?num="+num,
-			data: "GET",
-			dataType: "json",
-			success: function(data){
-				console.log(data);
-				$("#qna_read table").hide(); //qnaList Form hide
-				$(".comu_paging").hide(); //qnaList Paging hide
-				$(".qna_search").hide(); //qnaList Search hide
-				$(".comu_insert_btn").hide(); //qnaList '문의하기' btn hide
-				var qna_contents="";
-				$(data).each(function(index, item){
-					qna_contents+="<table class='table table-condensed'>";
-					qna_contents+="<tbody class='qna_title'>";
-					qna_contents+="<tr>";
-					qna_contents+="<th class='col-sm-1'>SUBJECT</th>";
-					qna_contents+="<td class='col-sm-6'>"+subjectName(item.subject)+"</td>";
-					qna_contents+="<th class='col-sm-1'>NAME</th>";
-					qna_contents+="<td class='col-sm-6'>"+item.name+"</td>";
-					qna_contents+="</tr>";
-					qna_contents+="<tr>";
-					qna_contents+="<th class='col-sm-1'>DATE</th>";
-					qna_contents+="<td class='col-sm-6'>"+item.indate+"</td>";
-					qna_contents+="<th class='col-sm-1'>VIEW</th>";
-					qna_contents+="<td class='col-sm-6'>"+item.count+"</td>";
-					qna_contents+="</tr>";
-					qna_contents+="</tbody>";
-					qna_contents+="</table>";
-					qna_contents+="<table class='table table-bordered'>";
-					qna_contents+="<tbody class='qna_contents'>";
-					qna_contents+="<td>"+item.content+"</td>";
-					qna_contents+="</tbody>";
-					qna_contents+="</table>";
-				}); //forEach END
-				$("#qna_read").html(qna_contents);
-				//qna detail Btn Element 추가
-				$(".table-div").after("<div class='qna_btn_group' align='right'></div>");
-				$("<button type='button' class='btn btn-default' onclick='modifyQnaForm("+data.num+")''>수정</button>").appendTo(".qna_btn_group");
-				$("<button type='button' class='btn btn-default' onclick='removeQna("+data.num+")''>삭제</button>").appendTo(".qna_btn_group");
-				$(".table-div").after("<div class='qna_list_btn' align='left'></div>");
-				$("<button type='button' class='btn btn-default' onclick='qnaListBtn()'>목록</button>").appendTo(".qna_list_btn");
-				//qna detail Reply Form 추가
-				$(".qna_btn_group").after("<div class='qna_reply_form'></div>");
-				$("<table class='table table-bordered qna-reply'></table>").appendTo(".qna_reply_form");
-				$("<tr></tr>").appendTo(".qna-reply");
-				$("<th class='col-sm-2' id='qnaReplyId'>작성자</th>").appendTo(".qna-reply>tr");
-				$("<td>댓글 내용</td>").appendTo(".qna-reply>tr");
-			}//success END
-	}//setting END
-	$.ajax(setting);
-	var subjectName = function(subject_num){ //subject set
-	var subjectNum = subject_num;
-	var subjectStr;
-	if(subjectNum==0){
-		subjectStr="상품 문의";
-	}else if(subjectNum==1){
-		subjectStr="배송 문의";
-	}else if(subjectNum==2){
-		subjectStr="배송 전 변경";
-	}else if(subjectNum==3){
-		subjectStr="입금 문의";
-	}else if(subjectNum==4){
-		subjectStr="교환/환불 문의";
-	}else if(subjectNum==5){
-		subjectStr="기타 문의";
-	}
-		return subjectStr;
-	}
-}*/
+var qnaSecureCheck = function(qnaNum){
+	var qnaNum = qnaNum;
+	var secureOpen = window.open("/classic_shop/community/qna/secure.do?qnaNum="+qnaNum, "_blank", "width=300, height=300");
+}
 
 //qnaModify
 var modifyQnaForm = function(num){
@@ -218,7 +136,6 @@ var registerQna = function(qnaRegisterForm){
 			var register = JSON.parse(this.response)["register"];
 			if(register){
 				alert("문의하신 글이 정상적으로 등록 되었습니다.");
-				//location.href="/classic_shop/community/qna.do?num="+num;
 				qnaListBtn();
 			}else{
 				alert("다시 시도해주세요.");
@@ -228,19 +145,6 @@ var registerQna = function(qnaRegisterForm){
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send(data);
 }
-
-//qna 검색
-/*var qnaSearch = function(searchForm){
-	var subject = searchForm.subject.value;
-	var name = searchForm.name.value;
-}
-
-$(function(){
-	$("#qnaSearchField").change(function(){
-		var selectedVal = $("#qnaSearchField").find(":selected").val;
-		alert(selectedVal);
-	});
-});*/
 
 /* QNA register PWD 활성/비활성 설정 */
 $(function(){
@@ -254,6 +158,7 @@ $(function(){
 	});
 });
 
+
 //QNA 첨부파일 Form 추가
 $(function(){
 	$("#addFileForm").click(function(){
@@ -265,5 +170,22 @@ $(function(){
 	$("#removeFileForm").click(function(){
 		$("#qnaFileTbody>tr:last").remove();
 		return false;
+	});
+});
+
+//QNA 검색
+$(function(){
+	$("#qnaSearchField").click(function(){
+		var qnaSearchOption = $("#qnaSearchField").val();
+		console.log(qnaSearchOption)
+		if(qnaSearchOption == 9){
+			$("#qnaSubjectNum").attr("style", "display: inline-block");
+			$("#qnaSearchValue").attr("style", "display: none");
+			//$("#qnaSearchBtn").attr("style", "display: none");
+		} else if(qnaSearchOption == 8){
+			$("#qnaSubjectNum").attr("style", "display: none");
+			$("#qnaSearchValue").attr("style", "display: inline-block");
+			//$("#qnaSearchBtn").attr("style", "display: inline-block");
+		}
 	});
 });

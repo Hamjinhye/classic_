@@ -37,7 +37,12 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 
-#loginBtn, #naver_login{
+/*#loginBtn, #naver_login{
+	width: 34%;
+	height: 45px;
+	margin-left: 15%;
+}*/
+#loginBtn, #naverIdLogin_loginButton{
 	width: 34%;
 	height: 45px;
 	margin-left: 15%;
@@ -150,23 +155,11 @@
 	padding-bottom: 15px;
 	margin-bottom: 0px;
 	color: #000;
-}
-.orderTitle{
-	margin: 38px 0 0px 0;
-	overflow: hidden;
-	padding-top: 100px;
-	color: #000;
+	border-bottom: 1px solid;
 }
 .address_wrap{
 	border-bottom: 1px solid #c5b4b4e6;
     padding-bottom: 40px;
-}
-.recentaddr_wrap{
-	padding-bottom: 40px;
-	padding-top: 40px;
-}
-.recentaddr_wrap .table{	
-	border-top: none;
 }
 .address_wrap .table{
 	border-top: 1px solid #000;
@@ -181,6 +174,15 @@
 
 .address_wrap .table>tbody>tr>th{
 	vertical-align: middle;
+}
+.zip_code_input, .addrbase_input{
+    padding-right: 0px;
+}
+.addrdetail_input{
+	padding-left: 2px;
+}
+.addrbase_wrap{
+	margin-top: 8px;
 }
 
 /* 배송주소록 등록 */

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="<c:url value='/public/js/product_detail.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/public/css/product.css' />">
 </head>
 <body>
@@ -8,16 +9,18 @@
 		<h2 class="title">SEARCH</h2>
 		<!-- 검색 폼 -->
 		<div id="productSeachField">
-			<form name="productSearchForm">
+			<form name="productSearchForm" action="<c:url value='/product/search.do '/>">
 				<!-- 검색 키워드 -->
 				<div class="search_keyword">
 					<div class="row">
 						<label class="control-label col-xs-2">카테고리</label>
 							<div class="col-xs-6">
-								<select class="form-control">
-									<option>Category</option>
-									<option></option>
-								</select>
+									<select class="form-control" name="searchCate">
+										<option value="">Category</option>
+										<c:forEach var="mini" items="${miniCateList}">
+											<option value="${mini.num}">${mini.name}</option>
+										</c:forEach>
+									</select>
 							</div>
 					</div>
 				</div>
@@ -25,7 +28,9 @@
 					<div class="row">
 						<label class="control-label col-xs-2">상품명</label>
 						<div class="col-xs-6">
-							<input type="text" name="productSearchName" class="form-control">
+							<input list="productNameList" name="name" value="" onkeyup="getSearchProductName(this.value)" class="form-control">
+							<datalist id="productNameList">
+							</datalist>
 						</div>
 					</div>
 				</div>
@@ -33,12 +38,12 @@
 					<div class="row">
 						<label class="control-label col-xs-2">판매 가격대</label>
 						<div class="col-xs-6">
-							<select class="form-control">
-								<option>가격 선택</option>
-								<option>3만원 이하</option>
-								<option>5만원 이하</option>
-								<option>10만원 이하</option>
-								<option>10만원 이상</option>
+							<select class="form-control" name="productPrice">
+								<option value="">가격 선택</option>
+								<option value="30000">3만원 이하</option>
+								<option value="50000">5만원 이하</option>
+								<option value="10000">10만원 이하</option>
+								<option value="100000">10만원 이상</option>
 							</select>
 						</div>
 					</div>
@@ -54,40 +59,28 @@
 			<!-- 검색 키워드 정렬 -->
 			<div class="searchArray">
 				<div id="totalProductCount">
-					<small><strong>TOTAL ? Items</strong></small>
+					<small><strong>TOTAL ${searchCount} Items</strong></small>
 				</div>
 				<div class="productArrayKeyword">
-					<small><strong><a href="#">최신순</a></strong></small>
-					<small><strong><a href="#">인기순</a></strong></small>
-					<small><strong><a href="#">리뷰순</a></strong></small>
-					<small><strong><a href="#">높은 가격</a></strong></small>
-					<small><strong><a href="#">낮은 가격</a></strong></small>
+					<small><strong><a href="#" id="productNew">최신순</a></strong></small>
+					<small><strong><a href="#" id="productBest">인기순</a></strong></small>
+					<small><strong><a href="#" id="productReview">리뷰순</a></strong></small>
+					<small><strong><a href="#" id="productHighPrice">높은 가격</a></strong></small>
+					<small><strong><a href="#" id="productLowPrice">낮은 가격</a></strong></small>
 				</div>
 			</div>
 		</div>
 		<!-- 검색 상품 진열 -->
-		<div class="productArray">
+		<!-- <div class="productArray">
 			<label>&#128269; 검색된 상품이 없습니다.</label>
+		</div> -->
+		<div class="productArray">
+			<c:forEach items="${searchList}" var="searchList">
+				${searchList.name}
+			</c:forEach>
+				<h3>왜?</h3>
 		</div>
 		<!-- 페이징  -->
-		<div class="product_paging">
-			<ul class="pagination">
-			    <li>
-			      <a href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li>
-			      <a href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			 </ul>
-		</div>
+		<jsp:include page="/common/paging.jsp"/>
 	</div>
 </div>

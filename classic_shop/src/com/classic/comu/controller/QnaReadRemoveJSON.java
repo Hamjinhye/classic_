@@ -1,6 +1,8 @@
 package com.classic.comu.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.classic.comu.dto.QnaDTO;
+import com.classic.comu.dto.QnaReplyDTO;
+import com.classic.comu.serviceImp.QnaReplyServiceImp;
 import com.classic.comu.serviceImp.QnaServiceImp;
 
 @WebServlet("/community/qna/read.do")
@@ -18,11 +22,15 @@ public class QnaReadRemoveJSON extends HttpServlet{
 		//qna Detail
 		req.setCharacterEncoding("UTF-8");
 		QnaDTO qnaDTO = null;
+		List<QnaReplyDTO> replyList = new ArrayList<QnaReplyDTO>();
 		String str_num = req.getParameter("num");
-		int count = new QnaServiceImp().count(Integer.parseInt(str_num));
-		qnaDTO = new QnaServiceImp().readQna(Integer.parseInt(str_num));
-		qnaDTO.setCount(count);
+		int num = Integer.parseInt(str_num);
+		qnaDTO = new QnaServiceImp().readQna(num);
+		int count = new QnaServiceImp().count(num); //조회수
+		replyList = new QnaReplyServiceImp().readQnaReply(num);
 		req.setAttribute("qnaDTO", qnaDTO);
+		req.setAttribute("count", count);
+		req.setAttribute("replyList", replyList);
 		req.getRequestDispatcher("/view/comu/qna/read.jsp").forward(req, resp);
 	}
 	

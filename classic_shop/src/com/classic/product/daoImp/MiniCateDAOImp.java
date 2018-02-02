@@ -68,26 +68,26 @@ public class MiniCateDAOImp implements MiniCateDAO {
 		}
 		return miniCateList;
 	}
-	
-	
-/*	public static void main(String[] args) {
-		Connection conn = null;
-		List<MiniCateDTO> miniCateList = new ArrayList<MiniCateDTO>();
-		int cate_num = 3;
-		
-		try {
-			conn=ClassicDBConnection.getConnection();
-			MiniCateDAO miniCateDAO = new MiniCateDAOImp(conn);
-			//miniCateList=miniCateDAO.selectMiniCateList(cate_num);
-			miniCateList = miniCateDAO.selectMiniCateListAll();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			ClassicDBConnection.close(conn);
-			
+	@Override
+	public List<MiniCateDTO> forSearchCataList() throws Exception {
+		List<MiniCateDTO> searchMiniCateList = new ArrayList<MiniCateDTO>();
+		String sql = "SELECT m.num, m.name, m.cate_num, c.name as cate_name"
+				+ " FROM cate c, mini_cate m"
+				+ " WHERE m.cate_num=c.num"
+				+ " AND m.state=1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			MiniCateDTO miniCateDTO = new MiniCateDTO();
+			miniCateDTO.setCate_num(rs.getInt("cate_num"));
+			miniCateDTO.setCate_name(rs.getString("cate_name"));
+			miniCateDTO.setName(rs.getString("name"));
+			miniCateDTO.setNum(rs.getInt("num"));
+			searchMiniCateList.add(miniCateDTO);
 		}
-		System.out.println(miniCateList);
-		
-	}*/
+		return searchMiniCateList;
+	}
+	
+
 
 }

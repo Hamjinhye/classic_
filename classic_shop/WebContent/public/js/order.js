@@ -203,6 +203,9 @@ $(document).ready(function(){
 	}
 });
 
+//orderList
+//$( ".datepicker" ).datepicker();
+
 var AllChartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:9999/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";

@@ -14,19 +14,6 @@ public class NoticeServiceImp implements NoticeService{
 	
 	static Connection conn = null;
 
-/*	@Override
-	public List<NoticeDTO> readNotice() {
-		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-		try {
-			conn = ClassicDBConnection.getConnection();
-			noticeList = new NoticeDAOImp(conn).selectNotice();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ClassicDBConnection.close(conn);
-		}
-		return noticeList;
-	}*/
 	@Override
 	public List<NoticeDTO> readNotice(PagingDTO pagingDTO) {
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();

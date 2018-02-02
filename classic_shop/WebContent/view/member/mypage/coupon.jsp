@@ -5,7 +5,6 @@
 </head>
 <body>   
 <div class="member_body">
-	${couponList }
 	<div class="container">
 		<div class="coupon_wrap">
 			<h2 id="couponTitle">COUPON</h2>
@@ -14,21 +13,25 @@
 					<tr>
 						<th class="col-sm-1">No.</th>
 						<th class="col-sm-2">쿠폰명</th>
-						<th class="col-sm-3">내용</th>
-						<th class="col-sm-1">적용상품</th>
-						<th class="col-sm-1">사용가능기간</th>
+						<th class="col-sm-5">내용</th>
+						<th class="col-sm-2">사용가능기간</th>
 						<th class="col-sm-1">사용여부</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="coupon" items="${couponList}">
+					<c:forEach var="couponlog" items="${couponLogList}">
 						<tr>
-							<td>1</td>
-							<td>50% 쿠폰</td>
-							<td>50,000원 이상 구매시 50% 할인</td>
-							<td>의류</td>
-							<td>18/02/02</td>
-							<td>사용안함</td>
+							<td>${couponlog.c_num}</td>
+							<td>${couponlog.name}</td>
+							<td>${couponlog.content}</td>
+							<td>${couponlog.start_date}~${couponlog.end_date}</td>
+							<td>
+							<c:choose>
+								<c:when test="${couponlog.c_state==0}">사용안함</c:when>
+								<c:when test="${couponlog.c_state==1}">사용함</c:when>
+							</c:choose>
+							</td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -50,7 +53,22 @@
 			</div>
 		</div>
 		<div class="couponForm_wrap">
-			<div class="couponFormTitle">쿠폰 등록하기</div>
+			<div class="couponFormTitle">쿠폰 버튼 등록하기</div>
+			<form class="couponForm">
+				<c:forEach var="couponBtn" items="${couponList }">
+				<div class="couponFormGroup">
+					<c:choose>
+						<c:when test="${couponBtn.allcount>927 }">
+							<button class="btn btn-default" type="button" disabled="disabled">${couponBtn.name } 발급한수량:${couponBtn.allcount}  발급된수량:${couponBtn.num }</button>
+						</c:when>
+						<c:when test="${couponBtn.allcount<=100}">
+							<button class="btn btn-default" type="button">${couponBtn.name } 발급한수량:${couponBtn.allcount}  발급된수량:${couponBtn.num }</button>
+						</c:when>
+					</c:choose>
+				</div>
+				</c:forEach>
+			</form>
+			<!-- <div class="couponFormTitle">쿠폰 등록하기</div>
 			<form class="couponForm">
 				<div class="couponFormGroup">
 					<div class="col-sm-9">
@@ -58,7 +76,7 @@
 					</div>
 					<button class="btn btn-default" type="button">쿠폰 등록</button>
 				</div>
-			</form>
+			</form> -->
 			<div class="couponGuide_wrap">
 				<p>쿠폰 이용안내</p>
 				<div class="couponGuide">

@@ -4,6 +4,7 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="785211237752-m7ipg6nvj45vdhjoc3i2di29u5g4m4qj.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="<c:url value='/public/js/naveridlogin_js_sdk_2.0.0.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/public/css/member.css' />">
 <script src="<c:url value='/public/js/member.js'/>"></script>
 </head>
@@ -25,8 +26,10 @@
 					<button id="joinBtn" class="btn btn-default" type="button">JOIN US</button>
 				</div>
 				<div class="login_outside">
-					<button id="naver_login" class="btn btn-success">NAVER LOGIN</button>
-					<button id="google_login" class="" data-onsuccess="onSignIn"><span class="fa fa-google-plus"> LOGIN</span></button>
+					<button id="naverIdLogin_loginButton" class="btn btn-success" style=" padding: 0px 0px;"><img class="btn-img" style="width: 100%; height: 100%;" src="<c:url value='/public/img/naverLoginIcon_Green2.PNG'/>"></button>
+				
+					<!-- <button id="naver_login" class="btn btn-success">NAVER LOGIN</button> -->
+					<button id="google_login" class="btn btn-danger" data-onsuccess="onSignIn"><span class="fa fa-google-plus">GOOGLE LOGIN</span></button>
 					<!-- <button id="google_login" class="btn btn-danger" data-onsuccess="onSignIn"> -->
 					<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 					<!-- </button> -->

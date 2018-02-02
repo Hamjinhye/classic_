@@ -33,6 +33,6 @@ public class NoticeListController extends HttpServlet{
 		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);
 		req.setAttribute("noticeList", noticeList);
-		req.getRequestDispatcher("/view/comu/noticeList.jsp").forward(req, resp);
+		req.getRequestDispatcher("/view/comu/notice/list.jsp").forward(req, resp);
 	}
 }

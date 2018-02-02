@@ -20,7 +20,7 @@ public class QnaModifyJSON extends HttpServlet{
 		String str_num = req.getParameter("num");
 		QnaDTO qnaDTO = new QnaServiceImp().readQna(Integer.parseInt(str_num));
 		req.setAttribute("qnaModify", qnaDTO);
-		req.getRequestDispatcher("/view/comu/qnaModify.jsp").forward(req, resp);
+		req.getRequestDispatcher("/view/comu/qna/modify.jsp").forward(req, resp);
 	}
 	
 	@Override

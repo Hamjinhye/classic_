@@ -103,3 +103,12 @@
 	color: #ccc;
 }
 
+.ui-accordion .ui-accordion-header{
+	padding: 15px;
+}
+.ui-state-active{
+	border: 1px solid #091679ba;
+    background: #091679ba;
+    font-weight: normal;
+    color: #fff;
+}

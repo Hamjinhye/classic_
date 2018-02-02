@@ -39,13 +39,6 @@ public class ShopGuideDAOImp implements ShopGuideDAO{
 	}
 
 	
-/*	public static void main(String[] args) {
-		try {
-			System.out.println(new ShopGuideDAOImp().selectShopGuide(21));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
+
 
 }

@@ -37,12 +37,5 @@ public class SizuDAOImp implements SizuDAO {
 		return sizuList;
 	}
 
-	/*public static void main(String[] args) {
-		try {
-			System.out.println(new SizuDAOImp().selectSizuList(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
+	
 }
