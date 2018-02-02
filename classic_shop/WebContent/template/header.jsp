@@ -84,10 +84,6 @@
 								</li>
 							<li role="presentation" class="dropdown">
 								<a class="dropdown-toggle" href="<c:url value='/product/search.do' />" role="button">&#128269;</a>
-								<!-- <ul class="dropdown-menu" role="menu">
-									<li><input type="text" placeholder="상품명 검색" id="productSearch">
-										<button id="searchBtn">&#128269;</button></li>
-								</ul> -->
 							</li>
 						</ul>
 					</div>

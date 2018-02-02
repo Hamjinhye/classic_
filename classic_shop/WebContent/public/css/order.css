@@ -1,4 +1,3 @@
-
 /* 二쇰Ц �궡�뿭(list) CSS */
 .order_list_body{
 padding: 50px 50px;
@@ -360,7 +359,7 @@ margin: 50px 50px;
 	text-align: center;
 	vertical-align: middle;
 }
-#orderContents p{
+.productThumb{
 	background:#ccc;
 	width: 104px;
 	height: 104px;

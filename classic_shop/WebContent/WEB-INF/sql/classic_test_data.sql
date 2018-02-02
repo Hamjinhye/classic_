@@ -959,7 +959,6 @@ INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where or
 --delivery
 ---------------------!!!!!!!!DO NOT INSERT DATA DOWN BELOW!!!!!!!!!!!!------------------------
 --delivery// 요 밑에 디비 못넣음 혜진 체크용 
->>>>>>> 1a55f9a30659555c9b6f5a458ece6a87a4653fe4
 INSERT INTO delivery VALUES(delivery_seq.nextval ,41 ,'CJ택배','6898000144426575' ,1 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,52 ,NULL,NULL ,0 ,sysdate , NULL);
 INSERT INTO delivery VALUES(delivery_seq.nextval ,43 ,'대한통운','1111222233334444' ,2 ,sysdate , NULL);
@@ -976,29 +975,18 @@ INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_
 --INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
 
 ---------------------!!!!!!!!DO NOT INSERT DATA ABOVE!!!!!!!!!!!! 디비안들어가는 거 확인함------------------------
-
---혜진 필요 DB
-INSERT INTO member VALUES(member_seq.nextval, 'member4', '1234', '01099998888', 'member4@c.com', 3, sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000053',1,'상품명53','서브 설명','메인 설명',100000,50000,'FREE',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000054',1,'상품명53','서브 설명','메인 설명',100000,50000,'S',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000055',1,'상품명53','서브 설명','메인 설명',100000,50000,'M',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000056',1,'상품명53','서브 설명','메인 설명',100000,50000,'L',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000057',1,'상품명54','서브 설명','메인 설명',100000,50000,'FREE',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000058',1,'상품명54','서브 설명','메인 설명',100000,50000,'S',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000059',1,'상품명54','서브 설명','메인 설명',100000,50000,'M',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO product VALUES(product_seq.nextval,'0000060',1,'상품명54','서브 설명','메인 설명',100000,50000,'L',999,1,1,1,1,sysdate,0,sysdate);
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000053'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000054'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000055'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000056'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000057'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000058'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000059'), 'F0F8FF', '하늘색');
-INSERT INTO colour VALUES(colour_seq.nextval, (select num from product where code='0000060'), 'F0F8FF', '하늘색');
-INSERT INTO wish VALUES(wish_seq.nextval ,(select num from product where code='0000053'), (select num from member where id='member4'), sysdate);
-INSERT INTO wish VALUES(wish_seq.nextval ,(select num from product where code='0000057'), (select num from member where id='member4'), sysdate);
-INSERT INTO wish VALUES(wish_seq.nextval ,(select num from product where code='0000057'), (select num from member where id='member4'), sysdate);
-
 --cancel
 INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
 INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
+
+
+alter table coupon_log modify sale null;
+ALTER TABLE coupon_log DROP COLUMN sale;
+ALTER TABLE coupon_log add (sale number(6,2));
+select * from COUPON_LOG;
+update coupon_log set sale =2500 where num=1;
+update coupon_log set sale =0.3 where num=2;
+update coupon_log set sale =0.5 where num=3;
+update coupon_log set sale =0.5 where num=4;
+ALTER TABLE coupon_log MODIFY sale NOT NULL;
+commit;

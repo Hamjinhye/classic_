@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.classic.common.dto.PagingDTO;
+import com.classic.member.dto.CouponDTO;
 import com.classic.order.dao.OrderDAO;
 import com.classic.order.dto.CancelDTO;
 import com.classic.order.dto.PaidDTO;
@@ -158,5 +159,69 @@ public class OrderDaoImp implements OrderDAO{
 		}
 		return memTotalCount;
 	}
-		
+	
+	//혜진 주문전 sheet에서 쿠폰 몇장인지보여줄때 
+	@Override
+	public int couponCount(int mem_num) throws Exception {
+		int coupon=0;
+		String sql = "SELECT COUNT(*) FROM COUPON WHERE mem_num=? AND state=1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			coupon = rs.getInt("COUNT(*)");
+		}
+		return coupon;
+	}
+	//쿠폰 선택할 때 정보
+	@Override
+	public List<CouponDTO> selectCoupon(int mem_num) throws Exception {
+		List<CouponDTO> couponList = new ArrayList<CouponDTO>();
+		CouponDTO coupon = null;
+		String sql = "SELECT c.num coupon_num, c.mem_num mem_num , cl.name coupon_name, cl.sale discount "
+					+ "from coupon c, coupon_log cl " 
+					+ "where c.log_num = cl.num and "
+					+ "cl.start_date<=sysdate and cl.end_date>=sysdate "
+					+ "and c.mem_num = ? and c.state=1";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			coupon = new CouponDTO();
+			coupon.setNum(rs.getInt("coupon_num"));
+			coupon.setMem_num(rs.getInt("mem_num"));
+			coupon.setCoupon_name(rs.getString("coupon_name"));
+			coupon.setSale(rs.getInt("discount"));
+			couponList.add(coupon);
+		}
+		return couponList;
+	}
+	@Override
+	public int insert(PaidDTO paidDTO) throws Exception {
+		int insert = 0; 
+		String sql ="INSERT INTO paid(num,mem_num,product_num,coupon_num, order_num, name, phone, zip_code, base_addr, detail_addr, memo, paid_date, pay_with, order_money, payment, order_date, order_state,deposit_name,sizu_num,colour_num) " 
+				+"values (paid_seq.nextval,?,?,?,to_number(?),?,?,?,?,?,?,NULL,?,?,?,SYSDATE,?,?,(select num from sizu where product_num =? and sizu=?),(select num from colour where product_num=? and name=?))";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, paidDTO.getMem_num());
+		pstmt.setInt(2, paidDTO.getProduct_num());
+		pstmt.setInt(3, paidDTO.getCoupon_num());
+		pstmt.setString(4,paidDTO.getOrder_num());
+		pstmt.setString(5, paidDTO.getName());
+		pstmt.setInt(6, paidDTO.getPhone());
+		pstmt.setString(7,paidDTO.getZip_code());
+		pstmt.setString(8, paidDTO.getBase_addr());
+		pstmt.setString(9, paidDTO.getDetail_addr());
+		pstmt.setString(10, paidDTO.getMemo());
+		pstmt.setInt(11, paidDTO.getPay_with());
+		pstmt.setInt(12, paidDTO.getOrder_money());
+		pstmt.setInt(13, paidDTO.getPayment());
+		pstmt.setInt(14, paidDTO.getOrder_state());
+		pstmt.setString(15, paidDTO.getDeposit_name());
+		pstmt.setInt(16, paidDTO.getProduct_num());
+		pstmt.setString(17, paidDTO.getSizu());
+		pstmt.setInt(18, paidDTO.getProduct_num());
+		pstmt.setString(19, paidDTO.getColour());
+		insert = pstmt.executeUpdate();
+		return insert;
+	}
 }

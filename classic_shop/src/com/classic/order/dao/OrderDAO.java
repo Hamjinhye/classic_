@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.classic.common.dto.PagingDTO;
 import com.classic.order.dto.CancelDTO;
+import com.classic.member.dto.CouponDTO;
 import com.classic.order.dto.PaidDTO;
 import com.classic.order.dto.RefundDTO;
 import com.classic.order.dto.TradeDTO;
@@ -16,6 +17,8 @@ public interface OrderDAO {
 	public int tradeReturnUpdate(PaidDTO paidDto) throws Exception; //교환반품시 상태업데이트
 	public int selectCount(int mem_num) throws Exception;//특정 회원의 주문 수
 	
-
-
+	//혜진DAO
+	public int couponCount(int mem_num) throws Exception;
+	public List<CouponDTO> selectCoupon(int mem_num) throws Exception;
+	public int insert(PaidDTO paidDTO)  throws Exception;
 }

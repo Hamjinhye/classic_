@@ -8,6 +8,7 @@ import com.classic.order.dto.WishDTO;
 
 public interface WishListDAO {
 	public List<WishDTO> selectWish (int memNum) throws Exception;
+	public WishDTO selectWish (int memNum, int productNum) throws Exception;
 	public int WishDel (int memNum) throws Exception;
 	public int WishDel (int memNum,int productNum) throws Exception;
 	public int recodeTotal(int memNum) throws Exception;
