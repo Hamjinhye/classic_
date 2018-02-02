@@ -64,6 +64,7 @@ public class OrderDaoImp implements OrderDAO{
 	}
 	@Override
 	public int cancelUpdate(PaidDTO paidDto) throws Exception {
+		//주문취소
 		int update=0;
 		String sql="UPDATE paid SET order_state=-2 " + 
 				"WHERE order_num=?";
@@ -74,8 +75,20 @@ public class OrderDaoImp implements OrderDAO{
 		return update;
 	}
 	@Override
-	public int shippingUpdate(String order_num) throws Exception {
+	public int tradeReturnUpdate(PaidDTO paidDto) throws Exception {
 		int update=0;
+		String sql="UPDATE paid SET order_state=-1 " + 
+				"WHERE order_num=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, paidDto.getOrder_num());
+		update=pstmt.executeUpdate();
+		return update;
+	}
+	@Override
+	public int shippingUpdate(String order_num) throws Exception {
+		//구매확정
+		int update=0;
+		String sql="UPDATE ";
 		return update;
 	}
 	@Override
@@ -144,5 +157,6 @@ public class OrderDaoImp implements OrderDAO{
 			memTotalCount=rs.getInt("total");
 		}
 		return memTotalCount;
-	}	
+	}
+		
 }
