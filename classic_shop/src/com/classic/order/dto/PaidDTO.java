@@ -18,7 +18,7 @@ public class PaidDTO {
 	PAYMENT            NOT NULL NUMBER(12)
 	ORDER_DATE         NOT NULL DATE
 	ORDER_STATE        NOT NULL NUMBER(1)    
-	-3:취소/-2:환불반품/-1:교환/0:결제대기 / 1:결제완료 / 2:주문확인 / 3:주문완료
+	-2:취소/-1:교환반품/0:결제대기 / 1:결제완료 / 2:주문확인 / 3:주문완료
 	DEPOSIT_NAME       NOT NULL VARCHAR2(20)
 	0:배송준비 / 1:배송중 /2:배송완료 /3:수취확인
 	*/

@@ -20,7 +20,6 @@
 					<th>할인금액</th>
 					<th>배송비</th>
 					<th>결제수단</th>
-					<th>총 예상 적립금</th>
 				</tr>
 				<tr>
 					<td>${detail.order_money} 원</td>
@@ -52,29 +51,17 @@
 					<th>수량</th>
 					<th>주문금액</th>
 					<th>배송상태</th>
-					<th>예상 적립금</th>	
 				</tr>
 				<tr>
 					<td>
-						<label><a href="<c:url value='/product/detail.do?num=${detail.product_num}' />">상품명: ${detail.g_name}</a></label><br>
+						<label><a href="<c:url value='/detail.do?num=${detail.product_num}' />">상품명: ${detail.g_name}</a></label><br>
 						<strong>[옵션]</strong> 색상: ${detail.g_color}, 사이즈: ${detail.g_size}
 					</td>
 					<td>1</td>
 					<td>order_money</td>
 					<td>delivery_state:0배송준비</td>
-					<td>now_mileage</td>
 				</tr>
-				<tr>
-					<td>
-						<img alt="images" src=""  align="left" hspace="10">
-						<label><a href="#">상품명:product_name</a></label><br><!-- 상품명 누르면 상품상세정보로 -->
-						[옵션]색상:color_name, 사이즈:product_sizu
-					</td>
-					<td>3</td>
-					<td>order_money</td>
-					<td>delivery_state:0배송준비</td>
-					<td>now_mileage</td>
-				</tr>
+				
 			</table>
 		</div>
 	</div>
@@ -91,7 +78,7 @@
 					<th>배송메모</th>
 				</tr>
 				<tr>
-					<td>name</td> <!--  input으로 받은 값?? -->
+					<td>name</td>
 					<td>phonNumber</td>
 					<td>zip_code</td>
 					<td>base_addr</td>
