@@ -192,20 +192,25 @@ public class QnaDAOImp implements QnaDAO{
 	}
 
 	@Override
-	public int searchCount(String subject) throws Exception {
+	public int searchCount(String subject, String name) throws Exception {
 		int searchCount = 0;
-		String sql = "SELECT COUNT(*) as total FROM qna"
-				+ " WHERE subject like ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, "%"+subject+"%");
-		//pstmt.setString(2, "%"+name+"%");
+		String sql = "";
+		if(name == "" || name == null) {
+			sql = "SELECT COUNT(*) as total FROM qna WHERE subject like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+subject+"%");
+		} else if(subject == "" || subject == null ) {
+			sql = "SELECT COUNT(*) as total FROM member m, qna q"
+					+ " WHERE m.num=q.mem_num AND m.id like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+name+"%");
+		}
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 			searchCount = rs.getInt("total");
 		}
 		return searchCount;
 	}
-	
 }

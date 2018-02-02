@@ -17,6 +17,6 @@ public interface QnaDAO {
 	public int qnaMemTotalRecord(int mem_num) throws Exception; //특정회원의 qna 글 수
 	public int count(int num) throws Exception; //qna 조회수
 	public int qnaTotalRecord() throws Exception; //qna 게시글수
-	public int searchCount(String subject) throws Exception; // qna 검색 게시글 수
+	public int searchCount(String subject, String name) throws Exception; // qna 검색 게시글 수
 
 }

@@ -31,6 +31,7 @@ public class QnaDTO {
 	private String img_name;
 	private int row_num;
 	
+	
 	private int reply_count;
 
 	public int getNum() {

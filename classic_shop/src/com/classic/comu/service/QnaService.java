@@ -18,6 +18,6 @@ public interface QnaService {
 	public int recordTotal();
 	public int memRecordTotal(int mem_num);
 	public int count(int num);
-	public int searchCount(String subject);
+	public int searchCount(String subject, String name);
 }
 
