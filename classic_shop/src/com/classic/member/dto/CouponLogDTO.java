@@ -60,10 +60,10 @@ public class CouponLogDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getSale() {
+	public double getSale() {
 		return sale;
 	}
-	public void setSale(int sale) {
+	public void setSale(double sale) {
 		this.sale = sale;
 	}
 	public String getContent() {

@@ -27,10 +27,10 @@ public class CouponDTO {
 	public void setCoupon_name(String coupon_name) {
 		this.coupon_name = coupon_name;
 	}
-	public int getSale() {
+	public double getSale() {
 		return sale;
 	}
-	public void setSale(int sale) {
+	public void setSale(double sale) {
 		this.sale = sale;
 	}
 	public int getNum() {
