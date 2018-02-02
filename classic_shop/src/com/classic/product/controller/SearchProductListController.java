@@ -61,7 +61,7 @@ public class SearchProductListController extends HttpServlet{
 		PagingDTO pagingDTO = new PagingDTO();
 		String pageNum_temp = req.getParameter("pageNum");
 		int searchCount = new ProductServiceImp().searchCount(name, cate_num, priceHigh, priceLow);
-		System.out.println("product Searcount : "+searchCount);
+		//System.out.println("product Searcount : "+searchCount);
 		pagingDTO.setRowNum(9);
 		pagingDTO.setPageNum_temp(pageNum_temp);
 		pagingDTO.setTotalRecord(searchCount);
