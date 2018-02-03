@@ -177,4 +177,18 @@ public class ProductServiceImp implements ProductService{
 		return searchCount;
 	}
 
+	@Override
+	public List<ColourDTO> readColor() {
+		List<ColourDTO> colorList = new ArrayList<ColourDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			colorList = new SearchDAOImp(conn).selectColor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return colorList;
+	}
+
 }

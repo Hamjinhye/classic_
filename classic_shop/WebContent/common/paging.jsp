@@ -29,7 +29,7 @@ background-color: #000;
 					<li class="active"><a href="#">${i}</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="${url}${i}${returnPage}">${i}</a></li><!-- 현재 페이지 -->
+					<li><a href="${url}${i}">${i}</a></li><!-- 현재 페이지 -->
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

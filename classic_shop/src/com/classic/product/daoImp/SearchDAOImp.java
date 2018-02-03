@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.classic.common.dto.PagingDTO;
 import com.classic.product.dao.SearchDAO;
+import com.classic.product.dto.ColourDTO;
 import com.classic.product.dto.ProductDTO;
 
 public class SearchDAOImp implements SearchDAO{
@@ -16,12 +17,7 @@ public class SearchDAOImp implements SearchDAO{
 	public SearchDAOImp(Connection conn) {
 		this.conn = conn;
 	}
-	//최신순, 인기순, 리뷰순, 높은가격, 낮은가격
-	//최신순 : indate DESC
-	//인기순 : 주문에서 끌어와야하나?
-	//리뷰순 : 리뷰에서 끌어와야하나?
-	//높은 : price DESC
-	//낮은 : price 
+
 	@Override
 	public List<String> selectProductName(String name) throws Exception {
 		List<String> productNameList = new ArrayList<String>();
@@ -55,10 +51,6 @@ public class SearchDAOImp implements SearchDAO{
 		pstmt.setString(2, "%"+name+"%");
 		pstmt.setInt(3, priceLow);
 		pstmt.setInt(4, priceHigh);
-		//3만원 이하 : 30000 and 0
-		//5만원 이하 : 50000 and 0
-		//10만원 이하 : 100000 and 0
-		//10만원 이상 : 1000000 and 100000
 		pstmt.setInt(5, pagingDTO.getEndRecord());
 		pstmt.setInt(6, pagingDTO.getStartRecord());
 		rs = pstmt.executeQuery();
@@ -106,5 +98,24 @@ public class SearchDAOImp implements SearchDAO{
 			searchCount = rs.getInt("total");
 		}
 		return searchCount;
+	}
+
+	@Override
+	public List<ColourDTO> selectColor() throws Exception {
+		List<ColourDTO> colorList = new ArrayList<ColourDTO>();
+		String sql = "SELECT * FROM colour c, product p WHERE p.num=c.product_num";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		pstmt = conn.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			ColourDTO colorDTO = new ColourDTO();
+			colorDTO.setNum(rs.getInt("num"));
+			colorDTO.setProduct_num(rs.getInt("product_num"));
+			colorDTO.setCode(rs.getString("code"));
+			colorDTO.setName(rs.getString("name"));
+			colorList.add(colorDTO);
+		}
+		return colorList;
 	}
 }

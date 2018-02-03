@@ -18,6 +18,7 @@ import com.classic.product.dao.MiniCateDAO;
 import com.classic.product.daoImp.CateDAIOImp;
 import com.classic.product.daoImp.MiniCateDAOImp;
 import com.classic.product.dto.CateDTO;
+import com.classic.product.dto.ColourDTO;
 import com.classic.product.dto.MiniCateDTO;
 import com.classic.product.dto.ProductDTO;
 import com.classic.product.serviceImp.ProductServiceImp;
@@ -57,11 +58,9 @@ public class SearchProductListController extends HttpServlet{
 			priceLow = 100000;
 		}
 		
-		//price sql 쪼개기 기본 sql문에 price 파라미터가 들어오면 where절에 추가
 		PagingDTO pagingDTO = new PagingDTO();
 		String pageNum_temp = req.getParameter("pageNum");
 		int searchCount = new ProductServiceImp().searchCount(name, cate_num, priceHigh, priceLow);
-		//System.out.println("product Searcount : "+searchCount);
 		pagingDTO.setRowNum(9);
 		pagingDTO.setPageNum_temp(pageNum_temp);
 		pagingDTO.setTotalRecord(searchCount);
@@ -71,8 +70,7 @@ public class SearchProductListController extends HttpServlet{
 		List<CateDTO> cateList = new ArrayList<CateDTO>();
 		List<MiniCateDTO> miniCateList = new ProductServiceImp().forSearchCateRead();
 		List<ProductDTO> searchList = new ProductServiceImp().searchProduct(name, cate_num, priceHigh, priceLow, pagingDTO);
-		
-		//System.out.println("pro searchList : "+searchList);
+		List<ColourDTO> colorList = new ProductServiceImp().readColor();
 		Connection conn =null;
 		try {
 			conn=ClassicDBConnection.getConnection();
@@ -90,6 +88,7 @@ public class SearchProductListController extends HttpServlet{
 		req.setAttribute("url", url);
 		req.setAttribute("returnPage", returnPage);
 		req.setAttribute("p", pagingDTO);
+		req.setAttribute("colorList", colorList);
 		req.getRequestDispatcher("/view/product/search/searchForm.jsp").forward(req, resp);
 	}
 

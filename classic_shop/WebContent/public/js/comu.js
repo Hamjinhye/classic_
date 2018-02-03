@@ -181,11 +181,9 @@ $(function(){
 		if(qnaSearchOption == 9){
 			$("#qnaSubjectNum").attr("style", "display: inline-block");
 			$("#qnaSearchValue").attr("style", "display: none");
-			//$("#qnaSearchBtn").attr("style", "display: none");
 		} else if(qnaSearchOption == 8){
 			$("#qnaSubjectNum").attr("style", "display: none");
 			$("#qnaSearchValue").attr("style", "display: inline-block");
-			//$("#qnaSearchBtn").attr("style", "display: inline-block");
 		}
 	});
 });

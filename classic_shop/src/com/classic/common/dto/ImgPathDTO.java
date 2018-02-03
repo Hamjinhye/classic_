@@ -14,7 +14,7 @@ public class ImgPathDTO {
 		QNA_NUM              				NUMBER(8)     
 		NOTICE_NUM           			NUMBER(8)     
 		BANNER_NUM           			NUMBER(8)     
-		NAME        			NOT NULL 	VARCHAR2(100)
+		NAME        			NOT NULL 	VARCHAR2(200)
 	 */
 	
 	private int num;

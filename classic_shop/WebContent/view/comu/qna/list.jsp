@@ -33,36 +33,16 @@
 						<tr>
 							<td>${qnaList.num}</td>
 								<td style="text-align: left;">
-									<%-- <c:choose>
-										<c:when test="${qnaList.secure==0}"> --%>
-										<%-- <c:url value="/view/comu/qna/read.jsp">
-											<c:param name="reply_count" value="${qnaList.reply_count}" />
-										</c:url> --%>
-											<a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>">
-												<c:choose>
-													<c:when test="${qnaList.subject==0}">상품 문의</c:when>
-													<c:when test="${qnaList.subject==1}">배송 문의</c:when>
-													<c:when test="${qnaList.subject==2}">배송 전 변경</c:when>
-													<c:when test="${qnaList.subject==3}">입금 문의</c:when>
-													<c:when test="${qnaList.subject==4}">교환/환불 문의</c:when>
-													<c:when test="${qnaList.subject==5}">기타 문의</c:when>
-												</c:choose>
-											</a>										
-										<%-- </c:when> --%>
-										<%-- <c:otherwise>
-											<a href="javascript:qnaSecureCheck(${qnaList.num})">
-											<a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>">
-												<c:choose>
-													<c:when test="${qnaList.subject==0}">상품 문의</c:when>
-													<c:when test="${qnaList.subject==1}">배송 문의</c:when>
-													<c:when test="${qnaList.subject==2}">배송 전 변경</c:when>
-													<c:when test="${qnaList.subject==3}">입금 문의</c:when>
-													<c:when test="${qnaList.subject==4}">교환/환불 문의</c:when>
-													<c:when test="${qnaList.subject==5}">기타 문의</c:when>
-												</c:choose>
-											</a>
-										</c:otherwise> --%>
-									<%-- </c:choose> --%>
+									<a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>">
+										<c:choose>
+											<c:when test="${qnaList.subject==0}">상품 문의</c:when>
+											<c:when test="${qnaList.subject==1}">배송 문의</c:when>
+											<c:when test="${qnaList.subject==2}">배송 전 변경</c:when>
+											<c:when test="${qnaList.subject==3}">입금 문의</c:when>
+											<c:when test="${qnaList.subject==4}">교환/환불 문의</c:when>
+											<c:when test="${qnaList.subject==5}">기타 문의</c:when>
+										</c:choose>
+									</a>										
 									<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
 									<c:if test="${qnaList.secure==1}">
 										<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>

@@ -1,5 +1,7 @@
 package com.classic.banner.dto;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 
 public class BannerDTO {
@@ -71,6 +73,11 @@ public class BannerDTO {
 		return img_path;
 	}
 	public void setImg_path(String img_path) {
+		try {
+			this.img_path = URLEncoder.encode(img_path, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		this.img_path = img_path;
 	}
 	@Override
