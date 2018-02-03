@@ -142,29 +142,37 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="qna" items="${memQnaList}" end="4">
-							<tr>
-								<td class="col-sm-1">${qna.row_num}</td>
-								<td class="col-sm-4">
-									<a href="<c:url value='/community/qna/read.do?num=${qna.num}'/>">
-									<%-- <a href="javascript:readQna('${qna.num}')"> --%>
-										<c:choose>
-											<c:when test="${qna.subject==0}">상품 문의</c:when>
-											<c:when test="${qna.subject==1}">배송 문의</c:when>
-											<c:when test="${qna.subject==2}">배송 전 변경</c:when>
-											<c:when test="${qna.subject==3}">입금 문의</c:when>
-											<c:when test="${qna.subject==4}">교환/환불 문의</c:when>
-											<c:when test="${qna.subject==5}">기타 문의</c:when>
-										</c:choose>
-									</a>
-									<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-									<c:if test="${qna.secure==1}">
-										<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-									</c:if>
-								<td class="col-sm-1">${qna.name}</td>
-								<td class="col-sm-1">${qna.indate}</td>
-							</tr>
-						</c:forEach>
+							<c:choose>
+								<c:when test="${memTotalRecord == 0}">
+									<tr>
+										<td colspan="4" style="text-align: center;">작성된 글이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="qna" items="${memQnaList}" end="4">
+										<tr>
+											<td class="col-sm-1">${qna.row_num}</td>
+											<td class="col-sm-4">
+												<a href="<c:url value='/community/qna/read.do?num=${qna.num}'/>">
+													<c:choose>
+														<c:when test="${qna.subject==0}">상품 문의</c:when>
+														<c:when test="${qna.subject==1}">배송 문의</c:when>
+														<c:when test="${qna.subject==2}">배송 전 변경</c:when>
+														<c:when test="${qna.subject==3}">입금 문의</c:when>
+														<c:when test="${qna.subject==4}">교환/환불 문의</c:when>
+														<c:when test="${qna.subject==5}">기타 문의</c:when>
+													</c:choose>
+												</a>
+												<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+												<c:if test="${qna.secure==1}">
+													<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+												</c:if>
+											<td class="col-sm-1">${qna.name}</td>
+											<td class="col-sm-1">${qna.indate}</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>
@@ -172,11 +180,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-<!-- 
-table 맨 밑줄 border -> 어떤 테이블의 맨 밑에 border를 넣는건가여?
-order List에 주문번호 추가(일단 이건 하지마) -> 넵!!
-my posting -> 제목에 링크했습니다
- -->

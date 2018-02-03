@@ -56,12 +56,27 @@
 				<button type="button" class="btn btn-default" onclick="removeQna('${qnaDTO.num}')">삭제</button>
 			</div>
 			<!-- 댓글 폼 -->
+			<h3>${param.reply_count}</h3>
 			<div class="qna_reply_form">
 				<table class="table table-bordered">
-					<tr>
-						<th class="col-sm-2" id="qnaReplyId">작성자</th>
-						<td>댓글 내용</td>
-					</tr>
+							<c:choose>
+								<c:when test="${param.reply_count == 0}">
+									<tr>
+										<td colspan="3">작성된 댓글이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="reply" items="${replyList}">
+												<tr>
+													<th class="col-sm-2" id="qnaReplyId" style="text-align: center;">${reply.name}</th>
+													<td style="text-align: left;">${reply.content}</td>
+													<td class="col-sm-2">
+														<fmt:formatDate value="${reply.indate}" pattern="yyyy-MM-dd HH:mm" />
+													</td>
+												</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 				</table>
 			</div>
 		</div>

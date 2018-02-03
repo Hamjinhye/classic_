@@ -14,28 +14,7 @@ import com.classic.util.ClassicDBConnection;
 
 public class ProductDAOImp implements ProductDAO{
 	
-	/*public static void main(String[] args) {
-		
-		try {
-			System.out.println(new ProductDAOImp().selectProduct(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
-	/*public static void main(String[] args) {
-		int param = 3;
-		Connection conn=null;
-		try {
-			conn=ClassicDBConnection.getConnection();
-			System.out.println(new ProductDAOImp(conn).selectProductList(param));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 	
-
 	private Connection conn=null;
 	public ProductDAOImp(Connection conn) throws Exception {
 		this.conn=conn;
@@ -46,18 +25,27 @@ public class ProductDAOImp implements ProductDAO{
 		String sql="";
 		
 		if(cate==0) {
-			sql="select * from product "
-					+ "where cate_num in"
-					+ "(select m.num from mini_cate m, cate c "
-					+ "where m.cate_num=c.num and c.num=? and m.state!=0)";
+			sql=	"SELECT * FROM "
+					+"(SELECT ROWNUM row_num, product.* FROM (select * from product "
+					+"where cate_num in "
+					+"(select m.num from mini_cate m, cate c "
+					+"where m.cate_num=c.num and c.num=? and m.state!=0)) product "
+					+"WHERE ROWNUM <= ?) "
+					+"WHERE row_num >=? ";
 			
 			
 		}else if(cate==1) {
-			sql="SELECT * FROM PRODUCT WHERE cate_num=?";
+			sql=	"SELECT * FROM "
+					+"(SELECT ROWNUM row_num, product.* FROM "
+					+"(SELECT * FROM PRODUCT WHERE cate_num=?) product "
+					+"WHERE ROWNUM <= ?) "
+					+"WHERE row_num >=? ";
 		}
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, num);
+		pstmt.setInt(2, pagingDTO.getEndRecord());
+		pstmt.setInt(3, pagingDTO.getStartRecord());
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			ProductDTO productDTO = new ProductDTO();
@@ -166,21 +154,4 @@ public class ProductDAOImp implements ProductDAO{
 		}
 		return totalRecord;
 	}
-
-/*	@Override
-	public List<ProductDTO> searchProduct(ProductDTO productDTO, PagingDTO pagingDTO) throws Exception {
-		List<ProductDTO> productList = new ArrayList<ProductDTO>();
-		String sql = "SELECT * FROM product WHERE"+ pagingDTO.getKeyword() +" like ?";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, "%" + pagingDTO.getKeyValue() + "%");
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			
-		}
-		return productList;
-	}
-*/
-	
 }

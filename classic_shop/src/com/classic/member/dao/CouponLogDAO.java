@@ -9,4 +9,3 @@ public interface CouponLogDAO {
 	public List<CouponLogDTO> couponLogSelect(int mem_num) throws Exception; //리스트 출력
 }
 
-

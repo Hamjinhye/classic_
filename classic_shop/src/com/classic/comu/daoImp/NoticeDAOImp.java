@@ -10,8 +10,6 @@ import com.classic.common.dto.PagingDTO;
 import com.classic.comu.dao.NoticeDAO;
 import com.classic.comu.dto.NoticeDTO;
 
-
-
 public class NoticeDAOImp implements NoticeDAO{
 	
 	private Connection conn;
@@ -19,40 +17,18 @@ public class NoticeDAOImp implements NoticeDAO{
 		this.conn = conn;
 	}
 	
-/*	@Override
-	public List<NoticeDTO> selectNotice() throws Exception{
-		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-		String sql = "SELECT n.num, m.id as name, n.title, n.count, n.indate"
-				+ " FROM notice n, member m"
-				+ " WHERE n.mem_num=m.num"
-				+ " ORDER BY n.num DESC";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			NoticeDTO noticeDTO = new NoticeDTO();
-			noticeDTO.setNum(rs.getInt("num"));
-			noticeDTO.setName(rs.getString("name"));
-			noticeDTO.setTitle(rs.getString("title"));
-			noticeDTO.setCount(rs.getInt("count"));
-			noticeDTO.setIndate(rs.getDate("indate"));
-			noticeList.add(noticeDTO);
-		}
-		return noticeList;
-	}*/
 	
 	@Override
 	public List<NoticeDTO> selectNotice(PagingDTO pagingDTO) throws Exception {
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
 		String sql = "SELECT * FROM"
 					+ " (SELECT ROWNUM row_num, notice.* FROM"
-						+ " (SELECT n.num, m.id as name, n.title, n.count, n.indate"
+						+ " (SELECT n.num, m.id as name, n.title, n.indate, n.count"
 						+ " FROM notice n, member m"
 						+ " WHERE n.mem_num=m.num"
 						+ " ORDER BY n.num DESC) notice"
-					+ " WHERE ROWNUM <=?)"
-				+ " WHERE row_num >=?";
+						+ " WHERE ROWNUM <=?)"
+						+ " WHERE row_num >=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
@@ -65,34 +41,33 @@ public class NoticeDAOImp implements NoticeDAO{
 			noticeDTO.setNum(rs.getInt("num"));
 			noticeDTO.setName(rs.getString("name"));
 			noticeDTO.setTitle(rs.getString("title"));
-			noticeDTO.setCount(rs.getInt("count"));
 			noticeDTO.setIndate(rs.getDate("indate"));
+			noticeDTO.setCount(rs.getInt("count"));
 			noticeList.add(noticeDTO);
 		}
 		return noticeList;
 	}
 
-
 	@Override
 	public NoticeDTO selectNotice(int num) throws Exception {
 		NoticeDTO noticeDTO = null;
-		String sql = "SELECT n.num, n.title, n.content, m.id as name, n.indate, n.count"
+		String sql = "SELECT n.num, m.id as name, n.title, n.content, n.count, n.indate"
 				+ " FROM notice n, member m"
-				+ " WHERE n.mem_num=m.num"
+				+ " WHERE n.mem_num=m.num" 
 				+ " AND n.num=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, num);
 		rs = pstmt.executeQuery();
-		while(rs.next()) {
+		if(rs.next()) {
 			noticeDTO = new NoticeDTO();
 			noticeDTO.setNum(rs.getInt("num"));
 			noticeDTO.setName(rs.getString("name"));
 			noticeDTO.setTitle(rs.getString("title"));
+			noticeDTO.setContent(rs.getString("content"));
 			noticeDTO.setCount(rs.getInt("count"));
 			noticeDTO.setIndate(rs.getDate("indate"));
-			noticeDTO.setContent(rs.getString("content"));
 		}
 		return noticeDTO;
 	}
@@ -110,6 +85,15 @@ public class NoticeDAOImp implements NoticeDAO{
 		}
 		return totalRecord;
 	}
-}
-	
 
+	@Override
+	public int selectCount(int num) throws Exception {
+		int count = 0;
+		String sql = "UPDATE notice SET count=count+1 WHERE num=?";
+		PreparedStatement pstmt = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		count = pstmt.executeUpdate();
+		return count;
+	}
+}

@@ -8,12 +8,11 @@ import com.classic.common.dto.PagingDTO;
 import com.classic.product.dto.CateDTO;
 import com.classic.product.dto.ColourDTO;
 import com.classic.product.dto.MiniCateDTO;
-import com.classic.product.dao.CateDAO;
 import com.classic.product.daoImp.CateDAIOImp;
 import com.classic.product.daoImp.ColourDAOImp;
 import com.classic.product.daoImp.MiniCateDAOImp;
 import com.classic.product.daoImp.ProductDAOImp;
-import com.classic.product.daoImp.searchDAOImp;
+import com.classic.product.daoImp.SearchDAOImp;
 import com.classic.product.dto.ProductDTO;
 import com.classic.product.service.ProductService;
 import com.classic.util.ClassicDBConnection;
@@ -21,49 +20,6 @@ import com.classic.util.ClassicDBConnection;
 public class ProductServiceImp implements ProductService{
 
 	static Connection conn = null;
-	
-	@Override
-	public List<ProductDTO> searchItems(PagingDTO pagingDTO, String searchField, String searchValue,
-			String searchArray) {
-		List<ProductDTO> searchItemList = new ArrayList<ProductDTO>();
-		try {
-			conn = ClassicDBConnection.getConnection();
-			conn.setAutoCommit(false);
-			conn.commit();
-			searchItemList = new searchDAOImp(conn).searchProduct(pagingDTO, searchField, searchValue, searchArray);
-		} catch (Exception e) {
-			e.printStackTrace();
-			try {
-				conn.rollback();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} finally {
-			ClassicDBConnection.close(conn);
-		}
-		return searchItemList;
-	}
-
-	@Override
-	public int searchTotal(String searchField, String searchValue) {
-		int searchCount = 0;
-		try {
-			conn = ClassicDBConnection.getConnection();
-			conn.setAutoCommit(false);
-			conn.commit();
-			searchCount = new searchDAOImp(conn).searchCount(searchField, searchValue);
-		} catch (Exception e) {
-			e.printStackTrace();
-			try {
-				conn.rollback();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} finally {
-			ClassicDBConnection.close(conn);
-		}
-		return searchCount;
-	}
 
 	@Override
 	public List<ProductDTO> listProduct(PagingDTO pagingDTO, int cate, int num) {
@@ -156,5 +112,69 @@ public class ProductServiceImp implements ProductService{
 		return cateDTO;
 	}
 	
+	//상품 검색 카테고리 출력
+	@Override
+	public List<MiniCateDTO> forSearchCateRead() {
+		List<MiniCateDTO> searchMiniCateList = new ArrayList<MiniCateDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			searchMiniCateList = new MiniCateDAOImp(conn).forSearchCataList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try{
+				conn.rollback();
+			} catch (Exception e2){
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return searchMiniCateList;
+	}
+
+	@Override
+	public List<ProductDTO> searchProduct(String name, String cate_num, int priceHigh, int priceLow,
+			PagingDTO pagingDTO) {
+		List<ProductDTO> productSearchList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			productSearchList = new SearchDAOImp(conn).searchProduct(name, cate_num, priceHigh, priceLow, pagingDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try{
+				conn.rollback();
+			} catch (Exception e2){
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return productSearchList;
+	}
+
+	@Override
+	public int searchCount(String name, String cate_num, int priceHigh, int priceLow) {
+		int searchCount = 0;
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			searchCount = new SearchDAOImp(conn).searchCount(name, cate_num, priceHigh, priceLow);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return searchCount;
+	}
 
 }

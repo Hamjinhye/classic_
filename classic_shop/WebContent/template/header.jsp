@@ -16,10 +16,10 @@
 <script src='<c:url value="/public/js/jquery/jquery-3.2.1.min.js"/>'></script>
 <script src='<c:url value="/public/js/jquery-ui/jquery-ui.min.js"/>'></script>
 <!-- kakao 지도 api -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9634cbc392b8b80779d4f419ee72bf3a"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=84bcade65eb930539142b96587f20ef0&libraries=services,clusterer,drawing"></script>
 <!-- 개인 lib -->
 <link rel="stylesheet" href="<c:url value='/public/css/common.css' />">
-<script src='<c:url value="/public/js/script_header.js"/>'></script> 
+<script src='<c:url value="/public/js/script_header.js"/>'></script>
 <title>CLASSIC</title>
 <script>
 	if("${msg}"!=""){
@@ -33,49 +33,6 @@
 				<div id="productNav">
 					<div class="nav navbar-nav navbar-left">
 						<ul class="nav nav-pills" id="cateNavbar">
-						<%-- <li><a href="<c:url value='/main.do' />">CLASSIC</a></li>
-							<li><a href="#">NEW</a></li>
-							<li><a href="#">BEST</a></li>
-							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" href="<c:url value='/view/product/list.do' />" role="button" aria-expanded="false">${cate.name}</a>
-								<a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value='/product/list/outerList.jsp' />" role="button" aria-expanded="false">OUTER</a>
-								
-								 <ul class="dropdown-menu" role="menu">
-									<li><a href="#">COAT</a></li>
-									<li><a href="#">JACKET</a></li>
-									<li><a href="#">JUMPER</a></li>
-									<li><a href="#">CARDIGAN</a></li>
-								</ul>
-							</li>
-							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value='/view/product/list.do?cate=TOP' />" role="button" aria-expanded="false">TOP</a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">T-SHIRT</a></li>
-									<li><a href="#">BLOUSE</a></li>
-									<li><a href="#">KNIT</a></li>
-								</ul>
-							</li>
-							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value='/view/product/list.do?cate=BOTTOM' />" role="button" aria-expanded="false">BOTTOM</a>
-								<ul class="dropdown-menu" role="menu">
-									<li role=""><a href="#">SKIRTS</a></li>
-									<li><a href="#">PANTS</a></li>
-									<li><a href="#">DENIM</a></li>
-								</ul>
-							</li>
-							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="<c:url value='/view/product/list.do?cate=SHOESNBAG' />" role="button" aria-expanded="false">SHOES&amp;BAG</a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">SHOES</a></li>
-									<li><a href="#">BAG</a></li>
-								</ul>
-							</li>
-							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">ACC</a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">ACC</a></li>
-								</ul>
-							</li> --%>
 						</ul>
 					</div>
 				</div>
@@ -104,19 +61,19 @@
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="<c:url value='/user/mypage/modify.do?num=${loginMem.num}'/>">회원정보수정</a></li>
 										<li><a href="<c:url value='/user/address.do?num=${loginMem.num}'/>">배송주소록</a></li>
-										<li><a href="<c:url value='/view/member/mypage/coupon.jsp'/>">쿠폰</a></li><!-- 경로설정 안됨 -->
-										<li><a href="<c:url value='/user/cart.do'/>">장바구니</a></li>
+										<li><a href="<c:url value='/user/coupon.do?num=${loginMem.num}'/>">쿠폰</a></li>
+										<li><a href="<c:url value='/cart.do'/>">장바구니</a></li>
 										<li><a href="<c:url value='/user/wish.do?num=${loginMem.num}'/>">위시리스트</a></li>
 										<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">주문내역</a></li>
 										<li><a href="<c:url value='/user/mypage/myposting.do?num=${loginMem.num}'/>">내가쓴글</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="<c:url value='/user/cart.do'/>">CART
+									<a href="<c:url value='/cart.do'/>">CART
 										<span class="badge badge-pill badge-secondary" style="background-color: #ccc;" id="cartSymbol"></span>
 									</a>
 								</li>
-								<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">ORDER</a></li>
+								<li><a href="<c:url value='/order/list.do?num=${loginMem.num}' />">ORDER</a></li>
 							<li role="presentation" class="dropdown">
 									<a class="dropdown-toggle" href="<c:url value='/community/notice.do' />" role="button" aria-expanded="false">COMMUNITY</a>
 									<ul class="dropdown-menu" role="menu">
@@ -126,11 +83,7 @@
 									</ul>
 								</li>
 							<li role="presentation" class="dropdown">
-								<a class="dropdown-toggle" href="<c:url value='/view/product/search/searchForm.jsp' />" role="button">&#128269;</a><!-- 경로설정 안됨  -->
-								<ul class="dropdown-menu" role="menu">
-									<li><input type="text" placeholder="상품명 검색" id="productSearch">
-										<button id="searchBtn">&#128269;</button></li>
-								</ul>
+								<a class="dropdown-toggle" href="<c:url value='/product/search.do' />" role="button">&#128269;</a>
 							</li>
 						</ul>
 					</div>

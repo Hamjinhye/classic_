@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="<c:url value='/public/js/order.js'/>"></script>
 </head>
 <body>
 	<div class="container" id="orderMainDiv">
@@ -221,6 +222,7 @@
 						<select name="couponNum" onchange="selectCoupon()" id="couponSelect">
 						<c:forEach var="coupon" items="${couponList}">
 							<option value="${coupon.num}_${coupon.sale}">${coupon.coupon_name}</option>
+							<script>console.log("'${coupon.num}'은 '${coupon.sale}'");</script>
 						</c:forEach>
 							<option value="0">사용안함</option>
 						</select>
@@ -264,59 +266,3 @@
 			<p><strong>주문<br>이용 안내 공간</strong></p>
 		</div>
 	</div>
-<script>
-var selectCoupon = function(s){
-	console.log($("#couponSelect").find("option:selected").val());
-	
-}
-function OrderDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var fullAddr = ''; 
-            var extraAddr = ''; 
-            if (data.userSelectedType === 'R') { 
-                fullAddr = data.roadAddress;
-            } else { 
-                fullAddr = data.jibunAddress;
-            }
-            if(data.userSelectedType === 'R'){
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-            document.getElementById('orderPostcode').value = data.zonecode;
-            document.getElementById('orderAddress').value = fullAddr;
-            document.getElementById('orderAddress2').focus();
-        }
-    }).open();
-}
-function DelivDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var fullAddr = ''; 
-            var extraAddr = ''; 
-            if (data.userSelectedType === 'R') { 
-            	fullAddr = data.roadAddress;
-            } else { 
-                fullAddr = data.jibunAddress;
-            }
-            if(data.userSelectedType === 'R'){
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-            document.getElementById('delivPostcode').value = data.zonecode; 
-            document.getElementById('delivAddress').value = fullAddr;
-            document.getElementById('delivAddress2').focus();
-        }
-    }).open();
-}
-</script>

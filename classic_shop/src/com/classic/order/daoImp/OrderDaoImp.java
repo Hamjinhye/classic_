@@ -6,9 +6,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.classic.common.dto.PagingDTO;
 import com.classic.member.dto.CouponDTO;
 import com.classic.order.dao.OrderDAO;
+import com.classic.order.dto.CancelDTO;
 import com.classic.order.dto.PaidDTO;
+import com.classic.order.dto.RefundDTO;
+import com.classic.order.dto.TradeDTO;
 import com.classic.util.ClassicDBConnection;
 
 public class OrderDaoImp implements OrderDAO{
@@ -19,22 +23,26 @@ public class OrderDaoImp implements OrderDAO{
 		this.conn = conn;
 	}
 	@Override
-	public List<PaidDTO> ListSelect(int mem_num) throws Exception {
+	public List<PaidDTO> ListSelect(int mem_num, PagingDTO pagingDto) throws Exception {
 		List<PaidDTO> orderList = new ArrayList<PaidDTO>();
-		String sql ="select p.num, p.order_num, p.payment, p.order_state, p.mem_num, " + 
-				"g.num as g_num, g.name as g_name, d.state as deliv_state, d.deliv_num, "+ 
-				"g.num as product_num, s.sizu as g_size, c.name as g_color " + 
-				"from paid p, member m, product g, delivery d, sizu s, colour c " + 
-				"where p.product_num=g.num " + 
-				"and p.mem_num=m.num " + 
-				"and p.num=d.paid_num(+) " + 
-				"and p.sizu_num=s.num "+
-				"and p.colour_num=c.num "+
-				"and mem_num=?";
+		String sql ="select * from " + 
+						"(select rownum row_num,g.* from " + 
+							"(select p.num, p.order_num, p.payment, p.order_state, p.mem_num, " + 
+							"g.num as g_num, g.name as g_name, d.state as deliv_state, d.deliv_num, " + 
+							"g.num as product_num, s.sizu as g_size, c.name as g_color " + 
+							"from paid p, member m, product g, delivery d, sizu s, colour c " + 
+							"where p.product_num=g.num and p.mem_num=m.num " + 
+							"and p.num=d.paid_num(+) and p.sizu_num=s.num " + 
+							"and p.colour_num=c.num and mem_num=? order by order_num) g " + 
+						"where rownum<=?) "+
+					"where row_num>=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, mem_num);
+		pstmt.setInt(2, pagingDto.getEndRecord());
+		pstmt.setInt(3, pagingDto.getStartRecord());
+		
 		rs=pstmt.executeQuery();
 		while(rs.next()) {
 			PaidDTO order = new PaidDTO();
@@ -50,10 +58,9 @@ public class OrderDaoImp implements OrderDAO{
 			order.setProduct_num(rs.getInt("product_num"));
 			order.setG_size(rs.getString("g_size"));
 			order.setG_color(rs.getString("g_color"));
+			order.setRow_num(rs.getInt("row_num"));
 			orderList.add(order);
 		}
-		
-		/*System.out.println("DaoImp_orderList: "+orderList);*/
 		return orderList;
 	}
 	@Override
@@ -69,36 +76,41 @@ public class OrderDaoImp implements OrderDAO{
 		return update;
 	}
 	@Override
-	public int shippingUpdate(String order_num) throws Exception {
+	public int tradeReturnUpdate(PaidDTO paidDto) throws Exception {
 		int update=0;
+		String sql="UPDATE paid SET order_state=-1 " + 
+				"WHERE order_num=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, paidDto.getOrder_num());
+		update=pstmt.executeUpdate();
+		return update;
+	}
+	@Override
+	public int shippingUpdate(String order_num) throws Exception {
+		//구매확정
+		int update=0;
+		String sql="UPDATE ";
 		return update;
 	}
 	@Override
 	public PaidDTO DetailSelect(int mem_num, String order_num) throws Exception {
-		//주문 상세내역
 		PaidDTO detail = new PaidDTO();
 		String sql ="select p.num, p.order_num, p.payment, p.order_state, p.mem_num, " + 
 				"g.num as g_num, g.name as g_name, d.state as deliv_state, d.deliv_num, d.company as deliv_com, " + 
 				"g.num as product_num, s.sizu as g_size, c.name as g_color, p.order_money, " + 
-				"cp.log_num, cp.num as coupon_num, cpl.num as cpl_num, cpl.name as coupon_name, cpl.sale as coupon_sale, "+ 
-				"p.name, p.phone, p.zip_code, p.base_addr, p.detail_addr, p.memo " + 
+				"cp.log_num, cp.num as coupon_num, cpl.num as cpl_num, cpl.name as coupon_name, "+ 
+				"cpl.sale as coupon_sale, p.name, p.phone, p.zip_code, p.base_addr, p.detail_addr, p.memo " + 
 				"from paid p, member m, product g, delivery d, sizu s, colour c, coupon cp, coupon_log cpl " + 
-				"where p.product_num=g.num " + 
-				"and p.mem_num=m.num " + 
-				"and p.num=d.paid_num(+) " + 
-				"and p.sizu_num=s.num " + 
-				"and p.colour_num=c.num " + 
-				"and p.coupon_num=cp.num(+) "+ 
+				"where p.product_num=g.num and p.mem_num=m.num " + 
+				"and p.num=d.paid_num(+) and p.sizu_num=s.num " + 
+				"and p.colour_num=c.num and p.coupon_num=cp.num(+) " + 
 				"and cp.log_num=cpl.num(+) " +
-				"and p.mem_num=? " + 
-				"and p.order_num=?"; 
+				"and p.mem_num=? and p.order_num=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, mem_num);
 		pstmt.setString(2, order_num);
-		System.out.println("mem_num:"+mem_num);
-		System.out.println("order_num:"+order_num);
 		
 		rs=pstmt.executeQuery();
 		if(rs.next()) {
@@ -126,12 +138,27 @@ public class OrderDaoImp implements OrderDAO{
 			detail.setDetail_addr(rs.getString("detail_addr"));
 			detail.setMemo(rs.getString("memo"));
 		}
-		System.out.println("다오detail: "+detail);
 		return detail;
 	}
-	
-	
-	
+	@Override
+	public int selectCount(int mem_num) throws Exception {
+		int memTotalCount=0;
+		String sql="select count(*) total from "+
+						"(select p.num, p.order_num, p.payment, p.order_state, p.mem_num, " + 
+						"g.num as g_num, g.name as g_name, d.state as deliv_state, d.deliv_num, " + 
+						"g.num as product_num, s.sizu as g_size, c.name as g_color " + 
+						"from paid p, member m, product g, delivery d, sizu s, colour c " + 
+						"where p.product_num=g.num and p.mem_num=m.num  " + 
+						"and p.num=d.paid_num(+) and p.sizu_num=s.num " + 
+						"and p.colour_num=c.num and mem_num=?) g";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		ResultSet rs=pstmt.executeQuery();
+		if(rs.next()) {
+			memTotalCount=rs.getInt("total");
+		}
+		return memTotalCount;
+	}
 	
 	//혜진 주문전 sheet에서 쿠폰 몇장인지보여줄때 
 	@Override
@@ -197,6 +224,4 @@ public class OrderDaoImp implements OrderDAO{
 		insert = pstmt.executeUpdate();
 		return insert;
 	}
-	
-
 }

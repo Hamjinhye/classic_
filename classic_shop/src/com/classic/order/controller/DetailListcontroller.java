@@ -22,15 +22,12 @@ public class DetailListcontroller extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String str_memnum=req.getParameter("num");
 		String order_num=req.getParameter("order_num");
-		System.out.println("str_memnum: "+str_memnum);
-		System.out.println("order_num: "+order_num);
 		Connection conn = null;
 		PaidDTO detail = new PaidDTO();
 		try {
 			conn=ClassicDBConnection.getConnection();
 			OrderDAO orderDAO = new OrderDaoImp(conn);
 			detail = orderDAO.DetailSelect(Integer.parseInt(str_memnum), order_num);
-			System.out.println("컨트롤러detail: "+detail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

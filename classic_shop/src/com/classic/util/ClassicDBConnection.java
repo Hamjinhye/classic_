@@ -48,14 +48,4 @@ public class ClassicDBConnection {
 	}
 
 	
-/*	public static void main(String[] args) {
-		Connection conn;
-		try {
-			conn = ClassicDBConnection.getConnection();
-			System.out.println(conn.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
-	
 }

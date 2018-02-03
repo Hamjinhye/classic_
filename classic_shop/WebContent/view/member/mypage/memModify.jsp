@@ -20,15 +20,15 @@
 			<div class="form-group">
 				<label for="InputPassword" class="col-sm-2 control-label">비밀번호<small style="color: red;">*</small></label>
 				<div class="col-sm-3">
-					<input type="password" class="form-control " id="inputPassword" placeholder="PASSWORD">
+					<input type="password" class="form-control " id="memEditPw" placeholder="PASSWORD">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="InputPasswordCheck" class="col-sm-2 control-label">비밀번호 확인<small style="color: red;">*</small></label>
 				<div class="col-sm-3">
-					<input type="password" class="form-control " id="InputPasswordCheck" name="pw" placeholder="PASSWORD">
+					<input type="password" class="form-control " id="memEditPwCheck" name="pw" placeholder="PASSWORD">
 				</div>
-					<span id="modifyPasswordRule">비밀번호는 영문, 숫자, 특수문자만 사용 가능합니다(4~12자).</span>
+					<span id="editCheckPwMsg">비밀번호는 영문, 숫자, 특수문자만 사용 가능합니다(4~12자).</span>
 			</div>
 			<div class="form-group">
 				<label for="inputPhoneNumber" class="col-sm-2 control-label">연락처</label>

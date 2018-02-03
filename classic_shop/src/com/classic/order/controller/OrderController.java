@@ -40,9 +40,10 @@ public class OrderController extends HttpServlet{
 		String delivPhone = req.getParameter("delivPhone");
 		String delivComent = req.getParameter("delivComent");
 		String couponNum = req.getParameter("couponNum").split("_")[0];
-		String couponSale =req.getParameter("couponNum").split("_")[1];
 		String payWith = req.getParameter("payWith");
 		String depositName = req.getParameter("depositName");
+		System.out.println("couponSale:"+req.getParameter("couponNum").split("_")[1]);
+		Double couponSale =Double.parseDouble(req.getParameter("couponNum").split("_")[1]);
 		PaidDTO paidDTO = new PaidDTO();
 		OrderDAO orderDAO = null;
 		Connection conn = null;
@@ -67,19 +68,33 @@ public class OrderController extends HttpServlet{
 			paidDTO.setSizu(sizu[i]);
 			int productPrice = Integer.parseInt(price[i]);
 			paidDTO.setProduct_num(Integer.parseInt(productNum[i]));
-			paidDTO.setOrder_money(productPrice);
-			paidDTO.setPayment(productPrice-(productPrice*Integer.parseInt(couponSale)/100));
+			paidDTO.setOrder_money(productPrice);			
 			for(int z = 0; z<Integer.parseInt(quantity[i]); z++) {
 				try {
+					System.out.println(couponSale+"="+couponSale.intValue());
+					if(couponSale==couponSale.intValue()) {
+						if(i==0&&z==0) {
+							paidDTO.setPayment((int)(productPrice-couponSale));
+							System.out.println("정수 첫번째 : "+paidDTO.getPayment());
+						} else {
+							paidDTO.setPayment(productPrice);
+							System.out.println("정수 그 후  : "+paidDTO.getPayment());
+						}
+					}else {
+						System.out.println("실수 계산:"+(int)(productPrice-(productPrice*couponSale)));
+					}
 					conn = ClassicDBConnection.getConnection();
 					orderDAO = new OrderDaoImp(conn);
-					insert += orderDAO.insert(paidDTO);
+					/*insert += orderDAO.insert(paidDTO);*/
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
+<<<<<<< HEAD
 		req.setAttribute("insert", insert);
 		req.getRequestDispatcher("/user/order/detail.do?num="+memNum+"&order_num="+orderNumber).forward(req, resp);
+=======
+>>>>>>> origin
 	}
 }

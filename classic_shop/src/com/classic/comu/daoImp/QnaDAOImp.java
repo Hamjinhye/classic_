@@ -17,66 +17,44 @@ public class QnaDAOImp implements QnaDAO{
 	public QnaDAOImp(Connection conn) {
 		this.conn = conn;
 	}
-/*	@Override
-	public List<QnaDTO> selectQna() throws Exception {
-		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
-		String sql = "SELECT q.num, q.mem_num, m.id as name, q.subject, q.count, q.indate, q.secure"
-				+ " FROM qna q, member m"
-				+ " WHERE q.mem_num=m.num"
-				+ " ORDER BY q.num DESC";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while(rs.next()) {
-			QnaDTO qnaDTO = new QnaDTO();
-			qnaDTO.setNum(rs.getInt("num"));
-			qnaDTO.setMem_num(rs.getInt("mem_num"));
-			qnaDTO.setName(rs.getString("name"));
-			qnaDTO.setSubject(rs.getInt("subject"));
-			qnaDTO.setCount(rs.getInt("count"));
-			qnaDTO.setIndate(rs.getDate("indate"));
-			qnaDTO.setSecure(rs.getInt("secure"));
-			qnaList.add(qnaDTO);
-		}
-		return qnaList;
-	}*/
 	
 	@Override
-	public List<QnaDTO> selectQna(PagingDTO pagingDTO) throws Exception {
-		List<QnaDTO> qnaList = new ArrayList<QnaDTO>();
+	public List<QnaDTO> searchQna(String subject, String name, PagingDTO pagingDTO) throws Exception {
+		List<QnaDTO> qnaSearchList = new ArrayList<QnaDTO>();
 		String sql = "SELECT * FROM"
 				+ " (SELECT ROWNUM row_num, qna.* FROM"
-				+ " (SELECT q.num, m.id as name, q.subject, q.count, q.indate, q.secure"
+				+ " (SELECT q.num, m.id as name, q.subject, q.count, q.indate, q.secure,"
+					+ "(SELECT COUNT(*) FROM qna_reply r WHERE r.qna_num=q.num) as reply_count"
 				+ " FROM qna q, member m"
 				+ " WHERE q.mem_num=m.num"
+				+ " AND q.subject like ?"
+				+ "	 AND m.id like ?"
 				+ " ORDER BY q.num DESC) qna"
 				+ " WHERE ROWNUM <= ?)"
 				+ " WHERE row_num >= ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, pagingDTO.getEndRecord()); //끝 게시물
-		pstmt.setInt(2, pagingDTO.getStartRecord()); //시작 게시물
+		pstmt.setString(1, "%"+subject+"%");
+		pstmt.setString(2, "%"+name+"%");
+		pstmt.setInt(3, pagingDTO.getEndRecord());
+		pstmt.setInt(4, pagingDTO.getStartRecord());
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			QnaDTO qnaDTO = new QnaDTO();
-			qnaDTO.setRow_num(rs.getInt("row_num")); //DTO에 row_num 추가하기 & 맨 밑에 보면 total 레코드 구하는 메소드 있음
+			qnaDTO.setRow_num(rs.getInt("row_num"));
 			qnaDTO.setNum(rs.getInt("num"));
 			qnaDTO.setName(rs.getString("name"));
 			qnaDTO.setSubject(rs.getInt("subject"));
 			qnaDTO.setCount(rs.getInt("count"));
 			qnaDTO.setIndate(rs.getDate("indate"));
 			qnaDTO.setSecure(rs.getInt("secure"));
-			qnaList.add(qnaDTO);
+			qnaDTO.setReply_count(rs.getInt("reply_count"));
+			qnaSearchList.add(qnaDTO);
 		}
-		return qnaList;
-	}
-	@Override
-	public List<QnaDTO> searchQna(int subject, String name, PagingDTO pagingDTO) throws Exception {
-		List<QnaDTO> qnaSearchList = new ArrayList<QnaDTO>();
 		return qnaSearchList;
 	}
+	
 	@Override
 	public List<QnaDTO> selectMemQna(int mem_num, PagingDTO pagingDTO) throws Exception {
 		List<QnaDTO> memQnaList = new ArrayList<QnaDTO>();
@@ -211,5 +189,28 @@ public class QnaDAOImp implements QnaDAO{
 		pstmt.setInt(1, num);
 		count = pstmt.executeUpdate();
 		return count;
+	}
+
+	@Override
+	public int searchCount(String subject, String name) throws Exception {
+		int searchCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		if(name == "" || name == null) {
+			sql = "SELECT COUNT(*) as total FROM qna WHERE subject like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+subject+"%");
+		} else if(subject == "" || subject == null ) {
+			sql = "SELECT COUNT(*) as total FROM member m, qna q"
+					+ " WHERE m.num=q.mem_num AND m.id like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+name+"%");
+		}
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			searchCount = rs.getInt("total");
+		}
+		return searchCount;
 	}
 }

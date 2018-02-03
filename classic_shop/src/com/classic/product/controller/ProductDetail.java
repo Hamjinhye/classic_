@@ -52,7 +52,6 @@ public class ProductDetail extends HttpServlet{
 		}
 		
 		
-		//System.out.println(productDetail);
 		
 		req.setAttribute("productDetail", productDTO); 
 		req.setAttribute("colourList", colourList); 

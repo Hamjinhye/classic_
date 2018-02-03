@@ -3,13 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
+<script src="<c:url value='/public/js/order.js'/>"></script>
 </head>
 <body>
 <body>
 	<div class="container" id="mainDiv">
-		<h2 class="text-left" id="wishName">WISH LIST</h2>
+		<h2 class="text-left mb-0" id="wishName">WISH LIST</h2>
 		<table class="table" id="wishTable">
-			<thead id="wishTitle">
+			<thead id="wishTitle" class="align-top">
 				<tr>
 					<th width="5%"><input type="checkbox" id="allCheck"></th>
 					<th width="45%">상품정보</th>
@@ -109,6 +110,7 @@
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
 			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
+<<<<<<< HEAD
 		<jsp:include page="/common/paging.jsp"/>
 <script>
 var AllGoSheet = function(memNum){
@@ -239,3 +241,6 @@ var pickWishDel = function(mem_num,product_num){
 	http.send();
 }
 </script>
+=======
+		<jsp:include page="/common/paging.jsp"/>
+>>>>>>> origin

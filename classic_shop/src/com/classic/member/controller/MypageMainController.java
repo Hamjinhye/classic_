@@ -23,13 +23,15 @@ public class MypageMainController extends HttpServlet{
 		//회원정보, 주문내역, 내가쓴글
 		PagingDTO pagingDTO = new PagingDTO();
 		String mem_num = req.getParameter("num"); //mem_num
+		int num = Integer.parseInt(mem_num);
 		pagingDTO = Paging.setPaging(pagingDTO);
 		
-		MemberDTO memDTO = new MemberServiceImp().readMember(Integer.parseInt(mem_num)); //회원 정보
-		List<QnaDTO> memQnaList = new QnaServiceImp().readMemQna(Integer.parseInt(mem_num), pagingDTO); //내가 쓴 qna
+		MemberDTO memDTO = new MemberServiceImp().readMember(num); //회원 정보
+		List<QnaDTO> memQnaList = new QnaServiceImp().readMemQna(num, pagingDTO); //내가 쓴 qna
+		int memTotalRecord = new QnaServiceImp().memRecordTotal(num);
 		req.setAttribute("memDTO", memDTO);
 		req.setAttribute("memQnaList", memQnaList);
+		req.setAttribute("memTotalRecord", memTotalRecord);
 		req.getRequestDispatcher("/view/member/mypage/main.jsp").forward(req, resp);
-		
 	}
 }

@@ -17,7 +17,7 @@ import com.classic.order.daoImp.CartDaoImp;
 import com.classic.order.dto.WishDTO;
 import com.classic.util.ClassicDBConnection;
 ///view/cart.do 원래 매핑주소
-@WebServlet("/user/cart.do")
+@WebServlet("/cart.do")
 public class CartListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
