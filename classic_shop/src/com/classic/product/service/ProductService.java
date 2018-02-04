@@ -20,4 +20,8 @@ public interface ProductService {
 	public List<ProductDTO> searchProduct(String name, String cate_num, int priceHigh, int priceLow, PagingDTO pagingDTO);
 	public int searchCount(String name, String cate_num, int priceHigh, int priceLow);
 	public List<ColourDTO> readColor();
+	
+	//main
+	public List<ProductDTO> listNew();
+	public List<ProductDTO> listBest();
 }

@@ -12,4 +12,9 @@ public interface ProductDAO {
 	public ProductDTO selectProduct(int num) throws Exception;
 	public int  productTotalRecord(int num, int cate) throws Exception;
 	
+	//main new
+	public List<ProductDTO> mainNewList() throws Exception;
+	//main best
+	public List<ProductDTO> mainBestList() throws Exception;
+	
 }

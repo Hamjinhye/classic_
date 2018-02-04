@@ -128,7 +128,6 @@ var registerQna = function(qnaRegisterForm){
 	var url = "/classic_shop/community/qna/register.do";
 	var method = "POST";
 	var data = "mem_num="+mem_num+"&subject="+subject+"&content="+content+"&secure="+secure+"&pwd="+pwd;
-	console.log(data);
 	var http = new XMLHttpRequest();
 	http.open(method, url, true);
 	http.onreadystatechange = function(){

@@ -191,4 +191,32 @@ public class ProductServiceImp implements ProductService{
 		return colorList;
 	}
 
+	@Override
+	public List<ProductDTO> listNew()  {
+		List<ProductDTO> newList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			newList = new ProductDAOImp(conn).mainNewList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return newList;
+	}
+
+	@Override
+	public List<ProductDTO> listBest() {
+		List<ProductDTO> bestList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			bestList = new ProductDAOImp(conn).mainBestList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return bestList;
+	}
+
 }
