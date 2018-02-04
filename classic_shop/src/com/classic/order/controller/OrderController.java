@@ -91,10 +91,7 @@ public class OrderController extends HttpServlet{
 				}
 			}
 		}
-<<<<<<< HEAD
 		req.setAttribute("insert", insert);
 		req.getRequestDispatcher("/user/order/detail.do?num="+memNum+"&order_num="+orderNumber).forward(req, resp);
-=======
->>>>>>> origin
 	}
 }

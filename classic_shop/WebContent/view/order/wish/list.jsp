@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
-<script src="<c:url value='/public/js/order.js'/>"></script>
 </head>
 <body>
 <body>
@@ -12,7 +11,7 @@
 		<table class="table" id="wishTable">
 			<thead id="wishTitle" class="align-top">
 				<tr>
-					<th width="5%"><input type="checkbox" id="allCheck"></th>
+					<th width="5%"><input type="checkbox" id="allCheck" onclick="checkAll()"></th>
 					<th width="45%">상품정보</th>
 					<th width="10%">판매가</th>
 					<th width="10%">수량</th>
@@ -26,7 +25,7 @@
 				<c:when test="${(fn:length(wishList))!=0}">
 					<c:forEach var="wish" items="${wishList}">
 						<tr>
-							<td><input type="checkbox" value="${wish.productNum}" class="checkWish paramValue" name="product_num"></td>
+							<td><input type="checkbox" value="${wish.productNum}" class="checkWish paramValue" name="product_num" ></td>
 							<td class="infoList">
 								<div class="infoListDiv">
 									<div>
@@ -52,21 +51,28 @@
      	  												<span aria-hidden="true">&times;</span></button>
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
-      												<div class="modal-body" class="wishOptionSelect">
-      													<div>
-	      													<select class="form-control" onclick = "ProductColourSelect(${wish.productNum})">
-	      														<option>${wish.colour}</option>
-	      													</select>
-      													</div>
-      													<div>
-	      													<select class="form-control">
-	      														<option>${wish.sizu}</option>
-	      													</select>
-      													</div>
-     												</div>
-      												<div class="modal-footer">
-        												<button type="button" class="btn btn-default">변경</button>
-      												</div>
+      												<form action="wish/option.do" method="POST">
+	      												<div class="modal-body row" class="wishOptionSelect">
+	      													<div id ="colourOption" class="col-3">
+		      													<select onclick ="productColourSelect(${wish.productNum})" name="colour">
+		      														<option>${wish.colour}</option> 
+		      													</select>
+	      													</div>
+	      													<div id="sizuOpition" class="col-3">
+		      													<select onclick = "productSizuSelect(${wish.productNum})" name="sizu">
+		      														<option>${wish.sizu}</option>
+		      													</select>
+	      													</div>
+	      													<div class="col-3">
+	      														<input type="number" value ="${wish.wishQuantity}" name ="afterAuantity">
+	      													</div>
+	     												</div>
+	      												<div class="modal-footer">
+	      													<input type="hidden" name = "productNum" value ="${wish.productNum}">
+	      													<input type="hidden" name = "beforeQuantity" value="${wish.wishQuantity}">
+	        												<button type="submit" class="btn btn-default">변경</button>
+	      												</div>
+      												</form>
    												</div>
  											</div>
 										</div> 
@@ -87,7 +93,7 @@
 							</c:choose>
 							<td>
 								<div class="buttonGroup">
-									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
+									<a type="button" class="btn btn-default partOrder" href="<c:url value='/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
 									<a type="button" class="btn btn-default partOrder" href='<c:url value="/user/ordersheet.do?num=${loginMem.num}&cookie=f&productNum=${wish.productNum}"/>'>주문하기</a>									
 									<button type="button" class="btn btn-default" onclick="pickWishDel(${loginMem.num},${wish.productNum})">삭제</button>
 								</div>
@@ -110,137 +116,5 @@
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
 			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
-<<<<<<< HEAD
 		<jsp:include page="/common/paging.jsp"/>
-<script>
-var AllGoSheet = function(memNum){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=f&productNum="/>';
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			url+=this.value+"_";
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-var CheckGoSheet = function(memNum){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/ordersheet.do?num='+memNum+'&cookie=f&productNum="/>';
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			if(this.checked){
-				url+=this.value+"_";
-			}		
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-var ProductColourSelect = function(productNum){
-	var method = "GET";
-	var http = new XMLHttpRequest();
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			
-		}
-	}
-	http.open(method,url, true);
-	http.send();
-	
-};
-$("#allCheck").click(function(){
-	if(this.checked){
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			this.checked = true;
-		});
-	} else {
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			this.checked = false;
-		});
-	}	
-});
-var GoCartWishSelected=function(mem_num){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/cart.do?num=${loginMem.num}&productNum="/>';
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			if(this.checked){
-				url+=this.value+"_";
-			}		
-		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
-	}
-}
-var delWishSelected=function(mem_num){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'&product_num="/>';
-		var method="GET";
-		var http = new XMLHttpRequest();
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			if(this.checked){
-				url+=this.value+"_";
-			}		
-		});
-		url=url.substr(0, url.length-1);
-		http.onreadystatechange=function(){
-			if(this.readyState==4 && this.status==200){
-				var delete_json = JSON.parse(this.response);
-				if(delete_json["delete"]){
-					alert("삭제되었습니다.");
-					location.reload();
-				}else{
-					alert("삭제실패");
-				}
-			}
-		}
-		http.open(method,url,true);
-		http.send();
-	} else {
-		alert("wish list가 비었습니다.");
-	}
-}
-var allWishDel = function(mem_num){
-	if(${(fn:length(wishList))!=0}){
-		var url ='<c:url value="/user/wish/remove.do?num='+mem_num+'"/>';
-		var method="DELETE";
-		var http = new XMLHttpRequest();
-		http.onreadystatechange=function(){
-			if(this.readyState==4 && this.status==200){
-				var delete_json = JSON.parse(this.response);
-				if(delete_json["delete"]){
-					alert("삭제되었습니다.");
-					location.reload();
-				}else{
-					alert("삭제실패");
-				}
-			}
-		}
-		http.open(method,url,true);
-		http.send();
-	} else {
-		alert("wish list가 비었습니다.");
-	}
-}
-var pickWishDel = function(mem_num,product_num){
-	var url ="<c:url value='/user/wish/remove.do?num="+mem_num+"&product_num="+product_num;'/>";
-	var method= "PUT";
-	var http = new XMLHttpRequest();
-	console.log
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			var delete_json = JSON.parse(this.response);	
-			console.log(delete_json["delete"]);
-			if(delete_json["delete"]){
-				alert("삭제되었습니다.");
-				location.reload();
-			}else{
-				alert("삭제실패");
-			}
-		}
-	}
-	http.open(method,url,true);
-	http.send();
-}
-</script>
-=======
-		<jsp:include page="/common/paging.jsp"/>
->>>>>>> origin
+<script src="<c:url value='/public/js/order.js'/>"></script>

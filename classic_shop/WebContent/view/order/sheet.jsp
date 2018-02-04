@@ -229,6 +229,9 @@
 					</td>
 				</tr>
 			</table>
+			
+			
+			
 		</div>
 		<div id="methodPay">
 			<p id="payName">결제수단</p>
