@@ -1,7 +1,7 @@
 //wish
 var AllGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
+		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			url+=this.value+"_";
 		});
@@ -11,7 +11,7 @@ var AllGoSheet = function(memNum){
 }
 var CheckGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
+		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			if(this.checked){
 				url+=this.value+"_";
@@ -46,7 +46,7 @@ $("#allCheck").click(function(){
 });
 var GoCartWishSelected=function(mem_num){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/cart.do?num="+mem_num+"&productNum=";
+		var url ="http://localhost:8888/classic_shop/cart.do?num="+mem_num+"&productNum=";
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			if(this.checked){
 				url+=this.value+"_";
@@ -58,7 +58,7 @@ var GoCartWishSelected=function(mem_num){
 }
 var delWishSelected=function(mem_num){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num=";
+		var url ="http://localhost:8888/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num=";
 		var method="GET";
 		var http = new XMLHttpRequest();
 		$('input:checkbox[class*="checkWish"]').each(function(){
@@ -86,7 +86,7 @@ var delWishSelected=function(mem_num){
 }
 var allWishDel = function(mem_num){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/user/wish/remove.do?num="+mem_num;
+		var url ="http://localhost:8888/classic_shop/user/wish/remove.do?num="+mem_num;
 		var method="DELETE";
 		var http = new XMLHttpRequest();
 		http.onreadystatechange=function(){
@@ -107,7 +107,7 @@ var allWishDel = function(mem_num){
 	}
 }
 var pickWishDel = function(mem_num,product_num){
-	var url ="http://localhost:9999/classic_shop/order/delwish.do?num="+mem_num+"&product_num="+product_num; 
+	var url ="http://localhost:8888/classic_shop/order/delwish.do?num="+mem_num+"&product_num="+product_num; 
 	console.log(mem)
 	var method= "PUT";
 	var http = new XMLHttpRequest();
@@ -130,9 +130,13 @@ var pickWishDel = function(mem_num,product_num){
 $(document).ready(function(){
 	var cookies = document.cookie.split(";");
 	var table = document.getElementById("cartContents");
+	var allPriceTab = document.getElementById("allProductPrice");
+	var delivePrice = document.getElementById("delivPrice");
+	var allSellPrice = document.getElementById("allSellPrice");
 	var product = {};
 	var innerText ="";
 	var pNum;
+	var allprice = 0;
 	if(cookies!=""){
 		for(i=0; i<cookies.length; i++){
 			var key = cookies[i].split("=")[0].trim();
@@ -154,18 +158,18 @@ $(document).ready(function(){
 		var key ;
 		for(key in product){
 			innerText +='<tr>';
-			innerText +='	<td><input type="checkbox" class="checkCart" value="'+product[key]+'"></td>';
+			innerText +='	<td><input type="checkbox" class="checkCart" value="'+key+'"></td>';
 			innerText +='	<td id ="cartDetailList">';
 			innerText +='		<div id="cartDetailListDiv">';
 			innerText +='			<div>';
 			innerText +='				<p><a href="#">이미지임</a></p>';
 			innerText +='			</div>';
 			innerText +='			<div>';
-			innerText +='				<ul class="list-group" >';
+			innerText +='				<ul class="list-group " >';
 			innerText +='					<li class="list-group-item"><a href="#">'+product[key].name+'</a></li>';
 			innerText +='					<li class="list-group-item">';
-			innerText += (product[key].colour==undefined)?"":"color"+product[key].colour;
-			innerText += (product[key].sizu==undefined)?"":"sizu"+product[key].sizu;
+			innerText += (product[key].colour==undefined)?"":"color  "+product[key].colour;
+			innerText += (product[key].sizu==undefined)?"":"sizu  "+product[key].sizu;
 			innerText +='					</li>';
 			innerText +='					<li class="list-group-item"><button type="button" class="btn btn-default">옵션변경</button></li>';
 			innerText +='				</ul>';
@@ -173,16 +177,7 @@ $(document).ready(function(){
 			innerText +='		</div>';
 			innerText +='	</td>';
 			innerText +='	<td>'+product[key].price+'</td>';
-			innerText +='	<td>';
-			innerText +='		<div id="productQuantity">';
-			innerText +='			<div>';
-			innerText +='				<input type="number" value="'+product[key].count+'" min="1">';
-			innerText +='			</div>';
-			innerText +='			<div>';
-			innerText +='				<button class="btn btn-default" >변경</button>';
-			innerText +='			</div>';					
-			innerText +='		</div>';
-			innerText +='	</td>'
+			innerText +='	<td>'+product[key].count+'</td>';
 			innerText +='	<td>';
 			innerText += (product[key].price>50000)?"무료":"2500원";
 			innerText +='	</td>';
@@ -195,11 +190,20 @@ $(document).ready(function(){
 			innerText +='		</div>';
 			innerText +='	</td>';
 			innerText +='</tr>';
+			allprice+=parseInt(product[key].price);
 		}
-		console.log(table);
 		table.innerHTML =innerText;
+		allPriceTab.innerHTML = allprice;
+		if(allprice>50000){
+			delivePrice.innerHTML = "무료";
+			allSellPrice.innerHTML = allprice;
+		}else{
+			delivPrice.innerHTML = 2500;
+			allSellPrice.innerHTML = allprice+2500;
+		}
+		/*AllPriceTab.innerHTML = allprice;*/
 	} else {
-		innerText = "<td colspan='7'>장바구니가 비었습니다.</td>";
+		innerText = "<td class='emptyTableData' colspan='7'>장바구니가 비었습니다.</td>";
 		table.innerHTML =innerText;
 	}
 });
@@ -208,7 +212,7 @@ $(document).ready(function(){
 
 var AllChartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
-		var url ="http://localhost:9999/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";
+		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";
 		$('input:checkbox[class*="checkCart"]').each(function(){
 			url+=this.value+"_";
 		});
