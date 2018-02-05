@@ -39,3 +39,4 @@ var getSearchProductName = function(productNameValue){
 		http.send();
 	}
 }
+

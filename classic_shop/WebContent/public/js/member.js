@@ -21,6 +21,10 @@ function onSignIn(googleUser){
 	console.log("ID Token: " + id_token);
 };
 
+/* 경미: 내 js가 안 먹어서 naver.login 전체 주석했었는데.........
+ * 주석 다시 푸려고 보니까 주석안에 주석이 사라져서 오류가 나는데.........
+ * 결론: 어디부터 어디까지 주석이었는지 잘 모르곘어여............ 네이버 로그인 안에서 ...고친 거 없음... 주석만 했음...
+ */
 //NAVER Login
 var naverLogin = new naver.LoginWithNaverId(
 	{
@@ -30,36 +34,35 @@ var naverLogin = new naver.LoginWithNaverId(
 		loginButton: {color: "green", type: 3, height: 60}
 	}
 );
-/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+// (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 
 naverLogin.init();
 
-/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
+// (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 
 $("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl());
 
-/* (5) 현재 로그인 상태를 확인 */
+// (5) 현재 로그인 상태를 확인 
 window.addEventListener('load', function () {
 	naverLogin.getLoginStatus(function (status) {
 		if (status) {
-			/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+//			 (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
 			setLoginStatus();
 		}
 	});
 });
 
-/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+// (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
 function setLoginStatus() {
 	var profileImage = naverLogin.user.getProfileImage();
 	var nickName = naverLogin.user.getNickName();
 	$("#naverIdLogin_loginButton").html('<br><br><img src="' + profileImage + '" height=50 /> <p>' + nickName + '님 반갑습니다.</p>');
 	$("#gnbLogin").html("Logout");
 	$("#gnbLogin").attr("href", "#");
-	/* (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. */
+//	 (7) 로그아웃 버튼을 설정하고 동작을 정의합니다. 
 	$("#gnbLogin").click(function () {
 		naverLogin.logout();
 		location.reload();
 	});
 }
-
 //Naver Login ABOVE!
 
 
@@ -257,31 +260,31 @@ var memModify = function(memModifyForm){
 function sample6_execDaumPostcode() {
 	new daum.Postcode({
 			oncomplete: function(data) {
-            var fullAddr = '';
-            var extraAddr = '';
+        var fullAddr = '';
+        var extraAddr = '';
 
-            if (data.userSelectedType === 'R') {
-                fullAddr = data.roadAddress;
+        if (data.userSelectedType === 'R') {
+            fullAddr = data.roadAddress;
 
-            } else {
-                fullAddr = data.jibunAddress;
-            }
-
-            if(data.userSelectedType === 'R'){
-                if(data.bname !== ''){
-                    extraAddr += data.bname;
-                }
-                if(data.buildingName !== ''){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-            }
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById('sample6_address').value = fullAddr;
-
-            document.getElementById('sample6_address2').focus();
+        } else {
+            fullAddr = data.jibunAddress;
         }
-    }).open();
+
+        if(data.userSelectedType === 'R'){
+            if(data.bname !== ''){
+                extraAddr += data.bname;
+            }
+            if(data.buildingName !== ''){
+                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+        }
+        document.getElementById('sample6_postcode').value = data.zonecode;
+        document.getElementById('sample6_address').value = fullAddr;
+
+        document.getElementById('sample6_address2').focus();
+    }
+}).open();
 }
 
 //배송주소록 삭제
@@ -305,7 +308,7 @@ var addrDelBtn = function(memNum,addrNum){
 	http.send();
 }
 
-// 배송주소록 등록
+//배송주소록 등록
 var addrJson = function(addrForm){
 	var method = "POST";
 	var url = "/classic_shop/user/address/register.do"
@@ -314,6 +317,10 @@ var addrJson = function(addrForm){
 	var zip_code = addrForm.addrZip.value;
 	var base_addr = addrForm.addrBase.value;
 	var detail_addr = addrForm.addrDetail.value;
+	console.log(zip_code);
+	console.log(base_addr);
+	console.log(detail_addr);
+	
 	if(!zip_code.trim() || !base_addr.trim() || !detail_addr.trim()){
 		check=false;
 		alert("주소 항목은 필수 입력값입니다.");

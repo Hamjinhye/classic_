@@ -39,7 +39,6 @@ public class WishListDAOImp implements WishListDAO{
 			wish.setColour(rs.getString("colour"));
 			wishList.add(wish);
 		}
-		//System.out.println(wishList);
 		return wishList;
 	}
 
@@ -111,5 +110,30 @@ public class WishListDAOImp implements WishListDAO{
 			colour.setName(rs.getString("name"));
 		}
 		return colour;
+	}
+	@Override
+	public WishDTO selectWish(int memNum, int productNum) throws Exception {
+		WishDTO wish =null;
+		String sql ="select p.price , p.name , w.product_num ,count(w.product_num) as count, s.sizu, c.name as colour " 
+				+ "from product p, wish w ,sizu s , colour c " 
+				+ "where p.num = w.product_num " 
+				+ "and w.sizu_num = s.num " 
+				+ "and w.colour_num = c.num "
+				+ "and w.mem_num = ? and w.product_num=? "
+				+ "group by p.name, w.product_num, p.num, s.sizu, c.name, p.price";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, memNum);
+		pstmt.setInt(2,	productNum);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			wish = new WishDTO();
+			wish.setProductName(rs.getString("name"));
+			wish.setProductNum(rs.getInt("product_num"));
+			wish.setWishQuantity(rs.getInt("count"));
+			wish.setPrice(rs.getInt("price"));
+			wish.setSizu(rs.getString("sizu"));
+			wish.setColour(rs.getString("colour"));
+		}
+		return wish;
 	}
 }

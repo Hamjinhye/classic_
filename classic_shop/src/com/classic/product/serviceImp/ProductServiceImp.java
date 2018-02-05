@@ -134,4 +134,89 @@ public class ProductServiceImp implements ProductService{
 		return searchMiniCateList;
 	}
 
+	@Override
+	public List<ProductDTO> searchProduct(String name, String cate_num, int priceHigh, int priceLow,
+			PagingDTO pagingDTO) {
+		List<ProductDTO> productSearchList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			productSearchList = new SearchDAOImp(conn).searchProduct(name, cate_num, priceHigh, priceLow, pagingDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try{
+				conn.rollback();
+			} catch (Exception e2){
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return productSearchList;
+	}
+
+	@Override
+	public int searchCount(String name, String cate_num, int priceHigh, int priceLow) {
+		int searchCount = 0;
+		try {
+			conn = ClassicDBConnection.getConnection();
+			conn.setAutoCommit(false);
+			conn.commit();
+			searchCount = new SearchDAOImp(conn).searchCount(name, cate_num, priceHigh, priceLow);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return searchCount;
+	}
+
+	@Override
+	public List<ColourDTO> readColor() {
+		List<ColourDTO> colorList = new ArrayList<ColourDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			colorList = new SearchDAOImp(conn).selectColor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return colorList;
+	}
+
+	@Override
+	public List<ProductDTO> listNew()  {
+		List<ProductDTO> newList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			newList = new ProductDAOImp(conn).mainNewList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return newList;
+	}
+
+	@Override
+	public List<ProductDTO> listBest() {
+		List<ProductDTO> bestList = new ArrayList<ProductDTO>();
+		try {
+			conn = ClassicDBConnection.getConnection();
+			bestList = new ProductDAOImp(conn).mainBestList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ClassicDBConnection.close(conn);
+		}
+		return bestList;
+	}
+
 }

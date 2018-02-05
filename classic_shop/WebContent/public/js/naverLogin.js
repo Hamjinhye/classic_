@@ -3278,16 +3278,16 @@ nv.$$ = nv.cssquery = (function() {
     /**
      	IE���� validUID,cache�� ��������� �޸� ���� �߻��Ͽ� �����ϴ� ��� �߰�.x
      */
-    cssquery.release = function() {
+    /*cssquery.release = function() {
         if(nv._p_._JINDO_IS_IE) {
-            delete validUID;
+            //delete validUID;
             validUID = {};
             
             if(bUseResultCache){
                 cssquery.clearCache();
             }
         }
-    };
+    };*/
     /**
      	cache�� ������ �Ǵ��� Ȯ���ϱ� ���� �ʿ��� �Լ�
 	
@@ -6327,16 +6327,15 @@ nv._p_.vendorPrefixObj = {
     "-webkit" : "webkit"
 };
 
-nv._p_.cssNameToJavaScriptName = function(sName){
+/*nv._p_.cssNameToJavaScriptName = function(sName){
     if(/^(\-(?:moz|ms|o|webkit))/.test(sName)){
         var vandorPerfix = RegExp.$1;
         sName = sName.replace(vandorPerfix,nv._p_.vendorPrefixObj[vandorPerfix]);
     }
     
-    return sName.replace(/(:?-(\w))/g,function(_,_,m){
+   /* return sName.replace(/(:?-(\w))/g,function(_,_,m){
        return m.toUpperCase();
-    });
-};
+    });*/
 
 //-!nv.$Element._getTransition.hidden start!-//
 /**

@@ -16,6 +16,7 @@ function readNotice(num){
 			dataType: "json",
 			success: function(data){
 				$(".notice_div table").hide();
+				$("#noticePagingContainer").attr("style", "display: none");
 				//$(".comu_paging").hide();
 				var notice_contents="";
 				$(data).each(function(index, item){
@@ -127,7 +128,6 @@ var registerQna = function(qnaRegisterForm){
 	var url = "/classic_shop/community/qna/register.do";
 	var method = "POST";
 	var data = "mem_num="+mem_num+"&subject="+subject+"&content="+content+"&secure="+secure+"&pwd="+pwd;
-	console.log(data);
 	var http = new XMLHttpRequest();
 	http.open(method, url, true);
 	http.onreadystatechange = function(){
@@ -173,15 +173,16 @@ $(function(){
 });
 
 //QNA 검색
-$("#qnaSearchField").click(function(){
-	var qnaSearchOption = $("#qnaSearchField").val();
-	if(qnaSearchOption == 9){
-		$("#qnaSubjectNum").attr("style", "display: inline-block");
-		$("#qnaSearchValue").attr("style", "display: none");
-		$("#qnaSearchBtn").attr("style", "display: none");
-	} else{
-		$("#qnaSubjectNum").attr("style", "display: none");
-		$("#qnaSearchValue").attr("style", "display: inline-block");
-		$("#qnaSearchBtn").attr("style", "display: inline-block");
-	}
+$(function(){
+	$("#qnaSearchField").click(function(){
+		var qnaSearchOption = $("#qnaSearchField").val();
+		console.log(qnaSearchOption)
+		if(qnaSearchOption == 9){
+			$("#qnaSubjectNum").attr("style", "display: inline-block");
+			$("#qnaSearchValue").attr("style", "display: none");
+		} else if(qnaSearchOption == 8){
+			$("#qnaSubjectNum").attr("style", "display: none");
+			$("#qnaSearchValue").attr("style", "display: inline-block");
+		}
+	});
 });
