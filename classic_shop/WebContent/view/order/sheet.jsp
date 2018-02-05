@@ -60,9 +60,9 @@
 							<div class="col-10 float-left">
 								<ul class="list-group" style="display:inline-block;" >
 									<li class="list-group-item"><strong><a href="#"><input type="hidden" name="productNum" value ="${product.productNum}">${product.productName}</a></strong></li>
-									<li class="list-group-item"  class="d-inline-block" >
-										<p>color  </p><p>${product.colour}</p>
-										<p>size  </p><p> ${product.sizu}</p>
+									<li class="list-group-item" >
+										<p style ="display: inline-block;">color </p><p  style ="display: inline-block;">${product.colour}</p>
+										<p style ="display: inline-block;">size  </p><p style ="display: inline-block;">${product.sizu}</p>
 									</li>
 								</ul>
 							</div>
@@ -81,8 +81,7 @@
 					</td>
 					<td>
 						<c:if test="${product.price>50000}">
-							
-							<input type="text" class="form-item text-center" name="price" value ="${product}" style="border: hidden;">
+							<input type="text" class="form-item text-center" name="price" value ="${product.price}" style="border: hidden;">
 						</c:if>
 						<c:if test="${product.price<50000}">
 							<input type="text" class="form-item text-center" name="price" value ="${product.price+2500}" style="border: hidden;">  
@@ -94,9 +93,9 @@
 		</table>
 		<div class="container" id="paymentInfo">
 			<p class="h5 text-top mt-0">*상품의 옵션 및 수량변경은 상품 상세 또는 장바구니에서 변경 가능합니다.</p>
-			<p>상품구매금액   <span></span>원 + 배송비 <span>0</span>원 = 합계: <span>200,000</span>원</p>
+			<p>상품구매금액   <span>100000</span>원 + 배송비 <span>0</span>원 = 합계: <span>100000</span>원</p>
 		</div>
-		<button class="btn btn-defult" id="selectProductDel">선택 상품 삭제</button>
+		<button class="btn btn-default" id="selectProductDel">선택 상품 삭제</button>
 		<div id="orderInfo">
 			<p>주문정보 <span class="redRound">10</span><span>필수</span></p>
 			<table class ="table orderTab">
@@ -227,19 +226,16 @@
 					</td>
 				</tr>
 			</table>
-			
-			
-			
 		</div>
 		<div id="methodPay">
 			<p id="payName">결제수단</p>
-			<div id="methodPayDetail" class="container clear-fix">
-				<div class="col-6">
-					<div class="row d-inline">
-						<div class="radio col-3">
+			<div id="methodPayDetail" class="row clear-fix">
+				<div class="col-6 text-left" style="margin-left: 20px;">
+					<div>
+						<div class="radio col-3" style="display: inline-block;">
 							<label><input type="radio" name="payWith"  value="0" checked>무통장입금</label>
 						</div>
-						<div class="radio col-3">
+						<div class="radio col-3" style="display: inline-block;">
 							<label><input type="radio" name="payWith" value="1">신용카드</label>
 						</div>
 					</div>
@@ -255,7 +251,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="finalAmount" class="col-6">
+			<div id="finalAmount" class="col-6 text-right">
 				<p><span>무통장입금</span>최종 결제 금액</p>
 				<h2>200,000원</h2>
 				<p><input type="checkbox" value="true">결제 정보를 확인하였으며, 구매 진행에 동의 합니다.</p>
