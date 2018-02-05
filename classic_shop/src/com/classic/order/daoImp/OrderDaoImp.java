@@ -9,11 +9,7 @@ import java.util.List;
 import com.classic.common.dto.PagingDTO;
 import com.classic.member.dto.CouponDTO;
 import com.classic.order.dao.OrderDAO;
-import com.classic.order.dto.CancelDTO;
 import com.classic.order.dto.PaidDTO;
-import com.classic.order.dto.RefundDTO;
-import com.classic.order.dto.TradeDTO;
-import com.classic.util.ClassicDBConnection;
 
 public class OrderDaoImp implements OrderDAO{
 	
@@ -191,7 +187,7 @@ public class OrderDaoImp implements OrderDAO{
 			coupon.setNum(rs.getInt("coupon_num"));
 			coupon.setMem_num(rs.getInt("mem_num"));
 			coupon.setCoupon_name(rs.getString("coupon_name"));
-			coupon.setSale(rs.getInt("discount"));
+			coupon.setSale(rs.getDouble("discount"));
 			couponList.add(coupon);
 		}
 		return couponList;

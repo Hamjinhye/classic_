@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<c:url value='/public/css/order.css' />">
+<script src="<c:url value='/public/js/order.js'/>"></script>
 </head>
 <body>
 <body>
@@ -29,14 +30,14 @@
 							<td class="infoList">
 								<div class="infoListDiv">
 									<div>
-										<a href="<c:url value='/product/detail.do?num=${wish.productNum}'/>">
+										<a href="<c:url value='/detail.do?num=${wish.productNum}'/>">
 											<p>이미지임</p>
 										</a>
 									</div>
 								</div>
 								<div class="infoListDiv">
 									<ul class="list-group">
-										<li class="list-group-item"><strong><a href="<c:url value='/product/detail.do?num=${wish.productNum}'/>"><input type="hidden" name="product_name" value="${wish.productName}" class="paramValue">${wish.productName}</a></strong></li>
+										<li class="list-group-item"><strong><a href="<c:url value='/detail.do?num=${wish.productNum}'/>"><input type="hidden" name="product_name" value="${wish.productName}" class="paramValue">${wish.productName}</a></strong></li>
 										<li class="list-group-item"><strong>color : ${wish.colour}   <input type="hidden" name="product_colour" value="${wish.colour}" class="paramValue">size : ${wish.sizu}<input type="hidden" name="product_sizu" value="${wish.sizu}" class="paramValue"> </strong></li>
 										<!-- 모달버튼  -->
 										<li class="list-group-item">
@@ -103,7 +104,7 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="8" id="emptyTableData">wish list가 비었습니다.<td>
+						<td colspan="8" class="emptyTableData">wish list가 비었습니다.<td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -116,5 +117,7 @@
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
 			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
-		<jsp:include page="/common/paging.jsp"/>
-<script src="<c:url value='/public/js/order.js'/>"></script>
+		<c:if test="${(fn:length(wishList))!=0}">
+			<jsp:include page="/common/paging.jsp"/>
+		</c:if>
+	</div>
