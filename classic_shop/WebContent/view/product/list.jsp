@@ -7,15 +7,18 @@
 <body>
 <div class="product_body container">
 <div id="productTitle">
-	<h2><a class="cate" href="<c:url value='product.do?cate=0&num=${cate.num}'/>">${cate.name}</a></h2>
+	<h2><a class="cate" href="<c:url value='product.do?cate=0&num=${cate.num}'/>">${cate.name}</a><!-- Cate --></h2>
 	
-  <p> 
+  <p> <!-- miniCate -->
 	<c:forEach var="mini" items="${miniCateList}">
   		<a href="<c:url value='/product.do?cate=1&num=${mini.num}' />" class="cate">${mini.name}</a>
 	</c:forEach>
   </p>
 </div>
-
+ 
+ <script>
+ //console.log(${coloursList});
+ </script>
 <div class="product_list" data-example-id="thumbnails-with-custom-content">
 	<div class="row">
 		<c:forEach var="list" items="${productList}">
@@ -29,7 +32,7 @@
 				<div class="product_caption">
 				  <p class="product_name product_colorchip">
 				  	<table style="width: 100%; height: 50px">
-				  		<tr style="border-bottom: 1px solid #ced4da;"> 
+				  		<tr style="border-bottom: 1px solid #ced4da;"> <!-- 마진을 div 넓이만큼 -->
 				  			<td>
 					  			<a href="<c:url value='/detail.do?num=${list.num}' />" class="cate">${list.name}</a> <!--css랑 링크 색상 없애는 거 잘봐 이름 바꾸거나 새로 추가한게 안된다. -->
 					  		</td>
@@ -44,14 +47,13 @@
 				  		</tr>
 				  	</table>
 		          	
-		          </p>
 		          <p class="product_price">	<fmt:formatNumber type="Number" pattern="#,###" value="${list.price}" /></p>
 		          <p class="product_description">${list.main_info }</p>
 				</div>
 			 </div>
 		 </div>
 		 </c:forEach>
-	</div>
+	</div><!-- row -->
     
 </div>
   
