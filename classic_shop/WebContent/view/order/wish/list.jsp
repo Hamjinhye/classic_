@@ -39,11 +39,8 @@
 									<ul class="list-group">
 										<li class="list-group-item"><strong><a href="<c:url value='/detail.do?num=${wish.productNum}'/>"><input type="hidden" name="product_name" value="${wish.productName}" class="paramValue">${wish.productName}</a></strong></li>
 										<li class="list-group-item"><strong>color : ${wish.colour}   <input type="hidden" name="product_colour" value="${wish.colour}" class="paramValue">size : ${wish.sizu}<input type="hidden" name="product_sizu" value="${wish.sizu}" class="paramValue"> </strong></li>
-										<!-- 모달버튼  -->
 										<li class="list-group-item">
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#wishOption${wish.productNum}" >옵션변경</button>
-										</li>
-										 <!-- 모달 -->
+											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#wishOption${wish.productNum}"  onclick="productOptionSelect(${loginMem.num},${wish.productNum})">옵션변경</button></li>
 										<div class="modal fade" id="wishOption${wish.productNum}" tabindex="-1" role="dialog">
   											<div class="modal-dialog" role="document">
   												<div class="modal-content">
@@ -52,17 +49,8 @@
      	  												<span aria-hidden="true">&times;</span></button>
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
-      												<div class="modal-body" class="wishOptionSelect">
-      													<div>
-	      													<select class="form-control" onclick = "ProductColourSelect(${wish.productNum})">
-	      														<option>${wish.colour}</option>
-	      													</select>
-      													</div>
-      													<div>
-	      													<select class="form-control">
-	      														<option>${wish.sizu}</option>
-	      													</select>
-      													</div>
+      												<div class="modal-body row" class="wishOptionSelect" style="display: inline-block!important;" id="optionSelect${wish.productNum}">
+     												
      												</div>
       												<div class="modal-footer">
         												<button type="button" class="btn btn-default">변경</button>

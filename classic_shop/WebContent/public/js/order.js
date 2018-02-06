@@ -9,6 +9,40 @@ var AllGoSheet = function(memNum){
 		location.href=url;
 	}
 }
+var productOptionSelect = function(memNum,productNum){
+	var url = "http://localhost:8888/classic_shop/user/wish/option.do?memNum="+memNum+"&productNum="+productNum;
+ 	var method = "GET";
+ 	var http = new XMLHttpRequest();
+ 	http.onreadystatechange=function(){
+ 		if(this.readyState==4 && this.status==200){
+			var option_json = JSON.parse(this.response);
+			var name = "optionSelect"+productNum;
+			var optionTab =document.getElementById(name);
+			var innerText ="";
+			var i ; 
+			innerText +='<div class="col-5" style="display: inline-block; margin-right: 5px;">';
+			innerText +='	<select class="form-control">';
+			for(i = 0; i<option_json["colour"].length;i++){
+				innerText +='		<option value=\"'+option_json["colour"][i].num+'\">'+option_json["colour"][i].name+'</option>';
+			}
+			innerText +='	</select>';
+			innerText +='</div>';
+			innerText +='<div class="col-5" style="display: inline-block; margin-right: 5px; ">';
+			innerText +='	<select class="form-control">';
+			for(i=0;i<option_json["sizu"].length; i++){
+				innerText +='		<option value=\"'+option_json["sizu"][i].num+'\">'+option_json["sizu"][i].sizu+'</option>';
+			}
+			innerText +='	</select>';
+			innerText +='</div>';
+			innerText +='<div class="col-2" style="display: inline-block; width: 86px;">';
+			innerText +='	<input type="number" value=\"'+option_json["quantity"]+'\" class="form-control">';
+			innerText +='</div>';
+			optionTab.innerHTML = innerText;
+	 		}
+ 	}
+ 	http.open(method,url, true);
+ 	http.send();
+};
 var CheckGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
@@ -21,18 +55,6 @@ var CheckGoSheet = function(memNum){
 		location.href=url;
 	}
 }
-var ProductColourSelect = function(productNum){
-	var method = "GET";
-	var http = new XMLHttpRequest();
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			
-		}
-	}
-	http.open(method,url, true);
-	http.send();
-	
-};
 $("#allCheck").click(function(){
 	if(this.checked){
 		$('input:checkbox[class*="checkWish"]').each(function(){

@@ -9,6 +9,7 @@ import java.util.List;
 import com.classic.order.dao.WishListDAO;
 import com.classic.order.dto.ColourDTO;
 import com.classic.order.dto.WishDTO;
+import com.classic.product.dto.SizuDTO;
 import com.classic.util.ClassicDBConnection;
 
 public class WishListDAOImp implements WishListDAO{
@@ -82,35 +83,8 @@ public class WishListDAOImp implements WishListDAO{
 		}
 		return recode;
 	}
-	/* recode total count용 test
-	 * public static void main(String[] args) {
-		Connection conn = null;
-		int recode = 0;
-		try {
-			conn = ClassicDBConnection.getConnection();
-			WishListDAO wish = new WishListDAOImp(conn);
-			recode = wish.recodeTotal(4);
-			System.out.println(recode);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}*/
-	@Override
-	public ColourDTO selectProductColour(int productNum) throws Exception {
-		ColourDTO colour = null;
-		String sql="select num, product_num , code, name from colour where product_num = ?";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, productNum);
-		ResultSet rs = pstmt.executeQuery();
-		if(rs.next()) {
-			colour = new ColourDTO();
-			colour.setNum(rs.getInt("num"));
-			colour.setProductNum(rs.getInt("product_num"));
-			colour.setCode(rs.getString("code"));
-			colour.setName(rs.getString("name"));
-		}
-		return colour;
-	}
+
+
 	@Override
 	public WishDTO selectWish(int memNum, int productNum) throws Exception {
 		WishDTO wish =null;
@@ -135,5 +109,53 @@ public class WishListDAOImp implements WishListDAO{
 			wish.setColour(rs.getString("colour"));
 		}
 		return wish;
+	}
+	@Override
+	public List<ColourDTO> selectProductColour(int productNum) throws Exception {
+		List<ColourDTO> colourList = new ArrayList<ColourDTO>();
+		ColourDTO colour = null;
+		String sql="select num, product_num , code, name from colour where product_num = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, productNum);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			colour = new ColourDTO();
+			colour.setNum(rs.getInt("num"));
+			colour.setProductNum(rs.getInt("product_num"));
+			colour.setCode(rs.getString("code"));
+			colour.setName(rs.getString("name"));
+			colourList.add(colour);
+		}
+		return colourList;
+	}
+	@Override
+	public List<SizuDTO> selectProductSizu(int productNum) throws Exception {
+		List<SizuDTO> sizuList = new ArrayList<SizuDTO>();
+		SizuDTO sizu = null;
+		String sql="select num, product_num , sizu from sizu where product_num = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, productNum);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			sizu = new SizuDTO();
+			sizu.setNum(rs.getInt("num"));
+			sizu.setProduct_num(rs.getInt("product_num"));
+			sizu.setSizu(rs.getString("sizu"));
+			sizuList.add(sizu);
+		}
+		return sizuList;
+	}
+	@Override
+	public int wishQuantity(int memNum, int productNum) throws Exception {
+		int quantity = 0;
+		String sql = "select count(*) as quantity from wish where mem_num = ? and product_num = ? ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, memNum);
+		pstmt.setInt(2, productNum);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			quantity = rs.getInt("quantity");
+		}
+		return quantity;
 	}
 }
