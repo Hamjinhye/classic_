@@ -246,7 +246,6 @@ $(document).ready(function(){
 });
 
 //orderList
-
 var AllChartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";
@@ -255,6 +254,28 @@ var AllChartGoSheet = function(memNum){
 		});
 		url=url.substr(0, url.length-1);
 		location.href=url;
+	}
+}
+var CheckCartGoSheet=function(memNum){
+	if(memNum!=null){
+		if("${(fn:length(wishList))!=0}"){
+			var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&productNum=";
+			var url2 = url;
+			$('input:checkbox[class*="checkCart"]').each(function(){
+				if(this.checked){
+					url+=this.value+"_";
+				}		
+			});
+			if(url2==url){
+				alert("상품을 선택 해 주세요.");
+			}else{
+				url=url.substr(0, url.length-1);
+				location.href=url;
+			}
+		}
+	}else{
+		alert("로그인 시 주문가능합니다.");
+		location.href="http://localhost:8888/classic_shop/login.do";
 	}
 }
 //sheet

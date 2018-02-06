@@ -9,7 +9,7 @@
 		<table class="table border-bottom-1" id="cartTable">
 			<tbody id="cartTitle">
 				<tr class="text-center">
-					<th width="5%" class="text-center"><input type="checkbox"></th>
+					<th width="5%" class="text-center"><input type="checkbox" id="AllCheckCart"></th>
 					<th width="45%" class="text-center">상품정보</th>
 					<th width="10%" class="text-center">판매가</th>
 					<th width="10%" class="text-center">수량</th>
@@ -43,7 +43,7 @@
 		</div>
 		<div id="paidUpdateBtn" class="text-center">
 			<button type="button" class="btn btn-default" onclick="AllCartGoSheet(${loginMem.num})"><strong>전체 상품 주문</strong></button>
-			<button type="button" class="btn btn-default"><strong>선택 상품 주문</strong></button>
+			<button type="button" class="btn btn-default" onclick = "CheckCartGoSheet(${loginMem.num})"><strong>선택 상품 주문</strong></button>
 		</div>
 		<br>
 		<div id="cartInfo" class="container">
