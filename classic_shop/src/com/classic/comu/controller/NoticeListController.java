@@ -22,7 +22,7 @@ public class NoticeListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		PagingDTO pagingDTO = new PagingDTO(); //게시판페이징 구현되어있는 인터페이스 선언
+		PagingDTO pagingDTO = new PagingDTO(); 
 		String pageNum_temp = req.getParameter("pageNum");
 		int totalRecord = new NoticeServiceImp().recordTotal();
 		pagingDTO.setPageNum_temp(pageNum_temp);

@@ -28,10 +28,9 @@
 						<th class='col-sm-1'>DATE</th>
 						<th class='col-sm-1'>VIEW</th>
 					</tr>
-				</tbody> <!-- switch를 선언하는 절은 choose, when은 case, otherwise는 default -->
-
+				</tbody>
 				<tbody class="notice_list_contents">
-					<c:forEach var="notice" items="${noticeList}">
+					<c:forEach var="notice" items="${notice}">
 						<tr>
 							<td>${notice.num}</td>
 							<td style="text-align: left;">
