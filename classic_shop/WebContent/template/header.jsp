@@ -64,7 +64,7 @@
 										<li><a href="<c:url value='/user/coupon.do?num=${loginMem.num}'/>">쿠폰</a></li>
 										<li><a href="<c:url value='/cart.do'/>">장바구니</a></li>
 										<li><a href="<c:url value='/user/wish.do?num=${loginMem.num}'/>">위시리스트</a></li>
-										<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">주문내역</a></li>
+										<li><a href="<c:url value='/order/list.do?num=${loginMem.num}' />">주문내역</a></li>
 										<li><a href="<c:url value='/user/mypage/myposting.do?num=${loginMem.num}'/>">내가쓴글</a></li>
 									</ul>
 								</li>

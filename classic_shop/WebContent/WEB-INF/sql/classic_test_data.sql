@@ -958,11 +958,11 @@ INSERT INTO delivery VALUES(delivery_seq.nextval ,(select num from paid where or
 
 --delivery
 ---------------------!!!!!!!!DO NOT INSERT DATA DOWN BELOW!!!!!!!!!!!!------------------------
---delivery// 요 밑에 디비 못넣음 혜진 체크용 
-INSERT INTO delivery VALUES(delivery_seq.nextval ,41 ,'CJ택배','6898000144426575' ,1 ,sysdate , NULL);
-INSERT INTO delivery VALUES(delivery_seq.nextval ,52 ,NULL,NULL ,0 ,sysdate , NULL);
-INSERT INTO delivery VALUES(delivery_seq.nextval ,43 ,'대한통운','1111222233334444' ,2 ,sysdate , NULL);
-INSERT INTO delivery VALUES(delivery_seq.nextval ,47 ,'대한통운','6666222233335555' ,3 ,sysdate , '20180107');
+--delivery// 요 밑에 디비 못넣음 혜진 체크용 ->삭제용 밑에 4개
+--INSERT INTO delivery VALUES(delivery_seq.nextval ,1 ,'CJ택배','6898000144426575' ,1 ,sysdate , NULL);
+--INSERT INTO delivery VALUES(delivery_seq.nextval ,2 ,NULL,NULL ,0 ,sysdate , NULL);
+--INSERT INTO delivery VALUES(delivery_seq.nextval ,12 ,'대한통운','1111222233334444' ,2 ,sysdate , NULL);
+--INSERT INTO delivery VALUES(delivery_seq.nextval ,47 ,'대한통운','6666222233335555' ,3 ,sysdate , '20180107');
 
 --trade--다혜 디비수정0118 (order_state와 deliv_state 상황 맞춰서 재수정)
 INSERT INTO trade VALUES(trade_seq.nextval ,(select num from paid where order_state=-1 and num=22),0,sysdate,NULL,0);
@@ -975,8 +975,8 @@ INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_
 --INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
 
 ---------------------!!!!!!!!DO NOT INSERT DATA ABOVE!!!!!!!!!!!! 디비안들어가는 거 확인함------------------------
---cancel
-INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
-INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
+--cancel->삭제용 밑에 2개
+--INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
+--INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
 
 commit;

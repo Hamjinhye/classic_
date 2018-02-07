@@ -1,3 +1,4 @@
+
 //wish
 var AllGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
@@ -204,8 +205,6 @@ $(document).ready(function(){
 });
 
 //orderList
-//$( ".datepicker" ).datepicker();
-
 var AllChartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:9999/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";
@@ -270,3 +269,81 @@ function DelivDaumPostcode() {
         }
     }).open();
 }
+
+//list
+
+var cancelBtn = function(){
+	
+}
+
+$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+});
+/**.star-group의 별을 노란색으로 표시하는 함수*/
+var printFormStar=function(target){
+	//target이 있으면 target만 노란색 표시
+	//target이 없으면 .star-group 전부 노란색 표시
+	if(target==undefined){target=".star-group"}
+	$(target).find(".btn").removeClass("text-primary");
+	$(target).each(function(i,starGroup){
+		var active=false;
+		$(starGroup).find("label.btn").each(function(i,labelBtn){
+			if(!active){				
+				$(labelBtn).addClass("text-primary");
+				if($(labelBtn).is(".active")||$(labelBtn).is(".focus")){
+					active=true;
+				}
+			}
+		});
+	});
+}
+/**.star-group 안에 있는 form.star의 value 가 바뀌면 value만큼 gold색으로 바꾸는 함수  */
+var chagneFormStar=function(startGroup){
+	if(startGroup==undefined){startGroup=".star-group";}
+	$(startGroup).change(function(e){
+		//var taget=e.currentTarget; //이벤트가 발생한 dom
+		var target=this;
+		$(target).find(".text-primary").removeClass("text-primary");
+		setTimeout(function(){
+			printFormStar(target);
+		},10);
+	});
+}
+/**.star-group 안에 있는 form.star의 value만큼 gold색으로 바꾸는 함수  */
+var printStar=function(){	
+	var star_i="<i class='fa fa-star'></i>"
+	$(".review .star").each(function(){
+		var int_star=Number($(this).data("star"));
+		var i;
+		for(i=0; i<int_star; i++){
+			$(this).append(star_i);
+		}
+	}).css({color:"gold"});
+}
+var goodsNum="${param.goods_num}";
+
+$(document).ready(function(){
+	printStar();
+	printFormStar();
+	chagneFormStar();
+	var regist=document.forms.reviewsRegist;
+	$(regist).submit(function(){
+		console.log($(this).serializeArray());
+		$.ajax({
+			url: "<c:url value='/reviews/regist'/>",
+			data:$(this).serializeArray(),
+			type: "POST",
+			dataType: "json",
+			success: function(data){
+				if(data.regist){alert("리뷰 등록 성공")}
+				readReviews();
+			}
+		})
+		return false;
+	});
+	
+});
+function cancelBtn(){
+	alert("주문이 취소 되었습니다.");
+}
+

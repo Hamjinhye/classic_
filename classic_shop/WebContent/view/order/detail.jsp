@@ -57,9 +57,14 @@
 						<label><a href="<c:url value='/detail.do?num=${detail.product_num}' />">상품명: ${detail.g_name}</a></label><br>
 						<strong>[옵션]</strong> 색상: ${detail.g_color}, 사이즈: ${detail.g_size}
 					</td>
-					<td>1</td>
-					<td>order_money</td>
-					<td>delivery_state:0배송준비</td>
+					<td>${ordercount}개</td>
+					<td>${detail.order_money}</td>
+					<td>
+						<c:if test="${detail.deliv_state==0}"><strong>배송준비</strong></c:if>
+						<c:if test="${detail.deliv_state==1}"><strong>배송중</strong><br>(송장번호:${detail.deliv_num})</c:if>
+						<c:if test="${detail.deliv_state==2}"><strong>배송완료</strong><br>(송장번호:${detail.deliv_num})</c:if>
+						<c:if test="${detail.deliv_state==3}"><strong>구매확정</strong><br>(송장번호:${detail.deliv_num})</c:if>
+					</td>
 				</tr>
 				
 			</table>
@@ -78,12 +83,12 @@
 					<th>배송메모</th>
 				</tr>
 				<tr>
-					<td>name</td>
-					<td>phonNumber</td>
-					<td>zip_code</td>
-					<td>base_addr</td>
-					<td>detail_addr</td>
-					<td>paid_memo</td>
+					<td>${detail.name}</td>
+					<td>${detail.phone}</td>
+					<td>${detail.zip_code}</td>
+					<td>${detail.base_addr}</td>
+					<td>${detail.detail_addr}</td>
+					<td>${detail.memo}</td>
 				</tr>
 			</table>
 		</div>

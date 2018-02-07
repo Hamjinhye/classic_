@@ -22,17 +22,21 @@ public class DetailListcontroller extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String str_memnum=req.getParameter("num");
 		String order_num=req.getParameter("order_num");
+		int mem_num=Integer.parseInt(str_memnum);
 		Connection conn = null;
 		PaidDTO detail = new PaidDTO();
+		int ordercount=0;
 		try {
 			conn=ClassicDBConnection.getConnection();
 			OrderDAO orderDAO = new OrderDaoImp(conn);
-			detail = orderDAO.DetailSelect(Integer.parseInt(str_memnum), order_num);
+			detail = orderDAO.DetailSelect(mem_num, order_num);
+			ordercount = new OrderDaoImp(conn).orderCount(mem_num, order_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			ClassicDBConnection.close(conn);
 		}
+		req.setAttribute("ordercount", ordercount);
 		req.setAttribute("detail", detail);
 		req.getRequestDispatcher("/view/order/detail.jsp").forward(req, resp);
 		

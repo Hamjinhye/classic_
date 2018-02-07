@@ -1,6 +1,8 @@
 package com.classic.member.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +17,10 @@ import com.classic.comu.dto.QnaDTO;
 import com.classic.comu.serviceImp.QnaServiceImp;
 import com.classic.member.dto.MemberDTO;
 import com.classic.member.serviceImp.MemberServiceImp;
+import com.classic.order.daoImp.OrderDaoImp;
+import com.classic.order.dto.PaidDTO;
+import com.classic.order.serviceImp.OrderServiceImp;
+import com.classic.util.ClassicDBConnection;
 
 @WebServlet("/user/mypage.do")
 public class MypageMainController extends HttpServlet{
@@ -28,10 +34,14 @@ public class MypageMainController extends HttpServlet{
 		
 		MemberDTO memDTO = new MemberServiceImp().readMember(num); //회원 정보
 		List<QnaDTO> memQnaList = new QnaServiceImp().readMemQna(num, pagingDTO); //내가 쓴 qna
+		List<PaidDTO> orderList = new OrderServiceImp().orderList(num, pagingDTO);//주문내역
 		int memTotalRecord = new QnaServiceImp().memRecordTotal(num);
+		
+		
 		req.setAttribute("memDTO", memDTO);
 		req.setAttribute("memQnaList", memQnaList);
 		req.setAttribute("memTotalRecord", memTotalRecord);
+		req.setAttribute("orderList", orderList);
 		req.getRequestDispatcher("/view/member/mypage/main.jsp").forward(req, resp);
 	}
 }

@@ -27,7 +27,7 @@ public class OrderDaoImp implements OrderDAO{
 		List<PaidDTO> orderList = new ArrayList<PaidDTO>();
 		String sql ="select * from " + 
 						"(select rownum row_num,g.* from " + 
-							"(select p.num, p.order_num, p.payment, p.order_state, p.mem_num, " + 
+							"(select p.num, p.order_num, p.payment,p.order_money, p.order_state, p.mem_num, " + 
 							"g.num as g_num, g.name as g_name, d.state as deliv_state, d.deliv_num, " + 
 							"g.num as product_num, s.sizu as g_size, c.name as g_color " + 
 							"from paid p, member m, product g, delivery d, sizu s, colour c " + 
@@ -49,6 +49,7 @@ public class OrderDaoImp implements OrderDAO{
 			order.setNum(rs.getInt("num"));
 			order.setOrder_num(rs.getString("order_num"));
 			order.setPayment(rs.getInt("payment"));
+			order.setOrder_money(rs.getInt("order_money"));
 			order.setOrder_state(rs.getInt("order_state"));
 			order.setMem_num(rs.getInt("mem_num"));
 			order.setG_num(rs.getInt("g_num"));
@@ -67,8 +68,7 @@ public class OrderDaoImp implements OrderDAO{
 	public int cancelUpdate(PaidDTO paidDto) throws Exception {
 		//주문취소
 		int update=0;
-		String sql="UPDATE paid SET order_state=-2 " + 
-				"WHERE order_num=?";
+		String sql="UPDATE paid SET order_state=-2 WHERE order_num=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, paidDto.getOrder_num());
 		update=pstmt.executeUpdate();
@@ -223,5 +223,19 @@ public class OrderDaoImp implements OrderDAO{
 		pstmt.setString(19, paidDTO.getColour());
 		insert = pstmt.executeUpdate();
 		return insert;
+	}
+	@Override
+	public int orderCount(int mem_num, String order_num) throws Exception {
+		int orderCount=0;
+		String sql="select count(*) total from paid where mem_num=? and order_num=?";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		pstmt.setString(2, order_num);
+		
+		ResultSet rs=pstmt.executeQuery();
+		if(rs.next()) {
+			orderCount=rs.getInt("total");
+		}
+		return orderCount;
 	}
 }

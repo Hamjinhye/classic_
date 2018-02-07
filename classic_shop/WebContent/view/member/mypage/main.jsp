@@ -41,7 +41,7 @@
 			<div class="orderList_titleandbtn">
 				<h2 class="orderListTitle">ORDER LIST</h2>
 				<p>
-					<a href="<c:url value='/user/order.do?num=${loginMem.num}' />">
+					<a href="<c:url value='/order/list.do?num=${loginMem.num}' />">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					</a>
 				</p>
@@ -50,48 +50,62 @@
 				<thead>
 					<tr>
 						<th class="col-sm-1">No.</th>
-						<th class="col-sm-2">이미지</th>
-						<th class="col-sm-2">상품명</th>
+						<th class="col-sm-2">주문번호</th>
+						<th class="col-sm-1">이미지</th>
+						<th class="col-sm-1">상품명</th>
 						<th class="col-sm-1">옵션</th>
 						<th class="col-sm-1">수량</th>
 						<th class="col-sm-1">판매가</th>
-						<th class="col-sm-1">적립금</th>
+						<th class="col-sm-1">할인금액</th>
 						<th class="col-sm-1">배송료</th>
 						<th class="col-sm-1">합계</th>
 						<th class="col-sm-2">주문상태</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>
-							<img alt="images" src="" align="left" hspace="10">
-						</td>
-						<td><a href="#">상품명이야</a></td>
-						<td>[옵션]색상:color_name, 사이즈:product_sizu</td>
-						<td>1개</td>
-						<td>100,000원</td>
-						<td>10M</td>
-						<td>0원</td>
-						<td>100,000원</td>
-						<td>결제대기중</td>
-					</tr>
-				</tbody>
-					<tbody>
-					<tr>
-						<td>2</td>
-						<td>
-							<img alt="images" src="" align="left" hspace="10">
-						</td>
-						<td><a href="#">상품명이야</a></td>
-						<td>옵션</td>
-						<td>1개</td>
-						<td>100,000원</td>
-						<td>10M</td>
-						<td>0원</td>
-						<td>100,000</td>
-						<td>결제대기중</td>
-					</tr>
+					<c:forEach items="${orderList}" var="list">
+						<tr>
+							<td>${list.row_num}</td>
+							<td><a href="<c:url value='/user/order/detail.do?num=${list.mem_num}&order_num=${list.order_num}'/>">${list.order_num}</a></td>
+							<td><img alt="images" src="" align="left" hspace="10"></td>
+							<td><a href="<c:url value='/detail.do?num=${list.product_num}' />">${list.g_name}</a></td>
+							<td>색상:<strong>${list.g_color}</strong><br>사이즈:<strong>${list.g_size}</strong></td>
+							<td>1개</td>
+							<td>${list.order_money} 원</td>
+							<td>(-) ${list.order_money-list.payment} 원</td>
+							<td><!-- 배송비가 10만원 이상일 때 무료, 아니면 2500원 -->
+								<c:choose>
+									<c:when test="${list.order_money>99999}">
+										무료
+									</c:when>
+									<c:otherwise>2,500원</c:otherwise>
+								</c:choose>
+							</td>
+							<td>${list.payment}</td>
+							<td>
+								<c:choose>
+									<c:when test="${list.order_state==-2}">
+										<p style="color:red;">주문 취소건</p>
+									</c:when>
+									<c:when test="${list.order_state==-1}">
+										<p style="color:red;">교환/반품건</p>
+									</c:when>
+									<c:when test="${list.order_state==0}">
+										<p>결제대기</p>
+									</c:when>
+									<c:when test="${list.order_state==1}">
+										<p>결제완료</p>
+									</c:when>
+									<c:when test="${list.order_state==2}">
+										<p>주문확인</p>
+									</c:when>
+									<c:when test="${list.order_state==3}">
+										<p>주문완료</p>
+									</c:when>
+								</c:choose>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

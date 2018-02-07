@@ -16,6 +16,7 @@ public interface OrderDAO {
 	public int shippingUpdate(String order_num) throws Exception; //수취확인시 상태업데이트
 	public int tradeReturnUpdate(PaidDTO paidDto) throws Exception; //교환반품시 상태업데이트
 	public int selectCount(int mem_num) throws Exception;//특정 회원의 주문 수
+	public int orderCount(int mem_num, String order_num) throws Exception;//주문수량
 	
 	//혜진DAO
 	public int couponCount(int mem_num) throws Exception;
