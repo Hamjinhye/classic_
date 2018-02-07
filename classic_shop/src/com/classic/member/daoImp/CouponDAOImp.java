@@ -40,9 +40,8 @@ public class CouponDAOImp implements CouponDAO{
 		String sql = "INSERT INTO coupon(num,mem_num,log_num,state,indate) VALUES(coupon_seq.nextval,?,?,0,sysdate)";
 		PreparedStatement pstmt = null;
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, couponDTO.getNum());
-		pstmt.setInt(2, couponDTO.getMem_num());
-		pstmt.setInt(3, couponDTO.getLog_num());
+		pstmt.setInt(1, couponDTO.getMem_num());
+		pstmt.setInt(2, couponDTO.getLog_num());
 		insert = pstmt.executeUpdate();
 		return insert;
 	}

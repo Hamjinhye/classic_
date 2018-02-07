@@ -29,8 +29,8 @@ public class CouponListController extends HttpServlet {
 		try {
 			conn= ClassicDBConnection.getConnection();
 			CouponLogDAO couponlogDAO = new CouponLogDAOImp(conn);
-			couponLogList = couponlogDAO.couponLogSelect(Integer.parseInt(memNum));
 			CouponDAO couponDAO = new CouponDAOImp(conn);
+			couponLogList = couponlogDAO.couponLogSelect(Integer.parseInt(memNum));
 			couponList = couponDAO.couponSelect();
 		} catch (Exception e) {
 			

@@ -36,37 +36,26 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="coupon_paging">
-					  <ul class="pagination pagination-sm">
-					    <li><a href="#"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-					    <li><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-					  </ul>
-					</div>
-         		</div>
-			</div>
 		</div>
 		<div class="couponForm_wrap">
-			<div class="couponFormTitle">쿠폰 버튼 등록하기</div>
+			<div class="couponFormTitle">쿠폰 등록하기</div>
 			<form class="couponForm">
 				<c:forEach var="couponBtn" items="${couponList }">
 				<div class="couponFormGroup">
 					<c:choose>
-						<c:when test="${couponBtn.allcount>927 }">
+<%-- 						<c:when test="${couponBtn.allcount>927 }">
 							<button class="btn btn-default" type="button" disabled="disabled">${couponBtn.name } 발급한수량:${couponBtn.allcount}  발급된수량:${couponBtn.num }</button>
-						</c:when>
-						<c:when test="${couponBtn.allcount<=100}">
-							<button class="btn btn-default" type="button">${couponBtn.name } 발급한수량:${couponBtn.allcount}  발급된수량:${couponBtn.num }</button>
+						</c:when> --%>
+						<c:when test="${couponBtn.allcount<=1000}">
+<%-- 							<input type="text" name="logNum" value="${couponBtn.log_num}"> --%>
+							<button class="btn btn-default" type="button" onclick="couponJson(this.form)"> ${couponBtn.name } 발급한수량:${couponBtn.allcount}  발급된수량:${couponBtn.num }</button>
 						</c:when>
 					</c:choose>
 				</div>
 				</c:forEach>
+				<input type="hidden" name="memNum" value="${loginMem.num}">
+				
+				
 			</form>
 			<!-- <div class="couponFormTitle">쿠폰 등록하기</div>
 			<form class="couponForm">
@@ -82,10 +71,8 @@
 				<div class="couponGuide">
 					<div>
 						<ol>
-							<li class="item1">쿠폰인증번호 등록하기에서 쇼핑몰에서 발행한 종이쿠폰/시리얼쿠폰/모바일쿠폰 등의 인증번호를 등록하시면 온라인쿠폰으로 발급되어 사용이 가능합니다.</li>
+							<li class="item1">쿠폰 등록하기에서 쿠폰 버튼을 클릭하시면 온라인쿠폰으로 발급되어 사용이 가능합니다.</li>
 							<li class="item2">쿠폰은 주문 시 1회에 한해 적용되며, 1회 사용 시 재 사용이 불가능합니다.</li>
-							<li class="item3">쿠폰은 적용 가능한 상품이 따로 적용되어 있는 경우 해당 상품 구매 시에만 사용이 가능합니다.</li>
-							<li class="item4">특정한 종이쿠폰/시리얼쿠폰/모바일쿠폰의 경우 단 1회만 사용이 가능할 수 있습니다.</li>
 						</ol>
 					</div>
 				</div>
@@ -93,3 +80,39 @@
 		</div>			
 	</div>
 </div>
+<script>
+var couponJson=function(couponForm){
+	var method="POST";
+	var url="/classic_shop/user/coupon/register.do";
+	var memNum = couponForm.memNum.value;
+	var logNum = couponForm.logNum.value;
+	var check=true;
+	console.log(memNum);
+
+	if( !(logNum.trim() && Number(logNum.trim())>0 )){
+		check=false;
+		alert(data);
+
+	}else if(check){
+		var data="mem_num="+memNum+"&log_num="+logNum;
+		alert(data);
+		
+		var http = new XMLHttpRequest();
+		http.onreadystatechange = function(){
+			if(this.readyState==4 && this.status==200){
+				var register = JSON.parse(this.responseText)["register"];
+				if(register){
+					location.reload();
+				}else{
+					alert("등록 실패");
+				}
+			}
+		}
+		http.open(method, url, true);
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8;");
+		http.send(data);
+	}
+}
+
+
+</script>
