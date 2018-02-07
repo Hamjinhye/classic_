@@ -7,9 +7,9 @@
 	<div class="container" id="cartMainDiv">
 		<h2 class="text-left" id="cartName">CART</h2>
 		<table class="table border-bottom-1" id="cartTable">
-			<tbody id="cartTitle">
+			<thead id="cartTitle">
 				<tr class="text-center">
-					<th width="5%" class="text-center"><input type="checkbox" id="AllCheckCart"></th>
+					<th width="5%" class="text-center"><input type="checkbox" id="AllCheckCart" onclick="checkAll(this)"></th>
 					<th width="45%" class="text-center">상품정보</th>
 					<th width="10%" class="text-center">판매가</th>
 					<th width="10%" class="text-center">수량</th>
@@ -17,7 +17,7 @@
 					<th width="10%" class="text-center">합계</th>
 					<th width="10%" class="text-center">선택</th>
 				</tr>
-			</tbody>
+			</thead>
 			<tbody id="cartContents">
 			</tbody>
 		</table>
@@ -29,15 +29,20 @@
 		</div>
 		<div>
 			<table class="table table-bordered" id="AllPriceTab">
+				<colgroup>
+					<col width="237px">
+					<col width="237px">
+					<col width="237px">
+				</colgroup>
 				<tr>
-					<th class="col">총 상품금액</th>
-					<th class="col">총 배송비</th>
-					<th class="col">총 결제예상금액</th>
+					<th>총 상품금액</th>
+					<th>총 배송비</th>
+					<th>총 결제예상금액</th>
 				</tr>
-				<tr>
-					<td class="col" id="allProductPrice"></td>
-					<td class="col" id="delivPrice"></td>
-					<td class="col" id="allSellPrice"></td>
+				<tr style="height: 37px;">
+					<td id="allProductPrice" ></td>
+					<td id="delivPrice"></td>
+					<td id="allSellPrice"></td>
 				</tr>
 			</table>
 		</div>

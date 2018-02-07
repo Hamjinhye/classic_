@@ -15,8 +15,5 @@ public interface WishListDAO {
 	public int recodeTotal(int memNum) throws Exception;
 	public List<ColourDTO> selectProductColour (int productNum) throws Exception;
 	public List<SizuDTO> selectProductSizu (int productNum) throws Exception;
-<<<<<<< HEAD
 	public int wishQuantity (int memNum, int productNum) throws Exception;
-=======
->>>>>>> 8fcfaa6feacbf0c484cef2af422a28593977e32a
 }

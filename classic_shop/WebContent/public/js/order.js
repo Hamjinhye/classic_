@@ -10,7 +10,7 @@ var AllGoSheet = function(memNum){
 	}
 }
 var productOptionSelect = function(memNum,productNum){
-	var url = "http://localhost:8888/classic_shop/user/wish/option.do?memNum="+memNum+"&productNum="+productNum;
+	var url = "http://localhost:8888/classic_shop/user/wish/optionInfo.do?memNum="+memNum+"&productNum="+productNum;
  	var method = "GET";
  	var http = new XMLHttpRequest();
  	http.onreadystatechange=function(){
@@ -98,9 +98,9 @@ var productSizuSelect = function(productNum){
 	http.open(method,url, true);
 	http.send();
 }
-var checkAll =function(){
-	var allCheck =  document.getElementById("allCheck");
-	var checkWish = document.getElementsByClassName("checkWish");
+var checkAll =function(data){
+	var allCheck =  document.getElementById(data.id);
+	var checkWish = document.getElementsByClassName("checkProduct");
 	var i;
 	if(allCheck.checked){
 		for(i=0; i<checkWish.length; i++){
@@ -230,12 +230,14 @@ $(document).ready(function(){
 		var key ;
 		for(key in product){
 			innerText +='<tr>';
-			innerText +='	<td><input type="checkbox" class="checkCart" value="'+key+'"></td>';
+			innerText +='	<td><input type="checkbox" class="checkProduct" value="'+key+'"></td>';
 			innerText +='	<td id ="cartDetailList">';
-			innerText +='		<div id="cartDetailListDiv">';
+			innerText +='		<div class="cartDetailListDiv">';
 			innerText +='			<div>';
 			innerText +='				<p><a href="#">이미지임</a></p>';
 			innerText +='			</div>';
+			innerText +='		</div>';
+			innerText +='		<div class="cartDetailListDiv">';
 			innerText +='			<div>';
 			innerText +='				<ul class="list-group " >';
 			innerText +='					<li class="list-group-item"><a href="#">'+product[key].name+'</a></li>';
@@ -243,7 +245,25 @@ $(document).ready(function(){
 			innerText += (product[key].colour==undefined)?"":"color  "+product[key].colour;
 			innerText += (product[key].sizu==undefined)?"":"sizu  "+product[key].sizu;
 			innerText +='					</li>';
-			innerText +='					<li class="list-group-item"><button type="button" class="btn btn-default">옵션변경</button></li>';
+			innerText +='					<li class="list-group-item"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#cartOption'+key+'"  onclick="productOptionSelect(${loginMem.num},'+key+')">옵션변경</button></li>';
+			innerText +='						<div class="modal fade" id="cartOption'+key+'" tabindex="-1" role="dialog">';
+			innerText +='							<div class="modal-dialog" role="document">';
+			innerText +='								<div class="modal-content">';
+			innerText +='									<div class="modal-header">';
+			innerText +='										<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+			innerText +='										<span aria-hidden="true">&times;</span></button>';
+			innerText +='										<h3 class="modal-title" id="myModalLabel">옵션변경</h3>';
+			innerText +='									</div>';
+			innerText +='								<form action="wish/option.do" method="PUT">';
+			innerText +='									<div class="modal-body row" style="display: inline-block!important;" id="optionSelect'+key+'">';
+			innerText +='									</div>';
+			innerText +=' 									<div class="modal-footer">';
+			innerText +='										<button type="button" class="btn btn-default">변경</button>';
+			innerText +='									</div>';
+			innerText +='								</form>';
+			innerText +='							</div>';
+			innerText +='						</div>';
+			innerText +='					</div>'; 
 			innerText +='				</ul>';
 			innerText +='			</div>';
 			innerText +='		</div>';
@@ -273,7 +293,6 @@ $(document).ready(function(){
 			delivPrice.innerHTML = 2500;
 			allSellPrice.innerHTML = allprice+2500;
 		}
-		/*AllPriceTab.innerHTML = allprice;*/
 	} else {
 		innerText = "<td class='emptyTableData' colspan='7'>장바구니가 비었습니다.</td>";
 		table.innerHTML =innerText;
@@ -281,14 +300,19 @@ $(document).ready(function(){
 });
 
 //orderList
-var AllChartGoSheet = function(memNum){
+var AllCartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";
+		var url2 = url;
 		$('input:checkbox[class*="checkCart"]').each(function(){
 			url+=this.value+"_";
 		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
+		if(url2==url){
+			alert("장바구니가 비었습니다. 상품을 추가해 주세요.");
+		}else{
+			url=url.substr(0, url.length-1);
+			location.href=url;
+		}
 	}
 }
 var CheckCartGoSheet=function(memNum){

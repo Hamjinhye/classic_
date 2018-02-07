@@ -11,7 +11,7 @@
 		<table class="table" id="wishTable">
 			<thead id="wishTitle" class="align-top">
 				<tr>
-					<th width="5%"><input type="checkbox" id="allCheck" onclick="checkAll()"></th>
+					<th width="5%"><input type="checkbox" id="allCheck" onclick="checkAll(this)"></th>
 					<th width="45%">상품정보</th>
 					<th width="10%">판매가</th>
 					<th width="10%">수량</th>
@@ -48,37 +48,14 @@
      	  												<span aria-hidden="true">&times;</span></button>
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
-<<<<<<< HEAD
-      												<div class="modal-body row" class="wishOptionSelect" style="display: inline-block!important;" id="optionSelect${wish.productNum}">
-     												
-     												</div>
-      												<div class="modal-footer">
-        												<button type="button" class="btn btn-default">변경</button>
-      												</div>
-=======
-      												<form action="wish/option.do" method="POST">
-	      												<div class="modal-body row" class="wishOptionSelect">
-	      													<div id ="colourOption" class="col-3">
-		      													<select onclick ="productColourSelect(${wish.productNum})" name="colour">
-		      														<option>${wish.colour}</option> 
-		      													</select>
-	      													</div>
-	      													<div id="sizuOpition" class="col-3">
-		      													<select onclick = "productSizuSelect(${wish.productNum})" name="sizu">
-		      														<option>${wish.sizu}</option>
-		      													</select>
-	      													</div>
-	      													<div class="col-3">
-	      														<input type="number" value ="${wish.wishQuantity}" name ="afterAuantity">
-	      													</div>
+      												<form action="wish/option.do" method="PUT">
+	      												<div class="modal-body row" style="display: inline-block!important;" id="optionSelect${wish.productNum}">
 	     												</div>
 	      												<div class="modal-footer">
-	      													<input type="hidden" name = "productNum" value ="${wish.productNum}">
-	      													<input type="hidden" name = "beforeQuantity" value="${wish.wishQuantity}">
-	        												<button type="submit" class="btn btn-default">변경</button>
+	      													<button type="reset" class="btn btn-default">초기화</button>
+	        												<button type="button" class="btn btn-default">변경</button>
 	      												</div>
       												</form>
->>>>>>> 8fcfaa6feacbf0c484cef2af422a28593977e32a
    												</div>
  											</div>
 										</div> 

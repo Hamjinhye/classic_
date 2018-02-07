@@ -83,11 +83,7 @@ public class WishListDAOImp implements WishListDAO{
 		}
 		return recode;
 	}
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 8fcfaa6feacbf0c484cef2af422a28593977e32a
 	@Override
 	public WishDTO selectWish(int memNum, int productNum) throws Exception {
 		WishDTO wish =null;
@@ -115,13 +111,8 @@ public class WishListDAOImp implements WishListDAO{
 	}
 	@Override
 	public List<ColourDTO> selectProductColour(int productNum) throws Exception {
-<<<<<<< HEAD
-		List<ColourDTO> colourList = new ArrayList<ColourDTO>();
-		ColourDTO colour = null;
-=======
 		ColourDTO colour = null;
 		List<ColourDTO> colourList = new ArrayList<ColourDTO>();
->>>>>>> 8fcfaa6feacbf0c484cef2af422a28593977e32a
 		String sql="select num, product_num , code, name from colour where product_num = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, productNum);
@@ -138,15 +129,9 @@ public class WishListDAOImp implements WishListDAO{
 	}
 	@Override
 	public List<SizuDTO> selectProductSizu(int productNum) throws Exception {
-<<<<<<< HEAD
 		List<SizuDTO> sizuList = new ArrayList<SizuDTO>();
 		SizuDTO sizu = null;
 		String sql="select num, product_num , sizu from sizu where product_num = ?";
-=======
-		SizuDTO sizu = null;
-		List<SizuDTO> sizuList = new ArrayList<SizuDTO>();
-		String sql = "select num, product_num, sizu from sizu where product_num= ?";
->>>>>>> 8fcfaa6feacbf0c484cef2af422a28593977e32a
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, productNum);
 		ResultSet rs = pstmt.executeQuery();
@@ -159,7 +144,6 @@ public class WishListDAOImp implements WishListDAO{
 		}
 		return sizuList;
 	}
-<<<<<<< HEAD
 	@Override
 	public int wishQuantity(int memNum, int productNum) throws Exception {
 		int quantity = 0;
@@ -173,6 +157,4 @@ public class WishListDAOImp implements WishListDAO{
 		}
 		return quantity;
 	}
-=======
->>>>>>> 8fcfaa6feacbf0c484cef2af422a28593977e32a
 }

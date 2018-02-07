@@ -80,9 +80,6 @@ margin: 50px 50px;
 #cartContents{
 	border-bottom: solid;
 }
-#cartTitle th{
-	
-}
 #cartContents td{
 	font-size: 16px;
 	text-align: center;
@@ -108,24 +105,14 @@ margin: 50px 50px;
 #cartDetailList{
 	text-align: left!important;
 }
-#cartDetailListDiv{
-	display: inline-block;
-	margin: 0px;
-	text-align: left;
-}
-#cartDetailListDiv div{
+.cartDetailListDiv{
 	float:left;
-	margin-bottom: 5px;
-	text-align: left;
 }
-#cartDetailListDiv p{
-	margin-bottom: 0px;
-}
-#cartDetailListDiv ul{
+.cartDetailListDiv ul{
 	margin-bottom: 0px;
 	text-align: center;
 }
-#cartDetailListDiv li {
+.cartDetailListDiv li {
 	height: auto;
 	border: hidden;
 	padding-top: 8px;
