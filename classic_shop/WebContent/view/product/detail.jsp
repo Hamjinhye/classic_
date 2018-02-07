@@ -95,8 +95,8 @@
 							</tr>
 							<tr class="border-top">
 								<td colspan="2" align="right">
-									<button class="btn btn-default">Wish List</button>
-									<button class="btn btn-default">ADD Cart</button>
+									<button class="btn btn-default btn-lg">Wish List</button>
+									<button class="btn btn-default btn-lg">ADD Cart</button>
 								</td>
 							</tr>
 						</table>
@@ -106,8 +106,11 @@
 				</div>
 			</div>
 		   
+			<!--  -->
+			
+			
+		</div> <!-- don't remove it -->
 		</div>
-	</div>
 		<div class="product_slide">
 		
 			<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
