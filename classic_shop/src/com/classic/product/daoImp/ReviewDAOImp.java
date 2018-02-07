@@ -37,7 +37,6 @@ public class ReviewDAOImp implements ReviewDAO{
 			pstmt.setInt(1, product_num);
 			pstmt.setInt(2, pagingDTO.getEndRecord());
 			pstmt.setInt(3, pagingDTO.getStartRecord());
-			System.out.println(pagingDTO.getEndRecord()+","+pagingDTO.getStartRecord());
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			ReviewDTO reviewDTO = new ReviewDTO();

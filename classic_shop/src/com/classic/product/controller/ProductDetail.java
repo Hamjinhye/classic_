@@ -60,7 +60,6 @@ public class ProductDetail extends HttpServlet{
 		}finally {
 			ClassicDBConnection.close(conn);
 		}
-		System.out.println(reviewList);
 		
 		
 		req.setAttribute("productDetail", productDTO); 
