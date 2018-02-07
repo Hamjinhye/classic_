@@ -20,22 +20,90 @@
 	  	<a href="#" class="cate">가디건</a> 
 	  </p>
 	</div>
+	<br><br>
 	
 	
 	
 	<div class="container">
 	
-		<div class="form">
-	
-		</div>
-	
 		<div class="detail_top">
-			<div class="col-xl-6">
+			<!-- Generate new Div -->
+			<%-- <div class="row Container">
+				<div class="col-md-6" style="height: 300px;">
+					<img style="width: 100%; height: 100%" src="<c:url value='/public/img/test_img.png'/>" class="img-responsive"/>
+				</div>
+				<div class="col-md-6 ml-3">
+					<div>
+						<table class="table">
+							<tr>
+								<th colspan="2" class="col-md-12 h3">${productDetail.name}</th>
+							<tr>
+							<tr>
+								<td colspan="2" class="col-md-12">${productDetail.main_info}</td>
+							</tr>
+							<tr>
+								<th class="col-md-2">PRICE </th>
+								<td class="col-md-10">
+									<fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/>
+								</td>
+							<tr>
+							<tr>
+								<th class="col-md-2">COLOR</th>
+								<td class="col-md-10">
+									<c:forEach items="${colourList}" var="colour">
+										<span class="colorchip" style="display: inline-block; width:10px; height:10px; background-color:#${colour.code};"></span> 
+									</c:forEach>
+					   			</td>
+							</tr>
+							<tr>
+								<th class="col-md-2">SIZE</th>
+								<td class="col-md-10">
+									<select id="finalSize" class="selectpicker col-md-7">
+										<option>::사이즈선택::</option>
+										<c:forEach var="sizu" items="${sizuList}">
+											<option value="${sizu.num}">${sizu.sizu}</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th class="col-md-2">수량</th>
+								<td class="col-md-10">
+									<button id="bt_minus" class="bt_down">-</button>
+                  					<input readonly style="text-align: center;" id="quantity" type="text" size="2" name="num" value="1" id="" class="num"/>	               
+									<button id="bt_plus" class="bt_up">+</button>
+								</td>
+							</tr>
+							<tr>
+								<th class="col-md-2">
+									선택한 상품
+									
+								</th>
+								<td class="col-md-10">
+									<span>${productDetail.name}{</span>
+									<span>Color</span>, 
+									<span>Size</span><span> }</span>
+								</td>
+							</tr>
+							<tr>
+								<th colspan="2" class="col-md-12" style="text-align: right;">
+									<span id="finalPrice">${productDetail.price}</span>원(가격*수량)
+								</th>
+							</tr>
+						</table>
+					
+					</div>
+				</div>
+			</div> --%>
+		
+			<!--  -->
+			
+			<div class="col-md-6">
 			<div class="detail_top_left">
-				<img style="width: 80%; height: 60%" src="<c:url value='/public/img/product_num_1.jpg'/>" class="img-responsive"/>
+				<img style="width: 80%; height: 60%" src="<c:url value='/public/img/test_img.png'/>" class="img-responsive"/>
 			</div>
 			</div>
-			<div class="col-xl-6">
+			<div class="col-md-6">
 			<div class="detail_top_right">
 				<div class="detail_top_right_top">
 				<hr class="detail_hr">
@@ -50,8 +118,6 @@
 						<td><fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/></td>
 					</tr>
 					<tr>
-						<th>마일리지</th>
-						<td>$<fmt:formatNumber value="${productDetail.price*0.01}" pattern="#,###.##"/>원(1%)</td>
 					</tr>
 				</table>
 				</div>
@@ -116,32 +182,32 @@
 		<div class="carousel-inner"> 
 			
 			<div class="item active"> 
-				<img src="http://www.blueb.co.kr/SRC2/_image/w01.jpg" style="width:100%" alt="First slide">
+				<img src="<c:url value='/public/img/001.jpeg'/>" style="width:100%; height: 300px;" alt="First slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Slide 1</h1>
-						<p>텍스트 1</p>
+					<h1>상품명</h1>
+						<p>상품 간략 설명</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="item"> 
-				<img src="http://www.blueb.co.kr/SRC2/_image/w02.jpg" style="width:100%" data-src="" alt="Second slide">
+				<img src="<c:url value='/public/img/002.png'/>" style="width:100%; height: 300px;" data-src="" alt="Second slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Slide 2</h1>
-						<p>텍스트 2</p>
+						<h1>상품명</h1>
+						<p>상품 간략 설명</p>
 					</div>
 				</div>
 			</div>
 			
 			
 			<div class="item"> 
-				<img src="http://www.blueb.co.kr/SRC2/_image/w03.jpg" style="width:100%" data-src="" alt="Third slide">
+				<img src="<c:url value='/public/img/003.jpg'/>" style="width:100%; height: 300px" data-src="" alt="Third slide">
 				<div class="container">
 					<div class="carousel-caption">
-						<h1>Slide 3</h1>
-						<p>텍스트 3</p>
+						<h1>상품명</h1>
+						<p>상품 간략 설명</p>
 					</div>
 				</div>
 			</div>
@@ -166,78 +232,8 @@
 		</code></pre></div>
 		
 		
-		<hr>
-		
-			<ul class="list-group"> 
-				<li class="list-group-item">
-					<c:forEach var="list" items="${reviewList}" varStatus="i">
-						<ul class="list-group">
-						<div class="item">
-    							<a data-toggle="collapse" data-parent="#exampleAccordion" href="#exampleAccordion${i.index}" role="button" aria-expanded="true" aria-controls="exampleAccordion1">
-	   							 <div>
-							<li class="list-group-item stars text-warning">
-								<table style="width: 100%">
-									<tr>
-										<td>
-											<c:forEach begin="1" end="${list.star}">
-												<i class="fa fa-star"></i>
-											</c:forEach>
-											<c:forEach begin="1" end="${5-list.star}">
-												<i class="fa fa-star-o"></i>
-											</c:forEach>
-										</td>
-										<td style="width:65%">
-											${list.product_name}
-										</td>
-										<td>
-											${list.id}
-										</td>
-										<td>
-											${list.indate}
-										</td>
-									</tr>
-								</table>
-							</li>
-							</div>
-							</a>
-							<div id="exampleAccordion${i.index}" class="collapse" role="tabpanel">
-			  					<div class="container">%>
-			  					
-									<li class="list-group-item content h5" id="reviewList${i.index}">
-										신체 사이즈 : ${list.body_size}<br>
-										구입 색상 : ${list.colour_name}<br>
-										구입 사이즈 : ${list.product_size}<br>
-										<hr>
-										${list.content}
-										<br>
-										${list.img_path}
-									</li>
-									
-			  					</div>
-								
-							</div>
-							</div>
-					
-						</ul>
-					</c:forEach>
-					<jsp:include page="/common/paging.jsp"/>
-				</li>
-			</ul>
-	
-		
-		
-		
-	<script>
-	
-	$('[data-toggle=collapse]').on('show', function () {
-		  $(this).show();
-		}).on('hidden', function () {
-		  $(this).css("display", "none");
-		});
-		
-		
-				
-	</script>
+		<!-- REVIEWS DOWN BELOW -->
+		<c:import url="/template/review.jsp"/>
 	
 	
 			

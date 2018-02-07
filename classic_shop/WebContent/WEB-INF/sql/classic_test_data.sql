@@ -980,3 +980,10 @@ INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
 INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
 
 commit;
+
+
+--은경 Colour table to modify code column for colorchip--
+update colour set code='FFA4D4' where mod(num,2)=0 and code!='F0F813';
+update colour set code='A4D4FF' where mod(num,2)=1 and code!='F0F813';
+commit;
+

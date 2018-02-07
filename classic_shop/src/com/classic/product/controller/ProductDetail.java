@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.classic.common.controller.Paging;
+import com.classic.common.dto.PagingDTO;
 import com.classic.product.daoImp.ColourDAOImp;
 import com.classic.product.daoImp.ProductDAOImp;
 import com.classic.product.daoImp.ReviewDAOImp;
@@ -29,6 +31,8 @@ public class ProductDetail extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String str_num = req.getParameter("num");
+		String str_page = req.getParameter("page");
+		PagingDTO pagingDTO =new PagingDTO();
 	
 		ProductDTO productDTO=null;
 		ShopGuideDTO shopGuideDTO = null;
@@ -43,14 +47,20 @@ public class ProductDetail extends HttpServlet{
 			colourList=new ColourDAOImp(conn).selectColourList(product_num);
 			sizuList=new SizuDAOImp(conn).selectSizuList(product_num);
 			shopGuideDTO=new ShopGuideDAOImp(conn).selectShopGuide(21);// 임시데이터 나중에 바꿔야함 기본사용, 직접 입력 상태 줘서 레코드 두줄만 써야할듯, 0,1 로 제어해서
-			reviewList=new ReviewDAOImp(conn).selectReviewList(product_num);
+			
+			int totalRecord = new ReviewDAOImp(conn).selectReviewCount(product_num);
+			pagingDTO.setPageNum_temp(str_page);
+			pagingDTO.setTotalRecord(totalRecord);
+			pagingDTO.setRowNum(5);
+			pagingDTO=Paging.setPaging(pagingDTO);
+			reviewList=new ReviewDAOImp(conn).selectReviewList(product_num, pagingDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			ClassicDBConnection.close(conn);
 		}
-		
+		System.out.println(reviewList);
 		
 		
 		req.setAttribute("productDetail", productDTO); 
@@ -58,6 +68,7 @@ public class ProductDetail extends HttpServlet{
 		req.setAttribute("sizuList", sizuList); 
 		req.setAttribute("shopGuide", shopGuideDTO); 
 		req.setAttribute("reviewList", reviewList); 
+		req.setAttribute("p", pagingDTO);
 		req.getRequestDispatcher("/view/product/detail.jsp").forward(req, resp);
 		
 	}
