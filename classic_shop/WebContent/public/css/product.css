@@ -131,3 +131,11 @@
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
+
+.table.borderless tr td, .table.borderless tr th {
+  border-width: 0;
+}
+.border-top{
+	border-top:1px solid black;
+	border-width:thin;
+}

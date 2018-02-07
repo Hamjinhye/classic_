@@ -28,20 +28,20 @@
 	
 		<div class="detail_top">
 			<!-- Generate new Div -->
-			<%-- <div class="row Container">
-				<div class="col-md-6" style="height: 300px;">
+			<div class="row Container">
+				<div class="col-md-6" style="height: 320px;">
 					<img style="width: 100%; height: 100%" src="<c:url value='/public/img/test_img.png'/>" class="img-responsive"/>
 				</div>
 				<div class="col-md-6 ml-3">
 					<div>
-						<table class="table">
-							<tr>
+						<table class="table borderless">
+							<tr class="border-top">
 								<th colspan="2" class="col-md-12 h3">${productDetail.name}</th>
 							<tr>
 							<tr>
 								<td colspan="2" class="col-md-12">${productDetail.main_info}</td>
 							</tr>
-							<tr>
+							<tr class="border-top">
 								<th class="col-md-2">PRICE </th>
 								<td class="col-md-10">
 									<fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/>
@@ -80,93 +80,34 @@
 									
 								</th>
 								<td class="col-md-10">
-									<span>${productDetail.name}{</span>
+									<span><STRONG>${productDetail.name}</STRONG>{</span>
 									<span>Color</span>, 
 									<span>Size</span><span> }</span>
 								</td>
 							</tr>
-							<tr>
-								<th colspan="2" class="col-md-12" style="text-align: right;">
-									<span id="finalPrice">${productDetail.price}</span>원(가격*수량)
-								</th>
+							<tr class="border-top">
+								<td colspan="2" class="col-md-12" style="text-align: right;">
+									<span>Total:</span>
+									<span class="h3" id="finalPrice">
+									<STRONG><fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/></STRONG>
+									</span>원
+								</td>
+							</tr>
+							<tr class="border-top">
+								<td colspan="2" align="right">
+									<button class="btn btn-default">Wish List</button>
+									<button class="btn btn-default">ADD Cart</button>
+								</td>
 							</tr>
 						</table>
 					
+					
 					</div>
 				</div>
-			</div> --%>
-		
-			<!--  -->
-			
-			<div class="col-md-6">
-			<div class="detail_top_left">
-				<img style="width: 80%; height: 60%" src="<c:url value='/public/img/test_img.png'/>" class="img-responsive"/>
 			</div>
-			</div>
-			<div class="col-md-6">
-			<div class="detail_top_right">
-				<div class="detail_top_right_top">
-				<hr class="detail_hr">
-				<h3>${productDetail.name}</h3>
-				<p class="detail_top_right_description_one"><%-- ${productDetail.main_info} --%></p>
-				<p class="detail_top_right_description_two"><%-- ${productDetail.sub_info} --%></p>
-				</div>
-				<div class="detail_top_right_middle">
-				<table>
-					<tr>
-						<th>Price</th>
-						<td><fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/></td>
-					</tr>
-					<tr>
-					</tr>
-				</table>
-				</div>
-				
-				<hr class="detail_hr">
-				<div class="detail_top_right_bottom">
-					<table>
-						<tr>
-							<th>Color</th>
-							<td style="text-align: 'right';" class="text-left">
-							<c:forEach items="${colourList}" var="colour">
-								<span style="display: inline-block; width:10px; height:10px; background-color:#${colour.code};"></span> 
-							</c:forEach>
-	
-						    </td>
-						</tr>
-						<tr>
-							<th>Size</th>
-							<td>
-								<select id="sizuTest" class="selectpicker">사이즈선택
-									<c:forEach var="sizu" items="${sizuList}">
-										<option value="${sizu.num}">${sizu.sizu}</option>
-									</c:forEach>
-									<c:set value="안녕" var="finalSizu" /> 
-									
-								</select>
-							</td>
-						</tr>
-					</table>
-					<hr>
-					<p>최소주문수량 1개</p>
-					<table>   
-						<tr>
-							<th>${productDetail.name}{Color,Size}</th> 
-							<td>
-								<button id="bt_minus" class="bt_down">-</button>
-	                  			<input readonly style="text-align: center;" id="quantity" type="text" size="2" name="num" value="1" id="" class="num"/>	               
-								<button id="bt_plus" class="bt_up">+</button>							
-							</td>
-							<td>${productDetail.price}원(가격*수량)</td>
-						</tr>
-					</table>
-		
-				</div>
-				
-			</div>
-			</div>
+		   
 		</div>
-		</div>
+	</div>
 		<div class="product_slide">
 		
 			<div id="myCarousel" class="carousel slide" data-ride="carousel"> 
