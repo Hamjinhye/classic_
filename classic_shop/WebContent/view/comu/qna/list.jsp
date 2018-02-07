@@ -35,6 +35,9 @@
 								<td style="text-align: left;">
 									<%-- <c:choose>
 										<c:when test="${qnaList.secure==0}"> --%>
+										<%-- <c:url value="/view/comu/qna/read.jsp">
+											<c:param name="reply_count" value="${qnaList.reply_count}" />
+										</c:url> --%>
 											<a href="<c:url value='/community/qna/read.do?num=${qnaList.num}'/>">
 												<c:choose>
 													<c:when test="${qnaList.subject==0}">상품 문의</c:when>

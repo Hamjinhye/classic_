@@ -55,27 +55,78 @@ var CheckGoSheet = function(memNum){
 		location.href=url;
 	}
 }
-$("#allCheck").click(function(){
-	if(this.checked){
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			this.checked = true;
-		});
+
+var productColourSelect = function(productNum){
+	var url = "http://localhost:8888/classic_shop/user/wish/option.do?productNum="+productNum;
+	var method = "GET";
+	var http = new XMLHttpRequest();
+	http.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			var colour_json = JSON.parse(this.response);
+			var colour =document.getElementById("colourOption");
+			var innerText ="";
+			var i ; 
+			innerText += "<select onclick ='ProductColourSelect(${wish.productNum})' name='colour'>";
+			for(i = 0; i<colour_json.length; i++){
+				innerText += "	<option value='"+colour_json[i].num+"'>"+colour_json[i].name+"</option>"; 
+			}
+			innerText += "</select>";
+			colour.innerHTML = innerText;
+		}
+	}
+	http.open(method,url, true);
+	http.send();
+};
+var productSizuSelect = function(productNum){
+	var url = "http://localhost:8888/classic_shop/user/wish/option.do?productNum="+productNum;
+	var method = "PUT";
+	var http = new XMLHttpRequest();
+	http.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			var sizu_json = JSON.parse(this.response);
+			var sizu =document.getElementById("sizuOpition");
+			var innerText ="";
+			var i ; 
+			innerText += "<select onclick ='productSizuSelect(${wish.productNum})' name='sizu'>";
+			for(i = 0; i<sizu_json.length; i++){
+				innerText += "	<option value='"+sizu_json[i].num+"'>"+sizu_json[i].sizu+"</option>"; 
+			}
+			innerText += "</select>";
+			sizu.innerHTML = innerText;
+		}
+	}
+	http.open(method,url, true);
+	http.send();
+}
+var checkAll =function(){
+	var allCheck =  document.getElementById("allCheck");
+	var checkWish = document.getElementsByClassName("checkWish");
+	var i;
+	if(allCheck.checked){
+		for(i=0; i<checkWish.length; i++){
+			checkWish[i].checked = true;
+		}
 	} else {
-		$('input:checkbox[class*="checkWish"]').each(function(){
-			this.checked = false;
-		});
+		for(i=0; i<checkWish.length; i++){
+			checkWish[i].checked = false;
+		}
 	}	
-});
+}
 var GoCartWishSelected=function(mem_num){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/cart.do?num="+mem_num+"&productNum=";
+		var url2 = url;
 		$('input:checkbox[class*="checkWish"]').each(function(){
 			if(this.checked){
 				url+=this.value+"_";
 			}		
 		});
-		url=url.substr(0, url.length-1);
-		location.href=url;
+		if(url2==url){
+			alert("상품을 선택 해 주세요.");
+		}else{
+			url=url.substr(0, url.length-1);
+			location.href=url;
+		}
 	}
 }
 var delWishSelected=function(mem_num){
@@ -129,8 +180,7 @@ var allWishDel = function(mem_num){
 	}
 }
 var pickWishDel = function(mem_num,product_num){
-	var url ="http://localhost:8888/classic_shop/order/delwish.do?num="+mem_num+"&product_num="+product_num; 
-	console.log(mem)
+	var url ="http://localhost:8888/classic_shop/user/wish/remove.do?num="+mem_num+"&product_num="+product_num; 
 	var method= "PUT";
 	var http = new XMLHttpRequest();
 	http.onreadystatechange=function(){
@@ -231,7 +281,6 @@ $(document).ready(function(){
 });
 
 //orderList
-
 var AllChartGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=t&productNum=";
@@ -240,6 +289,28 @@ var AllChartGoSheet = function(memNum){
 		});
 		url=url.substr(0, url.length-1);
 		location.href=url;
+	}
+}
+var CheckCartGoSheet=function(memNum){
+	if(memNum!=null){
+		if("${(fn:length(wishList))!=0}"){
+			var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&productNum=";
+			var url2 = url;
+			$('input:checkbox[class*="checkCart"]').each(function(){
+				if(this.checked){
+					url+=this.value+"_";
+				}		
+			});
+			if(url2==url){
+				alert("상품을 선택 해 주세요.");
+			}else{
+				url=url.substr(0, url.length-1);
+				location.href=url;
+			}
+		}
+	}else{
+		alert("로그인 시 주문가능합니다.");
+		location.href="http://localhost:8888/classic_shop/login.do";
 	}
 }
 //sheet

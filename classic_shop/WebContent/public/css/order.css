@@ -347,12 +347,7 @@ margin: 50px 50px;
 #paymentInfo p:last-child span{
 	font-weight: bolder;
 }
-#selectProductDel{
-	background: #ccc;
-	color:#000;
-	border: hidden;
-	height: 40px;
-}
+
 #orderInfo .table{
 	width:100%;
 }
@@ -473,4 +468,3 @@ padding-bottom: 30px;
 #productInfo{
 padding-bottom: 30px;
 }
->>>>>>> origin

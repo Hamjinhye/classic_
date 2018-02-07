@@ -221,13 +221,13 @@ public class QnaServiceImp implements QnaService{
 	}
 
 	@Override
-	public int searchCount(String subject) {
+	public int searchCount(String subject, String name) {
 		int searchCount = 0;
 		try {
 			conn = ClassicDBConnection.getConnection();
 			conn.setAutoCommit(false);
 			conn.commit();
-			searchCount = new QnaDAOImp(conn).searchCount(subject);
+			searchCount = new QnaDAOImp(conn).searchCount(subject, name);
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {

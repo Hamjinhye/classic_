@@ -32,51 +32,47 @@ public class SearchProductListController extends HttpServlet{
 		String cate_num = req.getParameter("searchCate");
 		String name = req.getParameter("name");
 		String priceStr = req.getParameter("productPrice");
-		int price = Integer.parseInt(priceStr);
 		int priceHigh = 0;
 		int priceLow = 0;
-		
 		if(cate_num == null || cate_num == "") {
 			cate_num = "";
-		} else if(name == null || name == "") {
+		} 
+		if(name == null || name == "") {
 			name = "";
-		} else if(priceStr == null || priceStr == ""){
+		}
+		if(priceStr == null || priceStr == ""){
 			priceHigh = 0;
 			priceLow = 1000000;
-		} else  if(price == 30000) {
+		} else if(priceStr.equals("30000")) {
 			priceHigh = 0;
 			priceLow = 30000;
-		} else if(price == 50000) {
+		} else if(priceStr.equals("50000")) {
 			priceHigh = 0;
 			priceLow = 50000;
-		} else if(price == 10000) {
+		} else if(priceStr.equals("10000")) {
 			priceHigh = 0;
 			priceLow = 100000;
-		} else if(price == 100000) {
+		} else if(priceStr.equals("100000")) {
 			priceHigh = 1000000;
 			priceLow = 100000;
 		}
 		
-		//System.out.println("proController cate_num : "+cate_num);
-		//System.out.println("proController name : "+name);
-		//System.out.println("proController priceHigh : "+priceHigh);
-		//System.out.println("proController priceLow : "+priceLow);
-		
+		//price sql 쪼개기 기본 sql문에 price 파라미터가 들어오면 where절에 추가
 		PagingDTO pagingDTO = new PagingDTO();
 		String pageNum_temp = req.getParameter("pageNum");
 		int searchCount = new ProductServiceImp().searchCount(name, cate_num, priceHigh, priceLow);
+		//System.out.println("product Searcount : "+searchCount);
+		pagingDTO.setRowNum(9);
 		pagingDTO.setPageNum_temp(pageNum_temp);
 		pagingDTO.setTotalRecord(searchCount);
 		pagingDTO = Paging.setPaging(pagingDTO);
 		String url = req.getContextPath()+"/product/search.do?pageNum=";
-		String returnPage = "&searchCate="+cate_num+"&name="+name+"&price="+price;
-
+		String returnPage = "&searchCate="+cate_num+"&name="+name+"&price="+priceStr;
 		List<CateDTO> cateList = new ArrayList<CateDTO>();
 		List<MiniCateDTO> miniCateList = new ProductServiceImp().forSearchCateRead();
 		List<ProductDTO> searchList = new ProductServiceImp().searchProduct(name, cate_num, priceHigh, priceLow, pagingDTO);
 		
 		//System.out.println("pro searchList : "+searchList);
-		
 		Connection conn =null;
 		try {
 			conn=ClassicDBConnection.getConnection();

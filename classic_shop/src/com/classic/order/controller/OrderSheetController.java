@@ -25,8 +25,6 @@ import com.sun.xml.internal.ws.api.ha.HaInfo;
 public class OrderSheetController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//req.getRequestDispatcher("/view/order/sheet.jsp").forward(req, resp);
-		//from주연
 		int num = Integer.parseInt(req.getParameter("num"));
 		String[] strProductNum = (req.getParameter("productNum")).split("_");
 		String[] colour =(req.getParameter("colour")!=null)?req.getParameter("colour").split("_"):null;
