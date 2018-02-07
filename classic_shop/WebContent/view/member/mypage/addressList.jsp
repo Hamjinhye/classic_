@@ -7,6 +7,7 @@
 <div class="member_body">
 	<div class="container">
 		<div class="address_wrap">
+
 			<h2 class="addressTitle">ADRESS LIST</h2>
 			<form action="/user/address/remove.do" method="post" name="delForm">
 				<table class="table address_table">
@@ -14,12 +15,12 @@
 						<tr>
 							<th class="col-sm-1">
 								<label>
-									<input name="checkAll" id="th_checkAll" type="checkbox" onclick="checkAll()">
+									<input name="allCheck" id="checkAll" type="checkbox" value="">
 								</label>
 							</th>
 							<th class="col-sm-1">No.</th>
-							<th class="col-sm-9">주소</th>
-							<th class="col-sm-2">삭제</th>
+							<th class="col-sm-3">주소</th>
+							<th class="col-sm-1">삭제</th>
 						</tr>
 					</tbody>
 					<tbody>
@@ -27,7 +28,7 @@
 							<tr>
 								<td>
 									<label>
-										<input name="checkAll" id="th_checkAll" type="checkbox" onclick="checkAll()">
+										<input name="checkRow" type="checkbox" value="${addr.num}">
 									</label>
 								</td>
 								<td>${addr.row_num }</td>
@@ -40,7 +41,9 @@
 				</table>
 			</form>
  			<div class="adress_btn_group">
+ 				<button class="btn btn-default" type="button" onclick="addrCheckDel(${loginMem.num})">선택삭제</button>
 				<button class="btn btn-default" data-toggle="modal" data-target="#myModal" type="button">주소 등록</button>
+
 			</div>
 			<!-- 모달 -->
 			<div class="modal fade" id="myModal" role="dialog">
@@ -51,7 +54,7 @@
 							<button type="button" class="close" data-dismiss="modal">X</button>
 							<h4 class="modal-title">주소 등록</h4>
 						</div>
-						<form action="/user/address/register.do" method="post" name="addrForm">
+						<form name="addrForm" method="post" action="/user/address/register.do">
 							<div class="modal-body">
 								<div class="zip_code_wrap">
 									<div class="col-sm-3 zip_code_input">
@@ -68,37 +71,6 @@
 									</div>
 								</div>
 								<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-								<script>
-							    function sample6_execDaumPostcode() {
-									new daum.Postcode({
-							   			oncomplete: function(data) {
-							                var fullAddr = '';
-							                var extraAddr = '';
-	
-							                if (data.userSelectedType === 'R') {
-							                    fullAddr = data.roadAddress;
-	
-							                } else {
-							                    fullAddr = data.jibunAddress;
-							                }
-	
-							                if(data.userSelectedType === 'R'){
-							                    if(data.bname !== ''){
-							                        extraAddr += data.bname;
-							                    }
-							                    if(data.buildingName !== ''){
-							                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-							                    }
-							                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-							                }
-							                document.getElementById('sample6_postcode').value = data.zonecode;
-							                document.getElementById('sample6_address').value = fullAddr;
-	
-							                document.getElementById('sample6_address2').focus();
-							            }
-							        }).open();
-							    }
-								</script>
 								<input type="hidden" name="memNum" value="${loginMem.num}">
 								<div class="modify_btn_group">
 									<button class="btn btn-default" type="button" onclick="addrJson(this.form)">등록</button>
@@ -114,6 +86,6 @@
 			</div>
 		<!-- 페이징 -->
 		<jsp:include page="/common/paging.jsp"/>
-		</div>				
+		</div>		
 	</div>
 </div>

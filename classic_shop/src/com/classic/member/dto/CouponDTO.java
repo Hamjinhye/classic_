@@ -18,6 +18,7 @@ public class CouponDTO {
 	private int state;
 	private Date indate;
 	
+	//경미 필요 DTO
 	private int total;
 	private int count;
 	private int allcount;
