@@ -7,7 +7,6 @@
 <body>
 	<div class="container" id="orderMainDiv">
 		<h2 id="orderName">주문서</h2>
-		<h2>${couponList}</h2>
 		<form action="addorder.do" method="post">
 		<table class="table" id="benefitInfo">
 			<tr>
@@ -59,13 +58,11 @@
 								<p class="productThumb"><a href="#">이미지임</a></p>
 							</div>
 							<div class="col-10 float-left">
-								<ul class="list-group" >
+								<ul class="list-group" style="display:inline-block;" >
 									<li class="list-group-item"><strong><a href="#"><input type="hidden" name="productNum" value ="${product.productNum}">${product.productName}</a></strong></li>
-									<li class="list-group-item row ">
-										<p class="col-2">color</p>"${product.colour}
-										<input class="col-4" type="hidden" name="colour" value ="${product.colour}">
-										<p class="col-2">size</p> ${product.sizu}
-										<input class="col-4" type="hidden" class="form-item" name="sizu" value ="${product.sizu}" >
+									<li class="list-group-item" >
+										<p style ="display: inline-block;">color </p><p  style ="display: inline-block;">${product.colour}</p>
+										<p style ="display: inline-block;">size  </p><p style ="display: inline-block;">${product.sizu}</p>
 									</li>
 								</ul>
 							</div>
@@ -95,10 +92,10 @@
 			</tbody>
 		</table>
 		<div class="container" id="paymentInfo">
-			<p class="h5">*상품의 옵션 및 수량변경은 상품 상세 또는 장바구니에서 변경 가능합니다.</p>
-			<p>상품구매금액   <span></span>원 + 배송비 <span>0</span>원 = 합계: <span>200,000</span>원</p>
+			<p class="h5 text-top mt-0">*상품의 옵션 및 수량변경은 상품 상세 또는 장바구니에서 변경 가능합니다.</p>
+			<p>상품구매금액   <span>100000</span>원 + 배송비 <span>0</span>원 = 합계: <span>100000</span>원</p>
 		</div>
-		<button class="btn btn-defult" id="selectProductDel">선택 상품 삭제</button>
+		<button class="btn btn-default" id="selectProductDel">선택 상품 삭제</button>
 		<div id="orderInfo">
 			<p>주문정보 <span class="redRound">10</span><span>필수</span></p>
 			<table class ="table orderTab">
@@ -232,13 +229,13 @@
 		</div>
 		<div id="methodPay">
 			<p id="payName">결제수단</p>
-			<div id="methodPayDetail" class="container clear-fix">
-				<div class="col-6">
-					<div class="row d-inline">
-						<div class="radio col-3">
+			<div id="methodPayDetail" class="row clear-fix">
+				<div class="col-6 text-left" style="margin-left: 20px;">
+					<div>
+						<div class="radio col-3" style="display: inline-block;">
 							<label><input type="radio" name="payWith"  value="0" checked>무통장입금</label>
 						</div>
-						<div class="radio col-3">
+						<div class="radio col-3" style="display: inline-block;">
 							<label><input type="radio" name="payWith" value="1">신용카드</label>
 						</div>
 					</div>
@@ -254,10 +251,12 @@
 					</div>
 				</div>
 			</div>
-			<div id="finalAmount" class="col-6">
+			<div id="finalAmount" class="col-6 text-right">
 				<p><span>무통장입금</span>최종 결제 금액</p>
 				<h2>200,000원</h2>
 				<p><input type="checkbox" value="true">결제 정보를 확인하였으며, 구매 진행에 동의 합니다.</p>
+				<input class="col-4" type="hidden" name="colour" value ="${product.colour}">
+				<input class="col-4" type="hidden" class="form-item" name="sizu" value ="${product.sizu}" >
 				<button type="submit" class="btn btn-primary btn-lg">결제하기</button>
 			</div>
 		</div>

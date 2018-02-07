@@ -978,7 +978,6 @@ INSERT INTO cancel VALUES(cancel_seq.nextval ,(select num from paid where order_
 --cancel
 INSERT INTO cancel VALUES(cancel_seq.nextval ,48,sysdate,NULL);
 INSERT INTO cancel VALUES(cancel_seq.nextval ,49,sysdate,'20180109');
-
 commit;
 
 

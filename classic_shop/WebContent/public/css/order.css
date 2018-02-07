@@ -71,30 +71,24 @@ margin: 50px 50px;
 	margin-top: 200px;
 }  
 #cartTable{
-	width:100%;
 	border-bottom: hiddien;
 	margin-bottom: 5px;
 }
 #cartTitle{
 	border-top:hidden;
-	border-bottom: 1px solid black!important;
-}
-#cartTitle th{
-	font-size: 14px;
-	text-align: center;
-}
+}  
 #cartContents{
-	border-bottom: 1px solid #000;
+	border-bottom: solid;
 }
 #cartContents td{
-	font-size: 14px;
+	font-size: 16px;
 	text-align: center;
 	vertical-align: middle;
 }
 #cartContents p{
 	background:#ccc;
-	width: 104px;
-	height: 104px;
+	width: 129px;
+	height: 129px;
 	vertical-align: middle;
 }
 #cartName{
@@ -102,51 +96,27 @@ margin: 50px 50px;
 	height: 40px;
 } 
 #cartListBtn button{
-	margin: 2px;
-	border: none;
-	border-radius: 4px;
-	height: 35px;
-	font-size: 10px;
-	width:100%;
+	width: 100%;
+    height: 34px;
+    margin: 2px;
+    font-size: 14px;
 }
-#cartListBtn2 button{
-	margin: 2px;
-	border: none;
-	border-radius: 4px;
-	height: 35px;
-	font-size: 10px;
-	width:100%;
-}
+
 #cartDetailList{
 	text-align: left!important;
 }
-#cartDetailListDiv{
-	display: inline-block;
-	margin: 0px;
-	text-align: left;
-}
-#cartDetailListDiv div{
+.cartDetailListDiv{
 	float:left;
-	margin-bottom: 5px;
-	text-align: left;
 }
-#cartDetailListDiv p{
+.cartDetailListDiv ul{
 	margin-bottom: 0px;
+	text-align: center;
 }
-#cartDetailListDiv ul{
-	margin-bottom: 0px;
-	font-size: 10px;
-	height: 104px;
-}
-#cartDetailListDiv li {
+.cartDetailListDiv li {
 	height: auto;
 	border: hidden;
 	padding-top: 8px;
 	padding-bottom: 8px;
-}
-#cartDetailListDiv li button{
-	font-size: 10px;
-	background: #ccc;
 }
 #productQuantity div{
 	float: left;
@@ -160,53 +130,11 @@ margin: 50px 50px;
 	font-size: 10px;
 	border-radius: 0px;
 }
-#cartDetailList2{
-	text-align: left!important;
-}
-#cartDetailListDiv2{
-	display: inline-block;
-	margin: 0px;
-}
-#cartDetailListDiv2 div{
-	float:left;
-	margin-bottom: 5px;
-}
-#cartDetailListDiv2 p{
-	margin-bottom: 0px;
-}
-#cartDetailListDiv2 ul{
-	margin-bottom: 0px;
-	font-size: 10px;
-	text-align: left;
-	height: 104px;
-}
-#cartDetailListDiv2 li {
-	height: auto;
-	border: hidden;
-	padding-top: 8px;
-	padding-bottom: 8px;
-}
-#productQuantity2 div{
-	float: left;
-}
-#productQuantity2 div input{
-	width: 50px;
-}
-#productQuantity2 div button{
-	height: 27px;
-	width: 50px;
-	font-size: 10px;
-	border-radius: 0px;
-}
-#cartDetailListDiv2 li button{
-	font-size: 10px;
-	background: #ccc;
-}
 #cartCRUDBtn button{
 	margin: 2px;
 	border-radius: 4px;
 	height :35px;
-	font-size: 12px;
+	font-size: 14px;
 }
 #cartCRUDBtn button:last-child{
 	font-size: 12px;
@@ -223,15 +151,8 @@ margin: 50px 50px;
 	font-size: 14px;
 	margin:2px;
 	border-radius: 4px;
-	width:auto;
 }
-#cartInfo p{
-	margin-top: 25px;
-	height: 200px;
-	text-align: center;
-	fontsiz:14px;
-	background: #CCC;
-}
+
 /*wist-list css*/
 #mainDiv{ 
 	width:80%!important;
@@ -259,7 +180,7 @@ margin: 50px 50px;
 #wishContents{
 	border-bottom: 1px solid #000;
 }
-#emptyTableData{
+.emptyTableData{
 	height: 134px;
 	font-size: 14px;
 }
@@ -274,8 +195,8 @@ margin: 50px 50px;
 }
 #wishContents p{
 	background:#ccc;
-	width: 104px;
-	height: 104px;
+	width: 129px;
+	height: 129px;
 	vertical-align: middle;
 }
 
@@ -402,7 +323,8 @@ margin: 50px 50px;
 #paymentInfo p:first-child{
 	float: left;
 	color:red;
-	font-size: 10px;
+	font-size: 14px;
+	margin-top: 0px;
 }
 #paymentInfo p:last-child {
 	float:right;
@@ -412,12 +334,7 @@ margin: 50px 50px;
 #paymentInfo p:last-child span{
 	font-weight: bolder;
 }
-#selectProductDel{
-	background: #ccc;
-	color:#000;
-	border: hidden;
-	height: 40px;
-}
+
 #orderInfo .table{
 	width:100%;
 }
@@ -538,4 +455,3 @@ padding-bottom: 30px;
 #productInfo{
 padding-bottom: 30px;
 }
->>>>>>> origin
