@@ -96,4 +96,16 @@ public class NoticeDAOImp implements NoticeDAO{
 		count = pstmt.executeUpdate();
 		return count;
 	}
+
+
+	@Override
+	public int deleteNotice(int num) throws Exception {
+		int delete = 0;
+		String sql = "DELETE FROM notice WHERE num=?";
+		PreparedStatement pstmt = null;
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		delete = pstmt.executeUpdate();
+		return delete;
+	}
 }

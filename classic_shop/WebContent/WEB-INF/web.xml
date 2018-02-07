@@ -31,13 +31,13 @@
 		<error-code>500</error-code>
 		<location>/error/500code.html</location>
 	</error-page>
-	<filter>
+	<!-- <filter>
 		<filter-name>LoginCheckFilter</filter-name>
 		<filter-class>com.classic.member.filter.LoginCheckFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginCheckFilter</filter-name>
 		<url-pattern>/user/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 </web-app>
