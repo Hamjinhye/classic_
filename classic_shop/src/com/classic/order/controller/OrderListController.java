@@ -46,7 +46,6 @@ public class OrderListController extends HttpServlet {
 		}finally {
 			ClassicDBConnection.close(conn);
 		}
-		req.setAttribute("totalRecord", totalRecord);
 		req.setAttribute("orderList", orderList);
 		req.setAttribute("url", url); 
 		req.setAttribute("p", pagingDTO);

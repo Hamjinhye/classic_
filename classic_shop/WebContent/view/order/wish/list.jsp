@@ -1,4 +1,3 @@
-339 lines (336 sloc)  12.2 KB
 <%@page import="com.classic.order.dto.WishDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,7 +11,7 @@
 		<table class="table" id="wishTable">
 			<thead id="wishTitle" class="align-top">
 				<tr>
-					<th width="5%"><input type="checkbox" id="allCheck"></th>
+					<th width="5%"><input type="checkbox" id="allCheck" onclick="checkAll(this)"></th>
 					<th width="45%">상품정보</th>
 					<th width="10%">판매가</th>
 					<th width="10%">수량</th>
@@ -26,24 +25,21 @@
 				<c:when test="${(fn:length(wishList))!=0}">
 					<c:forEach var="wish" items="${wishList}">
 						<tr>
-							<td><input type="checkbox" value="${wish.productNum}" class="checkWish paramValue" name="product_num"></td>
+							<td><input type="checkbox" value="${wish.productNum}" class="checkWish paramValue" name="product_num" ></td>
 							<td class="infoList">
 								<div class="infoListDiv">
 									<div>
-										<a href="<c:url value='/product/detail.do?num=${wish.productNum}'/>">
+										<a href="<c:url value='/detail.do?num=${wish.productNum}'/>">
 											<p>이미지임</p>
 										</a>
 									</div>
 								</div>
 								<div class="infoListDiv">
 									<ul class="list-group">
-										<li class="list-group-item"><strong><a href="<c:url value='/product/detail.do?num=${wish.productNum}'/>"><input type="hidden" name="product_name" value="${wish.productName}" class="paramValue">${wish.productName}</a></strong></li>
+										<li class="list-group-item"><strong><a href="<c:url value='/detail.do?num=${wish.productNum}'/>"><input type="hidden" name="product_name" value="${wish.productName}" class="paramValue">${wish.productName}</a></strong></li>
 										<li class="list-group-item"><strong>color : ${wish.colour}   <input type="hidden" name="product_colour" value="${wish.colour}" class="paramValue">size : ${wish.sizu}<input type="hidden" name="product_sizu" value="${wish.sizu}" class="paramValue"> </strong></li>
-										<!-- 모달버튼  -->
 										<li class="list-group-item">
-											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#wishOption${wish.productNum}" >옵션변경</button>
-										</li>
-										 <!-- 모달 -->
+											<button type="button" class="btn btn-default" data-toggle="modal" data-target="#wishOption${wish.productNum}"  onclick="productOptionSelect(${loginMem.num},${wish.productNum})">옵션변경</button></li>
 										<div class="modal fade" id="wishOption${wish.productNum}" tabindex="-1" role="dialog">
   											<div class="modal-dialog" role="document">
   												<div class="modal-content">
@@ -52,21 +48,14 @@
      	  												<span aria-hidden="true">&times;</span></button>
       													<h3 class="modal-title" id="myModalLabel">옵션변경</h3>
       												</div>
-      												<div class="modal-body" class="wishOptionSelect">
-      													<div>
-	      													<select class="form-control" onclick = "ProductColourSelect(${wish.productNum})">
-	      														<option>${wish.colour}</option>
-	      													</select>
-      													</div>
-      													<div>
-	      													<select class="form-control">
-	      														<option>${wish.sizu}</option>
-	      													</select>
-      													</div>
-     												</div>
-      												<div class="modal-footer">
-        												<button type="button" class="btn btn-default">변경</button>
-      												</div>
+      												<form action="wish/option.do" method="PUT">
+	      												<div class="modal-body row" style="display: inline-block!important;" id="optionSelect${wish.productNum}">
+	     												</div>
+	      												<div class="modal-footer">
+	      													<button type="reset" class="btn btn-default">초기화</button>
+	        												<button type="button" class="btn btn-default">변경</button>
+	      												</div>
+      												</form>
    												</div>
  											</div>
 										</div> 
@@ -87,7 +76,7 @@
 							</c:choose>
 							<td>
 								<div class="buttonGroup">
-									<a type="button" class="btn btn-default partOrder" href="<c:url value='/user/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
+									<a type="button" class="btn btn-default partOrder" href="<c:url value='/cart.do?num=${loginMem.num}&productNum=${wish.productNum}'/>">장바구니 등록</a>									
 									<a type="button" class="btn btn-default partOrder" href='<c:url value="/user/ordersheet.do?num=${loginMem.num}&cookie=f&productNum=${wish.productNum}"/>'>주문하기</a>									
 									<button type="button" class="btn btn-default" onclick="pickWishDel(${loginMem.num},${wish.productNum})">삭제</button>
 								</div>
@@ -97,7 +86,7 @@
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="8" id="emptyTableData">wish list가 비었습니다.<td>
+						<td colspan="8" class="emptyTableData">wish list가 비었습니다.<td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -110,4 +99,7 @@
 			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
 			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
-		<jsp:include page="/common/paging.jsp"/>
+		<c:if test="${(fn:length(wishList))!=0}">
+			<jsp:include page="/common/paging.jsp"/>
+		</c:if>
+	</div>

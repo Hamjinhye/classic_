@@ -48,7 +48,6 @@ public class WIshListController extends HttpServlet{
 			req.setAttribute("p", pagingDTO);
 			req.setAttribute("wishList", wishList);
 			req.getRequestDispatcher("/view/order/wish/list.jsp").forward(req, resp);
-			
 		} else {
 			resp.sendRedirect(req.getContextPath()+"/login.do");
 		}

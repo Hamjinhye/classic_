@@ -1,6 +1,7 @@
 package com.classic.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +31,7 @@ public class AddrBookListController extends HttpServlet{
 		pagingDTO.setPageNum_temp(pageNum_temp);
 		pagingDTO.setTotalRecord(memTotalRecord);
 		pagingDTO=Paging.setPaging(pagingDTO);
-		
 		String url=req.getContextPath()+"/user/address.do?num="+memNum+"&pageNum=";
-		
 		List<AddrBookDTO> addrBookList = new AddrBookServiceImp().listAddr(Integer.parseInt(memNum),pagingDTO);
 		req.setAttribute("url", url);
 		req.setAttribute("p", pagingDTO);

@@ -10,6 +10,8 @@ public interface NoticeDAO {
 	public NoticeDTO selectNotice(int num) throws Exception; //notice detail
 	public int noticeTotalRecord() throws Exception;//notice total
 	public int selectCount(int num) throws Exception; //조회수
+	public int deleteNotice(int num) throws Exception; //qna 글 삭제
+
 
 	
 }

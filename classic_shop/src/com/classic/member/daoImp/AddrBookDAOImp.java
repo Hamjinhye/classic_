@@ -9,6 +9,7 @@ import java.util.List;
 import com.classic.common.dto.PagingDTO;
 import com.classic.member.dao.AddrBookDAO;
 import com.classic.member.dto.AddrBookDTO;
+import com.classic.util.ClassicDBConnection;
 
 
 public class AddrBookDAOImp implements AddrBookDAO {
@@ -39,11 +40,13 @@ public class AddrBookDAOImp implements AddrBookDAO {
 			AddrBookDTO addrBookDTO = new AddrBookDTO();
 			addrBookDTO.setRow_num(rs.getInt("row_num"));
 			addrBookDTO.setNum(rs.getInt("num"));
+			addrBookDTO.setMem_num(mem_num);
 			addrBookDTO.setZip_code(rs.getString("zip_code"));
 			addrBookDTO.setBase_addr(rs.getString("base_addr"));
 			addrBookDTO.setDetail_addr(rs.getString("detail_addr"));
 			addrBookList.add(addrBookDTO);
 		}
+		System.out.println(addrBookList);
 		return addrBookList;
 	}
 
@@ -57,7 +60,6 @@ public class AddrBookDAOImp implements AddrBookDAO {
 		pstmt.setString(2, addrBookDTO.getZip_code());
 		pstmt.setString(3, addrBookDTO.getBase_addr());
 		pstmt.setString(4, addrBookDTO.getDetail_addr());
-		pstmt.setString(5, addrBookDTO.getZip_code());
 		insert = pstmt.executeUpdate();
 		return insert;
 	}
