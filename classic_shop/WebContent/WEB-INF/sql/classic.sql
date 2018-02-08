@@ -1377,4 +1377,5 @@ commit;
 update colour set code='FFA4D4' where mod(num,2)=0 and code!='F0F813';
 update colour set code='A4D4FF' where mod(num,2)=1 and code!='F0F813';
 commit;
-
+update product set main_info='메인상품설명입니다. 서브인포보다 더 길게 쓸 수 있어요. 상품에 대한 자세한 설명을 적는 곳입니다.' where num=1;
+commit;

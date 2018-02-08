@@ -1,10 +1,14 @@
 
 $(function(){
 	
-	$("#bt_minus").click(function(){
+	
+	/*$("#bt_minus").click(function(){
+		var price ='<c:set var="productPrice" value="${productDetail.price}" />';
+		console.log(price);
 		var val = Number($("#quantity").val());
 		if(val>1){
 			val-=1
+			$("#finalPrice").html(price*val);
 		}
 		$("#quantity").val(val);
 	});
@@ -13,10 +17,39 @@ $(function(){
 		var val = Number($("#quantity").val());
 		if(val<99){
 			val+=1
+			
 		}
 		$("#quantity").val(val);
-	});
+	});*/
 });
+
+
+var finalPrice=0;
+
+var btnMinus =function(price){
+	var val = Number($("#quantity").val());
+	if(val>1){
+		val-=1
+		finalPrice=val*price;
+		$("#finalPrice").html(finalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	}
+	$("#quantity").val(val);
+}
+var btnPlus = function(price){
+	var val = Number($("#quantity").val());
+	if(val<99){
+		val+=1
+		finalPrice=val*price;
+		$("#finalPrice").html(finalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	}
+	$("#quantity").val(val);
+}
+
+var changeColor = function(){
+	console.log($(this));
+	var size = $(this).find('color-name').val();
+	console.log(size);
+}
 
 
 //상품 자동 검색

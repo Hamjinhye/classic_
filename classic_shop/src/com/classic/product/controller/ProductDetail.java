@@ -31,7 +31,7 @@ public class ProductDetail extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String str_num = req.getParameter("num");
-		String str_page = req.getParameter("page");
+		String str_page = (req.getParameter("page")!=null)?req.getParameter("page"):"1";
 		PagingDTO pagingDTO =new PagingDTO();
 	
 		ProductDTO productDTO=null;
@@ -66,6 +66,7 @@ public class ProductDetail extends HttpServlet{
 		req.setAttribute("colourList", colourList); 
 		req.setAttribute("sizuList", sizuList); 
 		req.setAttribute("shopGuide", shopGuideDTO); 
+		req.setAttribute("num", str_num);
 		req.setAttribute("reviewList", reviewList); 
 		req.setAttribute("p", pagingDTO);
 		req.getRequestDispatcher("/view/product/detail.jsp").forward(req, resp);

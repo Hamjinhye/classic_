@@ -45,13 +45,16 @@
 								<th class="col-md-2">PRICE </th>
 								<td class="col-md-10">
 									<fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/>
+									
 								</td>
 							<tr>
 							<tr>
 								<th class="col-md-2">COLOR</th>
 								<td class="col-md-10">
 									<c:forEach items="${colourList}" var="colour">
-										<span class="colorchip" style="display: inline-block; width:10px; height:10px; background-color:#${colour.code};"></span> 
+										<span onclick="javascript:changeColor()" class="colorchip" style="display: inline-block; width:10px; height:10px; background-color:#${colour.code};">
+											<input class="color-name" type="hidden" value="${colour.name}">
+										</span> 
 									</c:forEach>
 					   			</td>
 							</tr>
@@ -69,9 +72,9 @@
 							<tr>
 								<th class="col-md-2">수량</th>
 								<td class="col-md-10">
-									<button id="bt_minus" class="bt_down">-</button>
+									<button id="bt_minus" class="bt_down" onclick="javascript:btnMinus(${productDetail.price})">-</button>
                   					<input readonly style="text-align: center;" id="quantity" type="text" size="2" name="num" value="1" id="" class="num"/>	               
-									<button id="bt_plus" class="bt_up">+</button>
+									<button id="bt_plus" class="bt_up" onclick="javascript:btnPlus(${productDetail.price})">+</button>
 								</td>
 							</tr>
 							<tr>
@@ -88,8 +91,8 @@
 							<tr class="border-top">
 								<td colspan="2" class="col-md-12" style="text-align: right;">
 									<span>Total:</span>
-									<span class="h3" id="finalPrice">
-									<STRONG><fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/></STRONG>
+									<span class="h3">
+									<STRONG id="finalPrice"><fmt:formatNumber value="${productDetail.price}" pattern="#,###.##"/></STRONG>
 									</span>원
 								</td>
 							</tr>

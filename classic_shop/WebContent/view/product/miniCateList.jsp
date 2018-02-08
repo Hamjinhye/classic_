@@ -56,7 +56,7 @@
 		          	
 		          </p>
 		          <p class="product_price">	<fmt:formatNumber type="Number" pattern="#,###" value="${list.price}" /></p>
-		          <p class="product_description">${list.main_info }</p>
+		          <p class="product_description">${list.sub_info }</p>
 				</div>
 			 </div>
 		 </div>
