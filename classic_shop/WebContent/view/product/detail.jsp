@@ -52,7 +52,9 @@
 								<th class="col-md-2">COLOR</th>
 								<td class="col-md-10">
 									<c:forEach items="${colourList}" var="colour">
-										<span class="colorchip" style="display: inline-block; width:10px; height:10px; background-color:#${colour.code};"></span> 
+										<span onclick="javascript:changeColor()" class="colorchip" style="display: inline-block; width:10px; height:10px; background-color:#${colour.code};">
+											<input class="color-name" type="hidden" value="${colour.name}">
+										</span> 
 									</c:forEach>
 					   			</td>
 							</tr>

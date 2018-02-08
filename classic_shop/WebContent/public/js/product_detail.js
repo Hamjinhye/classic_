@@ -44,8 +44,11 @@ var btnPlus = function(price){
 	}
 	$("#quantity").val(val);
 }
-var numberFormat =function(){
-	return $(this).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+var changeColor = function(){
+	console.log($(this));
+	var size = $(this).find('color-name').val();
+	console.log(size);
 }
 
 

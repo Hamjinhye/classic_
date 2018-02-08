@@ -53,14 +53,25 @@
 		
 			</ul>
 		</c:forEach>
-		<jsp:include page="/common/paging.jsp"/>
+		<jsp:include page="/template/reviewPaging.jsp"/>
 	</li>
 </ul>
-	
 		
 		
 		
 <script>
+
+var loadReview = function(num,page){
+	$.ajax({
+		url: "product/review.do?num="+num+"&page="+page,
+		type: "GET",
+		dataType: "json",
+		success:function(data){
+			console.log(data);
+		}
+		
+	});
+}
 
 $('[data-toggle=collapse]').on('show', function () {
 	  $(this).show();
