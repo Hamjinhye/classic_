@@ -64,7 +64,7 @@
 										<li><a href="<c:url value='/user/coupon.do?num=${loginMem.num}'/>">쿠폰</a></li>
 										<li><a href="<c:url value='/cart.do'/>">장바구니</a></li>
 										<li><a href="<c:url value='/user/wish.do?num=${loginMem.num}'/>">위시리스트</a></li>
-										<li><a href="<c:url value='/user/order.do?num=${loginMem.num}' />">주문내역</a></li>
+										<li><a href="<c:url value='/user/order/list.do?num=${loginMem.num}' />">주문내역</a></li>
 										<li><a href="<c:url value='/user/mypage/myposting.do?num=${loginMem.num}'/>">내가쓴글</a></li>
 									</ul>
 								</li>
@@ -73,7 +73,7 @@
 										<span class="badge badge-pill badge-secondary" style="background-color: #ccc;" id="cartSymbol"></span>
 									</a>
 								</li>
-								<li><a href="<c:url value='/order/list.do?num=${loginMem.num}' />">ORDER</a></li>
+								<li><a href="<c:url value='/user/order/list.do?num=${loginMem.num}' />">ORDER</a></li>
 							<li role="presentation" class="dropdown">
 									<a class="dropdown-toggle" href="<c:url value='/community/notice.do' />" role="button" aria-expanded="false">COMMUNITY</a>
 									<ul class="dropdown-menu" role="menu">

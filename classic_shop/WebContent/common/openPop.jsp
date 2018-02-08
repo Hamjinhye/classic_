@@ -11,8 +11,8 @@
 <body>
 	<div id="bannerPage">
 		<div id="bannerInner">
-			<img alt="" src="<c:url value='/public/img/bannerImg/${banner.img_path}' />">
-			<%-- <img alt="" src="<c:url value='/public/img/bannerImg/test배너.png '/>"> --%>
+			<%-- <img alt="" src="<c:url value='/public/img/bannerImg/${banner.img_path}' />"> --%>
+			<img alt="" src="<c:url value='/public/img/bannerImg/testbanner.png '/>">
 		</div>
 		<div class="container-fluid" style="text-align: right; font-family: 굴림; font-size: 12px; padding: 3px 5px; color: rgb(255, 255, 255); width: 300px; background-color: rgb(49, 48, 49);">
 			<label for="popClose" style="margin-right:20px;">오늘 하루동안 이 창을 열지 않기</label>

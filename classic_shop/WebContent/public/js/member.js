@@ -7,7 +7,7 @@ $(function(){
 		location.href="/classic_shop/signup.do";
 	});
 });
-
+/*
 //Google Login
 function onSignIn(googleUser){
 	var profile = googleUser.getBasicProfile();
@@ -21,10 +21,10 @@ function onSignIn(googleUser){
 	console.log("ID Token: " + id_token);
 };
 
-/* 경미: 내 js가 안 먹어서 naver.login 전체 주석했었는데.........
+ 경미: 내 js가 안 먹어서 naver.login 전체 주석했었는데.........
  * 주석 다시 푸려고 보니까 주석안에 주석이 사라져서 오류가 나는데.........
  * 결론: 어디부터 어디까지 주석이었는지 잘 모르곘어여............ 네이버 로그인 안에서 ...고친 거 없음... 주석만 했음...
- */
+ 
 //NAVER Login
 var naverLogin = new naver.LoginWithNaverId(
 	{
@@ -65,7 +65,7 @@ function setLoginStatus() {
 }
 //Naver Login ABOVE!
 
-
+*/
 //ID/PW search
 var searchIdPwd = function(){
 	window.open("view/member/searchIdPwdBom.html","_blank","top=100 left=200 width=400 height=400");
@@ -167,7 +167,7 @@ $(function(){
 });
 
 //회원가입
-var url = "join.do";
+var url = "signup.do";
 var joinJson = function(joinForm){
 	if(idStrFlag && pwStrFlag && mailStrFlag && agreeFlag){
 		var method = "POST";
@@ -204,7 +204,7 @@ var joinJson = function(joinForm){
 
 var returnMypage = function(modifyForm){
 	var num = modifyForm.num.value;
-	location.href="/classic_shop/mypage.do?num="+num;
+	location.href="/classic_shop/user/mypage.do?num="+num;
 }
 
 //회원정보 비번 유효성

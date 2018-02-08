@@ -30,7 +30,7 @@
 					</tr>
 				</tbody>
 				<tbody class="notice_list_contents">
-					<c:forEach var="notice" items="${notice}">
+					<c:forEach var="notice" items="${noticeList}">
 						<tr>
 							<td>${notice.num}</td>
 							<td style="text-align: left;">

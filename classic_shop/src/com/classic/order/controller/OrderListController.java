@@ -20,7 +20,7 @@ import com.classic.order.dto.PaidDTO;
 import com.classic.order.serviceImp.OrderServiceImp;
 import com.classic.util.ClassicDBConnection;
 
-@WebServlet("/order/list.do")
+@WebServlet("/user/order/list.do")
 public class OrderListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
