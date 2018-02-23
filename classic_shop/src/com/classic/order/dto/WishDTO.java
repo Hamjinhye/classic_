@@ -13,16 +13,17 @@ public class WishDTO {
 	private int num;
 	private int productNum;
 	private int memNum;
+	private int sizuNum;
+	private int colourNum;
 	private String indate;
 	private String sizu;
 	private String colour;
-	
 	
 	public int getRowNum() {return rowNum;}
 	public void setRowNum(int rowNum) {this.rowNum = rowNum;}
 	public String getProductName() {return productName;}
 	public void setProductName(String productName) {this.productName = productName;}
-	public int getPrice() {return price;}
+	public int getPrice() {	return price;}
 	public void setPrice(int price) {this.price = price;}
 	public int getWishQuantity() {return wishQuantity;}
 	public void setWishQuantity(int wishQuantity) {this.wishQuantity = wishQuantity;}
@@ -32,6 +33,10 @@ public class WishDTO {
 	public void setProductNum(int productNum) {this.productNum = productNum;}
 	public int getMemNum() {return memNum;}
 	public void setMemNum(int memNum) {this.memNum = memNum;}
+	public int getSizuNum() {return sizuNum;}
+	public void setSizuNum(int sizuNum) {this.sizuNum = sizuNum;}
+	public int getColourNum() {return colourNum;}
+	public void setColourNum(int colourNum) {this.colourNum = colourNum;}
 	public String getIndate() {return indate;}
 	public void setIndate(String indate) {this.indate = indate;}
 	public String getSizu() {return sizu;}
@@ -40,10 +45,10 @@ public class WishDTO {
 	public void setColour(String colour) {this.colour = colour;}
 	@Override
 	public String toString() {
-		return "{ \"rowNum\": "+rowNum+", \"productName\" : \"" + productName + "\", \"price\" : " + price + ", \"wishQuantity\" : "
-				+ wishQuantity + ", \"num\" : " + num + ", \"productNum\" : " + productNum
-				+ ", \"memNum\" : " + memNum + ", \"indate\" : \"" + indate + "\", \"sizu\" : \"" + sizu
+		return "{ \"rowNum\" : " + rowNum + ", \"productName\" : \"" + productName + "\", \"price\" : " + price
+				+ ", \"wishQuantity\" : " + wishQuantity + ", \"num\" : " + num + ", \"productNum\" : "
+				+ productNum + ", \"memNum\" : " + memNum + ", \"sizuNum\" : " + sizuNum
+				+ ", \"colourNum\" : " + colourNum + ", \"indate\" : \"" + indate + "\", \"sizu\" : \"" + sizu
 				+ "\", \"colour\" : \"" + colour + "\"}";
 	}
-	
 }

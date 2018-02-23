@@ -53,7 +53,7 @@
 	     												</div>
 	      												<div class="modal-footer">
 	      													<button type="reset" class="btn btn-default">초기화</button>
-	        												<button type="button" class="btn btn-default">변경</button>
+	        												<button type="button" class="btn btn-default" onclick="optionChange()">변경</button>
 	      												</div>
       												</form>
    												</div>
@@ -94,12 +94,14 @@
 		</table>
 		<div id="wishCRUDBtn">
 			<button type="button" class="btn btn-default" onclick="allWishDel(${loginMem.num})">전체삭제</button>
-			<button type="button" class="btn btn-default" onclick="CheckGoSheet(${loginMem.num})">선택주문</button>
+			<button type="button" class="btn btn-default" onclick="checkGoSheet(${loginMem.num})">선택주문</button>
 			<button type="button" class="btn btn-default"  onclick="delWishSelected(${loginMem.num})">선택삭제</button>
-			<button class="btn btn-default" onclick="GoCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
-			<button class="btn btn-default pull-right" onclick="AllGoSheet(${loginMem.num})">전체상품 주문</button>
+			<button class="btn btn-default" onclick="goCartWishSelected(${loginMem.num})">선택 상품 장바구니 등록</button>
+			<button class="btn btn-default pull-right" onclick="allGoSheet(${loginMem.num})">전체상품 주문</button>
 		</div>
 		<c:if test="${(fn:length(wishList))!=0}">
 			<jsp:include page="/common/paging.jsp"/>
 		</c:if>
 	</div>
+</div>
+</div>

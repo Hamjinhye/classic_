@@ -157,4 +157,45 @@ public class WishListDAOImp implements WishListDAO{
 		}
 		return quantity;
 	}
+	@Override
+	public int wishOptionUpdate(WishDTO wish) throws Exception {
+		int update = 0;
+		String sql = "UPDATE WISH SET sizu_num =?, colour_num=? WHERER mem_num= ? and product_num= ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, wish.getSizuNum());
+		pstmt.setInt(2, wish.getColourNum());
+		pstmt.setInt(3, wish.getMemNum());
+		pstmt.setInt(4, wish.getProductNum());
+		update =pstmt.executeUpdate();
+		return update;
+	}
+	@Override
+	public int wishDelete (int memNum,int productNum) throws Exception {
+		int delWish = 0;
+		String sql = "DELETE FROM WISH WHERE num = (SELECT MIN(num) FROM WISH WHERE mem_num=? AND product_num=?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, memNum);
+		pstmt.setInt(2, productNum);
+		delWish = pstmt.executeUpdate();
+		return delWish;
+	}
+	@Override
+	public int wishInsert(WishDTO wish) throws Exception {
+		/*NUM                                       NOT NULL NUMBER(8)
+		PRODUCT_NUM                                        NUMBER(8)
+		MEM_NUM                                            NUMBER(8)
+		INDATE                                             DATE
+		SIZU_NUM                                  NOT NULL NUMBER(8)
+		COLOUR_NUM                                NOT NULL NUMBER(8)*/
+		int insert = 0;
+		String sql = "INSERT INTO WISH (num, product_num, mem_num, indate, sizu_num , colour_num) "
+					+ "value (wish_seq.nextval ,? , ?, sysdate, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, wish.getProductNum());
+		pstmt.setInt(2, wish.getMemNum());
+		pstmt.setInt(3, wish.getSizuNum());
+		pstmt.setInt(4, wish.getColourNum());
+		insert = pstmt.executeUpdate();
+		return insert;
+	}
 }

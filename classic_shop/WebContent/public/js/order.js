@@ -1,5 +1,5 @@
 //wish
-var AllGoSheet = function(memNum){
+var allGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
 		$('input:checkbox[class*="checkWish"]').each(function(){
@@ -10,7 +10,7 @@ var AllGoSheet = function(memNum){
 	}
 }
 var productOptionSelect = function(memNum,productNum){
-	var url = "http://localhost:8888/classic_shop/user/wish/optionInfo.do?memNum="+memNum+"&productNum="+productNum;
+	var url = "http://localhost:8888/classic_shop/user/wish/option.do?memNum="+memNum+"&productNum="+productNum;
  	var method = "GET";
  	var http = new XMLHttpRequest();
  	http.onreadystatechange=function(){
@@ -21,21 +21,24 @@ var productOptionSelect = function(memNum,productNum){
 			var innerText ="";
 			var i ; 
 			innerText +='<div class="col-5" style="display: inline-block; margin-right: 5px;">';
-			innerText +='	<select class="form-control">';
+			innerText +='	<select class="form-control" id="optionColour">';
 			for(i = 0; i<option_json["colour"].length;i++){
 				innerText +='		<option value=\"'+option_json["colour"][i].num+'\">'+option_json["colour"][i].name+'</option>';
 			}
 			innerText +='	</select>';
 			innerText +='</div>';
 			innerText +='<div class="col-5" style="display: inline-block; margin-right: 5px; ">';
-			innerText +='	<select class="form-control">';
+			innerText +='	<select class="form-control" id="optionSizu">';
 			for(i=0;i<option_json["sizu"].length; i++){
 				innerText +='		<option value=\"'+option_json["sizu"][i].num+'\">'+option_json["sizu"][i].sizu+'</option>';
 			}
 			innerText +='	</select>';
 			innerText +='</div>';
 			innerText +='<div class="col-2" style="display: inline-block; width: 86px;">';
-			innerText +='	<input type="number" value=\"'+option_json["quantity"]+'\" class="form-control">';
+			innerText +='	<input type="number" min="1" value=\"'+option_json["quantity"]+'\" class="form-control" id="optionAfterQuantity">';
+			innerText +='	<input type="hidden" value=\"'+option_json["quantity"]+'\" id="optionBeforeQuantity">';
+			innerText +='	<input type="hidden" value=\"'+option_json["colour"][0].productNum+'\" id="optionProductNum">';
+			innerText +='	<input type="hidden" value=\"'+option_json["memNum"]+'\" id="memNum">';
 			innerText +='</div>';
 			optionTab.innerHTML = innerText;
 	 		}
@@ -43,7 +46,28 @@ var productOptionSelect = function(memNum,productNum){
  	http.open(method,url, true);
  	http.send();
 };
-var CheckGoSheet = function(memNum){
+
+var optionChange = function(){
+	var colourNum = document.getElementById("optionColour").value;
+	var sizuNum = document.getElementById("sizuNum").value;
+	var afterQuantity = document.getElementById("optionAfterQuantity").value;
+	var beforeQuantity = document.getElementById("optionBeforeQuantity").value;
+	var productNum = document.getElementById("optionProductNum").value;
+	var memNum = document.getElementById("memNum").value;
+	var url = "http://localhost:8888/classic_shop/user/wish/option.do?productNum="+productNum+"&memNum="+memNum+"&colourNum="+colourNum+"&sizuNum="+sizuNum+"&afterQuantity="+afterQuantity+"&beforeQuantity="+beforeQuantity;
+	var method="PUT";
+	var http = new XMLHttpRequest();
+	console.log(sizuNum);
+	/*$.ajax({
+		url: url, 
+		type : method,
+		dateType:"json", 
+		success: function(data){
+			console.log(data);
+		}
+	})*/
+}
+var checkGoSheet = function(memNum){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/user/ordersheet.do?num="+memNum+"&cookie=f&productNum=";
 		$('input:checkbox[class*="checkWish"]').each(function(){
@@ -56,48 +80,7 @@ var CheckGoSheet = function(memNum){
 	}
 }
 
-var productColourSelect = function(productNum){
-	var url = "http://localhost:8888/classic_shop/user/wish/option.do?productNum="+productNum;
-	var method = "GET";
-	var http = new XMLHttpRequest();
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			var colour_json = JSON.parse(this.response);
-			var colour =document.getElementById("colourOption");
-			var innerText ="";
-			var i ; 
-			innerText += "<select onclick ='ProductColourSelect(${wish.productNum})' name='colour'>";
-			for(i = 0; i<colour_json.length; i++){
-				innerText += "	<option value='"+colour_json[i].num+"'>"+colour_json[i].name+"</option>"; 
-			}
-			innerText += "</select>";
-			colour.innerHTML = innerText;
-		}
-	}
-	http.open(method,url, true);
-	http.send();
-};
-var productSizuSelect = function(productNum){
-	var url = "http://localhost:8888/classic_shop/user/wish/option.do?productNum="+productNum;
-	var method = "PUT";
-	var http = new XMLHttpRequest();
-	http.onreadystatechange=function(){
-		if(this.readyState==4 && this.status==200){
-			var sizu_json = JSON.parse(this.response);
-			var sizu =document.getElementById("sizuOpition");
-			var innerText ="";
-			var i ; 
-			innerText += "<select onclick ='productSizuSelect(${wish.productNum})' name='sizu'>";
-			for(i = 0; i<sizu_json.length; i++){
-				innerText += "	<option value='"+sizu_json[i].num+"'>"+sizu_json[i].sizu+"</option>"; 
-			}
-			innerText += "</select>";
-			sizu.innerHTML = innerText;
-		}
-	}
-	http.open(method,url, true);
-	http.send();
-}
+
 var checkAll =function(data){
 	var allCheck =  document.getElementById(data.id);
 	var checkWish = document.getElementsByClassName("checkProduct");
@@ -112,7 +95,7 @@ var checkAll =function(data){
 		}
 	}	
 }
-var GoCartWishSelected=function(mem_num){
+var goCartWishSelected=function(mem_num){
 	if("${(fn:length(wishList))!=0}"){
 		var url ="http://localhost:8888/classic_shop/cart.do?num="+mem_num+"&productNum=";
 		var url2 = url;
